@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { Dimensions, FlatList, Vibration } from 'react-native';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { ListEmpty } from '..';
+import { ListEmpty } from '@/search/search_list';
 
 const { height } = Dimensions.get('window');
 

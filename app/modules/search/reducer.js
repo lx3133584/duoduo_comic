@@ -1,6 +1,6 @@
 import { handleActions } from 'redux-actions';
 import Immutable from 'immutable';
-import { searchListActions } from '.';
+import { searchListActions } from '@/search';
 
 const initialState = Immutable.Map({
   keyword: '',

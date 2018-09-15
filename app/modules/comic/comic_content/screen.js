@@ -2,13 +2,13 @@ import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import { StatusBar, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
-import { LoadingPage } from '..';
+import { LoadingPage } from '@/comic/comic_detail';
 import { connect } from 'react-redux';
 import Orientation from 'react-native-orientation';
 import DeviceBrightness from 'react-native-device-brightness';
-import { ContentList, ContentStatusBar, ContentDrawerManager } from '.';
+import { ContentList, ContentStatusBar, ContentDrawerManager } from '@/comic/comic_content';
 import { wrapWithLoading } from 'utils';
-import { configActions } from '../..';
+import { configActions } from '@';
 
 const ContainStyled = styled.View`
   background-color: #282828;

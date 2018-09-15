@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { StatusBar, Dimensions } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { Brand, LoginLocal } from '.';
+import { Brand, LoginLocal } from '@/user/login';
 import { brand_primary } from 'theme';
 
 const { height } = Dimensions.get('window');

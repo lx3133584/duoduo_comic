@@ -1,6 +1,6 @@
 import { handleActions } from 'redux-actions';
 import Immutable from 'immutable';
-import { comicDetailActions, comicContentActions } from '.';
+import { comicDetailActions, comicContentActions } from '@/comic';
 
 const initialState = Immutable.Map({
   detail: Immutable.Map(),

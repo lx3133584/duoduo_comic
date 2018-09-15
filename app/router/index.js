@@ -26,9 +26,9 @@ import {
 } from '@';
 
 import onBackPress from './onBack';
-import { Header, TabIcon } from './components';
+import { Header, LeftButton, TabIcon } from './components';
 
-export { Header };
+export { Header, LeftButton };
 
 // const styleType = {
 //   dark: 'dark-content',

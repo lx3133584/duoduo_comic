@@ -3,7 +3,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import Toast from 'react-native-root-toast';
 import { Image } from 'react-native';
-import { ContentListScroll, ContentListPageTurning } from '..';
+import { ContentListScroll, ContentListPageTurning } from '@/comic/comic_content';
 
 const { prefetch } = Image;
 const page_size = 5;

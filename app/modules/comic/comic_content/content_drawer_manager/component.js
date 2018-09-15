@@ -6,7 +6,7 @@ import {
   ContentDrawerMenu,
   ContentDrawerProgress,
   ContentDrawerSetting,
-} from '..';
+} from '@/comic/comic_content';
 
 const HEADER_HEIGHT = 60;
 const containStyle = {

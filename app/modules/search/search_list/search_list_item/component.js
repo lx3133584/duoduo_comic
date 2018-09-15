@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { LongListItem } from '..';
+import { LongListItem } from '@/search/search_list';
 import { Badge } from 'react-native-elements';
 import { green, red, purple } from 'theme';
 

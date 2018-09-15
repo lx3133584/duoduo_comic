@@ -1,10 +1,10 @@
 import React, { PureComponent } from 'react';
-import { Avatar, LoginNowButton } from '..';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { Actions } from 'react-native-router-flux';
 import styled from 'styled-components';
 import { brand_primary } from 'theme';
+import { Avatar, LoginNowButton } from '@/user/user_info';
 
 const ContainStyled = styled.View`
   height: 260px;

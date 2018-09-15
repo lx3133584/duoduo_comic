@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import { LongList, SearchListItem } from '..';
+import { LongList, SearchListItem } from '@/search/search_list';
 
 class SearchListComponent extends PureComponent {
   static propTypes = {

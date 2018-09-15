@@ -6,7 +6,7 @@ import { TouchableOpacity } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Header } from 'router';
 import { brand_primary, red } from 'theme';
-import { ListItem } from '../..';
+import { ListItem } from '@/user';
 
 const ContainStyled = styled.View`
   background: #fff;

@@ -4,8 +4,8 @@ import { StatusBar, Dimensions } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { brand_primary } from 'theme';
 import { Header } from 'router';
-import { RegisterLocal } from '.';
-import { Brand } from '..';
+import { RegisterLocal } from '@/user/register';
+import { Brand } from '@/user';
 
 
 const { height } = Dimensions.get('window');

@@ -1,8 +1,8 @@
 import React from 'react';
 import { StatusBar, Dimensions } from 'react-native';
 import styled from 'styled-components';
-import { SearchBar, SearchList } from '.';
 import { brand_primary } from 'theme';
+import { SearchBar, SearchList } from '@/search/search_list';
 
 const { height } = Dimensions.get('window');
 

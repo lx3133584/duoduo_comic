@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Actions } from 'react-native-router-flux';
-import { Image, TouchableNativeFeedback } from '..';
+import { Image, TouchableNativeFeedback } from '@/search/search_list';
 
 const ContainStyled = styled.View`
   flex-direction: row;
@@ -62,7 +62,6 @@ LongListItem.propTypes = {
   title: PropTypes.string.isRequired,
   cover: PropTypes.string.isRequired,
   children: PropTypes.element.isRequired,
-  itemOnPress: PropTypes.func.isRequired,
   itemOnLongPress: PropTypes.func.isRequired,
 };
 export default LongListItem;

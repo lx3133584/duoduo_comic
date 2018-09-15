@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Badge } from 'react-native-elements';
 import { LongListItem } from '@';
-import { rankTypes } from '../..';
+import { rankTypes } from '@/discovery';
 import { numberFormat } from 'utils';
 
 const ContainStyled = styled.View`

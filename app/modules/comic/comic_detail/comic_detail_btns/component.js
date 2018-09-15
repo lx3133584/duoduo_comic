@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import Immutable from 'immutable';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Button } from 'react-native-elements';
@@ -51,11 +52,15 @@ const containerStyle = {
 
 class ComicDetailBtnsComponent extends PureComponent {
   static propTypes = {
-    detail: ImmutablePropTypes.map.isRequired,
+    detail: ImmutablePropTypes.map,
     list: ImmutablePropTypes.list.isRequired,
     add: PropTypes.func.isRequired,
     remove: PropTypes.func.isRequired,
   };
+
+  static defaultProps = {
+    detail: Immutable.Map(),
+  }
 
   constructor() {
     super();

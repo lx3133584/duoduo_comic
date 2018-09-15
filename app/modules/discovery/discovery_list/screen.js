@@ -1,9 +1,9 @@
 import React from 'react';
 import { StatusBar, Dimensions } from 'react-native';
 import styled from 'styled-components';
-import { ClassList, RankList } from '.';
 import { brand_primary } from 'theme';
 import { Header } from 'router';
+import { ClassList, RankList } from '@/discovery/discovery_list';
 
 const { height, width } = Dimensions.get('window');
 

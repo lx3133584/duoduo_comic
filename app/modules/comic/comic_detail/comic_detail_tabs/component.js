@@ -1,10 +1,10 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { ComicList, ComicDetail } from '..';
+import { ComicList, ComicDetail } from '@/comic/comic_detail';
 import { Dimensions } from 'react-native';
 import {
-  TabViewAnimated, TabViewPagerPan, TabBar,
+  TabView, PagerPan, TabBar,
 } from 'react-native-tab-view';
 
 const initialLayout = {
@@ -75,7 +75,7 @@ class ComicDetailTabsComponent extends PureComponent {
   );
 
   _renderPager = props => (
-    <TabViewPagerPan
+    <PagerPan
       {...props}
     />
   );
@@ -87,7 +87,7 @@ class ComicDetailTabsComponent extends PureComponent {
   render() {
     const { index, routes } = this.state;
     return (
-      <TabViewAnimated
+      <TabView
         navigationState={{ index, routes }}
         renderScene={this._renderScene}
         renderHeader={this._renderHeader}

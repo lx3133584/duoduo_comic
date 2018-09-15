@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Actions } from 'react-native-router-flux';
-import { ContentDrawerIcon } from '..';
+import { ContentDrawerIcon } from '@/comic/comic_content';
 
 const ContainStyled = styled.View`
   flex-direction: row;

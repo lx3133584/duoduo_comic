@@ -6,6 +6,7 @@
     "start": "node node_modules/react-native/local-cli/cli.js start",
     "test": "jest",
     "lint": "eslint --ext .js ./app --fix",
+    "android": "react-native run-android",
     "bundle": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/ index.android.bundle --assets-dest android/app/src/main/res/",
     "build": "cd android && radlew assembleRelease"
   },
@@ -39,7 +40,7 @@
     "react-native-router-flux": "^4.0.0-beta.31",
     "react-native-splash-screen": "^3.0.6",
     "react-native-star-rating": "^1.0.9",
-    "react-native-tab-view": "^0.0.74",
+    "react-native-tab-view": "^1.0.2",
     "react-native-update": "^5.1.2",
     "react-native-vector-icons": "^4.6.0",
     "react-redux": "^5.0.7",

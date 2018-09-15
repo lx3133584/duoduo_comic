@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Dimensions } from 'react-native';
 import Orientation from 'react-native-orientation';
-import { ContentDrawerSettingCheckbox } from '..';
+import { ContentDrawerSettingCheckbox } from '@/comic/comic_content';
 
 const ContainStyled = styled.View`
   flex-direction: row;

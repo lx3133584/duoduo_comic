@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { Actions } from 'react-native-router-flux';
 import Toast from 'react-native-root-toast';
 import { Modal } from '@';
-import { ListItem } from '..';
+import { ListItem } from '@/user/user_info';
 
 const ContainStyled = styled.View`
   padding-bottom: 20px;

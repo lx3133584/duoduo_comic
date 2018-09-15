@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Rating from 'react-native-star-rating';
-import { RatingModal } from '..';
+import { RatingModal } from '@/comic/comic_detail';
 import { TouchableNativeFeedback } from '@';
 import { numberFormat } from 'utils';
 import { yellow } from 'theme';

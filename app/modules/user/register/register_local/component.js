@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { View } from 'react-native';
 import Toast from 'react-native-root-toast';
 import { Actions } from 'react-native-router-flux';
-import { LoginInput, LoginButton } from '../..';
+import { LoginInput, LoginButton } from '@/user';
 
 const InputContainStyled = styled.View`
   margin-bottom: 30px;

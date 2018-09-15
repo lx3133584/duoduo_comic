@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import { Rating } from '..';
+import { Rating } from '@/comic/comic_detail';
 
 const ContainStyled = styled.View`
   margin-bottom: 5px;

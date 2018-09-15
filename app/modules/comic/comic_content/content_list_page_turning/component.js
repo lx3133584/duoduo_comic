@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ImageViewer from 'react-native-image-zoom-viewer';
 import { Dimensions } from 'react-native';
-import { ImgPlaceholder, ContentListFooter } from '..';
+import { ImgPlaceholder, ContentListFooter } from '@/comic/comic_content';
 import styled from 'styled-components';
 
 import failImg from './fail.jpg';

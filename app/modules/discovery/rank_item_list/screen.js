@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { StatusBar, Dimensions } from 'react-native';
 import styled from 'styled-components';
-import { RankItemList } from '.';
+import { RankItemList } from '@/discovery/rank_item_list';
 import { rankTypes } from '..';
 import { brand_primary } from 'theme';
 import { Header } from 'router';

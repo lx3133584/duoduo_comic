@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { Progress } from '..';
+import { Progress } from '@/comic/comic_detail';
 import { Dimensions } from 'react-native';
 import { brand_primary } from 'theme';
 

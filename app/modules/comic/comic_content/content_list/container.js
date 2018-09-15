@@ -7,7 +7,7 @@ import {
   saveContentIndex,
   saveHistory,
 } from '../actions';
-import { comicDetailActions } from '../..';
+import { comicDetailActions } from '@/comic';
 
 const mapStateToProps = state => ({
   comic_id: state.comic.getIn(['detail', 'id']),

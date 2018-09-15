@@ -9,10 +9,9 @@ import './api/config';
 
 class App extends React.Component {
   componentDidMount() {
-    // setTimeout(() => {
-    //   SplashScreen.hide();
-    // }, 2000);
-    SplashScreen.hide();
+    setTimeout(() => {
+      SplashScreen.hide();
+    }, 2000);
     Orientation.lockToPortrait(); // 锁定竖屏
     if (process.env.NODE_ENV !== 'production') persistor.purge(); // 开发模式下清除persist
   }

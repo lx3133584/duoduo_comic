@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { RankListItem, rankTypes } from '..';
+import { RankListItem, rankTypes } from '@/discovery/discovery_list';
 
 const ContainStyled = styled.View`
   margin: 10px 0;

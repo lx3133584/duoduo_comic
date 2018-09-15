@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { StatusBar, Dimensions } from 'react-native';
-import { FavoritesListTabs } from '.';
 import { brand_primary } from 'theme';
+import { FavoritesListTabs } from '@/favorites/favorites_list';
 
 const { height } = Dimensions.get('window');
 

@@ -4,7 +4,7 @@ import ParallaxScrollView from 'react-native-parallax-scroll-view';
 import { brand_primary } from 'theme';
 import {
   ComicDetailTop, ComicDetailBtns, ComicDetailTabs, DetailHeader, DetailBackButton,
-} from '..';
+} from '@/comic/comic_detail';
 
 export default function ParallaxComponent(props) {
   return (

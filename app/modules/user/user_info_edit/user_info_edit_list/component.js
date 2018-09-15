@@ -9,7 +9,7 @@ import ActionSheet from 'react-native-actionsheet';
 import { TouchableOpacity } from 'react-native';
 import { Header } from 'router';
 import { brand_primary } from 'theme';
-import { Avatar, ListItem } from '../..';
+import { Avatar, ListItem } from '@/user';
 
 const ContainStyled = styled.View`
   background: #fff;

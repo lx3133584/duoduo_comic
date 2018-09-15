@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import {
   Battery, NetStatus, Time, Title, ReadingProgress,
-} from '..';
+} from '@/comic/comic_content';
 
 const ContainStyled = styled.View`
   flex-direction: row;

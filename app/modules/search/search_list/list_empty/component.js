@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { Image } from '..';
+import { Image } from '@/search/search_list';
 
 import noresImg from './nores.png';
 

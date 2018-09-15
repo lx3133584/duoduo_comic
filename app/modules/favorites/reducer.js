@@ -1,8 +1,8 @@
 import { handleActions } from 'redux-actions';
 import Immutable from 'immutable';
-import { favoritesListActions } from '.';
-import { comicDetailActions } from '../comic';
-import { userInfoActions } from '../user';
+import { favoritesListActions } from '@/favorites';
+import { comicDetailActions } from '@/comic';
+import { userInfoActions } from '@/user';
 
 const initialState = Immutable.Map({
   favorites_list: Immutable.List(),

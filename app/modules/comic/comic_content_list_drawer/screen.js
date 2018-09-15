@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { ComicList } from '..';
+import { ComicList } from '@/comic/comic_content_list_drawer';
 
 class ComicContentListDrawerScreen extends PureComponent {
   static propTypes = {

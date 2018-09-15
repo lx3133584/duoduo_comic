@@ -3,7 +3,7 @@ import { Dimensions } from 'react-native';
 const { width: clientWidth } = Dimensions.get('window');
 
 // 大数字格式化
-export const numberFormat = function (num) {
+export function numberFormat(num) {
   const n = +num || 0;
   switch (true) {
     case n < 10000:
@@ -15,8 +15,8 @@ export const numberFormat = function (num) {
     default:
       return n;
   }
-};
+}
 // 获取图片的高
-export const getImgHeight = function ({ height, width }, myClientWidth = clientWidth) {
+export function getImgHeight({ height, width }, myClientWidth = clientWidth) {
   return Math.round(height / width * myClientWidth);
-};
+}

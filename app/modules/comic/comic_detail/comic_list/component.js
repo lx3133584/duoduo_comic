@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { SectionList, Dimensions } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { ComicListItem, ComicListCategory, Progress } from '..';
+import { ComicListItem, ComicListCategory, Progress } from '@/comic/comic_detail';
 import styled from 'styled-components';
 import { wrapWithLoading } from 'utils';
 

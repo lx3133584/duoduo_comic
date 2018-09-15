@@ -2,10 +2,10 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import styled from 'styled-components';
-import { FavoritesList, HistoryList } from '..';
+import { FavoritesList, HistoryList } from '@/favorites/favorites_list';
 import { Dimensions } from 'react-native';
 import {
-  TabViewAnimated, TabViewPagerPan, TabBar,
+  TabView, PagerPan, TabBar,
 } from 'react-native-tab-view';
 import { LoginNowButton } from '@';
 import { brand_primary } from 'theme';
@@ -45,7 +45,7 @@ function switchPage(key) {
   }
 }
 
-class ComicDetailTabsComponent extends PureComponent {
+class FavoritesTabsComponent extends PureComponent {
   static propTypes = {
     info: ImmutablePropTypes.map.isRequired,
     index: PropTypes.number,
@@ -87,7 +87,7 @@ class ComicDetailTabsComponent extends PureComponent {
   );
 
   _renderPager = props => (
-    <TabViewPagerPan
+    <PagerPan
       swipeEnabled
       {...props}
     />
@@ -108,7 +108,7 @@ class ComicDetailTabsComponent extends PureComponent {
   render() {
     const { index, routes } = this.state;
     return (
-      <TabViewAnimated
+      <TabView
         navigationState={{ index, routes }}
         renderScene={this._renderScene}
         renderHeader={this._renderHeader}
@@ -122,4 +122,4 @@ class ComicDetailTabsComponent extends PureComponent {
 }
 
 
-export default ComicDetailTabsComponent;
+export default FavoritesTabsComponent;

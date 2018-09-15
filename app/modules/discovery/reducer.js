@@ -1,6 +1,6 @@
 import { handleActions } from 'redux-actions';
 import Immutable from 'immutable';
-import { discoveryListActions, rankItemListActions, classItemListActions } from '.';
+import { discoveryListActions, rankItemListActions, classItemListActions } from '@/discovery';
 
 const initialState = Immutable.Map({
   class_item_id: 1,
