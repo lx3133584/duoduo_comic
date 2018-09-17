@@ -32,7 +32,7 @@ function ClassListItem({
     <ContainStyled>
       <TouchableOpacity
         activeOpacity={0.6}
-        onPress={() => Actions.classItem({ id, name })}
+        onPress={() => Actions.classItem({ id, title: name })}
       >
         <ImageBoxStyled>
           <Image

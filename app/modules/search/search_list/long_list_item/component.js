@@ -61,7 +61,10 @@ LongListItem.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   cover: PropTypes.string.isRequired,
-  children: PropTypes.element.isRequired,
+  children: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.element,
+  ]).isRequired,
   itemOnLongPress: PropTypes.func.isRequired,
 };
 export default LongListItem;

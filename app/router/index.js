@@ -7,6 +7,8 @@ import {
   Drawer,
   Lightbox,
 } from 'react-native-router-flux';
+import StackViewStyleInterpolator from
+  'react-navigation-stack/dist/views/StackView/StackViewStyleInterpolator';
 // import { StatusBar } from 'react-native';
 import { brand_primary } from 'theme';
 import {
@@ -40,12 +42,16 @@ export { Header, LeftButton };
 //   StatusBar.setBarStyle(barStyle, true);
 // };
 
+
 const RootRoute = () => (
   <Router backAndroidHandler={onBackPress}>
     <Lightbox>
       <Stack
         key="root"
         navBar={Header}
+        transitionConfig={() => ({
+          screenInterpolator: StackViewStyleInterpolator.forHorizontal,
+        })}
       >
         <Tabs
           hideNavBar
@@ -79,7 +85,8 @@ const RootRoute = () => (
             icon={TabIcon.DiscoveryIcon}
             component={DiscoveryListScreen}
             title="发现"
-            hideNavBar
+            isNoBack
+            customTitle="漫画分类"
           />
           <Scene
             key="user"
@@ -103,21 +110,25 @@ const RootRoute = () => (
           key="userEdit"
           component={UserInfoEditScreen}
           title="个人资料"
+          hideNavBar
         />
         <Scene
           key="password"
           component={PasswordEditScreen}
           title="修改密码"
+          hideNavBar
         />
         <Scene
           key="comicDetail"
           component={ComicDetailScreen}
           title="漫画详情"
+          hideNavBar
         />
         <Scene
           key="comicContent"
           component={ComicContentScreen}
           title="漫画内容"
+          hideNavBar
         />
         <Scene
           key="rankItem"

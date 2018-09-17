@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { SectionList, Dimensions } from 'react-native';
 import { Actions } from 'react-native-router-flux';
@@ -29,7 +29,7 @@ function _keyExtractor(item) {
 }
 
 @wrapWithLoading
-class ComicListComponent extends PureComponent {
+class ComicListComponent extends Component {
   static propTypes = {
     list: PropTypes.array.isRequired,
     chapter_id: PropTypes.number,
@@ -50,6 +50,13 @@ class ComicListComponent extends PureComponent {
 
   componentDidMount() {
     this.onFetch();
+  }
+
+  shouldComponentUpdate(nextProps) {
+    const { list, chapter_id, loading } = this.props;
+    return nextProps.list !== list
+      || nextProps.chapter_id !== chapter_id
+      || nextProps.loading !== loading;
   }
 
   async onFetch() {

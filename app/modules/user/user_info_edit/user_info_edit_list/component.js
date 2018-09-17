@@ -124,7 +124,7 @@ class UserInfoEditListComponent extends PureComponent {
   renderAvatar = () => {
     const { info } = this.props;
     const avatar = info.get('avatar');
-    return <Avatar src={avatar} medium />;
+    return <Avatar src={avatar} size="medium" />;
   };
 
   renderSaveButton = () => (

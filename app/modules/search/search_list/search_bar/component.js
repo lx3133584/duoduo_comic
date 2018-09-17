@@ -10,13 +10,26 @@ const containerStyle = {
 };
 
 const inputStyle = {
+  paddingLeft: 8,
+  paddingRight: 8,
+  fontSize: 14,
   backgroundColor: '#e65d53',
   color: '#fff',
 };
-const icon = {
+const searchIcon = {
   type: 'material',
   color: '#f1f2f6',
   name: 'search',
+};
+const clearIcon = {
+  type: 'material',
+  color: '#f1f2f6',
+  name: 'clear',
+};
+const cancelIcon = {
+  type: 'material',
+  color: '#f1f2f6',
+  name: 'clear-all',
 };
 
 class SearchBarComponent extends PureComponent {
@@ -49,8 +62,11 @@ class SearchBarComponent extends PureComponent {
     if (!value) return;
     const { search } = this.props;
     this.setState({ loading: true });
-    await search({ keyword: value, page: 0 });
-    this.setState({ loading: false });
+    try {
+      await search({ keyword: value, page: 0 });
+    } finally {
+      this.setState({ loading: false });
+    }
   }
 
   render() {
@@ -59,13 +75,15 @@ class SearchBarComponent extends PureComponent {
       <SearchBar
         value={value}
         placeholder="搜索漫画信息（名称、作者、描述）"
-        lightTheme
-        round
+        platform="android"
         showLoading={loading}
         containerStyle={containerStyle}
         inputStyle={inputStyle}
         placeholderTextColor="#f1f2f6"
-        icon={icon}
+        clearIcon={clearIcon}
+        searchIcon={searchIcon}
+        cancelIcon={cancelIcon}
+        loadingProps={{ color: '#fff' }}
         onSubmitEditing={this.onSubmit}
         onChangeText={this.onChange}
       />

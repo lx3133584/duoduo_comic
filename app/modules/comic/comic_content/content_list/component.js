@@ -53,6 +53,13 @@ class ContentListComponent extends Component {
     }
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    const { mode } = this.props;
+    const { page } = this.state;
+    return nextProps.mode !== mode
+      || nextState.page !== page;
+  }
+
   componentWillUnmount() {
     this.saveHistory();
   }
@@ -67,9 +74,10 @@ class ContentListComponent extends Component {
 
   onFetch = async (page, init = false) => {
     const { getContent } = this.props;
-    await getContent({
+    const res = await getContent({
       id: this.chapter_id, page, init, pre: false,
     });
+    return res;
   };
 
   // 从目录中取第一个章节
@@ -81,8 +89,8 @@ class ContentListComponent extends Component {
 
   goPage = async ({ page, offset, init }) => {
     init && (this.init_page = page);
-    const { value } = await this.onFetch(page, init);
-    const data = value.result.data.slice(offset, offset + pre_num);
+    const res = await this.onFetch(page, init);
+    const data = res.value.result.data.slice(offset, offset + pre_num);
     const tasks = data.map(item => prefetch(item.url));
     try {
       await Promise.all(tasks); // 前三张图片都显示出来才结束loading
@@ -160,6 +168,7 @@ class ContentListComponent extends Component {
           this.onRefresh(0, true);
         }
         await this.goPage({ page, offset, init: true });
+
         this.scrollTo(offset);
         // if (offset > page_size - pre_num) {
         //   this.setState(({ page }) => { page: page + 1 });

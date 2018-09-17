@@ -27,21 +27,6 @@ const tabBarUnderlineStyle = {
   borderRadius: 10,
 };
 
-function switchPage(key) {
-  switch (key) {
-    case 'detail':
-      return <ComicDetail />;
-    case 'list':
-      return (
-        <ListStyled>
-          <ComicList />
-        </ListStyled>
-      );
-    default:
-      return null;
-  }
-}
-
 class ComicDetailTabsComponent extends PureComponent {
   static propTypes = {
     index: PropTypes.number,
@@ -65,7 +50,7 @@ class ComicDetailTabsComponent extends PureComponent {
 
   _handleIndexChange = index => this.setState({ index });
 
-  _renderHeader = props => (
+  _renderTabBar = props => (
     <TabBar
       {...props}
       style={tabBarStyle}
@@ -80,9 +65,25 @@ class ComicDetailTabsComponent extends PureComponent {
     />
   );
 
-  _renderScene = ({ route }) => switchPage(route.key)
+  _renderScene = ({ route }) => this.switchPage(route.key)
   // }
   // return null;
+
+  switchPage = (key) => {
+    switch (key) {
+      case 'detail':
+        return <ComicDetail {...this.props} />;
+      case 'list':
+        return (
+          <ListStyled>
+            <ComicList {...this.props} />
+          </ListStyled>
+        );
+      default:
+        return null;
+    }
+  }
+
 
   render() {
     const { index, routes } = this.state;
@@ -90,7 +91,7 @@ class ComicDetailTabsComponent extends PureComponent {
       <TabView
         navigationState={{ index, routes }}
         renderScene={this._renderScene}
-        renderHeader={this._renderHeader}
+        renderTabBar={this._renderTabBar}
         renderPager={this._renderPager}
         onIndexChange={this._handleIndexChange}
         initialLayout={initialLayout}

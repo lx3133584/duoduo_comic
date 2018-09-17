@@ -15,7 +15,7 @@ export const searchLocal = ({ keyword, page }) => http.get('searchLocal', { para
 // 发现
 export const fetchClassList = () => http.get('class'); // 分类列表
 export const fetchClassItemList = ({ id, page }) => http.get(`class/${id}`, { params: { page } }); // 单分类漫画列表
-export const fetchRankItemList = ({ type, page }) => http.get(`rank/${type}`, { params: { page } }); // 单种排行榜
+export const fetchRankItemList = ({ id, page }) => http.get(`rank/${id}`, { params: { page } }); // 单种排行榜
 // 用户
 export const fetchUserInfo = () => http.get('user'); // 用户信息
 export const editUserInfo = ({ tel = '', email = '', name }) => http.put('user', { tel, email, name }); // 修改用户信息

@@ -48,11 +48,12 @@ class RatingModalComponent extends PureComponent {
     isVisible: PropTypes.bool.isRequired,
     cancel: PropTypes.func.isRequired,
     add: PropTypes.func.isRequired,
-    id: PropTypes.number.isRequired,
+    id: PropTypes.number,
     my_score: PropTypes.number,
   };
 
   static defaultProps = {
+    id: 0,
     my_score: 0,
   }
 

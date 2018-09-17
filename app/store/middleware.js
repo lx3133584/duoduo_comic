@@ -3,9 +3,7 @@ import { createLogger } from 'redux-logger';
 
 const middleware = [promiseMiddleware()];
 
-const isNotProduction = process.env.NODE_ENV !== 'production';
-
-if (isNotProduction) {
+if (__DEV__) {
   const logger = createLogger({
     stateTransformer: (state) => {
       const newState = {};

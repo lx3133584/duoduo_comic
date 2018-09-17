@@ -103,7 +103,7 @@ class ContentListScrollComponent extends Component {
         getRef={this._getRef}
         list={content}
         Item={this.renderItem}
-        customkey="index"
+        customkey="url"
         onFetch={onFetch}
         onScroll={this.onScroll}
         ListFooterComponent={ContentListFooter}

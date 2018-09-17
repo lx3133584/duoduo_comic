@@ -13,7 +13,7 @@ class App extends React.Component {
       SplashScreen.hide();
     }, 2000);
     Orientation.lockToPortrait(); // 锁定竖屏
-    if (process.env.NODE_ENV !== 'production') persistor.purge(); // 开发模式下清除persist
+    if (__DEV__) persistor.purge(); // 开发模式下清除persist
   }
 
   render() {

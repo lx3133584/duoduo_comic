@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { HistoryListItem, Modal } from '@/favorites/favorites_list';
@@ -9,7 +9,7 @@ const ContainStyled = styled.View`
   padding-top: 15px;
 `;
 
-class FavoritesListComponent extends PureComponent {
+class FavoritesListComponent extends Component {
   static propTypes = {
     getList: PropTypes.func.isRequired,
     remove: PropTypes.func.isRequired,
@@ -27,6 +27,15 @@ class FavoritesListComponent extends PureComponent {
   state = {
     isVisible: false,
   };
+
+  componentDidMount() {
+    this.onFetch(0);
+  }
+
+  shouldComponentUpdate(nextProps) {
+    const { list } = this.props;
+    return nextProps.list !== list;
+  }
 
   async onFetch(page) {
     const { getList } = this.props;

@@ -26,7 +26,7 @@ function RankListItem({
 }) {
   return (
     <TouchableOpacity
-      onPress={() => Actions.rankItem({ type: id })}
+      onPress={() => Actions.rankItem({ id, title: name })}
       activeOpacity={0.6}
     >
       <ContainStyled style={{ backgroundColor: color }}>

@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { Dimensions, FlatList, Vibration } from 'react-native';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
@@ -30,11 +30,7 @@ FooterComponent.defaultProps = {
   text: '下面什么都没有了哦。',
 };
 
-function _keyExtractor(item) {
-  return `${item[this.customkey]}`;
-}
-
-class LongListComponent extends PureComponent {
+class LongListComponent extends Component {
   static propTypes = {
     initPage: PropTypes.number,
     page: PropTypes.number,
@@ -59,7 +55,7 @@ class LongListComponent extends PureComponent {
 
   static defaultProps = {
     initPage: 0,
-    customkey: 'title',
+    customkey: 'id',
     page: 0,
     onFetch: null,
     callback: f => f,
@@ -81,7 +77,7 @@ class LongListComponent extends PureComponent {
       loading: false,
     };
     this.page = page || 0;
-    this.customkey = customkey || 'title';
+    this.customkey = customkey || 'id';
     this._onRefresh = this._onRefresh.bind(this);
     this._onFetch = this._onFetch.bind(this);
     this._renderItem = this._renderItem.bind(this);
@@ -93,10 +89,21 @@ class LongListComponent extends PureComponent {
     if (nextProps.page !== page) this.page = nextProps.page;
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    const { list, showFooter, emptyText } = this.props;
+    const { loading } = this.state;
+    return nextProps.list !== list
+      || nextProps.showFooter !== showFooter
+      || nextProps.emptyText !== emptyText
+      || nextState.loading !== loading;
+  }
+
   _getItemLayout = (data, index) => {
     const { itemHeight } = this.props;
     return { length: itemHeight, offset: itemHeight * index, index };
   };
+
+  _keyExtractor = item => `${item[this.customkey]}`
 
   _onFetch({ init }) {
     const { onFetch, callback, increasePage } = this.props;
@@ -144,7 +151,7 @@ class LongListComponent extends PureComponent {
       <FlatList
         ref={getRef}
         data={list}
-        keyExtractor={_keyExtractor}
+        keyExtractor={this._keyExtractor}
         renderItem={this._renderItem}
         onEndReached={isLong && this._onFetch}
         onEndReachedThreshold={1.6}

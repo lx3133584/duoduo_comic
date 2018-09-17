@@ -25,8 +25,6 @@ class ClassItemListComponent extends PureComponent {
 
   constructor(props) {
     super(props);
-    const { id } = props;
-    this.id = id;
     this.onFetch = this.onFetch.bind(this);
   }
 
@@ -35,8 +33,8 @@ class ClassItemListComponent extends PureComponent {
   }
 
   async onFetch(page) {
-    const { getList, hideLoading } = this.props;
-    const res = await getList({ page, id: this.id });
+    const { getList, hideLoading, id } = this.props;
+    const res = await getList({ page, id });
     hideLoading();
     return res;
   }

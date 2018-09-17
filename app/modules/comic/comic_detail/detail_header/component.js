@@ -19,6 +19,9 @@ function DetailHeaderComponent({ title }) {
   );
 }
 DetailHeaderComponent.propTypes = {
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
+};
+DetailHeaderComponent.defaultProps = {
+  title: '漫画详情',
 };
 export default DetailHeaderComponent;

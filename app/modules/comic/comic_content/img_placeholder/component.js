@@ -21,7 +21,7 @@ function ImagePlaceholder({ children, ...otherProps }) {
   );
 }
 ImagePlaceholder.propTypes = {
-  children: PropTypes.string,
+  children: PropTypes.number,
 };
 ImagePlaceholder.defaultProps = {
   children: null,

@@ -61,7 +61,10 @@ class ModalComponent extends PureComponent {
   static propTypes = {
     confirm: PropTypes.func.isRequired,
     cancel: PropTypes.func.isRequired,
-    children: PropTypes.element.isRequired,
+    children: PropTypes.oneOfType([
+      PropTypes.element,
+      PropTypes.string,
+    ]).isRequired,
     isVisible: PropTypes.bool,
   };
 

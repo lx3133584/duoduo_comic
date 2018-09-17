@@ -16,12 +16,12 @@ class RankItemListComponent extends PureComponent {
     getList: PropTypes.func.isRequired,
     hideLoading: PropTypes.func.isRequired,
     loading: PropTypes.bool.isRequired,
-    type: PropTypes.number,
+    id: PropTypes.number,
     list: ImmutablePropTypes.list.isRequired,
   };
 
   static defaultProps = {
-    type: 0,
+    id: 0,
   }
 
   constructor(props) {
@@ -34,13 +34,16 @@ class RankItemListComponent extends PureComponent {
   }
 
   async onFetch(page) {
-    const { getList, hideLoading, type } = this.props;
-    const res = await getList({ page, type });
+    const { getList, hideLoading, id } = this.props;
+    const res = await getList({ page, id });
     hideLoading();
     return res;
   }
 
-  renderItem = props => <RankItemListItem {...props} />;
+  renderItem = (props) => {
+    const { id } = this.props;
+    return <RankItemListItem {...props} id={id} />;
+  };
 
   render() {
     const { list, loading } = this.props;

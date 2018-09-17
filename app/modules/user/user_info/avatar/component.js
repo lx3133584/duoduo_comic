@@ -9,7 +9,7 @@ function AvatarComponent(props) {
   const { src, onPress } = props;
   return (
     <Avatar
-      large
+      size="large"
       rounded
       source={src ? { uri: baseURL + src } : avatarImg}
       onPress={onPress}

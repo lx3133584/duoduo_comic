@@ -58,26 +58,29 @@ export const wrapWithUpdate = function (WrappedComponent) {
       hash: null, // 安装包hash值
     };
 
-    checkUpdate = () => checkUpdate(appKey).then((info) => {
-      if (info.expired) {
+    checkUpdate = () => {
+      if (__DEV__) return Promise.resolve(false);
+      checkUpdate(appKey).then((info) => {
+        if (info.expired) {
+          this.setState({
+            isVisible: true,
+            tips: '您的应用版本已更新，请前往应用商店下载新的版本',
+            type: 'download',
+            info,
+          });
+          return true;
+        } if (info.upToDate) {
+          return false;
+        }
         this.setState({
           isVisible: true,
-          tips: '您的应用版本已更新，请前往应用商店下载新的版本',
-          type: 'download',
+          tips: `检查到新的版本${info.name}，是否下载更新？\n${info.description}`,
+          type: 'doUpdate',
           info,
         });
         return true;
-      } if (info.upToDate) {
-        return false;
-      }
-      this.setState({
-        isVisible: true,
-        tips: `检查到新的版本${info.name}，是否下载更新？\n${info.description}`,
-        type: 'doUpdate',
-        info,
-      });
-      return true;
-    });
+      })
+    };
 
     doUpdate = (info) => {
       downloadUpdate(info).then((hash) => {

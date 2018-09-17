@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { Rating } from '@/comic/comic_detail';
@@ -37,40 +37,50 @@ const DescStyled = styled.Text`
   margin: 8px 0;
   line-height: 20px;
 `;
-function ComicDetailComponent({ detail }) {
-  const status = detail.get('status');
-  const author = detail.get('author');
-  const update_time = detail.get('update_time');
-  const update_date = update_time && update_time.slice(0, 10);
-  const desc = detail.get('desc');
-  return (
-    <ContainStyled>
-      <TopContainStyled>
-        <LeftContainStyled>
-          <AuthorContainStyled>
+class ComicDetailComponent extends Component {
+  static propTypes = {
+    detail: ImmutablePropTypes.map.isRequired,
+  };
 
-            作者：
-            <AuthorStyled>
-              {author || '佚名'}
-            </AuthorStyled>
-          </AuthorContainStyled>
-          <StatusStyled>
-            {status}
-            {' '}
-|
-            {' '}
-            {update_date}
-          </StatusStyled>
-        </LeftContainStyled>
-        <Rating />
-      </TopContainStyled>
-      <DescStyled>
-        {desc}
-      </DescStyled>
-    </ContainStyled>
-  );
+  shouldComponentUpdate(nextProps) {
+    const { detail } = this.props;
+    return nextProps.detail !== detail;
+  }
+
+  render() {
+    const { detail } = this.props;
+    const status = detail.get('status');
+    const author = detail.get('author');
+    const update_time = detail.get('update_time');
+    const update_date = update_time && update_time.slice(0, 10);
+    const desc = detail.get('desc');
+    return (
+      <ContainStyled>
+        <TopContainStyled>
+          <LeftContainStyled>
+            <AuthorContainStyled>
+
+              作者：
+              <AuthorStyled>
+                {author || '佚名'}
+              </AuthorStyled>
+            </AuthorContainStyled>
+            <StatusStyled>
+              {status}
+              {' '}
+  |
+              {' '}
+              {update_date}
+            </StatusStyled>
+          </LeftContainStyled>
+          <Rating />
+        </TopContainStyled>
+        <DescStyled>
+          {desc}
+        </DescStyled>
+      </ContainStyled>
+    );
+  }
 }
-ComicDetailComponent.propTypes = {
-  detail: ImmutablePropTypes.map.isRequired,
-};
+
 export default ComicDetailComponent;

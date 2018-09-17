@@ -55,7 +55,7 @@ function SearchListItem(props) {
           wrapperStyle={wrapperStyle}
           containerStyle={status === '完结' ? greenBackground : redBackground}
         />
-        {class_name && (
+        {!!class_name && (
         <Badge
           value={class_name}
           textStyle={textStyle}

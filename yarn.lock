@@ -6106,7 +6106,7 @@ react-native-cookies@^3.2.0:
   dependencies:
     invariant "^2.1.0"
 
-react-native-device-battery@^1.0.0:
+react-native-device-battery@1.0.0:
   version "1.0.0"
   resolved "http://registry.npm.taobao.org/react-native-device-battery/download/react-native-device-battery-1.0.0.tgz#3a50f78263fc1e3c8a701bd4aec521e5f86bda3d"
 
@@ -6147,7 +6147,7 @@ react-native-fetch-blob@^0.10.8:
     base-64 "0.1.0"
     glob "7.0.6"
 
-react-native-image-pan-zoom@^2.1.9:
+react-native-image-pan-zoom@^2.1.2:
   version "2.1.9"
   resolved "http://registry.npm.taobao.org/react-native-image-pan-zoom/download/react-native-image-pan-zoom-2.1.9.tgz#0a838330bda2468b00a0e5051e71149d86a44ad7"
 
@@ -6161,11 +6161,11 @@ react-native-image-progress@^1.1.0:
   dependencies:
     prop-types "^15.5.10"
 
-react-native-image-zoom-viewer@^2.1.2:
-  version "2.2.18"
-  resolved "http://registry.npm.taobao.org/react-native-image-zoom-viewer/download/react-native-image-zoom-viewer-2.2.18.tgz#99304592a3b256c859cb07c0677726986f82ccb8"
+react-native-image-zoom-viewer@2.1.2:
+  version "2.1.2"
+  resolved "http://registry.npm.taobao.org/react-native-image-zoom-viewer/download/react-native-image-zoom-viewer-2.1.2.tgz#e21b0667c7a4681b105ea92e8b7d23f6bd5b5335"
   dependencies:
-    react-native-image-pan-zoom "^2.1.9"
+    react-native-image-pan-zoom "^2.1.2"
 
 react-native-iphone-x-helper@^1.0.1:
   version "1.1.0"
@@ -6235,6 +6235,10 @@ react-native-safe-area-view@^0.10.0:
   dependencies:
     hoist-non-react-statics "^2.3.1"
 
+react-native-screens@^1.0.0-alpha.10:
+  version "1.0.0-alpha.10"
+  resolved "http://registry.npm.taobao.org/react-native-screens/download/react-native-screens-1.0.0-alpha.10.tgz#3e22e57592ad8050a8ebcc789d2d3da4dd5e94d9"
+
 react-native-screens@^1.0.0-alpha.8:
   version "1.0.0-alpha.9"
   resolved "http://registry.npm.taobao.org/react-native-screens/download/react-native-screens-1.0.0-alpha.9.tgz#0d036192e248d454cb7601b659e7630fd0e37e9d"
@@ -6258,15 +6262,9 @@ react-native-tab-view@^0.0.77:
   dependencies:
     prop-types "^15.6.0"
 
-react-native-tab-view@^1.0.0:
+react-native-tab-view@^1.0.0, react-native-tab-view@^1.0.2:
   version "1.0.2"
   resolved "http://registry.npm.taobao.org/react-native-tab-view/download/react-native-tab-view-1.0.2.tgz#66e0bc6d38a227ed2b212e3a256b7902f6ce02ed"
-  dependencies:
-    prop-types "^15.6.1"
-
-react-native-tab-view@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/react-native-tab-view/-/react-native-tab-view-1.0.2.tgz#66e0bc6d38a227ed2b212e3a256b7902f6ce02ed"
   dependencies:
     prop-types "^15.6.1"
 
@@ -6377,6 +6375,12 @@ react-navigation-stack@0.4.0:
   resolved "http://registry.npm.taobao.org/react-navigation-stack/download/react-navigation-stack-0.4.0.tgz#6e1f0800c086ceedfb38005ae20d50c4877396ef"
   dependencies:
     react-native-screens "^1.0.0-alpha.8"
+
+react-navigation-stack@^0.5.1:
+  version "0.5.1"
+  resolved "http://registry.npm.taobao.org/react-navigation-stack/download/react-navigation-stack-0.5.1.tgz#acc3c84c7b5209c7d89380d7f4576f17624f683c"
+  dependencies:
+    react-native-screens "^1.0.0-alpha.10"
 
 react-navigation-tabs@0.7.0:
   version "0.7.0"

@@ -76,7 +76,7 @@ class FavoritesTabsComponent extends PureComponent {
 
   _handleIndexChange = index => this.setState({ index });
 
-  _renderHeader = props => (
+  _renderTabBar = props => (
     <TabBar
       style={tabBarStyle}
       labelStyle={labelStyle}
@@ -111,7 +111,7 @@ class FavoritesTabsComponent extends PureComponent {
       <TabView
         navigationState={{ index, routes }}
         renderScene={this._renderScene}
-        renderHeader={this._renderHeader}
+        renderTabBar={this._renderTabBar}
         renderPager={this._renderPager}
         onIndexChange={this._handleIndexChange}
         initialLayout={initialLayout}

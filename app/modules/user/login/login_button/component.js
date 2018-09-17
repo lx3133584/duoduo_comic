@@ -23,12 +23,13 @@ const containerStyle = {
 };
 
 function LoginButtonComponent({
-  text, loading, onPress, outline,
+  text, loading, onPress, outline, disabled,
 }) {
   return (
     <Button
       title={text}
       loading={loading}
+      disabled={disabled}
       containerStyle={containerStyle}
       titleStyle={[textStyle, outline && { color: brand_primary }]}
       buttonStyle={[buttonStyle, outline && { backgroundColor: '#fff' }]}
@@ -40,11 +41,13 @@ LoginButtonComponent.propTypes = {
   text: PropTypes.string,
   loading: PropTypes.bool,
   outline: PropTypes.bool,
+  disabled: PropTypes.bool,
   onPress: PropTypes.func.isRequired,
 };
 LoginButtonComponent.defaultProps = {
   text: '登  录',
   loading: false,
   outline: false,
+  disabled: false,
 };
 export default LoginButtonComponent;

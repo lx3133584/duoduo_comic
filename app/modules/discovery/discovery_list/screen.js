@@ -2,34 +2,23 @@ import React from 'react';
 import { StatusBar, Dimensions } from 'react-native';
 import styled from 'styled-components';
 import { brand_primary } from 'theme';
-import { Header } from 'router';
 import { ClassList, RankList } from '@/discovery/discovery_list';
 
-const { height, width } = Dimensions.get('window');
+const { height } = Dimensions.get('window');
 
 const ContainStyled = styled.ScrollView`
   background: #fff;
   min-height: ${height};
-  padding-top: 50px;
-`;
-const HeaderContainStyled = styled.View`
-  position: absolute;
-  top: 0;
-  width: ${width};
-  z-index: 1;
 `;
 
 function DiscoveryListScreen() {
-  return [
-    <HeaderContainStyled key="header">
-      <Header isNoBack customTitle="漫画分类" />
-    </HeaderContainStyled>,
+  return (
     <ContainStyled key="main">
       <StatusBar barStyle="light-content" backgroundColor={brand_primary} />
       <RankList />
       <ClassList />
-    </ContainStyled>,
-  ];
+    </ContainStyled>
+  );
 }
 
 export default DiscoveryListScreen;
