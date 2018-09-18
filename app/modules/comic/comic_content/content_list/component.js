@@ -12,6 +12,7 @@ class ContentListComponent extends Component {
   static propTypes = {
     pre_content: ImmutablePropTypes.list.isRequired,
     content_index: PropTypes.number,
+    chapter_id: PropTypes.number,
     mode: PropTypes.string.isRequired,
     getContent: PropTypes.func.isRequired,
     preContent: PropTypes.func.isRequired,
@@ -30,6 +31,7 @@ class ContentListComponent extends Component {
     go_to_flag: false,
     content_index: 0,
     detail_chapter_id: 0,
+    chapter_id: 0,
   }
 
   constructor() {

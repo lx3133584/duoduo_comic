@@ -24,7 +24,7 @@ class ContentDrawerMenuComponent extends PureComponent {
       {
         icon_type: 'list',
         title: '目录',
-        onPress: Actions.contentListDrawer,
+        onPress: Actions.drawerOpen,
       },
       {
         icon_type: 'progress',

@@ -2,6 +2,13 @@ import { handleActions } from 'redux-actions';
 import Immutable from 'immutable';
 import { comicDetailActions, comicContentActions } from '@/comic';
 
+function saveChapterId(state, id) {
+  return state.setIn(['detail', 'chapter_id'], id);
+}
+function saveChapterIndex(state, index) {
+  return state.setIn(['detail', 'index'], index);
+}
+
 const initialState = Immutable.Map({
   detail: Immutable.Map(),
   list: Immutable.List(),
@@ -42,9 +49,9 @@ export default handleActions({
     return state.setIn(['detail', 'my_score'], action.payload.score);
   },
   [comicContentActions.preContentList]: (state, action) => {
-    state = state.setIn(['detail', 'chapter_id'], action.payload);
+    state = saveChapterId(state, action.payload);
+    state = saveChapterIndex(state, 0);
     state = state.set('content', state.get('pre_content'));
-    state = state.setIn(['detail', 'index'], 0);
     state = state.set('content_total', state.get('pre_content_total'));
     return state.update('pre_content', list => list.clear());
   },
@@ -55,15 +62,19 @@ export default handleActions({
     }
     if (action.payload.init) { // 初始化(非懒加载的情况)
       state = state.update('content', list => list.clear());
-      state = state.setIn(['detail', 'chapter_id'], action.payload.id);
+      state = saveChapterId(state, action.payload.id);
       state = state.set('content_total', action.payload.result.total);
     }
     return state.update('content', oldList => oldList.concat(action.payload.result.data));
   },
   [comicContentActions.saveChapterTitle]: (state, action) => state.set('chapter_title', action.payload),
-  [comicContentActions.saveContentIndex]: (state, action) => state.setIn(['detail', 'index'], action.payload),
+  [comicContentActions.saveContentIndex]: (state, action) => saveChapterIndex(state, action.payload),
   [comicContentActions.goToIndex]: (state, action) => {
-    state = state.setIn(['detail', 'index'], action.payload);
+    state = saveChapterIndex(state, action.payload);
     return state.update('go_to_flag', flag => !flag);
+  },
+  [`${comicContentActions.saveHistory}_PENDING`]: (state, action) => {
+    state = saveChapterId(state, action.payload.chapter_id);
+    return saveChapterIndex(state, action.payload.index);
   },
 }, initialState);

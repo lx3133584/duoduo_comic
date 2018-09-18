@@ -53,9 +53,12 @@ class ComicListComponent extends Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    const { list, chapter_id, loading } = this.props;
+    const {
+      list, chapter_id, loading, dark,
+    } = this.props;
     return nextProps.list !== list
       || nextProps.chapter_id !== chapter_id
+      || nextProps.dark !== dark
       || nextProps.loading !== loading;
   }
 
@@ -64,7 +67,13 @@ class ComicListComponent extends Component {
     const {
       getList, hideLoading, comic_id, chapter_id,
     } = this.props;
-    const res = await getList(id || comic_id);
+    let res = {};
+    try {
+      res = await getList(id || comic_id);
+    } catch (e) {
+      hideLoading();
+      return;
+    }
     let sectionIndex = 0;
     let itemIndex = 0;
     res.value && res.value.data.forEach((outer, o) => {
@@ -93,9 +102,15 @@ class ComicListComponent extends Component {
   renderItem = ({ item }) => {
     const { chapter_id, isReplace, dark } = this.props;
     const itemOnPress = (params) => {
-      isReplace
-        ? Actions.replace('comicContent', params)
-        : Actions.push('comicContent', params);
+      if (isReplace) {
+        Actions.drawerClose();
+        // Actions.pop();
+        Actions.replace('comicContent', params);
+        Actions.refresh(params);
+        // console.log(Actions);
+      } else {
+        Actions.comicContent(params);
+      }
     };
     return (
       <ComicListItem

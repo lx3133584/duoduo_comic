@@ -20,8 +20,11 @@ export const {
   PRE_CONTENT_LIST: ID => ID,
   SAVE_CHAPTER_TITLE: name => name,
   SAVE_CONTENT_INDEX: index => index,
-  SAVE_HISTORY: async ({ chapter_id, index }) => {
-    await postHistory({ chapter_id, index });
+  SAVE_HISTORY: ({ chapter_id, index }) => {
+    const promise = postHistory({ chapter_id, index });
+    return {
+      promise, data: { chapter_id, index },
+    };
   },
   GO_TO_INDEX: index => index,
 });

@@ -2,14 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'react-native-elements';
 import { Dimensions } from 'react-native';
-import Entypo from 'react-native-vector-icons/Entypo';
 import { brand_primary } from 'theme';
 
 const ICON_SIZE = 16;
 const ICON_COLOR = '#fff';
 
-const LocationIcon = <Entypo name="location-pin" size={ICON_SIZE} color={ICON_COLOR} />;
-
+const locationIcon = {
+  type: 'entypo',
+  name: 'location-pin',
+  size: ICON_SIZE,
+  color: ICON_COLOR,
+};
 const { width } = Dimensions.get('window');
 
 const buttonStyle = {
@@ -33,11 +36,11 @@ function ComicListItem({
 }) {
   return (
     <Button
-      icon={active ? LocationIcon : null}
+      icon={active ? locationIcon : null}
       buttonStyle={[buttonStyle, active && { backgroundColor: brand_primary }, dark && { width: width * 0.7 }]}
       title={title}
       titleStyle={[textStyle, dark && { color: '#eee' }, active && { color: '#fff' }]}
-      onPress={() => itemOnPress('ComicContent', { chapter_id: id, title, pre: false })}
+      onPress={() => itemOnPress({ chapter_id: id, title, pre: false })}
     />
   );
 }

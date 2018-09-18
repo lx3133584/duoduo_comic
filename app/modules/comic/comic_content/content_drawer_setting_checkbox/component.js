@@ -84,13 +84,13 @@ ContentDrawerSettingCheckboxComponent.propTypes = {
   title: PropTypes.string,
   value: PropTypes.string.isRequired,
   changeValue: PropTypes.func.isRequired,
-  options: PropTypes.shape({
+  options: PropTypes.arrayOf(PropTypes.shape({
     icon: PropTypes.string,
     text: PropTypes.string.isRequired,
     value: PropTypes.string.isRequired,
     changeValue: PropTypes.func.isRequired,
     active: PropTypes.bool,
-  }),
+  })),
 };
 ContentDrawerSettingCheckboxComponent.defaultProps = {
   title: '',
