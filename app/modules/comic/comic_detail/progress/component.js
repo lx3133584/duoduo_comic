@@ -1,10 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import Progress from 'react-native-progress/Bar';
-import { Dimensions } from 'react-native';
+import Spinner from 'react-native-spinkit';
 import { brand_primary } from 'theme';
-
-const { width } = Dimensions.get('window');
 
 const ContainStyled = styled.View`
   padding: 20px 0;
@@ -14,10 +11,9 @@ const ContainStyled = styled.View`
 export default function ProgressComponent() {
   return (
     <ContainStyled>
-      <Progress
-        indeterminate
-        width={width * 0.6}
-        useNativeDriver
+      <Spinner
+        type="ChasingDots"
+        size={32}
         color={brand_primary}
       />
     </ContainStyled>

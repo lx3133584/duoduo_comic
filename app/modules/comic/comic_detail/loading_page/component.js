@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { Progress } from '@/comic/comic_detail';
+import Spinner from 'react-native-spinkit';
 import { Dimensions } from 'react-native';
 import { brand_primary } from 'theme';
 
@@ -25,7 +25,7 @@ const OffetStyled = styled.View`
 const TextStyled = styled.Text`
   font-size: 14px;
   color: ${brand_primary};
-  margin-top: 10px;
+  margin-top: 24px;
 `;
 
 function ProgressComponent({ show, width }) {
@@ -33,7 +33,11 @@ function ProgressComponent({ show, width }) {
   return (
     <ContainStyled style={{ width }}>
       <OffetStyled>
-        <Progress />
+        <Spinner
+          type="Wave"
+          color={brand_primary}
+          size={48}
+        />
         <TextStyled>
 页面正在加载中...
         </TextStyled>

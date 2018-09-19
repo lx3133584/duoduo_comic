@@ -6,7 +6,11 @@ import { LoadingPage } from '@/comic/comic_detail';
 import { connect } from 'react-redux';
 import Orientation from 'react-native-orientation';
 import DeviceBrightness from 'react-native-device-brightness';
-import { ContentList, ContentStatusBar, ContentDrawerManager } from '@/comic/comic_content';
+import {
+  ContentList,
+  ContentStatusBar,
+  ContentDrawerManager,
+} from '@/comic/comic_content';
 import { wrapWithLoading } from 'utils';
 import { configActions } from '@';
 

@@ -38,6 +38,7 @@
     "react-native-progress": "^3.4.0",
     "react-native-root-toast": "^3.0.1",
     "react-native-router-flux": "^4.0.0-beta.31",
+    "react-native-spinkit": "^1.1.1",
     "react-native-splash-screen": "^3.0.6",
     "react-native-star-rating": "^1.0.9",
     "react-native-tab-view": "^1.0.2",

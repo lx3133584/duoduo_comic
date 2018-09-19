@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Toast from 'react-native-root-toast';
 import { Image } from 'react-native';
-import { ContentListScroll, ContentListPageTurning } from '@/comic/comic_content';
+import { ContentListScroll, ContentListPageTurning, Spin } from '@/comic/comic_content';
 
 const { prefetch } = Image;
 const page_size = 5;
@@ -39,6 +39,7 @@ class ContentListComponent extends Component {
 
   state = {
     page: 0, // 续读页码
+    loadingPage: false, // 正在加载页面, 显示Spin
   };
 
   componentDidMount() {
@@ -57,9 +58,10 @@ class ContentListComponent extends Component {
 
   shouldComponentUpdate(nextProps, nextState) {
     const { mode } = this.props;
-    const { page } = this.state;
+    const { page, loadingPage } = this.state;
     return nextProps.mode !== mode
-      || nextState.page !== page;
+      || nextState.page !== page
+      || nextState.loadingPage !== loadingPage;
   }
 
   componentWillUnmount() {
@@ -84,6 +86,7 @@ class ContentListComponent extends Component {
 
   goPage = async ({ page = 0, offset = 0, init }) => {
     init && (this.init_page = page);
+    this.setState({ loadingPage: true });
     const res = await this.onFetch(page, init);
     const data = res.value.result.data.slice(offset, offset + pre_num);
     const tasks = data.map(item => prefetch(item.url));
@@ -93,6 +96,8 @@ class ContentListComponent extends Component {
       Toast.show('图片加载失败', {
         position: -70,
       });
+    } finally {
+      this.setState({ loadingPage: false });
     }
   };
 
@@ -130,13 +135,13 @@ class ContentListComponent extends Component {
     this.scrollTo(offset);
   };
 
-    // 保存阅读进度
-    saveHistory = () => {
-      const { content_index, postHistory } = this.props;
-      postHistory({ chapter_id: this.chapter_id, index: content_index });
-    };
-
   _getRef = ref => this.content_list_ref = ref;
+
+  // 保存阅读进度
+  saveHistory() {
+    const { content_index, postHistory } = this.props;
+    postHistory({ chapter_id: this.chapter_id, index: content_index });
+  }
 
   async update(props) {
     const {
@@ -186,7 +191,7 @@ class ContentListComponent extends Component {
 
   render() {
     const { toggleDrawer, mode } = this.props;
-    const { page } = this.state;
+    const { page, loadingPage } = this.state;
     let ContentList;
     switch (mode) {
       case 'page_turning':
@@ -198,8 +203,9 @@ class ContentListComponent extends Component {
       default:
         ContentList = ContentListScroll;
     }
-    return (
+    return [
       <ContentList
+        key="list"
         getRef={this._getRef}
         offset={this.init_page * page_size}
         page={page + 1}
@@ -207,8 +213,9 @@ class ContentListComponent extends Component {
         onFetch={this.onFetch}
         onRefresh={this.onRefresh}
         toggleDrawer={toggleDrawer}
-      />
-    );
+      />,
+      <Spin key="spin" show={loadingPage} />,
+    ];
   }
 }
 

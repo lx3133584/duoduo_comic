@@ -23,4 +23,5 @@ export { default as ContentDrawerOrientation } from './content_drawer_orientatio
 export { default as ContentDrawerReadingMode } from './content_drawer_reading_mode/container';
 export { default as ContentDrawerManager } from './content_drawer_manager/container';
 export { default as ContentHeader } from './content_header/component';
+export { default as Spin } from './spin/component';
 export { comicContentActions };
