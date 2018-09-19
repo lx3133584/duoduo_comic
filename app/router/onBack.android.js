@@ -5,7 +5,7 @@ import Toast from 'react-native-root-toast';
 let canExit = false;
 export default () => {
   if (canExit) BackHandler.exitApp();
-  if (Actions.currentScene === '_home') {
+  if (Actions.currentScene === '_favorites') {
     Toast.show('再按一次退出应用', {
       position: -70,
       duration: 1500,
