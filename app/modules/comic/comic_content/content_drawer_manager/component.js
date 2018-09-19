@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import * as Animatable from 'react-native-animatable';
+import { Header } from 'router';
 import {
   ContentHeader,
   ContentDrawerMenu,
@@ -8,7 +9,7 @@ import {
   ContentDrawerSetting,
 } from '@/comic/comic_content';
 
-const HEADER_HEIGHT = 60;
+const headerHeight = Header.height;
 const containStyle = {
   position: 'absolute',
   left: 0,
@@ -55,14 +56,14 @@ class ContentDrawerManagerComponent extends PureComponent {
     const { height } = bottom_map[show ? bottomType : 'main'];
     const ease = show ? 'ease-out' : 'ease-in';
     const duration = 200;
-    this.topComponent.transitionTo({ top: show ? -HEADER_HEIGHT : 0, width }, duration, ease);
+    this.topComponent.transitionTo({ top: show ? -headerHeight : 0, width }, duration, ease);
     this.bottomComponent.transitionTo({ bottom: show ? -height : 0, height, width }, duration, ease);
   };
 
   switchBottomType = (type) => {
     const { height } = bottom_map[type];
     const duration = 200;
-    this.topComponent.transitionTo({ top: -HEADER_HEIGHT }, duration, 'ease-out');
+    this.topComponent.transitionTo({ top: -headerHeight }, duration, 'ease-out');
     this.setState({ bottomType: type });
     this.bottomComponent.transitionTo({ height }, duration, 'ease');
   };
@@ -74,7 +75,7 @@ class ContentDrawerManagerComponent extends PureComponent {
     return ([
       <Animatable.View
         ref={this._getRef('topComponent')}
-        style={[containStyle, { top: -HEADER_HEIGHT, height: HEADER_HEIGHT, width }]}
+        style={[containStyle, { top: -headerHeight, height: headerHeight, width }]}
         key="top"
       >
         <ContentHeader {...this.props} />

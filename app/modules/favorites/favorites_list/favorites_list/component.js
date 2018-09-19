@@ -6,7 +6,6 @@ import styled from 'styled-components';
 import { LongList } from '@';
 
 const ContainStyled = styled.View`
-  padding-top: 15px;
 `;
 
 class FavoritesListComponent extends Component {

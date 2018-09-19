@@ -4,6 +4,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import styled from 'styled-components';
 import { FavoritesList, HistoryList } from '@/favorites/favorites_list';
 import { Dimensions } from 'react-native';
+import { Header } from 'router';
 import {
   TabView, PagerPan, TabBar,
 } from 'react-native-tab-view';
@@ -21,6 +22,7 @@ const initialLayout = {
   width,
 };
 const tabBarStyle = {
+  paddingTop: Header.statusBarHeight,
   backgroundColor: brand_primary,
 };
 const tabStyle = {

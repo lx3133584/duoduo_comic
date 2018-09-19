@@ -1,10 +1,12 @@
 import React, { PureComponent } from 'react';
 import { SearchBar } from 'react-native-elements';
 import PropTypes from 'prop-types';
+import { Header } from 'router';
 import { brand_primary } from 'theme';
 
 const containerStyle = {
   borderTopWidth: 0,
+  paddingTop: Header.statusBarHeight + 10,
   borderBottomColor: brand_primary,
   backgroundColor: brand_primary,
 };

@@ -1,8 +1,7 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
-import { StatusBar, Dimensions } from 'react-native';
+import { Dimensions } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { brand_primary } from 'theme';
 import { Header } from 'router';
 import { RegisterLocal } from '@/user/register';
 import { Brand } from '@/user';
@@ -24,7 +23,6 @@ class RegisterScreen extends PureComponent {
   render() {
     return (
       <ContainStyled>
-        <StatusBar barStyle="light-content" backgroundColor={brand_primary} />
         <KeyboardAwareScrollView
           enableOnAndroid
           enableAutomaticScroll

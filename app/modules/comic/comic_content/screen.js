@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
-import { StatusBar, Dimensions } from 'react-native';
+import { Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
 import { LoadingPage } from '@/comic/comic_detail';
 import { connect } from 'react-redux';
@@ -69,7 +69,6 @@ class ContentListScreen extends PureComponent {
       <ContentDrawerManager key="drawer" show={show_drawer} {...this.props} />,
       <ContentStatusBar key="status_bar" {...this.props} />,
       <ContainStyled key="content">
-        <StatusBar hidden />
         <ContentList toggleDrawer={this.toggleDrawer} {...this.props} />
       </ContainStyled>,
     ]);

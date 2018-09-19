@@ -1,17 +1,20 @@
 import React, { PureComponent } from 'react';
 import { Header } from 'react-native-elements';
 import PropTypes from 'prop-types';
+import { StatusBar } from 'react-native';
 import { brand_primary } from 'theme';
 import LeftButton from './left_button';
 
+const statusBarHeight = StatusBar.currentHeight || 24;
+const height = 50 + statusBarHeight;
 const centerTextStyle = {
   color: '#fff',
   fontSize: 16,
 };
 const outerContainerStyles = {
-  padding: 0,
-  paddingBottom: 10,
-  height: 50,
+  paddingTop: statusBarHeight,
+  paddingBottom: 0,
+  height,
   borderBottomWidth: 0,
 };
 
@@ -50,4 +53,6 @@ class HeaderComponent extends PureComponent {
   }
 }
 
+HeaderComponent.statusBarHeight = statusBarHeight;
+HeaderComponent.height = height;
 export default HeaderComponent;

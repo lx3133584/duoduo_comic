@@ -1,14 +1,9 @@
 import React, { PureComponent } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 import { LongList, LoadingPage, SearchListItem } from '@';
 import { wrapWithLoading } from 'utils';
 
-const ContainStyled = styled.View`
-  padding-top: 15px;
-  padding-bottom: 72px;
-`;
 @wrapWithLoading
 class ClassItemListComponent extends PureComponent {
   static propTypes = {
@@ -44,15 +39,14 @@ class ClassItemListComponent extends PureComponent {
     const listFormat = list.toJS();
     return ([
       <LoadingPage show={loading} key="loading" />,
-      <ContainStyled key="main">
-        <LongList
-          list={listFormat}
-          Item={SearchListItem}
-          onFetch={this.onFetch}
-          isLong
-          showFooter
-        />
-      </ContainStyled>,
+      <LongList
+        key="main"
+        list={listFormat}
+        Item={SearchListItem}
+        onFetch={this.onFetch}
+        isLong
+        showFooter
+      />,
     ]);
   }
 }

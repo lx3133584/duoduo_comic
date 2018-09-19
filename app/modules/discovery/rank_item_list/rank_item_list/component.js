@@ -7,7 +7,6 @@ import { LongList, LoadingPage } from '@';
 import { wrapWithLoading } from 'utils';
 
 const ContainStyled = styled.View`
-  padding-top: 15px;
   padding-bottom: 72px;
 `;
 @wrapWithLoading

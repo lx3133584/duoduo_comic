@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { ScrollView, StatusBar } from 'react-native';
-import { brand_primary } from 'theme';
+import { ScrollView } from 'react-native';
 import { wrapWithUpdate } from 'utils';
 import { UserTop, UserOperateList } from '@/user/user_info';
 
@@ -20,7 +19,6 @@ class UserInfoScreen extends PureComponent {
     const { checkUpdate } = this.props;
     return (
       <ScrollView>
-        <StatusBar barStyle="light-content" backgroundColor={brand_primary} />
         <UserTop />
         <UserOperateList checkUpdate={checkUpdate} />
       </ScrollView>

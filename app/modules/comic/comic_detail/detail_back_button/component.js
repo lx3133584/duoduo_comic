@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { LeftButton } from 'router';
+import { LeftButton, Header } from 'router';
 
 const ContainStyled = styled.View`
   position: absolute;
-  top: 28;
+  top: ${Header.statusBarHeight + 14};
   left: 0;
 `;
 function DetailBackButtonComponent() {

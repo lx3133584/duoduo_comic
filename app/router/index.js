@@ -9,7 +9,7 @@ import {
 } from 'react-native-router-flux';
 import StackViewStyleInterpolator from
   'react-navigation-stack/dist/views/StackView/StackViewStyleInterpolator';
-import { Dimensions } from 'react-native';
+import { Dimensions, StatusBar } from 'react-native';
 import { brand_primary } from 'theme';
 import {
   FavoritesListScreen,
@@ -149,7 +149,11 @@ const RootRoute = () => (
           component={ComicContentScreen}
           title="漫画内容"
           hideNavBar
+          onEnter={() => {
+            StatusBar.setHidden(true, true);
+          }}
           onExit={() => {
+            StatusBar.setHidden(false, true);
             Actions.refresh();
           }}
         />
