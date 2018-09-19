@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Component from './component';
-import { addFavorite, removeFavorite } from '../actions';
+import { addFavorite, removeFavorite, getComicList } from '../actions';
 
 const mapStateToProps = state => ({
   detail: state.comic.get('detail'),
@@ -13,6 +13,9 @@ const mapDispatchToProps = dispatch => ({
   },
   remove(params) {
     return dispatch(removeFavorite(params));
+  },
+  getList(params) {
+    return dispatch(getComicList(params));
   },
 });
 

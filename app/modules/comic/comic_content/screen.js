@@ -62,8 +62,8 @@ class ContentListScreen extends PureComponent {
     const { show_drawer } = this.state;
     return ([
       <LoadingPage show={loading} key="loading" width={width} />,
-      <ContentDrawerManager key="drawer" show={show_drawer} />,
-      <ContentStatusBar key="status_bar" />,
+      <ContentDrawerManager key="drawer" show={show_drawer} {...this.props} />,
+      <ContentStatusBar key="status_bar" {...this.props} />,
       <ContainStyled key="content">
         <StatusBar hidden />
         <ContentList toggleDrawer={this.toggleDrawer} {...this.props} />

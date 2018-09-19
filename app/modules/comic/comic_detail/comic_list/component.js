@@ -24,9 +24,6 @@ function _getItemLayout(arr, index) {
   });
   return { length: 51, offset: 51 * (index - 1) + offset, index };
 }
-function _keyExtractor(item) {
-  return `${item.id}`;
-}
 
 @wrapWithLoading
 class ComicListComponent extends Component {
@@ -104,10 +101,7 @@ class ComicListComponent extends Component {
     const itemOnPress = (params) => {
       if (isReplace) {
         Actions.drawerClose();
-        // Actions.pop();
         Actions.replace('comicContent', params);
-        Actions.refresh(params);
-        // console.log(Actions);
       } else {
         Actions.comicContent(params);
       }
@@ -137,7 +131,7 @@ class ComicListComponent extends Component {
   };
 
   render() {
-    const { list, loading } = this.props;
+    const { list, loading, chapter_id } = this.props;
     if (loading) return <Progress />;
     return (
       <SectionList
@@ -146,9 +140,9 @@ class ComicListComponent extends Component {
         renderSectionHeader={this.renderSectionHeader}
         ItemSeparatorComponent={this.renderItemSeparator}
         stickySectionHeadersEnabled
-        keyExtractor={_keyExtractor}
         initialNumToRender={initNumber}
         sections={list}
+        extraData={chapter_id}
         getItemLayout={_getItemLayout}
       />
     );

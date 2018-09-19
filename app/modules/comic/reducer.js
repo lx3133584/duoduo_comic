@@ -12,7 +12,6 @@ function saveChapterIndex(state, index) {
 const initialState = Immutable.Map({
   detail: Immutable.Map(),
   list: Immutable.List(),
-  chapter_title: '',
   content: Immutable.List(),
   content_total: 0,
   pre_content: Immutable.List(),
@@ -67,7 +66,6 @@ export default handleActions({
     }
     return state.update('content', oldList => oldList.concat(action.payload.result.data));
   },
-  [comicContentActions.saveChapterTitle]: (state, action) => state.set('chapter_title', action.payload),
   [comicContentActions.saveContentIndex]: (state, action) => saveChapterIndex(state, action.payload),
   [comicContentActions.goToIndex]: (state, action) => {
     state = saveChapterIndex(state, action.payload);

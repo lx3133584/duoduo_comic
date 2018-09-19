@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
+import { getImgHeight } from 'utils';
 import Component from './component';
 import { saveContentIndex } from '../actions';
-import { getImgHeight } from 'utils';
 
 const contentSelector = state => state.comic.get('content');
 const widthSelector = state => state.config.get('width');

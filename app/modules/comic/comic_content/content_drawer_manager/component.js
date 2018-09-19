@@ -77,7 +77,7 @@ class ContentDrawerManagerComponent extends PureComponent {
         style={[containStyle, { top: -HEADER_HEIGHT, height: HEADER_HEIGHT, width }]}
         key="top"
       >
-        <ContentHeader />
+        <ContentHeader {...this.props} />
       </Animatable.View>,
       <Animatable.View
         ref={this._getRef('bottomComponent')}

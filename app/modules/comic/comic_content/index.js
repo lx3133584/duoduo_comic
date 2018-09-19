@@ -10,7 +10,7 @@ export { default as ContentListFooter } from './content_list_footer/container';
 export { default as ImgPlaceholder } from './img_placeholder/component';
 export { default as Battery } from './battery/component';
 export { default as Time } from './time/component';
-export { default as Title } from './title/container';
+export { default as Title } from './title/component';
 export { default as ReadingProgress } from './reading_progress/container';
 export { default as NetStatus } from './net_status/component';
 export { default as ContentDrawerIcon } from './content_drawer_icon/component';
@@ -22,5 +22,5 @@ export { default as ContentDrawerSetting } from './content_drawer_setting/contai
 export { default as ContentDrawerOrientation } from './content_drawer_orientation/container';
 export { default as ContentDrawerReadingMode } from './content_drawer_reading_mode/container';
 export { default as ContentDrawerManager } from './content_drawer_manager/container';
-export { default as ContentHeader } from './content_header/container';
+export { default as ContentHeader } from './content_header/component';
 export { comicContentActions };

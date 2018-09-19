@@ -20,7 +20,7 @@ const ItemStyled = styled.View`
   margin-right: 8px;
 `;
 
-export default function ContentStatusBarComponent() {
+export default function ContentStatusBarComponent(props) {
   return (
     <ContainStyled>
       <ItemStyled>
@@ -33,7 +33,7 @@ export default function ContentStatusBarComponent() {
         <Time />
       </ItemStyled>
       <ItemStyled>
-        <Title />
+        <Title {...props} />
       </ItemStyled>
       <ItemStyled>
         <ReadingProgress />

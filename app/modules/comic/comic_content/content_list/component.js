@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
+// import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import Toast from 'react-native-root-toast';
 import { Image } from 'react-native';
@@ -10,20 +10,17 @@ const page_size = 5;
 const pre_num = 3;
 class ContentListComponent extends Component {
   static propTypes = {
-    pre_content: ImmutablePropTypes.list.isRequired,
+    // pre_content: ImmutablePropTypes.list.isRequired,
     content_index: PropTypes.number,
     chapter_id: PropTypes.number,
     mode: PropTypes.string.isRequired,
     getContent: PropTypes.func.isRequired,
-    preContent: PropTypes.func.isRequired,
+    // preContent: PropTypes.func.isRequired,
     postHistory: PropTypes.func.isRequired,
-    getList: PropTypes.func.isRequired,
     hideLoading: PropTypes.func.isRequired,
     saveIndex: PropTypes.func.isRequired,
-    saveTitle: PropTypes.func.isRequired,
     toggleDrawer: PropTypes.func.isRequired,
     go_to_flag: PropTypes.bool,
-    comic_id: PropTypes.number.isRequired,
     detail_chapter_id: PropTypes.number,
   };
 
@@ -49,9 +46,12 @@ class ContentListComponent extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { go_to_flag } = this.props;
+    const { go_to_flag, chapter_id } = this.props;
     if (nextProps.go_to_flag !== go_to_flag) {
       this.goToIndex(nextProps.content_index);
+    }
+    if (nextProps.chapter_id !== chapter_id) {
+      this.update(nextProps);
     }
   }
 
@@ -82,14 +82,7 @@ class ContentListComponent extends Component {
     return res;
   };
 
-  // 从目录中取第一个章节
-  getChapterFromList = async () => {
-    const { getList, comic_id } = this.props;
-    const res = await getList(comic_id);
-    return res.value.data[0].data[0];
-  };
-
-  goPage = async ({ page, offset, init }) => {
+  goPage = async ({ page = 0, offset = 0, init }) => {
     init && (this.init_page = page);
     const res = await this.onFetch(page, init);
     const data = res.value.result.data.slice(offset, offset + pre_num);
@@ -137,50 +130,6 @@ class ContentListComponent extends Component {
     this.scrollTo(offset);
   };
 
-    init = async () => {
-      const {
-        chapter_id: id,
-        title,
-        pre,
-        preContent,
-        hideLoading,
-        saveTitle,
-        pre_content,
-        content_index,
-        detail_chapter_id,
-      } = this.props;
-      this.chapter_id = id;
-      let cur_chapter = title;
-      if (!+id) { // 如果chapter_id为null则从list中取
-        const { id: _id, title: _title } = await this.getChapterFromList();
-        this.chapter_id = _id;
-        cur_chapter = _title;
-      }
-      saveTitle(cur_chapter);
-      if (pre && pre_content.size) {
-        preContent(this.chapter_id);
-      } else {
-        let offset = 0;
-        let page = 0;
-        if (detail_chapter_id === this.chapter_id) {
-          page = this.computePage(content_index);
-          this.setState({ page });
-          offset = content_index % page_size;
-        } else {
-          this.onRefresh(0, true);
-        }
-        await this.goPage({ page, offset, init: true });
-
-        this.scrollTo(offset);
-        // if (offset > page_size - pre_num) {
-        //   this.setState(({ page }) => { page: page + 1 });
-        //   await this.goPage({ page: page + 1, offset: 0, init: false }); // 如果后面不足3张图片则加载下一页
-        // }
-      }
-      this.saveHistory();
-      hideLoading();
-    };
-
     // 保存阅读进度
     saveHistory = () => {
       const { content_index, postHistory } = this.props;
@@ -188,6 +137,52 @@ class ContentListComponent extends Component {
     };
 
   _getRef = ref => this.content_list_ref = ref;
+
+  async update(props) {
+    const {
+      pre,
+      preContent,
+      pre_content,
+      chapter_id,
+    } = props;
+    this.chapter_id = chapter_id;
+    if (pre && pre_content.size) {
+      preContent(this.chapter_id);
+    } else {
+      this.onRefresh(0, true);
+      await this.goPage({ init: true });
+    }
+    this.scrollTo(0);
+    this.saveHistory();
+  }
+
+  async init() {
+    const {
+      chapter_id,
+      hideLoading,
+      content_index,
+      detail_chapter_id,
+    } = this.props;
+    this.chapter_id = chapter_id;
+    let offset = 0;
+    let page = 0;
+    if (detail_chapter_id === this.chapter_id) {
+      page = this.computePage(content_index);
+      this.setState({ page });
+      offset = content_index % page_size;
+    } else {
+      this.onRefresh(0, true);
+    }
+    await this.goPage({ page, offset, init: true });
+
+    this.scrollTo(offset);
+    // if (offset > page_size - pre_num) {
+    //   this.setState(({ page }) => { page: page + 1 });
+    //   await this.goPage({ page: page + 1, offset: 0, init: false }); // 如果后面不足3张图片则加载下一页
+    // }
+    this.saveHistory();
+    hideLoading();
+  }
 
   render() {
     const { toggleDrawer, mode } = this.props;

@@ -4,7 +4,6 @@ import { fetchContentList, postHistory } from 'api';
 export const {
   getContentList,
   preContentList,
-  saveChapterTitle,
   saveContentIndex,
   saveHistory,
   goToIndex,
@@ -18,7 +17,6 @@ export const {
     };
   },
   PRE_CONTENT_LIST: ID => ID,
-  SAVE_CHAPTER_TITLE: name => name,
   SAVE_CONTENT_INDEX: index => index,
   SAVE_HISTORY: ({ chapter_id, index }) => {
     const promise = postHistory({ chapter_id, index });

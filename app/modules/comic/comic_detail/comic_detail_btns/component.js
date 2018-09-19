@@ -56,6 +56,7 @@ class ComicDetailBtnsComponent extends PureComponent {
     list: ImmutablePropTypes.list.isRequired,
     add: PropTypes.func.isRequired,
     remove: PropTypes.func.isRequired,
+    getList: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -73,7 +74,24 @@ class ComicDetailBtnsComponent extends PureComponent {
 
   state = {
     isVisible: false,
+    loading: false,
   };
+
+  // 从目录中取第一个章节
+  async getChapterFromList() {
+    const { getList, detail, list } = this.props;
+    const id = detail.get('id');
+    if (list.size) {
+      return list.get(0).data[0];
+    }
+    let res;
+    try {
+      res = await getList(id);
+    } catch (e) {
+      return null;
+    }
+    return res.value.data[0].data[0];
+  }
 
   removeFavorite() {
     this.setState({ isVisible: true });
@@ -96,21 +114,24 @@ class ComicDetailBtnsComponent extends PureComponent {
     add(id);
   }
 
-  startRead() {
-    const { detail, list } = this.props;
+  async startRead() {
+    const { detail } = this.props;
+    this.setState({ loading: true });
     let chapter_id = detail.get('chapter_id');
     let cur_chapter = detail.get('cur_chapter');
-    if (!chapter_id && list.size) {
-      const { id, title } = list.get(0).data[0];
-      chapter_id = id;
-      cur_chapter = title;
+    if (!chapter_id || !cur_chapter) {
+      const res = await this.getChapterFromList();
+      if (!res) return;
+      chapter_id = res.id;
+      cur_chapter = res.title;
     }
+    this.setState({ loading: false });
     Actions.comicContent({ chapter_id, title: cur_chapter, pre: false });
   }
 
   render() {
     const { detail } = this.props;
-    const { isVisible } = this.state;
+    const { isVisible, loading } = this.state;
     const favorite_id = detail.get('favorite_id');
     const collection_number = detail.get('collection_number');
     const chapter_id = detail.get('chapter_id');
@@ -142,6 +163,7 @@ class ComicDetailBtnsComponent extends PureComponent {
           titleStyle={startTextStyle}
           buttonStyle={startButtonStyle}
           onPress={this.startRead}
+          loading={loading}
           title={chapter_id ? '续看' : '开始阅读'}
         />
         <Modal
