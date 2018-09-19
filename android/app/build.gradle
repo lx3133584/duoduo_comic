@@ -139,11 +139,11 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-fast-image')
     compile project(':react-native-vector-icons')
     compile project(':react-native-update')
     compile project(':react-native-splash-screen')
     compile project(':react-native-orientation')
-    compile project(':react-native-modal-translucent')
     compile project(':react-native-image-picker')
     compile project(':react-native-fetch-blob')
     compile project(':react-native-device-brightness')

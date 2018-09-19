@@ -3,10 +3,11 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { Button } from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
-import { Image, Dimensions } from 'react-native';
+import Image from 'react-native-fast-image';
+import { Dimensions } from 'react-native';
 
 const { width } = Dimensions.get('window');
-const { prefetch } = Image;
+const { preload } = Image;
 
 const ContainStyled = styled.View`
   width: ${width};
@@ -56,8 +57,9 @@ class ContentListFooterComponent extends PureComponent {
     if (next) {
       getList({ id: next.id, pre: true, page: 0 }).then(({ value }) => { // 预加载
         const data = value.result.data.slice(0, 3);
-        const tasks = data.map(item => prefetch(item.url));
-        Promise.all(tasks);
+        preload(data.map(item => ({
+          uri: item.url,
+        })));
       });
     }
   };

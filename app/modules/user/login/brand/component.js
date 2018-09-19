@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Image } from 'react-native';
+import Image from 'react-native-fast-image';
 import { brand_primary } from 'theme';
 
 import logoImg from './logo.png';

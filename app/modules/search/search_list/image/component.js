@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Image from 'react-native-image-progress';
+import { createImageProgress } from 'react-native-image-progress';
+import FastImage from 'react-native-fast-image';
 import Progress from 'react-native-progress/CircleSnail';
 import {
   green, red, purple,
@@ -9,6 +10,8 @@ import {
 const indicatorProps = {
   color: [red, green, purple],
 };
+
+const Image = createImageProgress(FastImage);
 
 function ImageComponent({ source, imageStyle }) {
   return (

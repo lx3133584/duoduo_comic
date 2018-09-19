@@ -6140,6 +6140,10 @@ react-native-elements@^1.0.0-beta5:
     prop-types "^15.5.8"
     react-native-touchable-scale "2.0.0"
 
+react-native-fast-image@^5.0.3:
+  version "5.0.3"
+  resolved "http://registry.npm.taobao.org/react-native-fast-image/download/react-native-fast-image-5.0.3.tgz#cb53b70a904d908c2c531dcc3d4a77834c9e1c63"
+
 react-native-fetch-blob@^0.10.8:
   version "0.10.8"
   resolved "http://registry.npm.taobao.org/react-native-fetch-blob/download/react-native-fetch-blob-0.10.8.tgz#4fc256abae0cb5f10e7c41f28c11b3ff330d72a9"
@@ -6177,10 +6181,6 @@ react-native-keyboard-aware-scroll-view@^0.5.0:
   dependencies:
     prop-types "^15.6.0"
     react-native-iphone-x-helper "^1.0.1"
-
-react-native-modal-translucent@^1.1.0:
-  version "1.1.5"
-  resolved "http://registry.npm.taobao.org/react-native-modal-translucent/download/react-native-modal-translucent-1.1.5.tgz#a352d5f6e519a9125f17dacb80dddb34431b34e5"
 
 react-native-modal@^5.3.0:
   version "5.4.0"

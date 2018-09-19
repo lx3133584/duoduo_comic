@@ -3,12 +3,12 @@ package com.duoduo_comic;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.dylanvann.fastimage.FastImageViewPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import cn.reactnative.modules.update.UpdatePackage;
 import cn.reactnative.modules.update.UpdateContext;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import com.github.yamill.orientation.OrientationPackage;
-import me.listenzz.modal.TranslucentModalReactPackage;
 import com.imagepicker.ImagePickerPackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
 import org.capslock.RNDeviceBrightness.RNDeviceBrightness;
@@ -40,11 +40,11 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new FastImageViewPackage(),
             new VectorIconsPackage(),
             new UpdatePackage(),
             new SplashScreenReactPackage(),
             new OrientationPackage(),
-            new TranslucentModalReactPackage(),
             new ImagePickerPackage(),
             new RNFetchBlobPackage(),
             new RNDeviceBrightness(),
