@@ -1,6 +1,6 @@
 import axios from 'axios';
 import Toast from 'react-native-root-toast';
-import { Actions } from 'react-native-router-flux';
+// import { Actions } from 'react-native-router-flux';
 import baseURL from './base_url';
 import store from 'store';
 import { cookiesActions } from '@';
@@ -14,20 +14,24 @@ function getCsrf() {
   const state = store.getState();
   return state.cookies.get('csrfToken');
 }
+function getCookies() {
+  return store.dispatch(cookiesActions.getAllCookies());
+}
+getCookies();
 
 function interceptorsRequestSuccess(config) {
-  store.dispatch(cookiesActions.getAllCookies());
   if (config.method !== 'get') {
     config.headers['x-csrf-token'] = getCsrf();
   }
   return config;
 }
 function interceptorsResponseSuccess(response) {
+  if (response.headers['set-cookie']) getCookies();
   return response.data;
 }
 function interceptorsResponseError(error) {
   if (error.request && error.request.status === 401) {
-    Actions.login();
+    // Actions.login();
     store.dispatch({ type: 'LOGOUT_ACTION_PENDING' });
   }
   error.response && error.response.data && Toast.show(error.response.data.message, {
