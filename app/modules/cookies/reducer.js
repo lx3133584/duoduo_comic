@@ -4,7 +4,7 @@ import { getAllCookies } from './actions';
 
 const initialState = Immutable.Map({
   csrfToken: '',
-  EGG_SESS: '',
+  SESS: '',
 });
 
 export default handleActions({
