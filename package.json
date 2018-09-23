@@ -7,7 +7,7 @@
     "test": "jest",
     "lint": "eslint --ext .js ./app --fix",
     "android": "react-native run-android",
-    "bundle": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/ index.android.bundle --assets-dest android/app/src/main/res/",
+    "bundle": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/build/generated/assets/react/release/index.android.bundle --assets-dest android/app/build/generated/res/react/release/",
     "build": "cd android && radlew assembleRelease"
   },
   "dependencies": {

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import Image from 'react-native-fast-image';
+import { Image } from 'react-native';
 
 import noresImg from './nores.png';
 
@@ -26,7 +26,7 @@ function ListEmptyComponent({ text }) {
       <Image
         source={noresImg}
         style={imageStyle}
-        resizeMode="center"
+        resizeMode="contain"
       />
       <DescStyled>
         {text}

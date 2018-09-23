@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Image from 'react-native-fast-image';
+import { Image } from 'react-native';
 import { brand_primary } from 'theme';
 
 import logoImg from './logo.png';
@@ -37,6 +37,7 @@ function BrandComponent() {
         <Image
           source={logoImg}
           style={imageStyle}
+          fallback
         />
       </ImageContainStyled>
       <TextStyled>
