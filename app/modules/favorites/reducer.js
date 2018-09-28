@@ -11,18 +11,17 @@ const initialState = Immutable.Map({
 export default handleActions({
   [`${favoritesListActions.getFavoritesList}_FULFILLED`]:
     (state, action) => state.set('favorites_list', Immutable.List(action.payload.data)),
-  [`${favoritesListActions.getHistoryList}_FULFILLED`]: (state, action) => {
+  [`${favoritesListActions.getHistoryList}_FULFILLED`]: (state, action) => state.withMutations((map) => {
     if (!action.payload.page) {
-      state = state.update('history_list', list => list.clear());
+      map.update('history_list', list => list.clear());
     }
-    return state.update('history_list', list => list.concat(action.payload.result.data));
-  },
+    map.update('history_list', list => list.concat(action.payload.result.data));
+  }),
   [`${favoritesListActions.removeHistory}_PENDING`]:
     (state, action) => state.update('history_list', list => list.filter((item => item.id !== action.payload))),
   [`${comicDetailActions.removeFavorite}_PENDING`]:
     (state, action) => state.update('favorites_list', list => list.filter((item => item.id !== action.payload))),
-  [`${userInfoActions.logoutAction}_PENDING`]: (state) => {
-    state = state.update('history_list', list => list.clear());
-    return state.update('favorites_list', list => list.clear());
-  },
+  [`${userInfoActions.logoutAction}_PENDING`]: state => state.withMutations(map => map
+    .update('history_list', list => list.clear())
+    .update('favorites_list', list => list.clear())),
 }, initialState);

@@ -13,28 +13,28 @@ const initialState = Immutable.Map({
 export default handleActions({
   [`${discoveryListActions.getClassList}_FULFILLED`]:
     (state, action) => state.set('class_list', Immutable.List(action.payload.data)),
-  [`${rankItemListActions.getRankItemList}_PENDING`]: (state, action) => {
+  [`${rankItemListActions.getRankItemList}_PENDING`]: (state, action) => state.withMutations((map) => {
     const { type } = action.payload;
-    if (type === state.get('rank_item_type')) return state;
-    state = state.set('rank_item_type', type);
-    return state.update('rank_item_list', list => list.clear());
-  },
-  [`${rankItemListActions.getRankItemList}_FULFILLED`]: (state, action) => {
+    if (type === state.get('rank_item_type')) return;
+    map.set('rank_item_type', type)
+      .update('rank_item_list', list => list.clear());
+  }),
+  [`${rankItemListActions.getRankItemList}_FULFILLED`]: (state, action) => state.withMutations((map) => {
     if (!action.meta.page) {
-      state = state.update('rank_item_list', list => list.clear());
+      map.update('rank_item_list', list => list.clear());
     }
-    return state.update('rank_item_list', list => list.concat(action.payload.data));
-  },
-  [`${classItemListActions.getClassItemList}_PENDING`]: (state, action) => {
+    map.update('rank_item_list', list => list.concat(action.payload.data));
+  }),
+  [`${classItemListActions.getClassItemList}_PENDING`]: (state, action) => state.withMutations((map) => {
     const { type } = action.payload;
-    if (type === state.get('class_item_id')) return state;
-    state = state.set('class_item_id', type);
-    return state.update('class_item_list', list => list.clear());
-  },
-  [`${classItemListActions.getClassItemList}_FULFILLED`]: (state, action) => {
+    if (type === state.get('class_item_id')) return;
+    map.set('class_item_id', type)
+      .update('class_item_list', list => list.clear());
+  }),
+  [`${classItemListActions.getClassItemList}_FULFILLED`]: (state, action) => state.withMutations((map) => {
     if (!action.meta.page) {
-      state = state.update('class_item_list', list => list.clear());
+      map.update('class_item_list', list => list.clear());
     }
-    return state.update('class_item_list', list => list.concat(action.payload.data));
-  },
+    map.update('class_item_list', list => list.concat(action.payload.data));
+  }),
 }, initialState);

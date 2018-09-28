@@ -7,13 +7,13 @@ const initialState = Immutable.Map({
   list: Immutable.List(),
 });
 export default handleActions({
-  [`${searchListActions.getSearchList}_FULFILLED`]: (state, action) => {
+  [`${searchListActions.getSearchList}_FULFILLED`]: (state, action) => state.withMutations((map) => {
     if (!action.payload.page) {
-      state = state.update('list', list => list.clear());
+      map.update('list', list => list.clear());
     }
     if (action.payload.keyword) {
-      state = state.set('keyword', action.payload.keyword);
+      map.set('keyword', action.payload.keyword);
     }
-    return state.update('list', oldList => oldList.concat(action.payload.result.data));
-  },
+    map.update('list', oldList => oldList.concat(action.payload.result.data));
+  }),
 }, initialState);
