@@ -41,7 +41,6 @@
 		4DB90BDD8F5D433DA2E0DC8A /* libRNCookieManagerIOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74DB906C493047098D492B06 /* libRNCookieManagerIOS.a */; };
 		86A1E1D96CEC48BB93B4F57F /* libDeviceBattery.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD126613498E41A2A57B010D /* libDeviceBattery.a */; };
 		C867C7A84EEE49C4A67FD6C5 /* libRNDeviceBrightness.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2A3CD2943DE4C6882C8DC2D /* libRNDeviceBrightness.a */; };
-		53F8F5636F7042D18F937A37 /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AD30150DE7D469B931216B6 /* libRNFetchBlob.a */; };
 		6220F4936B124CE88AC531DE /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 865544E376084D76B325B105 /* libRNImagePicker.a */; };
 		82F8C310D4D94B26B9579667 /* libRCTOrientation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A1D0B7C429C4DFE83A8CD40 /* libRCTOrientation.a */; };
 		77E7C08DCA0848FA8C352C98 /* libSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4916568924354AC999F12680 /* libSplashScreen.a */; };
@@ -60,6 +59,7 @@
 		0728ECE4381045F79050F259 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7E221C4189CF40A5B5F13CB8 /* Zocial.ttf */; };
 		9D21C74996C04B06BA5593BE /* libFastImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 210D4F9C11B344209254BA68 /* libFastImage.a */; };
 		978526A7F4CC4B7AAE167080 /* libRNSpinkit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B91FF3614DC49B19A2A3526 /* libRNSpinkit.a */; };
+		08A7D23440544AFD9101619B /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F0DE842C01C847FF8F16FCD8 /* libRNFetchBlob.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -373,8 +373,6 @@
 		CD126613498E41A2A57B010D /* libDeviceBattery.a */ = {isa = PBXFileReference; name = "libDeviceBattery.a"; path = "libDeviceBattery.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		FCD2E76BEF514462A3A7E05B /* RNDeviceBrightness.xcodeproj */ = {isa = PBXFileReference; name = "RNDeviceBrightness.xcodeproj"; path = "../node_modules/react-native-device-brightness/RNDeviceBrightness.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		B2A3CD2943DE4C6882C8DC2D /* libRNDeviceBrightness.a */ = {isa = PBXFileReference; name = "libRNDeviceBrightness.a"; path = "libRNDeviceBrightness.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
-		AD30160827E04178B07383FC /* RNFetchBlob.xcodeproj */ = {isa = PBXFileReference; name = "RNFetchBlob.xcodeproj"; path = "../node_modules/react-native-fetch-blob/ios/RNFetchBlob.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
-		1AD30150DE7D469B931216B6 /* libRNFetchBlob.a */ = {isa = PBXFileReference; name = "libRNFetchBlob.a"; path = "libRNFetchBlob.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		40AAC7E204A549969DCA37CE /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; name = "RNImagePicker.xcodeproj"; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		865544E376084D76B325B105 /* libRNImagePicker.a */ = {isa = PBXFileReference; name = "libRNImagePicker.a"; path = "libRNImagePicker.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		EEEE90B0852D42AB88ECA776 /* RCTOrientation.xcodeproj */ = {isa = PBXFileReference; name = "RCTOrientation.xcodeproj"; path = "../node_modules/react-native-orientation/iOS/RCTOrientation.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
@@ -400,6 +398,8 @@
 		210D4F9C11B344209254BA68 /* libFastImage.a */ = {isa = PBXFileReference; name = "libFastImage.a"; path = "libFastImage.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 		918E4071868949C997D0A40A /* RNSpinkit.xcodeproj */ = {isa = PBXFileReference; name = "RNSpinkit.xcodeproj"; path = "../node_modules/react-native-spinkit/ios/RNSpinkit.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
 		6B91FF3614DC49B19A2A3526 /* libRNSpinkit.a */ = {isa = PBXFileReference; name = "libRNSpinkit.a"; path = "libRNSpinkit.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
+		28AC7C43736C4D2585B1C38C /* RNFetchBlob.xcodeproj */ = {isa = PBXFileReference; name = "RNFetchBlob.xcodeproj"; path = "../node_modules/rn-fetch-blob/ios/RNFetchBlob.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		F0DE842C01C847FF8F16FCD8 /* libRNFetchBlob.a */ = {isa = PBXFileReference; name = "libRNFetchBlob.a"; path = "libRNFetchBlob.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -431,7 +431,6 @@
 				4DB90BDD8F5D433DA2E0DC8A /* libRNCookieManagerIOS.a in Frameworks */,
 				86A1E1D96CEC48BB93B4F57F /* libDeviceBattery.a in Frameworks */,
 				C867C7A84EEE49C4A67FD6C5 /* libRNDeviceBrightness.a in Frameworks */,
-				53F8F5636F7042D18F937A37 /* libRNFetchBlob.a in Frameworks */,
 				6220F4936B124CE88AC531DE /* libRNImagePicker.a in Frameworks */,
 				82F8C310D4D94B26B9579667 /* libRCTOrientation.a in Frameworks */,
 				77E7C08DCA0848FA8C352C98 /* libSplashScreen.a in Frameworks */,
@@ -439,6 +438,7 @@
 				15437F03B1EE4933AA40152F /* libRNVectorIcons.a in Frameworks */,
 				9D21C74996C04B06BA5593BE /* libFastImage.a in Frameworks */,
 				978526A7F4CC4B7AAE167080 /* libRNSpinkit.a in Frameworks */,
+				08A7D23440544AFD9101619B /* libRNFetchBlob.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -629,7 +629,6 @@
 				BCBE5D9FDBF84C5AA70FA5E6 /* RNCookieManagerIOS.xcodeproj */,
 				6EB791B63ECC4A4AAC8FFC62 /* DeviceBattery.xcodeproj */,
 				FCD2E76BEF514462A3A7E05B /* RNDeviceBrightness.xcodeproj */,
-				AD30160827E04178B07383FC /* RNFetchBlob.xcodeproj */,
 				40AAC7E204A549969DCA37CE /* RNImagePicker.xcodeproj */,
 				EEEE90B0852D42AB88ECA776 /* RCTOrientation.xcodeproj */,
 				2E0F3458276F439E82AB6560 /* SplashScreen.xcodeproj */,
@@ -637,6 +636,7 @@
 				06BE639F95884C50A1C6B6F9 /* RNVectorIcons.xcodeproj */,
 				EAF7B1CBACF64118A201FEBB /* FastImage.xcodeproj */,
 				918E4071868949C997D0A40A /* RNSpinkit.xcodeproj */,
+				28AC7C43736C4D2585B1C38C /* RNFetchBlob.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1296,17 +1296,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1314,7 +1303,6 @@
 					"$(SRCROOT)\..\node_modules\react-native-cookies\ios\RNCookieManagerIOS",
 					"$(SRCROOT)\..\node_modules\react-native-device-battery\ios\DeviceBattery",
 					"$(SRCROOT)\..\node_modules\react-native-device-brightness\RNDeviceBrightness",
-					"$(SRCROOT)\..\node_modules\react-native-fetch-blob\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
 					"$(SRCROOT)\..\node_modules\react-native-orientation\iOS\RCTOrientation/**",
 					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
@@ -1322,6 +1310,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-fast-image\ios\FastImage/**",
 					"$(SRCROOT)\..\node_modules\react-native-spinkit\ios/**",
+					"$(SRCROOT)\..\node_modules\rn-fetch-blob\ios/**",
 				);
 			};
 			name = Debug;
@@ -1344,17 +1333,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1362,7 +1340,6 @@
 					"$(SRCROOT)\..\node_modules\react-native-cookies\ios\RNCookieManagerIOS",
 					"$(SRCROOT)\..\node_modules\react-native-device-battery\ios\DeviceBattery",
 					"$(SRCROOT)\..\node_modules\react-native-device-brightness\RNDeviceBrightness",
-					"$(SRCROOT)\..\node_modules\react-native-fetch-blob\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
 					"$(SRCROOT)\..\node_modules\react-native-orientation\iOS\RCTOrientation/**",
 					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
@@ -1370,6 +1347,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-fast-image\ios\FastImage/**",
 					"$(SRCROOT)\..\node_modules\react-native-spinkit\ios/**",
+					"$(SRCROOT)\..\node_modules\rn-fetch-blob\ios/**",
 				);
 			};
 			name = Release;
@@ -1396,7 +1374,6 @@
 					"$(SRCROOT)\..\node_modules\react-native-cookies\ios\RNCookieManagerIOS",
 					"$(SRCROOT)\..\node_modules\react-native-device-battery\ios\DeviceBattery",
 					"$(SRCROOT)\..\node_modules\react-native-device-brightness\RNDeviceBrightness",
-					"$(SRCROOT)\..\node_modules\react-native-fetch-blob\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
 					"$(SRCROOT)\..\node_modules\react-native-orientation\iOS\RCTOrientation/**",
 					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
@@ -1404,6 +1381,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-fast-image\ios\FastImage/**",
 					"$(SRCROOT)\..\node_modules\react-native-spinkit\ios/**",
+					"$(SRCROOT)\..\node_modules\rn-fetch-blob\ios/**",
 				);
 			};
 			name = Debug;
@@ -1429,7 +1407,6 @@
 					"$(SRCROOT)\..\node_modules\react-native-cookies\ios\RNCookieManagerIOS",
 					"$(SRCROOT)\..\node_modules\react-native-device-battery\ios\DeviceBattery",
 					"$(SRCROOT)\..\node_modules\react-native-device-brightness\RNDeviceBrightness",
-					"$(SRCROOT)\..\node_modules\react-native-fetch-blob\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
 					"$(SRCROOT)\..\node_modules\react-native-orientation\iOS\RCTOrientation/**",
 					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
@@ -1437,6 +1414,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-fast-image\ios\FastImage/**",
 					"$(SRCROOT)\..\node_modules\react-native-spinkit\ios/**",
+					"$(SRCROOT)\..\node_modules\rn-fetch-blob\ios/**",
 				);
 			};
 			name = Release;
@@ -1467,17 +1445,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1485,7 +1452,6 @@
 					"$(SRCROOT)\..\node_modules\react-native-cookies\ios\RNCookieManagerIOS",
 					"$(SRCROOT)\..\node_modules\react-native-device-battery\ios\DeviceBattery",
 					"$(SRCROOT)\..\node_modules\react-native-device-brightness\RNDeviceBrightness",
-					"$(SRCROOT)\..\node_modules\react-native-fetch-blob\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
 					"$(SRCROOT)\..\node_modules\react-native-orientation\iOS\RCTOrientation/**",
 					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
@@ -1493,6 +1459,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-fast-image\ios\FastImage/**",
 					"$(SRCROOT)\..\node_modules\react-native-spinkit\ios/**",
+					"$(SRCROOT)\..\node_modules\rn-fetch-blob\ios/**",
 				);
 			};
 			name = Debug;
@@ -1523,17 +1490,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1541,7 +1497,6 @@
 					"$(SRCROOT)\..\node_modules\react-native-cookies\ios\RNCookieManagerIOS",
 					"$(SRCROOT)\..\node_modules\react-native-device-battery\ios\DeviceBattery",
 					"$(SRCROOT)\..\node_modules\react-native-device-brightness\RNDeviceBrightness",
-					"$(SRCROOT)\..\node_modules\react-native-fetch-blob\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
 					"$(SRCROOT)\..\node_modules\react-native-orientation\iOS\RCTOrientation/**",
 					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
@@ -1549,6 +1504,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-fast-image\ios\FastImage/**",
 					"$(SRCROOT)\..\node_modules\react-native-spinkit\ios/**",
+					"$(SRCROOT)\..\node_modules\rn-fetch-blob\ios/**",
 				);
 			};
 			name = Release;
@@ -1578,17 +1534,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1596,7 +1541,6 @@
 					"$(SRCROOT)\..\node_modules\react-native-cookies\ios\RNCookieManagerIOS",
 					"$(SRCROOT)\..\node_modules\react-native-device-battery\ios\DeviceBattery",
 					"$(SRCROOT)\..\node_modules\react-native-device-brightness\RNDeviceBrightness",
-					"$(SRCROOT)\..\node_modules\react-native-fetch-blob\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
 					"$(SRCROOT)\..\node_modules\react-native-orientation\iOS\RCTOrientation/**",
 					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
@@ -1604,6 +1548,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-fast-image\ios\FastImage/**",
 					"$(SRCROOT)\..\node_modules\react-native-spinkit\ios/**",
+					"$(SRCROOT)\..\node_modules\rn-fetch-blob\ios/**",
 				);
 			};
 			name = Debug;
@@ -1633,17 +1578,6 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
-					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1651,7 +1585,6 @@
 					"$(SRCROOT)\..\node_modules\react-native-cookies\ios\RNCookieManagerIOS",
 					"$(SRCROOT)\..\node_modules\react-native-device-battery\ios\DeviceBattery",
 					"$(SRCROOT)\..\node_modules\react-native-device-brightness\RNDeviceBrightness",
-					"$(SRCROOT)\..\node_modules\react-native-fetch-blob\ios/**",
 					"$(SRCROOT)\..\node_modules\react-native-image-picker\ios",
 					"$(SRCROOT)\..\node_modules\react-native-orientation\iOS\RCTOrientation/**",
 					"$(SRCROOT)\..\node_modules\react-native-splash-screen\ios",
@@ -1659,6 +1592,7 @@
 					"$(SRCROOT)\..\node_modules\react-native-vector-icons\RNVectorIconsManager",
 					"$(SRCROOT)\..\node_modules\react-native-fast-image\ios\FastImage/**",
 					"$(SRCROOT)\..\node_modules\react-native-spinkit\ios/**",
+					"$(SRCROOT)\..\node_modules\rn-fetch-blob\ios/**",
 				);
 			};
 			name = Release;

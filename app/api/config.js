@@ -23,13 +23,16 @@ function interceptorsRequestSuccess(config) {
   if (config.method !== 'get') {
     config.headers['x-csrf-token'] = getCsrf();
   }
+  if (__DEV__) console.log('request:', config);
   return config;
 }
 function interceptorsResponseSuccess(response) {
   if (response.headers['set-cookie']) getCookies();
+  if (__DEV__) console.log('response:', response);
   return response.data;
 }
 function interceptorsResponseError(error) {
+  if (__DEV__) console.log('error:', error.response);
   if (error.request && error.request.status === 401) {
     // Actions.login();
     store.dispatch({ type: 'LOGOUT_ACTION_PENDING' });

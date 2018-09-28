@@ -3,6 +3,7 @@ package com.duoduo_comic;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.RNFetchBlob.RNFetchBlobPackage;
 import com.react.rnspinkit.RNSpinkitPackage;
 import com.dylanvann.fastimage.FastImageViewPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
@@ -11,7 +12,7 @@ import cn.reactnative.modules.update.UpdateContext;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import com.github.yamill.orientation.OrientationPackage;
 import com.imagepicker.ImagePickerPackage;
-import com.RNFetchBlob.RNFetchBlobPackage;
+
 import org.capslock.RNDeviceBrightness.RNDeviceBrightness;
 import com.robinpowered.react.battery.DeviceBatteryPackage;
 import com.psykar.cookiemanager.CookieManagerPackage;
@@ -41,6 +42,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNFetchBlobPackage(),
             new RNSpinkitPackage(),
             new FastImageViewPackage(),
             new VectorIconsPackage(),
@@ -48,7 +50,6 @@ public class MainApplication extends Application implements ReactApplication {
             new SplashScreenReactPackage(),
             new OrientationPackage(),
             new ImagePickerPackage(),
-            new RNFetchBlobPackage(),
             new RNDeviceBrightness(),
             new DeviceBatteryPackage(),
             new CookieManagerPackage(),
