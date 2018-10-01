@@ -20,3 +20,14 @@ export function numberFormat(num) {
 export function getImgHeight({ height, width }, myClientWidth = clientWidth) {
   return Math.round(height / width * myClientWidth);
 }
+
+// 统计各个状态的数量
+export function statCount(list, key = 'status') {
+  const result = {};
+  list.forEach((item) => {
+    const status = item.get ? item.get(key) : item[key];
+    const n = result[status] || 0;
+    result[status] = n + 1;
+  });
+  return result;
+}

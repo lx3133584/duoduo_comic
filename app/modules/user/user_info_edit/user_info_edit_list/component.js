@@ -14,10 +14,6 @@ import { Avatar, ListItem } from '@/user';
 const ContainStyled = styled.View`
   background: #fff;
 `;
-const HeaderContainStyled = styled.View`
-  padding-top: 5px;
-  background: ${brand_primary};
-`;
 const itemContainStyle = {
   height: 75,
 };
@@ -141,13 +137,11 @@ class UserInfoEditListComponent extends PureComponent {
     const username = info.get('username');
     return (
       <ContainStyled>
-        <HeaderContainStyled>
-          <Header
-            customTitle="个人资料"
-            rightComponent={this.renderSaveButton()}
-            {...this.props}
-          />
-        </HeaderContainStyled>
+        <Header
+          customTitle="个人资料"
+          rightComponent={this.renderSaveButton()}
+          {...this.props}
+        />
         <ListItem
           key="username"
           title="用户名"

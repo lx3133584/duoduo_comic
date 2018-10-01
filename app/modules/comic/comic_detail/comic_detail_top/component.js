@@ -1,7 +1,8 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import { is } from 'immutable';
 import { BlurView } from 'react-native-blur';
 import {
   Image, Dimensions, findNodeHandle,
@@ -57,7 +58,7 @@ const BottomTextStyled = styled.Text`
   opacity: 0.8;
 `;
 
-class ComicDetailTopComponent extends PureComponent {
+class ComicDetailTopComponent extends Component {
   static propTypes = {
     getDetail: PropTypes.func.isRequired,
     hideLoading: PropTypes.func.isRequired,
@@ -69,6 +70,7 @@ class ComicDetailTopComponent extends PureComponent {
     super();
     this.onFetch = this.onFetch.bind(this);
     this.imageLoaded = this.imageLoaded.bind(this);
+    this.bgImgRef = React.createRef();
   }
 
   state = {
@@ -80,6 +82,13 @@ class ComicDetailTopComponent extends PureComponent {
     this.onFetch(id);
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    const { detail } = this.props;
+    const { viewRef } = this.state;
+    return !is(nextProps.detail, detail)
+      || nextState.viewRef !== viewRef;
+  }
+
   async onFetch(id) {
     const { getDetail } = this.props;
     await getDetail(id);
@@ -88,7 +97,7 @@ class ComicDetailTopComponent extends PureComponent {
   }
 
   imageLoaded() {
-    this.setState({ viewRef: findNodeHandle(this.backgroundImage) }, this.hideLoading);
+    this.setState({ viewRef: findNodeHandle(this.bgImgRef.current) }, this.hideLoading);
   }
 
   hideLoading() {
@@ -108,19 +117,21 @@ class ComicDetailTopComponent extends PureComponent {
     const popularity_number = detail.get('popularity_number');
     return (
       <ContainStyled>
-        <Image
-          ref={(img) => { this.backgroundImage = img; }}
-          style={blurImageStyled}
-          onLoadEnd={this.imageLoaded}
-          source={{ uri: cover }}
-        />
+        {cover && (
+          <Image
+            ref={this.bgImgRef}
+            style={blurImageStyled}
+            onLoadEnd={this.imageLoaded}
+            source={{ uri: cover }}
+          />
+        )}
         {viewRef && (
-        <BlurView
-          style={blurImageStyled}
-          viewRef={viewRef}
-          blurType="dark"
-          blurAmount={6}
-        />
+          <BlurView
+            style={blurImageStyled}
+            viewRef={viewRef}
+            blurType="dark"
+            blurAmount={6}
+          />
         )}
         <Image
           style={coverImageStyled}

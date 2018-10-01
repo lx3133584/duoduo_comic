@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
+import { is } from 'immutable';
 import { FavoritesListItem, Modal } from '@/favorites/favorites_list';
 import styled from 'styled-components';
 import { LongList } from '@';
@@ -33,7 +34,7 @@ class FavoritesListComponent extends Component {
 
   shouldComponentUpdate(nextProps) {
     const { list } = this.props;
-    return nextProps.list !== list;
+    return !is(nextProps.list, list);
   }
 
   async onFetch() {

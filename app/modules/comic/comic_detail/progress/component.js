@@ -4,7 +4,7 @@ import Spinner from 'react-native-spinkit';
 import { brand_primary } from 'theme';
 
 const ContainStyled = styled.View`
-  padding: 20px 0;
+  padding: 50px 0;
   justify-content: center;
   align-items: center;
 `;

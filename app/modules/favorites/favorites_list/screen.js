@@ -10,10 +10,10 @@ const ContainStyled = styled.View`
   min-height: ${height - 48};
 `;
 
-function FavoritesListScreen() {
+function FavoritesListScreen(props) {
   return (
     <ContainStyled>
-      <FavoritesListTabs />
+      <FavoritesListTabs {...props} />
     </ContainStyled>);
 }
 

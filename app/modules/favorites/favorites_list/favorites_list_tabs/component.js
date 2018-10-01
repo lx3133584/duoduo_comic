@@ -1,8 +1,8 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import styled from 'styled-components';
-import { FavoritesList, HistoryList } from '@/favorites/favorites_list';
+import { FavoritesList, HistoryList, DownloadList } from '@/favorites/favorites_list';
 import { Dimensions } from 'react-native';
 import { Header } from 'router';
 import {
@@ -42,12 +42,20 @@ function switchPage(key) {
       return <FavoritesList />;
     case 'history':
       return <HistoryList />;
+    case 'download':
+      return <DownloadList />;
     default:
       return null;
   }
 }
 
-class FavoritesTabsComponent extends PureComponent {
+const routes = [
+  { title: '收藏', key: 'favorite' },
+  { title: '历史', key: 'history' },
+  { title: '下载', key: 'download' },
+];
+
+class FavoritesTabsComponent extends Component {
   static propTypes = {
     info: ImmutablePropTypes.map.isRequired,
     index: PropTypes.number,
@@ -62,10 +70,6 @@ class FavoritesTabsComponent extends PureComponent {
     const { index } = props;
     this.state = {
       index,
-      routes: [
-        { title: '收藏', key: 'favorite' },
-        { title: '历史', key: 'history' },
-      ],
     };
   }
 
@@ -74,6 +78,13 @@ class FavoritesTabsComponent extends PureComponent {
     if (nextProps.index !== index) {
       this.setState({ index: nextProps.index || 0 });
     }
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    const { info } = this.props;
+    const { index } = this.state;
+    return nextProps.info.size !== info.size
+      || nextState.index !== index;
   }
 
   _handleIndexChange = index => this.setState({ index });
@@ -97,7 +108,7 @@ class FavoritesTabsComponent extends PureComponent {
 
   _renderScene = ({ route }) => {
     const { info } = this.props;
-    if (!info.size) {
+    if (!info.size && route.key !== 'download') {
       return (
         <ContainStyled>
           <LoginNowButton large />
@@ -108,7 +119,7 @@ class FavoritesTabsComponent extends PureComponent {
   }
 
   render() {
-    const { index, routes } = this.state;
+    const { index } = this.state;
     return (
       <TabView
         navigationState={{ index, routes }}

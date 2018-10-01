@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import { SectionList, Dimensions } from 'react-native';
+import Immutable, { is } from 'immutable';
 import { Actions } from 'react-native-router-flux';
 import { ComicListItem, ComicListCategory, Progress } from '@/comic/comic_detail';
 import styled from 'styled-components';
@@ -25,6 +27,10 @@ function _getItemLayout(arr, index) {
   return { length: 51, offset: 51 * (index - 1) + offset, index };
 }
 
+function _keyExtractor(item) {
+  return item.id;
+}
+
 @wrapWithLoading
 class ComicListComponent extends Component {
   static propTypes = {
@@ -36,6 +42,9 @@ class ComicListComponent extends Component {
     isReplace: PropTypes.bool,
     dark: PropTypes.bool,
     loading: PropTypes.bool.isRequired,
+    checkboxData: ImmutablePropTypes.map,
+    showCheckbox: PropTypes.bool,
+    changeCheckbox: PropTypes.func,
   };
 
   static defaultProps = {
@@ -43,6 +52,9 @@ class ComicListComponent extends Component {
     comic_id: 0,
     isReplace: false,
     dark: false,
+    checkboxData: Immutable.Map(),
+    showCheckbox: false,
+    changeCheckbox: () => null,
   }
 
   componentDidMount() {
@@ -51,25 +63,24 @@ class ComicListComponent extends Component {
 
   shouldComponentUpdate(nextProps) {
     const {
-      list, chapter_id, loading, dark,
+      list, chapter_id, loading, checkboxData,
     } = this.props;
     return nextProps.list !== list
       || nextProps.chapter_id !== chapter_id
-      || nextProps.dark !== dark
+      || !is(nextProps.checkboxData, checkboxData)
       || nextProps.loading !== loading;
   }
 
   async onFetch() {
-    const { id } = this.props;
     const {
-      getList, hideLoading, comic_id, chapter_id,
+      id, getList, hideLoading, comic_id, chapter_id, showCheckbox,
     } = this.props;
+    if (showCheckbox) return hideLoading();
     let res = {};
     try {
       res = await getList(id || comic_id);
     } catch (e) {
-      hideLoading();
-      return;
+      return hideLoading();
     }
     let sectionIndex = 0;
     let itemIndex = 0;
@@ -82,7 +93,7 @@ class ComicListComponent extends Component {
       });
     });
     setTimeout(() => this.scrollTo({ sectionIndex, itemIndex }), 0);
-    hideLoading();
+    return hideLoading();
   }
 
   scrollTo = ({ sectionIndex = 0, itemIndex = 0 }) => {
@@ -97,19 +108,26 @@ class ComicListComponent extends Component {
   _getRef = ref => this.comic_list_ref = ref;
 
   renderItem = ({ item }) => {
-    const { chapter_id, isReplace, dark } = this.props;
-    const itemOnPress = (params) => {
-      if (isReplace) {
+    const {
+      chapter_id, isReplace, dark, showCheckbox, changeCheckbox, checkboxData,
+    } = this.props;
+    const params = { chapter_id: item.id, title: item.title, pre: false };
+    let itemOnPress;
+    if (showCheckbox) itemOnPress = () => changeCheckbox(item.id);
+    else if (isReplace) {
+      itemOnPress = () => {
         Actions.drawerClose();
         Actions.replace('comicContent', params);
-      } else {
-        Actions.comicContent(params);
-      }
-    };
+      };
+    } else {
+      itemOnPress = () => Actions.comicContent(params);
+    }
     return (
       <ComicListItem
         {...item}
         dark={dark}
+        showCheckbox={showCheckbox}
+        checked={checkboxData.get(item.id)}
         itemOnPress={itemOnPress}
         active={item.id === chapter_id}
       />
@@ -131,18 +149,25 @@ class ComicListComponent extends Component {
   };
 
   render() {
-    const { list, loading, chapter_id } = this.props;
+    const {
+      list, loading, chapter_id, checkboxData,
+    } = this.props;
     if (loading) return <Progress />;
+    const extraData = {
+      checkboxData,
+      chapter_id,
+    };
     return (
       <SectionList
         ref={this._getRef}
         renderItem={this.renderItem}
         renderSectionHeader={this.renderSectionHeader}
         ItemSeparatorComponent={this.renderItemSeparator}
+        keyExtractor={_keyExtractor}
         stickySectionHeadersEnabled
         initialNumToRender={initNumber}
         sections={list}
-        extraData={chapter_id}
+        extraData={extraData}
         getItemLayout={_getItemLayout}
       />
     );

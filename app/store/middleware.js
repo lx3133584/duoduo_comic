@@ -1,7 +1,10 @@
 import promiseMiddleware from 'redux-promise-middleware';
 import { createLogger } from 'redux-logger';
+import { createEpicMiddleware } from 'redux-observable';
 
-const middleware = [promiseMiddleware()];
+export const epicMiddleware = createEpicMiddleware();
+
+const middleware = [promiseMiddleware(), epicMiddleware];
 
 if (__DEV__) {
   const logger = createLogger({

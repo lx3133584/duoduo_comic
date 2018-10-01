@@ -2,24 +2,22 @@ import React, { Component } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { is } from 'immutable';
-import { HistoryListItem, Modal } from '@/favorites/favorites_list';
+import { DownloadListItem, Modal } from '@/favorites/favorites_list';
 import styled from 'styled-components';
 import { LongList } from '@';
 
 const ContainStyled = styled.View`
 `;
 
-class HistoryListComponent extends Component {
+class DownloadListComponent extends Component {
   static propTypes = {
-    getList: PropTypes.func.isRequired,
     remove: PropTypes.func.isRequired,
     list: ImmutablePropTypes.list.isRequired,
   };
 
   constructor(props) {
     super(props);
-    this.onFetch = this.onFetch.bind(this);
-    this.removeFavorite = this.removeFavorite.bind(this);
+    this.removeDownload = this.removeDownload.bind(this);
     this.confirm = this.confirm.bind(this);
     this.cancel = this.cancel.bind(this);
   }
@@ -28,18 +26,9 @@ class HistoryListComponent extends Component {
     isVisible: false,
   };
 
-  componentDidMount() {
-    this.onFetch(0);
-  }
-
   shouldComponentUpdate(nextProps) {
     const { list } = this.props;
     return !is(nextProps.list, list);
-  }
-
-  async onFetch(page) {
-    const { getList } = this.props;
-    await getList(page);
   }
 
   cancel() {
@@ -52,7 +41,7 @@ class HistoryListComponent extends Component {
     remove(this.id);
   }
 
-  removeFavorite(id) {
+  removeDownload(id) {
     this.setState({ isVisible: true });
     this.id = id;
   }
@@ -65,10 +54,8 @@ class HistoryListComponent extends Component {
       <ContainStyled>
         <LongList
           list={listFormat}
-          Item={HistoryListItem}
-          itemOnLongPress={this.removeFavorite}
-          onFetch={this.onFetch}
-          isLong
+          Item={DownloadListItem}
+          itemOnLongPress={this.removeDownload}
           showFooter
         />
         <Modal
@@ -76,11 +63,11 @@ class HistoryListComponent extends Component {
           cancel={this.cancel}
           isVisible={isVisible}
         >
-           是否确认删除此条浏览记录？
+           是否确认删除本地缓存？
         </Modal>
       </ContainStyled>
     );
   }
 }
 
-export default HistoryListComponent;
+export default DownloadListComponent;

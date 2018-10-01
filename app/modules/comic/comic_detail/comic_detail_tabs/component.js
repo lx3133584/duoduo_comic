@@ -27,6 +27,11 @@ const tabBarUnderlineStyle = {
   borderRadius: 10,
 };
 
+const routes = [
+  { title: '详情', key: 'detail' },
+  { title: '目录', key: 'list' },
+];
+
 class ComicDetailTabsComponent extends PureComponent {
   static propTypes = {
     index: PropTypes.number,
@@ -41,10 +46,6 @@ class ComicDetailTabsComponent extends PureComponent {
     const { index } = props;
     this.state = {
       index,
-      routes: [
-        { title: '详情', key: 'detail' },
-        { title: '目录', key: 'list' },
-      ],
     };
   }
 
@@ -86,7 +87,7 @@ class ComicDetailTabsComponent extends PureComponent {
 
 
   render() {
-    const { index, routes } = this.state;
+    const { index } = this.state;
     return (
       <TabView
         navigationState={{ index, routes }}

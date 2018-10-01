@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import { is } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { Rating } from '@/comic/comic_detail';
 
@@ -44,7 +45,7 @@ class ComicDetailComponent extends Component {
 
   shouldComponentUpdate(nextProps) {
     const { detail } = this.props;
-    return nextProps.detail !== detail;
+    return !is(nextProps.detail, detail);
   }
 
   render() {

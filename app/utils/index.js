@@ -1,6 +1,7 @@
 export {
   numberFormat,
   getImgHeight,
+  statCount,
 } from './tools';
 
 export {

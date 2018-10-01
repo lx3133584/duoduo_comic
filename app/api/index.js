@@ -1,6 +1,6 @@
 import http from 'axios';
 
-export { uploadUserAvatar } from './fetch_blob';
+export { uploadUserAvatar, downloadImage } from './fetch_blob';
 
 // 收藏
 export const fetchFavoritesList = () => http.get('favorites'); // 收藏列表
@@ -36,6 +36,15 @@ export const fetchContentList = ({
   id,
   page,
   pre,
-}) => http.get(`comic/content/${id}`, { params: pre ? { page, pre } : { page } }); // 漫画内容
+  all,
+  no_size,
+}) => { // 漫画内容
+  const params = {};
+  if (page) params.page = page;
+  if (pre) params.pre = pre;
+  if (all) params.all = all;
+  if (no_size) params.no_size = no_size;
+  return http.get(`comic/content/${id}`, { params });
+};
 // 评分
 export const postScore = ({ id, score }) => http.post(`score/${id}`, { score }); // 评分

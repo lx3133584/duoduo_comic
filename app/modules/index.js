@@ -19,6 +19,7 @@ export {
 } from './search';
 export {
   FavoritesListScreen,
+  DownloadSelectScreen,
   favoritesListActions,
   favoritesReducer,
   Modal,

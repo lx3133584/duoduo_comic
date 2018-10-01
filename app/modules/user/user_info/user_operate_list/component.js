@@ -19,16 +19,16 @@ const ItemContainStyled = styled.View`
 const list = [
   {
     name: '我的收藏',
-    onPress: () => Actions.favorites({ index: 0 }),
+    onPress: () => Actions._favorites({ index: 0 }),
   },
   {
     name: '浏览记录',
-    onPress: () => Actions.favorites({ index: 1 }),
+    onPress: () => Actions._favorites({ index: 1 }),
   },
-  // {
-  //   name: '我的下载',
-  //   onPress: () => Actions.favorites({ index: 2 }),
-  // },
+  {
+    name: '我的下载',
+    onPress: () => Actions._favorites({ index: 2 }),
+  },
 ];
 
 class UserOperateListComponent extends PureComponent {

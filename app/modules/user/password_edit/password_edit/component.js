@@ -5,15 +5,11 @@ import Toast from 'react-native-root-toast';
 import { TouchableOpacity } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Header } from 'router';
-import { brand_primary, red } from 'theme';
+import { red } from 'theme';
 import { ListItem } from '@/user';
 
 const ContainStyled = styled.View`
   background: #fff;
-`;
-const HeaderContainStyled = styled.View`
-  padding-top: 5px;
-  background: ${brand_primary};
 `;
 const itemContainStyle = {
   height: 100,
@@ -83,13 +79,11 @@ class PasswordEditComponent extends PureComponent {
     };
     return (
       <ContainStyled>
-        <HeaderContainStyled>
-          <Header
-            customTitle="修改密码"
-            rightComponent={this.renderSaveButton()}
-            {...this.props}
-          />
-        </HeaderContainStyled>
+        <Header
+          customTitle="修改密码"
+          rightComponent={this.renderSaveButton()}
+          {...this.props}
+        />
         <ListItem
           key="oldPassword"
           title="原密码"

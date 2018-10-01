@@ -16,6 +16,7 @@ import {
   SearchListScreen,
   DiscoveryListScreen,
   UserInfoScreen,
+  DownloadSelectScreen,
   LoginScreen,
   RegisterScreen,
   UserInfoEditScreen,
@@ -55,7 +56,6 @@ const RootRoute = () => (
       })}
     >
       <Tabs
-        hideNavBar
         activeTintColor={brand_primary}
         activeBackgroundColor="#fff"
         inactiveBackgroundColor="#fff"
@@ -64,6 +64,7 @@ const RootRoute = () => (
         lazy={false}
         key="tabs"
         initial
+        hideNavBar
         swipeEnabled={false}
       >
         <Scene
@@ -133,6 +134,12 @@ const RootRoute = () => (
         key="comicDetail"
         component={ComicDetailScreen}
         title="漫画详情"
+        hideNavBar
+      />
+      <Scene
+        key="downloadSelect"
+        component={DownloadSelectScreen}
+        title="选择下载章节"
         hideNavBar
       />
       <Drawer
