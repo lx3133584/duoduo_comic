@@ -17,8 +17,12 @@ export default handleActions({
     .update('list', list => list.clear())),
   [`${comicDetailActions.getComicDetail}_FULFILLED`]:
     (state, action) => state.set('detail', Immutable.Map(action.payload.data)),
+  [comicDetailActions.useTheDetailCache]:
+    (state, action) => state.set('detail', action.payload),
   [`${comicDetailActions.getComicList}_FULFILLED`]:
     (state, action) => state.set('list', Immutable.List(action.payload.data)),
+  [comicDetailActions.useTheListCache]:
+    (state, action) => state.set('list', action.payload),
   [`${comicDetailActions.addFavorite}_PENDING`]: state => state.withMutations(map => map
     .updateIn(['detail', 'collection_number'], num => +num + 1)
     .setIn(['detail', 'favorite_id'], 1)),

@@ -46,7 +46,7 @@ class RankItemListComponent extends PureComponent {
 
   render() {
     const { list, loading } = this.props;
-    const listFormat = list.toJS();
+    const listFormat = list.toArray();
     return ([
       <LoadingPage show={loading} key="loading" />,
       <ContainStyled key="main">

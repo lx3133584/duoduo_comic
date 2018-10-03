@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import styled from 'styled-components';
 import Button from 'apsl-react-native-button';
 import Entypo from 'react-native-vector-icons/Entypo';
 import { CheckBox } from 'react-native-elements';
 import { Dimensions } from 'react-native';
 import { brand_primary } from 'theme';
+import { downloadStatus } from '@/favorites';
 
 const ICON_SIZE = 16;
 const ICON_COLOR = '#fff';
@@ -27,6 +29,7 @@ const buttonStyle = {
   width,
   marginBottom: 0,
   paddingLeft: 30,
+  paddingRight: 0,
   elevation: 0,
   justifyContent: 'flex-start',
 };
@@ -39,11 +42,21 @@ const textStyle = {
 const checkboxStyle = {
   backgroundColor: 'transparent',
   borderWidth: 0,
+  padding: 0,
+  margin: 0,
 };
 
+const DownloadTipsStyled = styled.Text`
+  font-size: 10px;
+  text-align: right;
+  margin-left: 30px;
+  margin-right: 30px;
+`;
+
 function ComicListItem({
-  title, itemOnPress, active, dark, showCheckbox, checked,
+  title, itemOnPress, active, dark, showCheckbox, checked, status, isDisabled,
 }) {
+  const downloadTips = downloadStatus[status];
   return (
     <Button
       style={[
@@ -52,9 +65,10 @@ function ComicListItem({
         dark && { width: width * 0.7 }]}
       textStyle={[textStyle, dark && { color: '#eee' }, active && !showCheckbox && { color: '#fff' }]}
       onPress={itemOnPress}
+      isDisabled={isDisabled}
     >
       {active && !showCheckbox && <LocaltionIcon />}
-      {showCheckbox ? (
+      {showCheckbox && (
         <CheckBox
           checked={checked}
           textStyle={textStyle}
@@ -62,8 +76,19 @@ function ComicListItem({
           checkedColor={brand_primary}
           onPress={itemOnPress}
         />
-      ) : null}
+      )}
       {title}
+      {status && (
+        <DownloadTipsStyled
+          style={[
+            dark && { color: '#eee' },
+            active && !showCheckbox && { color: '#fff' },
+            showCheckbox && { color: '#666' },
+          ]}
+        >
+          {downloadTips}
+        </DownloadTipsStyled>
+      )}
     </Button>
   );
 }
@@ -74,11 +99,15 @@ ComicListItem.propTypes = {
   dark: PropTypes.bool,
   showCheckbox: PropTypes.bool,
   checked: PropTypes.bool,
+  isDisabled: PropTypes.bool,
+  status: PropTypes.string,
 };
 ComicListItem.defaultProps = {
   active: false,
   dark: false,
   showCheckbox: false,
   checked: false,
+  isDisabled: false,
+  status: '',
 };
 export default ComicListItem;

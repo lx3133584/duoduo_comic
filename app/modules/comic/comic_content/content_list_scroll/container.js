@@ -9,7 +9,7 @@ const widthSelector = state => state.config.get('width');
 
 const formatContentSelector = createSelector(
   contentSelector,
-  list => list.toJS(),
+  list => list.toArray(),
 );
 
 const imgPositonArrSelector = createSelector(

@@ -27,10 +27,8 @@ const TitleStyled = styled.Text`
 
 class DownloadSelectComponent extends Component {
   static propTypes = {
-    list: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      title: PropTypes.string,
-    })).isRequired,
+    list: ImmutablePropTypes.list.isRequired,
+    flatList: ImmutablePropTypes.list.isRequired,
     detail: ImmutablePropTypes.map.isRequired,
     add: PropTypes.func.isRequired,
   };
@@ -53,17 +51,17 @@ class DownloadSelectComponent extends Component {
   };
 
   selectAll = () => {
-    const { list } = this.props;
+    const { flatList } = this.props;
     const { checkboxData } = this.state;
     this.setState({
       checkboxData: checkboxData.withMutations((map) => {
         let isSelectAll = true; // 是否已经全部选中
-        list.forEach((item) => {
+        flatList.forEach((item) => {
           if (!checkboxData.get(item.id)) isSelectAll = false;
           map.set(item.id, true);
         });
         if (isSelectAll) { // 如果已经全选则全部取消选择
-          list.forEach((item) => {
+          flatList.forEach((item) => {
             map.set(item.id, false);
           });
         }
@@ -73,13 +71,13 @@ class DownloadSelectComponent extends Component {
 
   download = () => {
     const {
-      detail, list, add,
+      detail, list, flatList, add,
     } = this.props;
     const { checkboxData } = this.state;
-    const selectList = list.filter(item => checkboxData.get(item.id));
-    if (!selectList.length) return;
+    const selectList = flatList.filter(item => checkboxData.get(item.id));
+    if (!selectList.size) return;
     InteractionManager.runAfterInteractions(() => {
-      add({ detail, list: selectList });
+      add({ detail, list, selectList });
     });
     this.showToast('开始下载...');
     Actions.pop();
@@ -95,7 +93,7 @@ class DownloadSelectComponent extends Component {
 
   render() {
     const { checkboxData } = this.state;
-    const { list } = this.props;
+    const { flatList } = this.props;
     const total = checkboxData.reduce((t, v) => {
       if (v) return t + 1;
       return t;
@@ -104,7 +102,7 @@ class DownloadSelectComponent extends Component {
       <Header
         key="header"
         customTitle="选择下载章节"
-        rightComponent={this.renderSaveButton(total === list.length)}
+        rightComponent={this.renderSaveButton(total === flatList.size)}
         {...this.props}
       />,
       <ComicList

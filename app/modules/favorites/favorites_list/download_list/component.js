@@ -48,7 +48,7 @@ class DownloadListComponent extends Component {
 
   render() {
     const { list } = this.props;
-    const listFormat = list.toJS();
+    const listFormat = list.toArray();
     const { isVisible } = this.state;
     return (
       <ContainStyled>

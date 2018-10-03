@@ -132,7 +132,8 @@ class LongListComponent extends Component {
 
   _renderItem({ item }) {
     const { Item, itemOnPress = f => f } = this.props;
-    return <Item {...item} itemOnPress={itemOnPress} itemOnLongPress={this._itemOnLongPress} />;
+    const _item = item.toObject ? item.toObject() : item; // 支持immutable格式的item数据
+    return <Item {..._item} itemOnPress={itemOnPress} itemOnLongPress={this._itemOnLongPress} />;
   }
 
   _onRefresh() {

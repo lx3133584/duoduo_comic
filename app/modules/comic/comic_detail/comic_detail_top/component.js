@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { is } from 'immutable';
+import Immutable, { is } from 'immutable';
+import { Actions } from 'react-native-router-flux';
 import { BlurView } from 'react-native-blur';
 import {
-  Image, Dimensions, findNodeHandle,
+  Image, Dimensions, findNodeHandle, NetInfo,
 } from 'react-native';
 import { numberFormat } from 'utils';
 
@@ -64,7 +65,14 @@ class ComicDetailTopComponent extends Component {
     hideLoading: PropTypes.func.isRequired,
     id: PropTypes.number.isRequired,
     detail: ImmutablePropTypes.map.isRequired,
+    updateCache: PropTypes.func.isRequired,
+    useCache: PropTypes.func.isRequired,
+    download_list: ImmutablePropTypes.list,
   };
+
+  static defaultProps = {
+    download_list: Immutable.List(),
+  }
 
   constructor() {
     super();
@@ -78,8 +86,7 @@ class ComicDetailTopComponent extends Component {
   };
 
   componentDidMount() {
-    const { id } = this.props;
-    this.onFetch(id);
+    this.init();
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -89,11 +96,35 @@ class ComicDetailTopComponent extends Component {
       || nextState.viewRef !== viewRef;
   }
 
-  async onFetch(id) {
+
+  onFetch(id) {
     const { getDetail } = this.props;
-    await getDetail(id);
+    return getDetail(id).then(({ value: { data } = {} }) => data).catch(() => {
+      Actions.pop(); // 失败则返回上一个页面
+    });
+  }
+
+  async init() {
+    const { useCache, updateCache, id } = this.props;
+    const cache = this.checkLocalCache(id);
+    if (cache) {
+      useCache(cache);
+      NetInfo.isConnected.fetch().then((isConnected) => { // 如果联网则更新缓存
+        if (!isConnected) return;
+        this.onFetch(id).then((data) => {
+          updateCache({ id, data });
+        });
+      });
+    } else {
+      await this.onFetch(id);
+    }
     this.fetchCompleted = true; // 标识请求已完成
     this.hideLoading();
+  }
+
+  checkLocalCache(id) {
+    const { download_list } = this.props;
+    return download_list.find(i => i.get('id') === id);
   }
 
   imageLoaded() {

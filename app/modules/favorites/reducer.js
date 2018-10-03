@@ -53,19 +53,18 @@ export default handleActions({
     .update('history_list', list => list.clear())
     .update('favorites_list', list => list.clear())),
   [downloadSelectActions.addDownload]: (state, action) => {
-    const { detail, list } = action.payload;
-    const listMap = formatMap(list, { status: 'ready' });
+    const { detail, list, selectList } = action.payload;
+    const listMap = formatMap(selectList, { status: 'ready' });
     return state.update('download_list', (l) => {
       const index = l.findIndex(i => i.get('id') === detail.get('id'));
       if (!~index) { // 下载列表是否已经存在
         const d = detail.withMutations(m => m
           .set('download_status', 'ready')
+          .set('list', list) // 储存目录
           .set('listMap', listMap));
         return l.push(d);
       }
-      const d = detail.withMutations(m => m
-        .update('listMap', ll => listMap.merge(ll)));
-      return l.set(index, d);
+      return l.update(index, dd => dd.mergeDeep(detail));
     });
   },
   [`${downloadSelectActions.fetchDownloadContent}_PENDING`]:
@@ -109,5 +108,19 @@ export default handleActions({
         .setIn([i, 'listMap', chapter_id, 'contentMap', index, 'path'], result)
         .updateIn([i, 'listMap', chapter_id], map => map.set('status', computeParentStatus(map.get('contentMap'))))
         .update(i, map => map.set('download_status', computeParentStatus(map.get('listMap')))));
+    }),
+  [comicDetailActions.updateTheDetailCache]:
+    (state, action) => state.update('download_list', (list) => {
+      const { id, data } = action.payload;
+      const index = findIndex(list, id); // 找到漫画所在位置
+      if (!~index) return list;
+      return list.update(index, m => m.merge(data));
+    }),
+  [comicDetailActions.updateTheListCache]:
+    (state, action) => state.update('download_list', (list) => {
+      const { id, data } = action.payload;
+      const index = findIndex(list, id); // 找到漫画所在位置
+      if (!~index) return list;
+      return list.setIn([index, 'list'], Immutable.List(data));
     }),
 }, initialState);

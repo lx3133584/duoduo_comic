@@ -9,14 +9,11 @@ const flatListSelector = createSelector(
   listSelector,
   list => list.flatMap(item => item.data),
 );
-const flatListJSSelector = createSelector(
-  flatListSelector,
-  list => list.toJS(),
-);
 
 const mapStateToProps = state => ({
   detail: state.comic.get('detail'),
-  list: flatListJSSelector(state),
+  list: state.comic.get('list'),
+  flatList: flatListSelector(state),
 });
 
 const mapDispatchToProps = dispatch => ({

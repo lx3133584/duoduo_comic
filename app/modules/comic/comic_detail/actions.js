@@ -4,7 +4,10 @@ import {
 } from 'api';
 
 export const {
-  getComicDetail, getComicList, addFavorite, removeFavorite, addScore,
+  getComicDetail, getComicList,
+  addFavorite, removeFavorite, addScore,
+  useTheDetailCache, useTheListCache,
+  updateTheDetailCache, updateTheListCache,
 } = createActions({
   GET_COMIC_DETAIL: async (id) => {
     const result = await fetchComicDetail(id);
@@ -26,4 +29,8 @@ export const {
     const promise = postScore({ id, score });
     return { promise, data: { id, score } };
   },
+  USE_THE_DETAIL_CACHE: f => f,
+  USE_THE_LIST_CACHE: f => f,
+  UPDATE_THE_DETAIL_CACHE: f => f,
+  UPDATE_THE_LIST_CACHE: f => f,
 });

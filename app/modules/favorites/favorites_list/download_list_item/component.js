@@ -17,9 +17,14 @@ const ContainStyled = styled.View`
   padding: 8px;
 `;
 const BarContainStyled = styled.View`
-  height: 48px;
+  height: 24px;
   align-items: center;
   justify-content: center;
+`;
+const DescStyled = styled.Text`
+  color: #999;
+  font-size: 14px;
+  margin: 5px 0;
 `;
 const textStyle = {
   fontSize: 10,
@@ -40,8 +45,8 @@ function DownloadListItem(props) {
   const {
     download_status, listMap,
   } = props;
-  const list = Object.values(listMap);
-  const total = list.length;
+  const list = listMap.toList();
+  const total = list.size;
   const stat = statCount(list);
   const { done = 0 } = stat;
   return (
@@ -49,6 +54,10 @@ function DownloadListItem(props) {
       <BarContainStyled>
         {total ? <Bar progress={done / total} color={brand_primary} width={screenWidth - 200} /> : null}
       </BarContainStyled>
+      <DescStyled>
+下载进度：
+        {total ? ~~(done / total * 100) : 0}%
+      </DescStyled>
       <ContainStyled>
         <Badge
           value={downloadStatus[download_status]}

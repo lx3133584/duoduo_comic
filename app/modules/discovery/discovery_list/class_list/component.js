@@ -31,7 +31,7 @@ class ClassListComponent extends PureComponent {
 
   render() {
     const { list } = this.props;
-    const listFormat = list.toJS();
+    const listFormat = list.toArray();
     return (
       <ContainStyled>
         <LongList

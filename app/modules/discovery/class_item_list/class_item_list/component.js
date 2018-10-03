@@ -36,7 +36,7 @@ class ClassItemListComponent extends PureComponent {
 
   render() {
     const { loading, list } = this.props;
-    const listFormat = list.toJS();
+    const listFormat = list.toArray();
     return ([
       <LoadingPage show={loading} key="loading" />,
       <LongList

@@ -6,7 +6,7 @@ import { addDownload, fetchDownloadContent, downloadComicImg } from '@/favorites
 const addEpic = action$ => action$.pipe(
   ofType(addDownload),
   mergeMap(({ payload }) => of(
-    ...payload.list.map(
+    ...payload.selectList.toArray().map(
       item => fetchDownloadContent({ comic_id: payload.detail.get('id'), id: item.id }),
     ),
   )),

@@ -23,7 +23,7 @@ class SearchListComponent extends PureComponent {
 
   render() {
     const { list } = this.props;
-    const listFormat = list.toJS();
+    const listFormat = list.toArray();
     return (
       <LongList
         list={listFormat}
