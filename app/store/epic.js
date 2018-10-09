@@ -1,6 +1,7 @@
-import { of } from 'rxjs';
-import { mergeMap } from 'rxjs/operators';
+import { of, from } from 'rxjs';
+import { mergeMap, delayWhen } from 'rxjs/operators';
 import { ofType, combineEpics } from 'redux-observable';
+import { InteractionManager } from 'react-native';
 import { addDownload, fetchDownloadContent, downloadComicImg } from '@/favorites/download_select/actions';
 import {
   removeDownloadComic, removeDownloadComicFulfilled,
@@ -18,6 +19,7 @@ const addEpic = action$ => action$.pipe(
 );
 const fetchContentEpic = action$ => action$.pipe(
   ofType(`${fetchDownloadContent}_FULFILLED`),
+  delayWhen(() => from(InteractionManager.runAfterInteractions())),
   mergeMap(({ payload }) => of(
     ...payload.result.data.map(
       ({ index, url }) => downloadComicImg({
@@ -37,6 +39,8 @@ const removeComicEpic = (action$, store) => action$.pipe(
       ...listMap.toList().flatMap(
         item => item.get('contentMap').toList(),
       ).map(item => removeDownloadImg(item.get('path'))),
+    ).pipe(
+      delayWhen(() => from(InteractionManager.runAfterInteractions())),
     );
   }),
 );
@@ -49,6 +53,8 @@ const removeContentEpic = (action$, store) => action$.pipe(
     return of(
       removeDownloadContentFulfilled(payload),
       ...contentMap.toList().map(item => removeDownloadImg(item.get('path'))),
+    ).pipe(
+      delayWhen(() => from(InteractionManager.runAfterInteractions())),
     );
   }),
 );

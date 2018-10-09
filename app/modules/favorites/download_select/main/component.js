@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Immutable from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Toast from 'react-native-root-toast';
-import { TouchableOpacity, Dimensions, InteractionManager } from 'react-native';
+import { TouchableOpacity, Dimensions } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Header } from 'router';
 import { ComicList } from '@/comic/comic_detail';
@@ -76,9 +76,7 @@ class DownloadSelectComponent extends Component {
     const { checkboxData } = this.state;
     const selectList = flatList.filter(item => checkboxData.get(item.id));
     if (!selectList.size) return;
-    InteractionManager.runAfterInteractions(() => {
-      add({ detail, list, selectList });
-    });
+    add({ detail, list, selectList });
     this.showToast('开始下载...');
     Actions.pop();
   }
