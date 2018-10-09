@@ -1,6 +1,6 @@
 import http from 'axios';
 
-export { uploadUserAvatar, downloadImage } from './fetch_blob';
+export { uploadUserAvatar, downloadImage, deleteImage } from './fetch_blob';
 
 // 收藏
 export const fetchFavoritesList = () => http.get('favorites'); // 收藏列表

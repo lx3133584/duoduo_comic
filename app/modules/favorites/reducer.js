@@ -123,4 +123,17 @@ export default handleActions({
       if (!~index) return list;
       return list.setIn([index, 'list'], Immutable.List(data));
     }),
+  [favoritesListActions.removeDownloadComicFulfilled]:
+    (state, action) => state.update('download_list', (list) => {
+      const index = findIndex(list, action.payload); // 找到漫画所在位置
+      if (!~index) return list;
+      return list.delete(index);
+    }),
+  [favoritesListActions.removeDownloadContentFulfilled]:
+    (state, action) => state.update('download_list', (list) => {
+      const { id, comic_id } = action.payload;
+      const index = findIndex(list, comic_id); // 找到漫画所在位置
+      if (!~index) return list;
+      return list.updateIn([index, 'listMap'], map => map.delete(id));
+    }),
 }, initialState);

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { comicDetailActions } from '@/comic';
+import { removeDownloadComic } from '../actions';
 import Component from './component';
 
 const mapStateToProps = state => ({
@@ -8,7 +8,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   remove(params) {
-    return dispatch(comicDetailActions.removeFavorite(params));
+    return dispatch(removeDownloadComic(params));
   },
 });
 

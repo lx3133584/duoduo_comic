@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Image } from 'react-native';
+import { Image, Platform } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import { ImgPlaceholder } from '@/comic/comic_content';
 import { wrapWithLoading, getImgHeight } from 'utils';
@@ -11,6 +11,7 @@ const { prefetch } = Image;
 class ContentListItem extends PureComponent {
   static propTypes = {
     url: PropTypes.string.isRequired,
+    path: PropTypes.string,
     width: PropTypes.number.isRequired,
     index: PropTypes.number.isRequired,
     hideLoading: PropTypes.func.isRequired,
@@ -20,6 +21,10 @@ class ContentListItem extends PureComponent {
       width: PropTypes.number.isRequired,
     }).isRequired,
   };
+
+  static defaultProps = {
+    path: '',
+  }
 
   componentDidMount() {
     this.preFetchImage();
@@ -33,8 +38,13 @@ class ContentListItem extends PureComponent {
 
   render() {
     const {
-      url, index, loading, size, width,
+      url, path, index, loading, size, width,
     } = this.props;
+    const uri = path
+      ? Platform.OS === 'android'
+        ? `file://${path}`
+        : path
+      : url;
     const style = {
       width,
       height: getImgHeight(size, width),
@@ -48,7 +58,7 @@ class ContentListItem extends PureComponent {
     }
     return (
       <FastImage
-        source={{ uri: url }}
+        source={{ uri }}
         style={style}
       />
     );
