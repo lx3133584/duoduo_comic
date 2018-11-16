@@ -14,7 +14,6 @@
 		00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302E41ABCB9EE00DB3ED1 /* libRCTVibration.a */; };
 		00E356F31AD99517003FC87E /* duoduo_comicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* duoduo_comicTests.m */; };
 		0728ECE4381045F79050F259 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7E221C4189CF40A5B5F13CB8 /* Zocial.ttf */; };
-		08A7D23440544AFD9101619B /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F0DE842C01C847FF8F16FCD8 /* libRNFetchBlob.a */; };
 		11D1A2F320CAFA9E000508D9 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
@@ -25,12 +24,9 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
-		15437F03B1EE4933AA40152F /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 77C616876E9D4CFF9FFA2310 /* libRNVectorIcons.a */; };
-		1778BC351B474D319CE9341C /* libRNBlur.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E7DE8842AD5460B9B1DAD25 /* libRNBlur.a */; };
 		212EE423406645D9984C9FA5 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 708490C7AB8746F2B68E9BC5 /* Ionicons.ttf */; };
 		22A033D3300542ACB3A3E4D8 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 598F98BB701C47799B5CD045 /* EvilIcons.ttf */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
-		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2D02E4C21E0B4AEC006451C7 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157351DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
 		2D02E4C31E0B4AEC006451C7 /* libRCTImage-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3E841DF850E9000B6D8A /* libRCTImage-tvOS.a */; };
@@ -43,23 +39,26 @@
 		2DCD954D1E0B4F2C00145EB5 /* duoduo_comicTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* duoduo_comicTests.m */; };
 		2DF0FFEE2056DD460020B375 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DAD3EA31DF850E9000B6D8A /* libReact.a */; };
 		4C8B5A7E77B14337BEB96896 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A98E1BDE3E7C497CA7AC0533 /* Feather.ttf */; };
-		4DB90BDD8F5D433DA2E0DC8A /* libRNCookieManagerIOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74DB906C493047098D492B06 /* libRNCookieManagerIOS.a */; };
 		52506AD01D414E8AA19B8367 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 678F15DB34124BA79FBD8D1F /* MaterialIcons.ttf */; };
-		6220F4936B124CE88AC531DE /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 865544E376084D76B325B105 /* libRNImagePicker.a */; };
 		63C4C9E18BC84BEB8AA0636A /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 72B8AE96627448028541FD32 /* FontAwesome.ttf */; };
-		64EF8C1B220B41449C88F886 /* libRCTHotUpdate.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E642D3DF23C84093B9266ADC /* libRCTHotUpdate.a */; };
 		749E6ECEA61E4E2880EA3590 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 51A34BA5C9574E81BF554B1A /* Entypo.ttf */; };
-		77E7C08DCA0848FA8C352C98 /* libSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4916568924354AC999F12680 /* libSplashScreen.a */; };
+		7C129930219EB46900086BE5 /* libSplashScreen.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C236032219D76A500C471E9 /* libSplashScreen.a */; };
+		7C129931219EB47600086BE5 /* libRNBlur.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C236018219D76A500C471E9 /* libRNBlur.a */; };
+		7C129932219EB48100086BE5 /* libRNCookieManagerIOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C23601D219D76A500C471E9 /* libRNCookieManagerIOS.a */; };
+		7C129933219EB48900086BE5 /* libRNDeviceBrightness.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C236020219D76A500C471E9 /* libRNDeviceBrightness.a */; };
+		7C129934219EB49000086BE5 /* libDeviceBattery.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C23600B219D76A500C471E9 /* libDeviceBattery.a */; };
+		7C129935219EB49A00086BE5 /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C236026219D76A500C471E9 /* libRNImagePicker.a */; };
+		7C129936219EB4A200086BE5 /* libRCTOrientation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C236014219D76A500C471E9 /* libRCTOrientation.a */; };
+		7C129937219EB4A900086BE5 /* libRCTHotUpdate.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C236011219D76A500C471E9 /* libRCTHotUpdate.a */; };
+		7C129938219EB4B000086BE5 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C23602F219D76A500C471E9 /* libRNVectorIcons.a */; };
+		7C129939219EB4B600086BE5 /* libFastImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C23600E219D76A500C471E9 /* libFastImage.a */; };
+		7C12993A219EB4C100086BE5 /* libRNSpinkit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C23602A219D76A500C471E9 /* libRNSpinkit.a */; };
+		7C12993B219EB4CA00086BE5 /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C236023219D76A500C471E9 /* libRNFetchBlob.a */; };
 		7C236212219D875D00C471E9 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C236211219D875D00C471E9 /* libz.tbd */; };
 		7C236214219D876500C471E9 /* libbz2.1.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C236213219D876500C471E9 /* libbz2.1.0.tbd */; };
-		82F8C310D4D94B26B9579667 /* libRCTOrientation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A1D0B7C429C4DFE83A8CD40 /* libRCTOrientation.a */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
-		86A1E1D96CEC48BB93B4F57F /* libDeviceBattery.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CD126613498E41A2A57B010D /* libDeviceBattery.a */; };
-		978526A7F4CC4B7AAE167080 /* libRNSpinkit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B91FF3614DC49B19A2A3526 /* libRNSpinkit.a */; };
-		9D21C74996C04B06BA5593BE /* libFastImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 210D4F9C11B344209254BA68 /* libFastImage.a */; };
 		A1D9F306688E4B8DA664D42B /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5923FDA6105B45E89E44F290 /* MaterialCommunityIcons.ttf */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
-		C867C7A84EEE49C4A67FD6C5 /* libRNDeviceBrightness.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B2A3CD2943DE4C6882C8DC2D /* libRNDeviceBrightness.a */; };
 		D15093A84B3840E7A5D23340 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E4FC128A28A843C6928DA0CE /* Octicons.ttf */; };
 		DC350315DC934F11A882BC13 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = FAA15DD106BF4D7A8ACD3111 /* SimpleLineIcons.ttf */; };
 		E33DF5E3E302423DB770BFE9 /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D18ED980A08A43E7AB778169 /* Foundation.ttf */; };
@@ -518,6 +517,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C12993B219EB4CA00086BE5 /* libRNFetchBlob.a in Frameworks */,
+				7C12993A219EB4C100086BE5 /* libRNSpinkit.a in Frameworks */,
+				7C129939219EB4B600086BE5 /* libFastImage.a in Frameworks */,
+				7C129938219EB4B000086BE5 /* libRNVectorIcons.a in Frameworks */,
+				7C129937219EB4A900086BE5 /* libRCTHotUpdate.a in Frameworks */,
+				7C129936219EB4A200086BE5 /* libRCTOrientation.a in Frameworks */,
+				7C129935219EB49A00086BE5 /* libRNImagePicker.a in Frameworks */,
+				7C129934219EB49000086BE5 /* libDeviceBattery.a in Frameworks */,
+				7C129933219EB48900086BE5 /* libRNDeviceBrightness.a in Frameworks */,
+				7C129932219EB48100086BE5 /* libRNCookieManagerIOS.a in Frameworks */,
+				7C129931219EB47600086BE5 /* libRNBlur.a in Frameworks */,
+				7C129930219EB46900086BE5 /* libSplashScreen.a in Frameworks */,
 				7C236214219D876500C471E9 /* libbz2.1.0.tbd in Frameworks */,
 				7C236212219D875D00C471E9 /* libz.tbd in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
@@ -532,18 +543,6 @@
 				832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */,
 				00C302EA1ABCBA2D00DB3ED1 /* libRCTVibration.a in Frameworks */,
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
-				1778BC351B474D319CE9341C /* libRNBlur.a in Frameworks */,
-				4DB90BDD8F5D433DA2E0DC8A /* libRNCookieManagerIOS.a in Frameworks */,
-				86A1E1D96CEC48BB93B4F57F /* libDeviceBattery.a in Frameworks */,
-				C867C7A84EEE49C4A67FD6C5 /* libRNDeviceBrightness.a in Frameworks */,
-				6220F4936B124CE88AC531DE /* libRNImagePicker.a in Frameworks */,
-				82F8C310D4D94B26B9579667 /* libRCTOrientation.a in Frameworks */,
-				77E7C08DCA0848FA8C352C98 /* libSplashScreen.a in Frameworks */,
-				64EF8C1B220B41449C88F886 /* libRCTHotUpdate.a in Frameworks */,
-				15437F03B1EE4933AA40152F /* libRNVectorIcons.a in Frameworks */,
-				9D21C74996C04B06BA5593BE /* libFastImage.a in Frameworks */,
-				978526A7F4CC4B7AAE167080 /* libRNSpinkit.a in Frameworks */,
-				08A7D23440544AFD9101619B /* libRNFetchBlob.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1538,7 +1537,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1726,6 +1724,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				HEADER_SEARCH_PATHS = (
@@ -1750,7 +1749,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.duoudo-comic";
 				PRODUCT_NAME = duoduo_comic;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1760,6 +1759,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CURRENT_PROJECT_VERSION = 1;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1783,7 +1783,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.duoudo-comic";
 				PRODUCT_NAME = duoduo_comic;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
