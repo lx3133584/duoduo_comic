@@ -32,7 +32,7 @@ function interceptorsResponseSuccess(response) {
   return response.data;
 }
 function interceptorsResponseError(error) {
-  if (__DEV__) console.error('error:', error.response);
+  if (__DEV__) console.log('error:', error.response);
   if (error.request && error.request.status === 401) {
     // Actions.login();
     store.dispatch({ type: 'LOGOUT_ACTION_PENDING' });

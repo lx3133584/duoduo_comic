@@ -11,6 +11,7 @@
 #import <React/RCTRootView.h>
 #import "RNSplashScreen.h"
 #import "Orientation.h"
+#import "RCTHotUpdate.h"
 
 @implementation AppDelegate
 
@@ -18,7 +19,11 @@
 {
   NSURL *jsCodeLocation;
 
-  jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
+  #if DEBUG
+    jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
+  #else
+    jsCodeLocation = [RCTHotUpdate bundleURL];
+  #endif
 
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation
                                                       moduleName:@"duoduo_comic"

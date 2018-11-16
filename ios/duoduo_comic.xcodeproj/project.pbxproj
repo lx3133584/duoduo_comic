@@ -54,6 +54,7 @@
 		7C129939219EB4B600086BE5 /* libFastImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C23600E219D76A500C471E9 /* libFastImage.a */; };
 		7C12993A219EB4C100086BE5 /* libRNSpinkit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C23602A219D76A500C471E9 /* libRNSpinkit.a */; };
 		7C12993B219EB4CA00086BE5 /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C236023219D76A500C471E9 /* libRNFetchBlob.a */; };
+		7C129992219ECD1C00086BE5 /* libART.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C12998F219ECD0400086BE5 /* libART.a */; };
 		7C236212219D875D00C471E9 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C236211219D875D00C471E9 /* libz.tbd */; };
 		7C236214219D876500C471E9 /* libbz2.1.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7C236213219D876500C471E9 /* libbz2.1.0.tbd */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
@@ -324,6 +325,20 @@
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = RCTLinking;
 		};
+		7C12998E219ECD0400086BE5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7C129989219ECD0400086BE5 /* ART.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0CF68AC11AF0540F00FF9E5C;
+			remoteInfo = ART;
+		};
+		7C129990219ECD0400086BE5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7C129989219ECD0400086BE5 /* ART.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 323A12871E5F266B004975B8;
+			remoteInfo = "ART-tvOS";
+		};
 		7C23600A219D76A500C471E9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6EB791B63ECC4A4AAC8FFC62 /* DeviceBattery.xcodeproj */;
@@ -483,6 +498,7 @@
 		74DB906C493047098D492B06 /* libRNCookieManagerIOS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNCookieManagerIOS.a; sourceTree = "<group>"; };
 		77C616876E9D4CFF9FFA2310 /* libRNVectorIcons.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNVectorIcons.a; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
+		7C129989219ECD0400086BE5 /* ART.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ART.xcodeproj; path = "../node_modules/react-native/Libraries/ART/ART.xcodeproj"; sourceTree = "<group>"; };
 		7C236211219D875D00C471E9 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		7C236213219D876500C471E9 /* libbz2.1.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.1.0.tbd; path = usr/lib/libbz2.1.0.tbd; sourceTree = SDKROOT; };
 		7E221C4189CF40A5B5F13CB8 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
@@ -517,6 +533,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C129992219ECD1C00086BE5 /* libART.a in Frameworks */,
 				7C12993B219EB4CA00086BE5 /* libRNFetchBlob.a in Frameworks */,
 				7C12993A219EB4C100086BE5 /* libRNSpinkit.a in Frameworks */,
 				7C129939219EB4B600086BE5 /* libFastImage.a in Frameworks */,
@@ -716,6 +733,15 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		7C12998A219ECD0400086BE5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7C12998F219ECD0400086BE5 /* libART.a */,
+				7C129991219ECD0400086BE5 /* libART-tvOS.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		7C235FCA219D76A100C471E9 /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
@@ -854,6 +880,7 @@
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				7C129989219ECD0400086BE5 /* ART.xcodeproj */,
 				5E91572D1DD0AC6500FF2AA8 /* RCTAnimation.xcodeproj */,
 				146833FF1AC3E56700842450 /* React.xcodeproj */,
 				00C302A71ABCB8CE00DB3ED1 /* RCTActionSheet.xcodeproj */,
@@ -1038,6 +1065,10 @@
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = 7C12998A219ECD0400086BE5 /* Products */;
+					ProjectRef = 7C129989219ECD0400086BE5 /* ART.xcodeproj */;
+				},
 				{
 					ProductGroup = 7C235FF5219D76A500C471E9 /* Products */;
 					ProjectRef = 6EB791B63ECC4A4AAC8FFC62 /* DeviceBattery.xcodeproj */;
@@ -1391,6 +1422,20 @@
 			remoteRef = 78C398B81ACF4ADC00677621 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		7C12998F219ECD0400086BE5 /* libART.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libART.a;
+			remoteRef = 7C12998E219ECD0400086BE5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		7C129991219ECD0400086BE5 /* libART-tvOS.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = "libART-tvOS.a";
+			remoteRef = 7C129990219ECD0400086BE5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		7C23600B219D76A500C471E9 /* libDeviceBattery.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -1727,6 +1772,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
+				DEVELOPMENT_TEAM = "";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-blur/ios",
@@ -1761,6 +1807,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-blur/ios",

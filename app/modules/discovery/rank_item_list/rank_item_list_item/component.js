@@ -27,8 +27,8 @@ const wrapperStyle = {
   marginRight: 10,
 };
 function RankItemListItem(props) {
-  const { desc, author, id } = props;
-  const { key, color } = rankTypes[id];
+  const { desc, author, outid } = props;
+  const { key, color } = rankTypes[outid];
   const { [key]: value } = props;
   return (
     <LongListItem {...props}>
@@ -53,7 +53,7 @@ function RankItemListItem(props) {
 RankItemListItem.propTypes = {
   desc: PropTypes.string,
   author: PropTypes.string,
-  id: PropTypes.oneOf([0, 1, 2, 3]).isRequired,
+  outid: PropTypes.oneOf([0, 1, 2, 3]).isRequired,
 };
 RankItemListItem.defaultProps = {
   desc: '',

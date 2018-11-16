@@ -41,7 +41,7 @@ class RankItemListComponent extends PureComponent {
 
   renderItem = (props) => {
     const { id } = this.props;
-    return <RankItemListItem {...props} id={id} />;
+    return <RankItemListItem {...props} outid={id} />;
   };
 
   render() {

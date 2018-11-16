@@ -6,7 +6,7 @@ import Toast from 'react-native-root-toast';
 import { Actions } from 'react-native-router-flux';
 import ImagePicker from 'react-native-image-picker';
 import ActionSheet from 'react-native-actionsheet';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, Platform } from 'react-native';
 import { Header } from 'router';
 import { brand_primary } from 'theme';
 import { Avatar, ListItem } from '@/user';
@@ -47,7 +47,7 @@ const options = { // ImagePicker的设置选项
   },
 };
 
-const ActionSheetOptions = [ // ActionSheet选项
+const ActionSheetOptionsAndroid = [ // ActionSheet选项
   <TextStyled>
 相机
   </TextStyled>,
@@ -58,6 +58,12 @@ const ActionSheetOptions = [ // ActionSheet选项
 取消
   </CancelTextStyled>,
 ];
+const ActionSheetOptionsIOS = [
+  '相机',
+  '图库',
+  '取消',
+];
+const ActionSheetOptions = Platform.OS === 'ios' ? ActionSheetOptionsIOS : ActionSheetOptionsAndroid;
 const fn = ['launchCamera', 'launchImageLibrary']; // ActionSheet-index对应的ImagePicker方法
 
 class UserInfoEditListComponent extends PureComponent {
@@ -79,6 +85,7 @@ class UserInfoEditListComponent extends PureComponent {
   }
 
   showActionSheet = () => {
+    console.log(this.ActionSheet)
     this.ActionSheet && this.ActionSheet.show();
   };
 

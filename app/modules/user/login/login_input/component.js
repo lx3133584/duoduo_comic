@@ -26,6 +26,7 @@ function LoginInputComponent({
         placeholder={placeholder || '请输入'}
         maxLength={32}
         shake
+        autoCapitalize="none"
         inputStyle={textStyle}
         inputContainerStyle={containerStyle}
         secureTextEntry={password}

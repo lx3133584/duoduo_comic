@@ -13,7 +13,7 @@ import {
   switchVersionLater,
 } from 'react-native-update';
 import hoistNonReactStatics from 'hoist-non-react-statics';
-import _updateConfig from '../../update.json';
+import updateConfig from '../../update.json';
 import { Modal } from '@';
 
 // 提供loading状态的高阶组件
@@ -40,7 +40,7 @@ export const wrapWithLoading = function (WrappedComponent) {
   return NewComponent;
 };
 
-const { appKey } = _updateConfig[Platform.OS];
+const { appKey } = updateConfig[Platform.OS];
 
 // 提供热更新功能的高阶组件
 export const wrapWithUpdate = function (WrappedComponent) {

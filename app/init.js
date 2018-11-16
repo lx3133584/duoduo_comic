@@ -8,3 +8,6 @@ StatusBar.setBarStyle('light-content', true);
 
 // 锁定竖屏
 Orientation.lockToPortrait();
+
+// 隐藏警告
+if (__DEV__) console.disableYellowBox = true;

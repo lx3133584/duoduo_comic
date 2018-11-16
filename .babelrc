@@ -7,9 +7,9 @@
     [
       "module-resolver",
       {
-        "root": ["./app"],
+        "root": "./app",
         "alias": {
-          "@": "./app/modules",
+          "@": "./app/modules"
         },
         "extensions": [".ios.js", ".android.js", ".js", ".json"]
       }
