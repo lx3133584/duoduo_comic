@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>duoduo_comic.ipa</key>
+	<array>
+		<dict>
+			<key>architectures</key>
+			<array>
+				<string>armv7</string>
+				<string>arm64</string>
+			</array>
+			<key>certificate</key>
+			<dict>
+				<key>SHA1</key>
+				<string></string>
+				<key>dateExpires</key>
+				<string></string>
+				<key>type</key>
+				<string>Unknown</string>
+			</dict>
+			<key>name</key>
+			<string>duoduo_comic.app</string>
+			<key>team</key>
+			<dict>
+				<key>id</key>
+				<string>X6DDKY7VC2</string>
+				<key>name</key>
+				<string>Guangzhou Luogang Jinfa Small Loan Co., Ltd.</string>
+			</dict>
+		</dict>
+	</array>
+</dict>
+</plist>
