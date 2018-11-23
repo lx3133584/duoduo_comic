@@ -85,7 +85,6 @@ class UserInfoEditListComponent extends PureComponent {
   }
 
   showActionSheet = () => {
-    console.log(this.ActionSheet)
     this.ActionSheet && this.ActionSheet.show();
   };
 
@@ -181,7 +180,7 @@ class UserInfoEditListComponent extends PureComponent {
         />
         <ActionSheet
           ref={o => this.ActionSheet = o}
-          title={null}
+          title="选择上传方式"
           options={ActionSheetOptions}
           cancelButtonIndex={2}
           onPress={this.beforeUpload}
