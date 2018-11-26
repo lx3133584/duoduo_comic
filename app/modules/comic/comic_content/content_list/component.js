@@ -87,18 +87,19 @@ class ContentListComponent extends Component {
   goPage = async ({ page = 0, offset = 0, init }) => {
     init && (this.init_page = page);
     this.setState({ loadingPage: true });
-    const res = await this.onFetch(page, init);
-    const data = res.value.result.data.slice(offset, offset + pre_num);
-    const tasks = data.map(item => prefetch(item.url));
-    try {
-      await Promise.all(tasks); // 前三张图片都显示出来才结束loading
-    } catch (e) {
-      Toast.show('图片加载失败', {
-        position: -70,
-      });
-    } finally {
-      this.setState({ loadingPage: false });
-    }
+    await this.onFetch(page, init);
+    // const data = res.value.result.data.slice(offset, offset + pre_num);
+    // const tasks = data.map(item => prefetch(item.url));
+    // try {
+    //   await Promise.all(tasks); // 前三张图片都显示出来才结束loading
+    // } catch (e) {
+    //   Toast.show('图片加载失败', {
+    //     position: -70,
+    //   });
+    // } finally {
+    //   this.setState({ loadingPage: false });
+    // }
+    this.setState({ loadingPage: false });
   };
 
   // 调用滚动列表的滚动方法
@@ -198,8 +199,6 @@ class ContentListComponent extends Component {
         ContentList = ContentListPageTurning;
         break;
       case 'scroll':
-        ContentList = ContentListScroll;
-        break;
       default:
         ContentList = ContentListScroll;
     }

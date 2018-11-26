@@ -11,19 +11,28 @@ const TitleStyled = styled.Text`
   font-size: 32px;
   color: #eee;
 `;
-function ImagePlaceholder({ children, ...otherProps }) {
+const SubTitleStyled = styled.Text`
+  font-size: 18px;
+  color: #eee;
+`;
+function ImagePlaceholder({ title, subTitle, ...otherProps }) {
   return (
     <ContainStyled {...otherProps}>
       <TitleStyled>
-        {children}
+        {title}
       </TitleStyled>
+      <SubTitleStyled>
+        {subTitle}
+      </SubTitleStyled>
     </ContainStyled>
   );
 }
 ImagePlaceholder.propTypes = {
-  children: PropTypes.number,
+  title: PropTypes.string,
+  subTitle: PropTypes.string,
 };
 ImagePlaceholder.defaultProps = {
-  children: null,
+  title: '',
+  subTitle: '',
 };
 export default ImagePlaceholder;

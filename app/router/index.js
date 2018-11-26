@@ -57,6 +57,7 @@ const RootRoute = () => (
     >
       <Tabs
         activeTintColor={brand_primary}
+        inactiveTintColor="#7a7d81"
         activeBackgroundColor="#fff"
         inactiveBackgroundColor="#fff"
         tabBarPosition="bottom"

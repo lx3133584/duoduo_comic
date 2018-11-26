@@ -1,21 +1,19 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { Image, Platform } from 'react-native';
+import { Platform } from 'react-native';
 import FastImage from 'react-native-fast-image';
+import { createImageProgress } from 'react-native-image-progress';
 import { ImgPlaceholder } from '@/comic/comic_content';
-import { wrapWithLoading, getImgHeight } from 'utils';
+import { getImgHeight } from 'utils';
 
-const { prefetch } = Image;
+const Image = createImageProgress(FastImage);
 
-@wrapWithLoading
 class ContentListItem extends PureComponent {
   static propTypes = {
     url: PropTypes.string.isRequired,
     path: PropTypes.string,
     width: PropTypes.number.isRequired,
     index: PropTypes.number.isRequired,
-    hideLoading: PropTypes.func.isRequired,
-    loading: PropTypes.bool.isRequired,
     size: PropTypes.shape({
       height: PropTypes.number.isRequired,
       width: PropTypes.number.isRequired,
@@ -26,19 +24,9 @@ class ContentListItem extends PureComponent {
     path: '',
   }
 
-  componentDidMount() {
-    this.preFetchImage();
-  }
-
-  async preFetchImage() {
-    const { url, hideLoading } = this.props;
-    await prefetch(url);
-    hideLoading();
-  }
-
   render() {
     const {
-      url, path, index, loading, size, width,
+      url, path, index, size, width,
     } = this.props;
     const uri = path
       ? Platform.OS === 'android'
@@ -49,17 +37,24 @@ class ContentListItem extends PureComponent {
       width,
       height: getImgHeight(size, width),
     };
-    if (loading) {
-      return (
-        <ImgPlaceholder style={style}>
-          {index}
-        </ImgPlaceholder>
-      );
-    }
     return (
-      <FastImage
+      <Image
         source={{ uri }}
         style={style}
+        renderIndicator={() => (
+          <ImgPlaceholder
+            style={style}
+            title={`${index}`}
+            subTitle="加载中..."
+          />
+        )}
+        renderError={() => (
+          <ImgPlaceholder
+            style={style}
+            title={`${index}`}
+            subTitle="加载失败"
+          />
+        )}
       />
     );
   }

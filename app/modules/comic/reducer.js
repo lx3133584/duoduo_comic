@@ -48,16 +48,20 @@ export default handleActions({
     .set('content_total', state.get('pre_content_total'))
     .update('pre_content', list => list.clear())),
   [`${comicContentActions.getContentList}_FULFILLED`]: (state, action) => state.withMutations((map) => {
-    if (action.payload.pre) { // 预加载
-      map.set('pre_content_total', action.payload.result.total)
-        .set('pre_content', Immutable.List(action.payload.result.data));
+    const { pre, init, result, id } = action.payload;
+    const { data = [] } = result;
+    if (pre) { // 预加载
+      map.set('pre_content_total', result.total)
+        .set('pre_content', Immutable.List(data));
+      return;
     }
-    if (action.payload.init) { // 初始化(非懒加载的情况)
+    if (init) { // 初始化(非懒加载的情况)
       map.update('content', list => list.clear())
-        .setIn(['detail', 'chapter_id'], action.payload.id)
-        .set('content_total', action.payload.result.total);
+        .setIn(['detail', 'chapter_id'], id)
+        .set('content_total', result.total);
     }
-    map.update('content', oldList => oldList.concat(action.payload.result.data));
+    if (map.get('content').find(item => item.url === data[0])) return; // 如果有重复值则退出
+    map.update('content', oldList => oldList.concat(data));
   }),
   [comicContentActions.saveContentIndex]: (state, action) => state.setIn(['detail', 'index'], action.payload),
   [comicContentActions.goToIndex]: (state, action) => state.withMutations(map => map
