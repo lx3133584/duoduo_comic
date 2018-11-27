@@ -28,7 +28,7 @@ const indexSelector = createSelector(
 const nextItemSelector = createSelector(
   [chaptersSelector, indexSelector],
   (chapters, index) => {
-    if (index === chapters.length - 1) return null;
+    if (index === chapters.length - 1) return {};
     return chapters[index + 1];
   },
 );

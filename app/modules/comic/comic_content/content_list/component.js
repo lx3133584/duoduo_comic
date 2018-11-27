@@ -152,10 +152,10 @@ class ContentListComponent extends Component {
       chapter_id,
     } = props;
     this.chapter_id = chapter_id;
+    this.onRefresh(0, true);
     if (pre && pre_content.size) {
       preContent(this.chapter_id);
     } else {
-      this.onRefresh(0, true);
       await this.goPage({ init: true });
     }
     this.scrollTo(0);

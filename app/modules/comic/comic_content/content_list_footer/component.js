@@ -45,34 +45,40 @@ class ContentListFooterComponent extends PureComponent {
   };
 
   static defaultProps = {
-    next: null,
+    next: {},
   }
 
   componentDidMount() {
-    setTimeout(this.init, 3000);
+    setTimeout(() => this.init(this.props.next), 3000);
   }
 
-  init = () => {
-    const { next, getList } = this.props;
-    if (next) {
-      getList({ id: next.id, pre: true, page: 0 }).then(({ value }) => { // 预加载
-        const data = value.result.data.slice(0, 3);
-        preload(data.map(item => ({
-          uri: item.url,
-        })));
-      });
+  componentWillReceiveProps(nextProps) {
+    const { next } = this.props;
+    if (nextProps.next.id !== next.id) {
+      setTimeout(() => this.init(nextProps.next), 3000);
     }
+  }
+
+  init = (next) => {
+    const { getList } = this.props;
+    if (!next.id) return;
+    getList({ id: next.id, pre: true, page: 0 }).then(({ value }) => { // 预加载
+      const data = value.result.data.slice(0, 3);
+      preload(data.map(item => ({
+        uri: item.url,
+      })));
+    });
   };
 
   goNext = () => {
     const { next } = this.props;
-    const { id, title } = next || {};
+    const { id, title } = next;
     Actions.replace('comicContent', { chapter_id: id, title, pre: true });
   };
 
   render() {
     const { next } = this.props;
-    const { title } = next || {};
+    const { title } = next;
     return (
       <ContainStyled>
         <Button
@@ -81,7 +87,7 @@ class ContentListFooterComponent extends PureComponent {
           titleStyle={textStyle}
           onPress={Actions.pop}
         />
-        {!next ? (
+        {!title ? (
           <TextStyled>
 已经看完啦
           </TextStyled>
