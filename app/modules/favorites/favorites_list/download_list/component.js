@@ -26,9 +26,10 @@ class DownloadListComponent extends Component {
     isVisible: false,
   };
 
-  shouldComponentUpdate(nextProps) {
+  shouldComponentUpdate(nextProps, nextState) {
     const { list } = this.props;
-    return !is(nextProps.list, list);
+    const { isVisible } = this.state;
+    return !is(nextProps.list, list) || isVisible !== nextState.isVisible;
   }
 
   cancel() {
