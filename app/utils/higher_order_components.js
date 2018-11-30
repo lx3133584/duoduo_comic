@@ -59,7 +59,7 @@ export const wrapWithUpdate = function (WrappedComponent) {
     };
 
     checkUpdate = () => {
-      if (__DEV__) return Promise.resolve(false);
+      if (true) return Promise.resolve(false);
       checkUpdate(appKey).then((info) => {
         if (info.expired) {
           this.setState({

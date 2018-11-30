@@ -49,7 +49,8 @@ class ContentListFooterComponent extends PureComponent {
   }
 
   componentDidMount() {
-    setTimeout(() => this.init(this.props.next), 3000);
+    const { next } = this.props;
+    setTimeout(() => this.init(next), 3000);
   }
 
   componentWillReceiveProps(nextProps) {

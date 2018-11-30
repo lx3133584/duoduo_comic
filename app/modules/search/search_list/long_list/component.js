@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Dimensions, FlatList, Vibration } from 'react-native';
+import { Dimensions, FlatList } from 'react-native';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { ListEmpty } from '@/search/search_list';
@@ -12,7 +12,6 @@ const ContainStyled = styled.View`
 const TextStyled = styled.Text`
   text-align: center;
 `;
-const pattern = [0, 20];
 
 function FooterComponent({ text }) {
   return (
@@ -125,7 +124,6 @@ class LongListComponent extends Component {
   }
 
   _itemOnLongPress(...params) {
-    Vibration.vibrate(pattern);
     const { itemOnLongPress } = this.props;
     itemOnLongPress(...params);
   }
