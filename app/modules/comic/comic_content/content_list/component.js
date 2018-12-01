@@ -1,13 +1,9 @@
 import React, { Component } from 'react';
 // import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import Toast from 'react-native-root-toast';
-import { Image } from 'react-native';
 import { ContentListScroll, ContentListPageTurning, Spin } from '@/comic/comic_content';
 
-const { prefetch } = Image;
 const page_size = 5;
-const pre_num = 3;
 class ContentListComponent extends Component {
   static propTypes = {
     // pre_content: ImmutablePropTypes.list.isRequired,
@@ -46,23 +42,27 @@ class ContentListComponent extends Component {
     this.init();
   }
 
-  componentWillReceiveProps(nextProps) {
-    const { go_to_flag, chapter_id } = this.props;
-    if (nextProps.go_to_flag !== go_to_flag) {
-      this.goToIndex(nextProps.content_index);
-    }
-    if (nextProps.chapter_id !== chapter_id) {
-      this.update(nextProps);
-    }
-  }
-
   shouldComponentUpdate(nextProps, nextState) {
-    const { mode } = this.props;
+    const { mode, go_to_flag } = this.props;
     const { page, loadingPage } = this.state;
     return nextProps.mode !== mode
+      || nextProps.go_to_flag !== go_to_flag
       || nextState.page !== page
       || nextState.loadingPage !== loadingPage;
   }
+
+  componentDidUpdate(prevProps) {
+    const {
+      go_to_flag, chapter_id, mode, content_index,
+    } = this.props;
+    if (prevProps.go_to_flag !== go_to_flag || prevProps.mode !== mode) {
+      this.goToIndex(content_index);
+    }
+    if (prevProps.chapter_id !== chapter_id) {
+      this.update();
+    }
+  }
+
 
   componentWillUnmount() {
     this.saveHistory();
@@ -84,21 +84,10 @@ class ContentListComponent extends Component {
     return res;
   };
 
-  goPage = async ({ page = 0, offset = 0, init }) => {
+  goPage = async ({ page = 0, init }) => {
     init && (this.init_page = page);
     this.setState({ loadingPage: true });
     await this.onFetch(page, init);
-    // const data = res.value.result.data.slice(offset, offset + pre_num);
-    // const tasks = data.map(item => prefetch(item.url));
-    // try {
-    //   await Promise.all(tasks); // 前三张图片都显示出来才结束loading
-    // } catch (e) {
-    //   Toast.show('图片加载失败', {
-    //     position: -70,
-    //   });
-    // } finally {
-    //   this.setState({ loadingPage: false });
-    // }
     this.setState({ loadingPage: false });
   };
 
@@ -131,7 +120,7 @@ class ContentListComponent extends Component {
     const { page: myPage } = this.state;
     if (page !== myPage) {
       this.setState({ page });
-      await this.goPage({ page, offset, init: true });
+      await this.goPage({ page, init: true });
     }
     this.scrollTo(offset);
   };
@@ -144,13 +133,13 @@ class ContentListComponent extends Component {
     postHistory({ chapter_id: this.chapter_id, index: content_index });
   }
 
-  async update(props) {
+  async update() {
     const {
       pre,
       preContent,
       pre_content,
       chapter_id,
-    } = props;
+    } = this.props;
     this.chapter_id = chapter_id;
     this.onRefresh(0, true);
     if (pre && pre_content.size) {
@@ -179,13 +168,9 @@ class ContentListComponent extends Component {
     } else {
       this.onRefresh(0, true);
     }
-    await this.goPage({ page, offset, init: true });
+    await this.goPage({ page, init: true });
 
     this.scrollTo(offset);
-    // if (offset > page_size - pre_num) {
-    //   this.setState(({ page }) => { page: page + 1 });
-    //   await this.goPage({ page: page + 1, offset: 0, init: false }); // 如果后面不足3张图片则加载下一页
-    // }
     this.saveHistory();
     hideLoading();
   }
