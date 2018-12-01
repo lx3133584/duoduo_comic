@@ -41,11 +41,11 @@ class ContentListItem extends PureComponent {
       <Image
         source={{ uri }}
         style={style}
-        renderIndicator={() => (
+        renderIndicator={progress => (
           <ImgPlaceholder
             style={style}
             title={`${index}`}
-            subTitle="加载中..."
+            subTitle={`加载中...${((progress / 100) || 0).toFixed(1)}%`}
           />
         )}
         renderError={() => (
