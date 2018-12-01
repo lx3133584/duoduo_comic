@@ -28,10 +28,6 @@ class FavoritesListComponent extends Component {
     isVisible: false,
   };
 
-  componentDidMount() {
-    this.onFetch();
-  }
-
   shouldComponentUpdate(nextProps, nextState) {
     const { list } = this.props;
     const { isVisible } = this.state;

@@ -26,22 +26,18 @@ import {
   RankItemListScreen,
   ClassItemListScreen,
   ComicContentListDrawerScreen,
+  favoritesListActions,
 } from '@';
 
 import onBackPress from './onBack';
+import store from '../store';
 import { Header, LeftButton, TabIcon } from './components';
 
 export { Header, LeftButton };
 
-// const styleType = {
-//   dark: 'dark-content',
-//   light: 'light-content',
-// };
-// const toggleBarStyle = type => () => {
-//   const barStyle = styleType[type];
-//   if (!barStyle) return;
-//   StatusBar.setBarStyle(barStyle, true);
-// };
+function onEnterFavorites() {
+  store.dispatch(favoritesListActions.getFavoritesList());
+}
 
 const { width } = Dimensions.get('window');
 
@@ -72,6 +68,7 @@ const RootRoute = () => (
           key="favorites"
           icon={TabIcon.BookIcon}
           component={FavoritesListScreen}
+          onEnter={onEnterFavorites}
           title="书架"
           hideNavBar
           initial
