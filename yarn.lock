@@ -6151,9 +6151,9 @@ react-native-fast-image@^5.0.3:
   version "5.0.3"
   resolved "http://registry.npm.taobao.org/react-native-fast-image/download/react-native-fast-image-5.0.3.tgz#cb53b70a904d908c2c531dcc3d4a77834c9e1c63"
 
-react-native-image-pan-zoom@^2.1.2:
-  version "2.1.9"
-  resolved "http://registry.npm.taobao.org/react-native-image-pan-zoom/download/react-native-image-pan-zoom-2.1.9.tgz#0a838330bda2468b00a0e5051e71149d86a44ad7"
+react-native-image-pan-zoom@^2.1.9:
+  version "2.1.11"
+  resolved "https://registry.yarnpkg.com/react-native-image-pan-zoom/-/react-native-image-pan-zoom-2.1.11.tgz#61bcb69219d95e76a9797d23e4a2e8e0bd654ae9"
 
 react-native-image-picker@^0.26.7:
   version "0.26.10"
@@ -6165,11 +6165,11 @@ react-native-image-progress@^1.1.0:
   dependencies:
     prop-types "^15.5.10"
 
-react-native-image-zoom-viewer@2.1.2:
-  version "2.1.2"
-  resolved "http://registry.npm.taobao.org/react-native-image-zoom-viewer/download/react-native-image-zoom-viewer-2.1.2.tgz#e21b0667c7a4681b105ea92e8b7d23f6bd5b5335"
+react-native-image-zoom-viewer@^2.2.24:
+  version "2.2.24"
+  resolved "https://registry.yarnpkg.com/react-native-image-zoom-viewer/-/react-native-image-zoom-viewer-2.2.24.tgz#a405852fad76e543ed5345e8b55cf859b67c182e"
   dependencies:
-    react-native-image-pan-zoom "^2.1.2"
+    react-native-image-pan-zoom "^2.1.9"
 
 react-native-iphone-x-helper@^1.0.1:
   version "1.1.0"

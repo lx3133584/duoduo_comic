@@ -5,8 +5,9 @@ import styled from 'styled-components';
 import Immutable, { is } from 'immutable';
 import { Actions } from 'react-native-router-flux';
 import { BlurView } from 'react-native-blur';
+import FastImage from 'react-native-fast-image';
 import {
-  Image, Dimensions, findNodeHandle, NetInfo,
+  Dimensions, findNodeHandle, NetInfo,
 } from 'react-native';
 import { numberFormat } from 'utils';
 
@@ -128,7 +129,7 @@ class ComicDetailTopComponent extends Component {
   }
 
   imageLoaded() {
-    this.setState({ viewRef: findNodeHandle(this.bgImgRef.current) }, this.hideLoading);
+    this.setState({ viewRef: findNodeHandle(this.bgImgRef.current._root) }, this.hideLoading);
   }
 
   hideLoading() {
@@ -149,7 +150,7 @@ class ComicDetailTopComponent extends Component {
     return (
       <ContainStyled>
         {cover && (
-          <Image
+          <FastImage
             ref={this.bgImgRef}
             style={blurImageStyled}
             onLoadEnd={this.imageLoaded}
@@ -164,10 +165,12 @@ class ComicDetailTopComponent extends Component {
             blurAmount={6}
           />
         )}
-        <Image
-          style={coverImageStyled}
-          source={{ uri: cover }}
-        />
+        {cover && (
+          <FastImage
+            style={coverImageStyled}
+            source={{ uri: cover }}
+          />
+        )}
         <TextContainStyled>
           <TitleStyled>
             {title}

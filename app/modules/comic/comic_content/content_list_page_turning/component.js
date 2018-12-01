@@ -2,10 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ImageViewer from 'react-native-image-zoom-viewer';
 import { Dimensions } from 'react-native';
-import { ImgPlaceholder, ContentListFooter } from '@/comic/comic_content';
+import { ContentListFooter, ContentListItem } from '@/comic/comic_content';
 import styled from 'styled-components';
-
-import failImg from './fail.jpg';
 
 const { width: screenWidth, height } = Dimensions.get('window');
 const ContainStyled = styled.View`
@@ -75,12 +73,6 @@ class ContentListPageTurningComponent extends Component {
     });
   }
 
-  renderLoading = () => (
-    <ImgPlaceholder style={{ width: screenWidth, height }}>
-loading
-    </ImgPlaceholder>
-  );
-
   renderFooter = () => {
     const { showFooter } = this.state;
     if (!showFooter) return null;
@@ -98,10 +90,9 @@ loading
           index={content_index - offset}
           imageUrls={content}
           onChange={this.onChange}
-          failImageSource={failImg}
-          loadingRender={this.renderLoading}
           renderFooter={this.renderFooter}
           onClick={toggleDrawer}
+          renderImage={props => <ContentListItem {...props} />}
           flipThreshold={60}
           maxOverflow={width}
           renderIndicator={() => null}

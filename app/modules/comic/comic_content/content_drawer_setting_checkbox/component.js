@@ -88,7 +88,6 @@ ContentDrawerSettingCheckboxComponent.propTypes = {
     icon: PropTypes.string,
     text: PropTypes.string.isRequired,
     value: PropTypes.string.isRequired,
-    changeValue: PropTypes.func.isRequired,
     active: PropTypes.bool,
   })),
 };
