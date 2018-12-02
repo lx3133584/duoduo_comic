@@ -1,4 +1,5 @@
 import RNFetchBlob from 'rn-fetch-blob';
+import { Platform } from 'react-native';
 import baseURL from './base_url';
 
 export const uploadUserAvatar = ({ path, csrf, filename = '' }) => RNFetchBlob.fetch('PUT', `${baseURL}/user/avatar`, {
@@ -7,7 +8,7 @@ export const uploadUserAvatar = ({ path, csrf, filename = '' }) => RNFetchBlob.f
 }, [{
   name: 'avatar',
   filename,
-  data: RNFetchBlob.wrap(path),
+  data: RNFetchBlob.wrap(Platform.OS === 'android' ? path : path.replace('file://', '')),
 }]).then(res => res.json());
 
 export const downloadImage = url => RNFetchBlob.config({
