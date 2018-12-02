@@ -35,6 +35,7 @@ const nextItemSelector = createSelector(
 
 const mapStateToProps = state => ({
   next: nextItemSelector(state),
+  is_show_footer: state.comic.get('is_show_footer'),
 });
 
 const mapDispatchToProps = dispatch => ({

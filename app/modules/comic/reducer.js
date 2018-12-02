@@ -7,6 +7,7 @@ const initialState = Immutable.Map({
   list: Immutable.List(),
   content: Immutable.List(),
   content_total: 0,
+  is_show_footer: false, // 标志是否显示footer(阅读完成，前往下一章)
   pre_content: Immutable.List(),
   pre_content_total: 0,
   go_to_flag: false, // 标志go_to_index被触发
@@ -48,7 +49,9 @@ export default handleActions({
     .set('content_total', state.get('pre_content_total'))
     .update('pre_content', list => list.clear())),
   [`${comicContentActions.getContentList}_FULFILLED`]: (state, action) => state.withMutations((map) => {
-    const { pre, init, result, id } = action.payload;
+    const {
+      pre, init, result, id,
+    } = action.payload;
     const { data = [] } = result;
     if (pre) { // 预加载
       map.set('pre_content_total', result.total)
@@ -58,7 +61,12 @@ export default handleActions({
     if (init) { // 初始化(非懒加载的情况)
       map.update('content', list => list.clear())
         .setIn(['detail', 'chapter_id'], id)
+        .set('is_show_footer', false)
         .set('content_total', result.total);
+    }
+    if (!data.length) { // 加载完成，最后一页
+      map.set('is_show_footer', true);
+      return;
     }
     if (map.get('content').find(item => item.url === data[0])) return; // 如果有重复值则退出
     map.update('content', oldList => oldList.concat(data));

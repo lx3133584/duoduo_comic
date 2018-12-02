@@ -159,7 +159,7 @@ class LongListComponent extends Component {
         getItemLayout={this._getItemLayout}
         initialNumToRender={Math.ceil(height / itemHeight)}
         ListEmptyComponent={() => <ListEmpty text={emptyText} />}
-        ListFooterComponent={showFooter && list.length && FooterComponent}
+        ListFooterComponent={showFooter && !!list.length && FooterComponent}
         {...this.props}
       />
     );
