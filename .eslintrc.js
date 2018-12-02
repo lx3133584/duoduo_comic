@@ -27,6 +27,7 @@ module.exports = {
       "no-underscore-dangle": 0,
       "import/no-cycle": 0, // 暂时屏蔽
       "import/prefer-default-export": 0,
+      "react/jsx-one-expression-per-line": 0,
       "react/forbid-prop-types": [0, { "forbid": ["any", "array", "object"] }],
       "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }]
     },
