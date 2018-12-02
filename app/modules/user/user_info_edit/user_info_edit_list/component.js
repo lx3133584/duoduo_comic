@@ -98,7 +98,15 @@ class UserInfoEditListComponent extends PureComponent {
     if (!/[0-1]/.test(index)) return;
     const key = fn[index];
     ImagePicker[key](options, (res) => {
-      this.uploadAvatar(res.path, res.fileName);
+      if (res.didCancel) {
+        this.showToast('取消选择');
+        return;
+      }
+      if (res.error) {
+        this.showToast(res.error || '选择图片错误');
+        return;
+      }
+      this.uploadAvatar(res.path || res.uri, res.fileName);
     });
   };
 

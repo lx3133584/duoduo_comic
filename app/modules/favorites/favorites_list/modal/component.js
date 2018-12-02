@@ -13,7 +13,7 @@ const ContainStyled = styled.View`
   width: ${width * 0.75};
   background-color: #fff;
   padding: 15px 20px 0;
-  border-radius: 15px;
+  border-radius: 8px;
   justify-content: space-around;
 `;
 const ContentContainStyled = styled.Text`
@@ -34,7 +34,7 @@ const confirmButtonStyle = {
   backgroundColor: brand_primary,
   width: 85,
   height: 40,
-  borderRadius: 100,
+  borderRadius: 8,
   elevation: 0,
 };
 const confirmTextStyle = {
@@ -46,7 +46,7 @@ const cancelButtonStyle = {
   backgroundColor: '#fff',
   width: 85,
   height: 40,
-  borderRadius: 100,
+  borderRadius: 6,
   borderWidth: 1,
   borderColor: '#999',
   elevation: 0,
