@@ -51,12 +51,13 @@ class BatteryComponent extends PureComponent {
 
   render() {
     const { is_charging, battery_level } = this.state;
-    const battery_icon_name = `battery-${Math.round(battery_level * 4)}`;
+    const level = battery_level < 0 ? 1 : battery_level;
+    const battery_icon_name = `battery-${Math.round(level * 4)}`;
     return (
       <ContainStyled>
         {is_charging ? <IsChargingIcon /> : <BatteryIcons name={battery_icon_name} />}
         <TextStyled>
-          {`${(battery_level * 100).toFixed()}%`}
+          {`${~~(level * 100)}%`}
         </TextStyled>
       </ContainStyled>
     );

@@ -43,11 +43,12 @@ class ContentListComponent extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    const { mode, go_to_flag } = this.props;
+    const { mode, go_to_flag, chapter_id } = this.props;
     const { page, loadingPage } = this.state;
     return nextProps.mode !== mode
       || nextProps.go_to_flag !== go_to_flag
       || nextState.page !== page
+      || nextProps.chapter_id !== chapter_id
       || nextState.loadingPage !== loadingPage;
   }
 
