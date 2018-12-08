@@ -36,7 +36,7 @@ class ContentListItem extends PureComponent {
   }
 
   state = {
-    reload_key: 1,
+    reload_key: 0,
   }
 
   reloadImage = () => this.setState(prev => ({ reload_key: prev.reload_key + 1 }))
@@ -50,7 +50,9 @@ class ContentListItem extends PureComponent {
       ? Platform.OS === 'android'
         ? `file://${path}`
         : path
-      : `${url}?reload=${reload_key}`;
+      : reload_key
+        ? `${url}?reload=${reload_key}`
+        : url;
     const style = {
       width,
       height: getImgHeight(size, width),
