@@ -6,5 +6,4 @@ export {
 
 export {
   wrapWithLoading,
-  wrapWithUpdate,
 } from './higher_order_components';

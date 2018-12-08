@@ -35,7 +35,6 @@ class UserOperateListComponent extends PureComponent {
   static propTypes = {
     info: ImmutablePropTypes.map.isRequired,
     logout: PropTypes.func.isRequired,
-    checkUpdate: PropTypes.func.isRequired,
   };
 
   state = {
@@ -47,13 +46,8 @@ class UserOperateListComponent extends PureComponent {
   };
 
   check = () => {
-    const { checkUpdate } = this.props;
-    checkUpdate().then((res) => {
-      if (!res) {
-        Toast.show('应用已是最新版本', {
-          position: -70,
-        });
-      }
+    Toast.show('应用已是最新版本', {
+      position: -70,
     });
   };
 

@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import DeviceBattery from 'react-native-device-battery';
+import DeviceBattery from 'utils/react-native-device-battery';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import styled from 'styled-components';

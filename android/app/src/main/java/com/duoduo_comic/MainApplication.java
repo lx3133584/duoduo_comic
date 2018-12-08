@@ -7,8 +7,6 @@ import com.RNFetchBlob.RNFetchBlobPackage;
 import com.react.rnspinkit.RNSpinkitPackage;
 import com.dylanvann.fastimage.FastImageViewPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
-import cn.reactnative.modules.update.UpdatePackage;
-import cn.reactnative.modules.update.UpdateContext;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import com.github.yamill.orientation.OrientationPackage;
 import com.imagepicker.ImagePickerPackage;
@@ -28,10 +26,6 @@ import java.util.List;
 public class MainApplication extends Application implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
-    @Override
-    protected String getJSBundleFile() {
-      return UpdateContext.getBundleUrl(MainApplication.this);
-    }
 
     @Override
     public boolean getUseDeveloperSupport() {
@@ -46,7 +40,6 @@ public class MainApplication extends Application implements ReactApplication {
             new RNSpinkitPackage(),
             new FastImageViewPackage(),
             new VectorIconsPackage(),
-            new UpdatePackage(),
             new SplashScreenReactPackage(),
             new OrientationPackage(),
             new ImagePickerPackage(),
