@@ -1,39 +1,15 @@
 import React, { Component } from 'react';
 import { Dimensions, FlatList } from 'react-native';
-import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { ListEmpty } from '@/search/search_list';
+import { ListEmpty, LongListTextFooter, LongListLoadingFooter } from '@/search/search_list';
 
 const { height } = Dimensions.get('window');
-
-const ContainStyled = styled.View`
-  margin: 10px 0;
-`;
-const TextStyled = styled.Text`
-  text-align: center;
-`;
-
-function FooterComponent({ text }) {
-  return (
-    <ContainStyled>
-      <TextStyled>
-        {text}
-      </TextStyled>
-    </ContainStyled>
-  );
-}
-FooterComponent.propTypes = {
-  text: PropTypes.string,
-};
-FooterComponent.defaultProps = {
-  text: '下面什么都没有了哦。',
-};
 
 class LongListComponent extends Component {
   static propTypes = {
     initPage: PropTypes.number,
     page: PropTypes.number,
-    customkey: PropTypes.string,
+    customKey: PropTypes.string,
     Item: PropTypes.oneOfType([
       PropTypes.element,
       PropTypes.func,
@@ -54,7 +30,7 @@ class LongListComponent extends Component {
 
   static defaultProps = {
     initPage: 0,
-    customkey: 'id',
+    customKey: 'id',
     page: 0,
     onFetch: null,
     callback: f => f,
@@ -71,12 +47,12 @@ class LongListComponent extends Component {
 
   constructor(props) {
     super(props);
-    const { page, customkey } = props;
+    const { page, customKey } = props;
     this.state = {
       loading: false,
     };
     this.page = page || 0;
-    this.customkey = customkey || 'id';
+    this.customKey = customKey || 'id';
     this._onRefresh = this._onRefresh.bind(this);
     this._onFetch = this._onFetch.bind(this);
     this._renderItem = this._renderItem.bind(this);
@@ -102,7 +78,13 @@ class LongListComponent extends Component {
     return { length: itemHeight, offset: itemHeight * index, index };
   };
 
-  _keyExtractor = item => `${item[this.customkey]}`
+  _keyExtractor = item => `${item[this.customKey]}`
+
+  _renderFooterComponent = () => {
+    const { loading } = this.state;
+    if (loading) return <LongListLoadingFooter />;
+    return <LongListTextFooter />;
+  }
 
   _onFetch({ init }) {
     const { onFetch, callback, increasePage } = this.props;
@@ -159,7 +141,7 @@ class LongListComponent extends Component {
         getItemLayout={this._getItemLayout}
         initialNumToRender={Math.ceil(height / itemHeight)}
         ListEmptyComponent={() => <ListEmpty text={emptyText} />}
-        ListFooterComponent={showFooter && !!list.length && FooterComponent}
+        ListFooterComponent={showFooter && !!list.length && this._renderFooterComponent}
         {...this.props}
       />
     );

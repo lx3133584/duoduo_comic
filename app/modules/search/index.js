@@ -2,6 +2,7 @@ export {
   Screen as SearchListScreen,
   LongList,
   LongListItem,
+  LongListLoadingFooter,
   SearchListItem,
   Image,
   TouchableNativeFeedback,

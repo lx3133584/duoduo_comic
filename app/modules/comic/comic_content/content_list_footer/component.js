@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import { Button } from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
 import Image from 'react-native-fast-image';
-import Spinner from 'react-native-spinkit';
 import { Dimensions } from 'react-native';
+import { LongListLoadingFooter } from '@/search/search_list';
 
 const { width } = Dimensions.get('window');
 const { preload } = Image;
@@ -16,13 +16,6 @@ const ContainStyled = styled.View`
   background-color: #ededed;
   flex-direction: row;
   justify-content: space-around;
-`;
-const LoadingContainStyled = styled.View`
-  width: ${width};
-  height: ${height};
-  background-color: #282828;
-  justify-content: center;
-  align-items: center;
 `;
 const TextStyled = styled.Text`
   background-color: #ededed;
@@ -92,15 +85,7 @@ class ContentListFooterComponent extends PureComponent {
     const { next, is_show_footer } = this.props;
     const { title } = next;
     if (!is_show_footer) {
-      return (
-        <LoadingContainStyled>
-          <Spinner
-            type="ChasingDots"
-            color="#fff"
-            size={36}
-          />
-        </LoadingContainStyled>
-      );
+      return <LongListLoadingFooter color="#fff" background="#282828" />;
     }
     return (
       <ContainStyled>

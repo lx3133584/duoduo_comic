@@ -13,6 +13,7 @@ export {
   searchReducer,
   LongList,
   LongListItem,
+  LongListLoadingFooter,
   SearchListItem,
   Image,
   TouchableNativeFeedback,

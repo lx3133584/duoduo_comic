@@ -37,7 +37,6 @@ class ClassListComponent extends PureComponent {
         <LongList
           list={listFormat}
           Item={ClassListItem}
-          customkey="id"
           numColumns={3}
           columnWrapperStyle={columnWrapperStyle}
         />
