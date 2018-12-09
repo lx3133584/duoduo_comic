@@ -5,7 +5,7 @@ import { Button } from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
 import Image from 'react-native-fast-image';
 import { Dimensions } from 'react-native';
-import { LongListLoadingFooter } from '@/search/search_list';
+import { LongListLoadingFooter } from '@';
 
 const { width } = Dimensions.get('window');
 const { preload } = Image;

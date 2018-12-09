@@ -11,6 +11,7 @@ class ContentListComponent extends Component {
     chapter_id: PropTypes.number,
     mode: PropTypes.string.isRequired,
     getContent: PropTypes.func.isRequired,
+    has_cache: PropTypes.bool,
     // preContent: PropTypes.func.isRequired,
     postHistory: PropTypes.func.isRequired,
     hideLoading: PropTypes.func.isRequired,
@@ -25,6 +26,7 @@ class ContentListComponent extends Component {
     content_index: 0,
     detail_chapter_id: 0,
     chapter_id: 0,
+    has_cache: false,
   }
 
   constructor() {
@@ -158,7 +160,9 @@ class ContentListComponent extends Component {
       hideLoading,
       content_index,
       detail_chapter_id,
+      has_cache,
     } = this.props;
+    console.log(has_cache);
     this.chapter_id = chapter_id;
     let offset = 0;
     let page = 0;
