@@ -1,10 +1,8 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import styled from 'styled-components';
 import { Actions } from 'react-native-router-flux';
 import Toast from 'react-native-root-toast';
-import { Modal } from '@';
 import { ListItem } from '@/user/user_info';
 
 const ContainStyled = styled.View`
@@ -33,16 +31,7 @@ const list = [
 
 class UserOperateListComponent extends PureComponent {
   static propTypes = {
-    info: ImmutablePropTypes.map.isRequired,
-    logout: PropTypes.func.isRequired,
-  };
-
-  state = {
-    isVisible: false,
-  };
-
-  logout = () => {
-    this.setState({ isVisible: true });
+    isLogin: PropTypes.bool.isRequired,
   };
 
   check = () => {
@@ -51,27 +40,12 @@ class UserOperateListComponent extends PureComponent {
     });
   };
 
-  confirm = () => {
-    const { logout } = this.props;
-    this.setState({ isVisible: false });
-    logout();
-    Toast.show('注销成功', {
-      position: -70,
-    });
-    // navigation.navigate('Login');
-  };
-
-  cancel = () => {
-    this.setState({ isVisible: false });
-  };
-
   render() {
-    const { isVisible } = this.state;
-    const { info } = this.props;
+    const { isLogin } = this.props;
     return (
       <ContainStyled>
         <ItemContainStyled>
-          {!!info.size && (
+          {isLogin && (
           <ListItem
             chevron
             key="user_info_edit"
@@ -97,23 +71,13 @@ class UserOperateListComponent extends PureComponent {
             title="检查更新"
             onPress={this.check}
           />
-          {!!info.size && (
           <ListItem
             chevron
-            key="logout"
-            title="退出登录"
-            onPress={this.logout}
+            key="setting"
+            title="设置中心"
+            onPress={Actions.settingCenter}
           />
-          )}
         </ItemContainStyled>
-        <Modal
-          confirm={this.confirm}
-          cancel={this.cancel}
-          isVisible={isVisible}
-        >
-
-          是否确认退出登录？
-        </Modal>
       </ContainStyled>
     );
   }

@@ -9,7 +9,7 @@ import {
   removeDownloadImg,
 } from '@/favorites/favorites_list/actions';
 
-const addEpic = action$ => action$.pipe(
+const addDownloadEpic = action$ => action$.pipe(
   ofType(addDownload),
   mergeMap(({ payload }) => of(
     ...payload.selectList.map(
@@ -60,7 +60,7 @@ const removeContentEpic = (action$, store) => action$.pipe(
 );
 
 export default combineEpics(
-  addEpic,
+  addDownloadEpic,
   fetchContentEpic,
   removeComicEpic,
   removeContentEpic,

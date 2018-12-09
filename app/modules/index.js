@@ -4,7 +4,8 @@ export {
   PasswordEditScreen,
   LoginScreen,
   RegisterScreen,
-  userInfoActions,
+  SettingCenterScreen,
+  settingCenterActions,
   userReducer,
   LoginNowButton,
 } from './user';

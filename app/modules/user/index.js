@@ -6,5 +6,6 @@ export {
   Screen as LoginScreen, loginActions, LoginInput, LoginButton, Brand,
 } from './login';
 export { Screen as RegisterScreen, registerActions } from './register';
+export { Screen as SettingCenterScreen, settingCenterActions } from './setting_center';
 export { Screen as PasswordEditScreen, passwordEditActions } from './password_edit';
 export { default as userReducer } from './reducer';

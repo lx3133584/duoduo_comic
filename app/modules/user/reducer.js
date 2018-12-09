@@ -3,6 +3,7 @@ import Immutable from 'immutable';
 import {
   userInfoActions,
   userInfoEditActions,
+  settingCenterActions,
   loginActions,
   registerActions,
 } from '@/user';
@@ -17,7 +18,7 @@ function saveUserInfo(state, action) {
 
 export default handleActions({
   [`${userInfoActions.getUserInfo}_FULFILLED`]: saveUserInfo,
-  [`${userInfoActions.logoutAction}_PENDING`]:
+  [`${settingCenterActions.logoutAction}_PENDING`]:
     state => state.update('info', info => info.clear()),
   [`${loginActions.loginForLocal}_FULFILLED`]: saveUserInfo,
   [`${registerActions.registerForLocal}_FULFILLED`]: saveUserInfo,

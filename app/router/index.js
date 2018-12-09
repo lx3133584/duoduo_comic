@@ -19,6 +19,7 @@ import {
   DownloadSelectScreen,
   LoginScreen,
   RegisterScreen,
+  SettingCenterScreen,
   UserInfoEditScreen,
   PasswordEditScreen,
   ComicDetailScreen,
@@ -105,6 +106,11 @@ const RootRoute = () => (
         key="register"
         component={RegisterScreen}
         title="注册"
+      />
+      <Scene
+        key="settingCenter"
+        component={SettingCenterScreen}
+        title="设置中心"
       />
       <Scene
         key="userEdit"

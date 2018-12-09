@@ -3,6 +3,7 @@ package com.duoduo_comic;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import cn.reactnative.httpcache.HttpCachePackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
 import com.react.rnspinkit.RNSpinkitPackage;
 import com.dylanvann.fastimage.FastImageViewPackage;
@@ -35,7 +36,8 @@ public class MainApplication extends Application implements ReactApplication {
     @Override
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
-          new MainReactPackage(),
+            new MainReactPackage(),
+            new HttpCachePackage(),
             new RNFetchBlobPackage(),
             new RNSpinkitPackage(),
             new FastImageViewPackage(),

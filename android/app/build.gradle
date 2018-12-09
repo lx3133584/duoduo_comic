@@ -148,6 +148,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-http-cache2')
     implementation project(':rn-fetch-blob')
     implementation project(':react-native-spinkit')
     implementation project(':react-native-fast-image')

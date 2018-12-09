@@ -6041,6 +6041,10 @@ react-native-fast-image@^5.0.3:
   version "5.0.3"
   resolved "http://registry.npm.taobao.org/react-native-fast-image/download/react-native-fast-image-5.0.3.tgz#cb53b70a904d908c2c531dcc3d4a77834c9e1c63"
 
+react-native-http-cache2@tokinonagare/react-native-http-cache2:
+  version "0.1.0"
+  resolved "https://codeload.github.com/tokinonagare/react-native-http-cache2/tar.gz/bc9a6b650959bda0de019f27a27fc7d37ee14925"
+
 react-native-image-pan-zoom@^2.1.9:
   version "2.1.11"
   resolved "https://registry.yarnpkg.com/react-native-image-pan-zoom/-/react-native-image-pan-zoom-2.1.11.tgz#61bcb69219d95e76a9797d23e4a2e8e0bd654ae9"
