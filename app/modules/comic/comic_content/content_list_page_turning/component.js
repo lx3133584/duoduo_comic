@@ -36,9 +36,6 @@ class ContentListPageTurningComponent extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      showFooter: false,
-    };
     this.loading = false;
   }
 
@@ -49,13 +46,12 @@ class ContentListPageTurningComponent extends Component {
 
   onChange = (index) => {
     const {
-      saveIndex, content, content_index, total, offset,
+      saveIndex, content, content_index, offset,
     } = this.props;
     const len = content.length;
     if (index > len - 3) {
       if (!this.loading) this._onFetch();
     }
-    this.setState({ showFooter: total - 1 === index + offset });
     if (index !== content_index - offset) saveIndex(index + offset);
   };
 
@@ -73,9 +69,9 @@ class ContentListPageTurningComponent extends Component {
     });
   }
 
-  renderFooter = () => {
-    const { showFooter } = this.state;
-    if (!showFooter) return null;
+  renderFooter = (index) => {
+    const { total, offset } = this.props;
+    if (total - 1 !== index + offset) return null;
     return <ContentListFooter />;
   };
 
@@ -95,6 +91,7 @@ class ContentListPageTurningComponent extends Component {
           renderImage={props => <ContentListItem {...props} />}
           flipThreshold={60}
           maxOverflow={width}
+          enablePreload
           renderIndicator={() => null}
         />
       </ContainStyled>

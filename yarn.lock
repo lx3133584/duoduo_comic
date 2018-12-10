@@ -6059,9 +6059,9 @@ react-native-image-progress@^1.1.0:
   dependencies:
     prop-types "^15.5.10"
 
-react-native-image-zoom-viewer@^2.2.24:
+react-native-image-zoom-viewer@lx3133584/react-native-image-viewer:
   version "2.2.24"
-  resolved "https://registry.yarnpkg.com/react-native-image-zoom-viewer/-/react-native-image-zoom-viewer-2.2.24.tgz#a405852fad76e543ed5345e8b55cf859b67c182e"
+  resolved "https://codeload.github.com/lx3133584/react-native-image-viewer/tar.gz/c6d6f59bf8445a483c6a26ef671828dcd3f7eab8"
   dependencies:
     react-native-image-pan-zoom "^2.1.9"
 

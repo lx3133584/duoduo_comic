@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
+import { InteractionManager } from 'react-native';
 import { ContentListScroll, ContentListPageTurning, Spin } from '@/comic/comic_content';
 
 const page_size = 5;
@@ -132,8 +133,9 @@ class ContentListComponent extends Component {
 
   // 保存阅读进度
   saveHistory() {
-    const { content_index, postHistory } = this.props;
-    postHistory({ chapter_id: this.chapter_id, index: content_index });
+    const { postHistory } = this.props;
+    /* eslint-disable-next-line */
+    InteractionManager.runAfterInteractions(() => postHistory({ chapter_id: this.chapter_id, index: this.props.content_index }));
   }
 
   async update() {
