@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
-import { Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
+import windowSizeSelector from 'utils/window_size';
 import { LoadingPage } from '@/comic/comic_detail';
 import { connect } from 'react-redux';
 import Orientation from 'react-native-orientation';
@@ -12,7 +12,6 @@ import {
   ContentDrawerManager,
 } from '@/comic/comic_content';
 import { wrapWithLoading } from 'utils';
-import { configActions } from '@';
 
 const ContainStyled = styled.View`
   background-color: #282828;
@@ -21,7 +20,6 @@ const ContainStyled = styled.View`
 class ContentListScreen extends PureComponent {
   static propTypes = {
     hideLoading: PropTypes.func.isRequired,
-    changeWidth: PropTypes.func.isRequired,
     loading: PropTypes.bool.isRequired,
     orientation: PropTypes.string.isRequired,
     brightness: PropTypes.number.isRequired,
@@ -46,10 +44,9 @@ class ContentListScreen extends PureComponent {
   };
 
   initOrientation = () => {
-    const { orientation, changeWidth } = this.props;
+    const { orientation } = this.props;
     if (orientation === 'vertical') return;
     Orientation.lockToLandscape();
-    changeWidth(Dimensions.get('window').height);
   };
 
   initBrightness = () => {
@@ -78,13 +75,7 @@ class ContentListScreen extends PureComponent {
 const mapStateToProps = state => ({
   orientation: state.config.get('orientation'),
   brightness: state.config.get('brightness'),
-  width: state.config.get('width'),
+  width: windowSizeSelector(state).width,
 });
 
-const mapDispatchToProps = dispatch => ({
-  changeWidth(params) {
-    return dispatch(configActions.changeWidth(params));
-  },
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(ContentListScreen);
+export default connect(mapStateToProps)(ContentListScreen);

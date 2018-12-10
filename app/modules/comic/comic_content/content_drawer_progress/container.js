@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
+import windowSizeSelector from 'utils/window_size';
 import Component from './component';
 import { goToIndex } from '../actions';
 
@@ -45,7 +46,7 @@ const mapStateToProps = state => ({
   total: state.comic.get('content_total'),
   prev: prevItemSelector(state),
   next: nextItemSelector(state),
-  width: state.config.get('width'),
+  width: windowSizeSelector(state).width,
 });
 
 const mapDispatchToProps = dispatch => ({

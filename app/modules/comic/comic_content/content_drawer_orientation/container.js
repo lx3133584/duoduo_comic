@@ -10,9 +10,6 @@ const mapDispatchToProps = dispatch => ({
   switchOrientation(params) {
     return dispatch(configActions.switchOrientation(params));
   },
-  changeWidth(params) {
-    return dispatch(configActions.changeWidth(params));
-  },
   switchReadingMode(params) {
     return dispatch(configActions.switchReadingMode(params));
   },

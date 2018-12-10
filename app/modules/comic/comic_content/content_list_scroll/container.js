@@ -1,11 +1,12 @@
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import { getImgHeight } from 'utils';
+import windowSizeSelector from 'utils/window_size';
 import Component from './component';
 import { saveContentIndex } from '../actions';
 
 const contentSelector = state => state.comic.get('content');
-const widthSelector = state => state.config.get('width');
+const widthSelector = state => windowSizeSelector(state).width;
 
 const formatContentSelector = createSelector(
   contentSelector,

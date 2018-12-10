@@ -62,7 +62,7 @@ class ContentListItem extends PureComponent {
         source={{ uri }}
         style={style}
         renderIndicator={(progress) => {
-          const p = ((progress * 100) || 0).toFixed(1);
+          const p = ~~(progress * 100);
           return (
             <ImgPlaceholder
               style={style}

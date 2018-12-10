@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { Dimensions } from 'react-native';
 import Orientation from 'react-native-orientation';
 import { ContentDrawerSettingCheckbox } from '@/comic/comic_content';
 
@@ -26,13 +25,12 @@ class ContentDrawerOrientationComponent extends PureComponent {
     switchOrientation: PropTypes.func.isRequired,
     switchReadingMode: PropTypes.func.isRequired,
     toggleDrawer: PropTypes.func.isRequired,
-    changeWidth: PropTypes.func.isRequired,
     orientation: PropTypes.string.isRequired,
   };
 
   switchOrientation = (value) => {
     const {
-      switchOrientation, changeWidth, toggleDrawer, switchReadingMode,
+      switchOrientation, toggleDrawer, switchReadingMode,
     } = this.props;
     toggleDrawer();
     if (value === 'vertical') Orientation.lockToPortrait();
@@ -40,7 +38,6 @@ class ContentDrawerOrientationComponent extends PureComponent {
       Orientation.lockToLandscape();
       switchReadingMode('scroll');
     }
-    changeWidth(Dimensions.get('window').height);
     switchOrientation(value);
   };
 

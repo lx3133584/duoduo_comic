@@ -4,6 +4,7 @@ import { logoutAction } from '../actions';
 
 const mapStateToProps = state => ({
   isLogin: !!state.user.get('info').size,
+  orientation: state.config.get('orientation'),
 });
 
 const mapDispatchToProps = dispatch => ({

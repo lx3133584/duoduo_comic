@@ -1,10 +1,11 @@
 import { connect } from 'react-redux';
-import Component from './component';
 import { configActions } from '@';
+import windowSizeSelector from 'utils/window_size';
+import Component from './component';
 
 const mapStateToProps = state => ({
   brightness: state.config.get('brightness'),
-  width: state.config.get('width'),
+  width: windowSizeSelector(state).width,
 });
 
 const mapDispatchToProps = dispatch => ({
