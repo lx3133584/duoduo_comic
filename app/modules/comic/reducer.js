@@ -75,7 +75,4 @@ export default handleActions({
   [comicContentActions.goToIndex]: (state, action) => state.withMutations(map => map
     .setIn(['detail', 'index'], action.payload)
     .update('go_to_flag', flag => !flag)),
-  [`${comicContentActions.saveHistory}_PENDING`]: (state, action) => state.withMutations(map => map
-    .setIn(['detail', 'chapter_id'], action.payload.chapter_id)
-    .setIn(['detail', 'index'], action.payload.index)),
 }, initialState);

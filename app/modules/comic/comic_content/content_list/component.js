@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 // import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import { InteractionManager } from 'react-native';
 import { ContentListScroll, ContentListPageTurning, Spin } from '@/comic/comic_content';
 
 const page_size = 5;
@@ -14,7 +13,6 @@ class ContentListComponent extends Component {
     getContent: PropTypes.func.isRequired,
     has_cache: PropTypes.bool,
     // preContent: PropTypes.func.isRequired,
-    postHistory: PropTypes.func.isRequired,
     hideLoading: PropTypes.func.isRequired,
     saveIndex: PropTypes.func.isRequired,
     toggleDrawer: PropTypes.func.isRequired,
@@ -65,11 +63,6 @@ class ContentListComponent extends Component {
     if (prevProps.chapter_id !== chapter_id) {
       this.update();
     }
-  }
-
-
-  componentWillUnmount() {
-    this.saveHistory();
   }
 
   onRefresh = (page, init) => {
@@ -131,13 +124,6 @@ class ContentListComponent extends Component {
 
   _getRef = ref => this.content_list_ref = ref;
 
-  // 保存阅读进度
-  saveHistory() {
-    const { postHistory } = this.props;
-    /* eslint-disable-next-line */
-    InteractionManager.runAfterInteractions(() => postHistory({ chapter_id: this.chapter_id, index: this.props.content_index }));
-  }
-
   async update() {
     const {
       pre,
@@ -153,7 +139,6 @@ class ContentListComponent extends Component {
       await this.goPage({ init: true });
     }
     this.scrollTo(0);
-    this.saveHistory();
   }
 
   async init() {
@@ -178,7 +163,6 @@ class ContentListComponent extends Component {
     await this.goPage({ page, init: true });
 
     this.scrollTo(offset);
-    this.saveHistory();
     hideLoading();
   }
 

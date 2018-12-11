@@ -153,14 +153,14 @@ class MainComponent extends PureComponent {
         </Modal>
         <ActionSheet
           ref={o => this.orientationActionSheet = o}
-          title="选择上传方式"
+          title="屏幕方向"
           options={orientationOptions}
           cancelButtonIndex={2}
           onPress={this.switchOrientation}
         />
         <ActionSheet
           ref={o => this.modeActionSheet = o}
-          title="选择上传方式"
+          title="阅读模式"
           options={modeOptions}
           cancelButtonIndex={2}
           onPress={this.switchMode}

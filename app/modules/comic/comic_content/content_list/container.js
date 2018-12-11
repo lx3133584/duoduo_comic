@@ -6,7 +6,6 @@ import {
   getContentList,
   preContentList,
   saveContentIndex,
-  saveHistory,
 } from '../actions';
 
 const downloadListSelector = state => state.favorites.get('download_list');
@@ -41,9 +40,6 @@ const mapDispatchToProps = dispatch => ({
   },
   saveIndex(params) {
     return dispatch(saveContentIndex(params));
-  },
-  postHistory(params) {
-    return dispatch(saveHistory(params));
   },
 });
 
