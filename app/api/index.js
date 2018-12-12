@@ -42,9 +42,9 @@ export const fetchContentList = ({
 }) => { // 漫画内容
   const params = {};
   if (page) params.page = page;
-  if (all) params.all = all;
-  if (no_size) params.no_size = no_size;
-  if (no_log || pre) params.no_log = no_log;
+  if (all) params.all = 1;
+  if (no_size) params.no_size = 1;
+  if (no_log || pre) params.no_log = 1;
   return http.get(`comic/content/${id}`, { params });
 };
 // 评分

@@ -1,7 +1,10 @@
-import { of, from, Observable } from 'rxjs';
+import {
+  of, from, interval, Observable,
+} from 'rxjs';
 import {
   mergeMap, delayWhen, map, filter,
   groupBy, combineLatest, sampleTime, scan,
+  zip
 } from 'rxjs/operators';
 import { ofType, combineEpics } from 'redux-observable';
 import { InteractionManager, NetInfo } from 'react-native';
@@ -18,6 +21,7 @@ const netObservable$ = Observable.create((observer) => {
   NetInfo.isConnected.fetch().then(v => observer.next(v));
   NetInfo.isConnected.addEventListener('connectionChange', v => observer.next(v));
 });
+const timeObservable$ = interval(1000);
 
 const addDownloadEpic = action$ => action$.pipe(
   ofType(addDownload),
@@ -26,6 +30,8 @@ const addDownloadEpic = action$ => action$.pipe(
       ({ id }) => fetchDownloadContent({ comic_id: payload.detail.get('id'), id }),
     ),
   )),
+  zip(timeObservable$),
+  map(payload => payload[0]),
 );
 const fetchContentEpic = action$ => action$.pipe(
   ofType(`${fetchDownloadContent}_FULFILLED`),
@@ -37,6 +43,8 @@ const fetchContentEpic = action$ => action$.pipe(
       }),
     ),
   )),
+  zip(timeObservable$),
+  map(payload => payload[0]),
 );
 const removeComicEpic = (action$, store) => action$.pipe(
   ofType(removeDownloadComic),

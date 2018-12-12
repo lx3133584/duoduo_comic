@@ -23,12 +23,13 @@ function formatMap(list, extraItem) { // 格式化数组 -> 以id为key的Map
 function computeParentStatus(map) { // 统计子元素各状态数量计算父元素状态
   const total = map.size;
   const stat = statCount(map.toList());
+  if (stat.ready === total) return 'ready';
   if (stat.downloading) return 'downloading';
   if (stat.fetching) return 'fetching';
   if (stat.fetched) return 'fetched';
   if (stat.error) return 'error';
   if (stat.done === total) return 'done';
-  return 'error';
+  return 'downloading';
 }
 
 const initialState = Immutable.Map({
