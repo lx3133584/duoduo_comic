@@ -4,7 +4,7 @@ import {
 import {
   mergeMap, delayWhen, map, filter,
   groupBy, combineLatest, sampleTime, scan,
-  zip
+  zip,
 } from 'rxjs/operators';
 import { ofType, combineEpics } from 'redux-observable';
 import { InteractionManager, NetInfo } from 'react-native';
