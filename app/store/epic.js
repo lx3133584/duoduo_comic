@@ -86,14 +86,14 @@ const postHistoryEpic = (action$, store) => action$.pipe(
     sampleTime(2000),
   )),
   combineLatest(netObservable$),
-  scan(([stack], [data, isConnected]) => {
-    let newStack;
-    const index = stack.findIndex(item => item.comic_id === data.comic_id);
-    if (!~index) newStack = stack.push(data);
-    else newStack = stack.set(index, data);
-    if (!isConnected) return [newStack];
-    return [newStack.clear(), newStack];
-  }, [Immutable.List(), null]), // 第一个为任务队列，第二个参数为准备处理的任务
+  scan(([queue], [data, isConnected]) => {
+    let newQueue;
+    const index = queue.findIndex(item => item.comic_id === data.comic_id);
+    if (!~index) newQueue = queue.push(data);
+    else newQueue = queue.set(index, data);
+    if (!isConnected) return [newQueue];
+    return [newQueue.clear(), newQueue];
+  }, [Immutable.List(), null]), // 第一个为任务队列(pending)，第二个参数为准备处理的任务(doing)
   map(payload => payload[1]),
   filter(payload => !!payload),
   mergeMap(tasks => tasks.map(task => saveHistory(task))),
