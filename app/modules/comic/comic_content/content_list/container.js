@@ -6,20 +6,25 @@ import {
   getContentList,
   preContentList,
   saveContentIndex,
+  useTheContentCache,
 } from '../actions';
 
-const downloadListSelector = state => state.favorites.get('download_list');
+const newMap = Immutable.Map();
+const newList = Immutable.List();
+const downloadListSelector = state => state.favorites.get('download_list', newList);
 const comicIdSelector = state => state.comic.getIn(['detail', 'id']);
 const chapterIdSelector = (state, ownProps) => ownProps.chapter_id;
 const listMapSelector = createSelector(
   [downloadListSelector, comicIdSelector],
-  (list, comic_id) => list && list.find(i => i.get('id') === comic_id, null, Immutable.Map()).get('listMap'),
+  (list, comic_id) => list.find(i => i.get('id') === comic_id, null, newMap).get('listMap', newMap),
 );
-const hasCacheSelector = createSelector(
+const cacheSelector = createSelector(
   [listMapSelector, chapterIdSelector],
   (list, chapter_id) => {
-    if (!list) return false;
-    return list.has(chapter_id);
+    const chapter = list.get(chapter_id, newMap);
+    const map = chapter.get('contentMap', newMap);
+    if (!map.size) return null;
+    return map.toList().toJS();
   },
 );
 const mapStateToProps = (state, ownProps) => ({
@@ -28,7 +33,7 @@ const mapStateToProps = (state, ownProps) => ({
   pre_content: state.comic.get('pre_content'),
   go_to_flag: state.comic.get('go_to_flag'),
   mode: state.config.get('mode'),
-  has_cache: hasCacheSelector(state, ownProps),
+  content_cache: cacheSelector(state, ownProps),
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -40,6 +45,9 @@ const mapDispatchToProps = dispatch => ({
   },
   saveIndex(params) {
     return dispatch(saveContentIndex(params));
+  },
+  useCache(params) {
+    return dispatch(useTheContentCache(params));
   },
 });
 

@@ -11,8 +11,8 @@ class ContentListComponent extends Component {
     chapter_id: PropTypes.number,
     mode: PropTypes.string.isRequired,
     getContent: PropTypes.func.isRequired,
-    has_cache: PropTypes.bool,
-    // preContent: PropTypes.func.isRequired,
+    content_cache: PropTypes.array,
+    useCache: PropTypes.func.isRequired,
     hideLoading: PropTypes.func.isRequired,
     saveIndex: PropTypes.func.isRequired,
     toggleDrawer: PropTypes.func.isRequired,
@@ -25,7 +25,7 @@ class ContentListComponent extends Component {
     content_index: 0,
     detail_chapter_id: 0,
     chapter_id: 0,
-    has_cache: false,
+    content_cache: null,
   }
 
   constructor() {
@@ -130,10 +130,13 @@ class ContentListComponent extends Component {
       preContent,
       pre_content,
       chapter_id,
+      content_cache,
+      useCache,
     } = this.props;
     this.chapter_id = chapter_id;
     this.onRefresh(0, true);
-    if (pre && pre_content.size) {
+    if (content_cache) useCache({ id: chapter_id, content: content_cache });
+    else if (pre && pre_content.size) {
       preContent(this.chapter_id);
     } else {
       await this.goPage({ init: true });
@@ -147,9 +150,9 @@ class ContentListComponent extends Component {
       hideLoading,
       content_index,
       detail_chapter_id,
-      has_cache,
+      content_cache,
+      useCache,
     } = this.props;
-    console.log(has_cache);
     this.chapter_id = chapter_id;
     let offset = 0;
     let page = 0;
@@ -160,7 +163,8 @@ class ContentListComponent extends Component {
     } else {
       this.onRefresh(0, true);
     }
-    await this.goPage({ page, init: true });
+    if (content_cache) useCache({ id: chapter_id, content: content_cache });
+    else await this.goPage({ page, init: true });
 
     this.scrollTo(offset);
     hideLoading();

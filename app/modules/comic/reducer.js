@@ -68,9 +68,13 @@ export default handleActions({
       map.set('is_show_footer', true);
       return;
     }
-    if (map.get('content').find(item => item.url === data[0])) return; // 如果有重复值则退出
     map.update('content', oldList => oldList.concat(data));
   }),
+  [comicContentActions.useTheContentCache]: (state, action) => state.withMutations(map => map
+    .set('content', Immutable.List(action.payload.content))
+    .set('content_total', action.payload.content.length)
+    .setIn(['detail', 'chapter_id'], action.payload.id)
+    .set('is_show_footer', true)),
   [comicContentActions.saveContentIndex]: (state, action) => state.setIn(['detail', 'index'], action.payload),
   [comicContentActions.goToIndex]: (state, action) => state.withMutations(map => map
     .setIn(['detail', 'index'], action.payload)

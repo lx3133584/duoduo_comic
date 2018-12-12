@@ -7,11 +7,14 @@ export const {
   saveContentIndex,
   saveHistory,
   goToIndex,
+  useTheContentCache,
 } = createActions({
   GET_CONTENT_LIST: async ({
-    id, pre, page, init,
+    id, pre, page, init, no_log,
   }) => {
-    const result = await fetchContentList({ id, page, pre });
+    const result = await fetchContentList({
+      id, page, pre, no_log,
+    });
     return {
       result, id, pre, page, init,
     };
@@ -25,4 +28,5 @@ export const {
     };
   },
   GO_TO_INDEX: index => index,
+  USE_THE_CONTENT_CACHE: ({ id, content }) => ({ id, content }),
 });

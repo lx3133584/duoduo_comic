@@ -35,15 +35,16 @@ export const fetchComicList = id => http.get(`comic/${id}/list`); // 漫画列�
 export const fetchContentList = ({
   id,
   page,
-  pre,
   all,
+  pre,
   no_size,
+  no_log,
 }) => { // 漫画内容
   const params = {};
   if (page) params.page = page;
-  if (pre) params.pre = pre;
   if (all) params.all = all;
   if (no_size) params.no_size = no_size;
+  if (no_log || pre) params.no_log = no_log;
   return http.get(`comic/content/${id}`, { params });
 };
 // 评分
