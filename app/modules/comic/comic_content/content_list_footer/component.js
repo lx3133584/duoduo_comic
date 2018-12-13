@@ -44,11 +44,13 @@ class ContentListFooterComponent extends PureComponent {
       id: PropTypes.number.isRequired,
     }),
     getList: PropTypes.func.isRequired,
+    content_cache: PropTypes.array,
     is_show_footer: PropTypes.bool,
   };
 
   static defaultProps = {
     next: {},
+    content_cache: null,
     is_show_footer: true,
   }
 
@@ -65,8 +67,8 @@ class ContentListFooterComponent extends PureComponent {
   }
 
   init = (next) => {
-    const { getList } = this.props;
-    if (!next.id) return;
+    const { getList, content_cache } = this.props;
+    if (!next.id || content_cache) return;
     getList({ id: next.id, pre: true, page: 0 }).then(({ value }) => { // 预加载
       const data = value.result.data.slice(0, 3);
       preload(data.map(item => ({

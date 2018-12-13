@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
+import getCache from 'utils/get_cache';
 import Component from './component';
 import { getContentList } from '../actions';
 
@@ -33,8 +34,9 @@ const nextItemSelector = createSelector(
   },
 );
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state, ownProps) => ({
   next: nextItemSelector(state),
+  content_cache: getCache(state, ownProps),
   is_show_footer: state.comic.get('is_show_footer'),
 });
 

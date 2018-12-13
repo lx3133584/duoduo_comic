@@ -74,7 +74,8 @@ class ContentListComponent extends Component {
   };
 
   onFetch = async (page, init = false) => {
-    const { getContent } = this.props;
+    const { getContent, content_cache } = this.props;
+    if (content_cache) return null;
     const res = await getContent({
       id: this.chapter_id, page, init, pre: false,
     });
@@ -112,6 +113,7 @@ class ContentListComponent extends Component {
 
   // 跳页
   goToIndex = async (index) => {
+    const { content_cache } = this.props;
     const page = this.computePage(index);
     const offset = index % page_size;
     const { page: myPage } = this.state;
@@ -119,7 +121,7 @@ class ContentListComponent extends Component {
       this.setState({ page });
       await this.goPage({ page, init: true });
     }
-    this.scrollTo(offset);
+    this.scrollTo(content_cache ? index : offset);
   };
 
   _getRef = ref => this.content_list_ref = ref;
@@ -166,7 +168,7 @@ class ContentListComponent extends Component {
     if (content_cache) useCache({ id: chapter_id, content: content_cache });
     else await this.goPage({ page, init: true });
 
-    this.scrollTo(offset);
+    this.scrollTo(content_cache ? content_index : offset);
     hideLoading();
   }
 
