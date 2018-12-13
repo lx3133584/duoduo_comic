@@ -117,7 +117,7 @@ class ContentListComponent extends Component {
     const page = this.computePage(index);
     const offset = index % page_size;
     const { page: myPage } = this.state;
-    if (page !== myPage) {
+    if (page !== myPage && !content_cache) {
       this.setState({ page });
       await this.goPage({ page, init: true });
     }
