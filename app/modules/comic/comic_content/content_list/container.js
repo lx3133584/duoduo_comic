@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import getCache from 'utils/get_cache';
+import getCache from 'selectors/get_cache';
 import Component from './component';
 import {
   getContentList,

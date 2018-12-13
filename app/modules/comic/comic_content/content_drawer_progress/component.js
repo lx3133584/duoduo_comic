@@ -37,12 +37,17 @@ class ContentDrawerProgressComponent extends PureComponent {
     prev: PropTypes.shape({
       id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
-    }).isRequired,
+    }),
     next: PropTypes.shape({
       id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
-    }).isRequired,
+    }),
   };
+
+  static defaultProps = {
+    prev: null,
+    next: null,
+  }
 
   goIndex = (value) => {
     const { goIndex } = this.props;
@@ -59,7 +64,9 @@ class ContentDrawerProgressComponent extends PureComponent {
     this.goChapter(next);
   };
 
-  goChapter = ({ id, title }) => {
+  goChapter = (data) => {
+    if (!data) return;
+    const { id, title } = data;
     Actions.replace('comicContent', { chapter_id: id, title, pre: false });
   };
 

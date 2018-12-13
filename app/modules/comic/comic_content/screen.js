@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import windowSizeSelector from 'utils/window_size';
+import windowSizeSelector from 'selectors/window_size';
 import { LoadingPage } from '@/comic/comic_detail';
 import { connect } from 'react-redux';
 import Orientation from 'react-native-orientation';

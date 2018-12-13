@@ -49,7 +49,7 @@ class ContentListFooterComponent extends PureComponent {
   };
 
   static defaultProps = {
-    next: {},
+    next: null,
     content_cache: null,
     is_show_footer: true,
   }
@@ -61,14 +61,14 @@ class ContentListFooterComponent extends PureComponent {
 
   componentWillReceiveProps(nextProps) {
     const { next } = this.props;
-    if (nextProps.next.id !== next.id) {
+    if (nextProps.next && (nextProps.next.id !== next.id)) {
       setTimeout(() => this.init(nextProps.next), 3000);
     }
   }
 
   init = (next) => {
     const { getList, content_cache } = this.props;
-    if (!next.id || content_cache) return;
+    if (!next || content_cache) return;
     getList({ id: next.id, pre: true, page: 0 }).then(({ value }) => { // 预加载
       const data = value.result.data.slice(0, 3);
       preload(data.map(item => ({
@@ -79,13 +79,14 @@ class ContentListFooterComponent extends PureComponent {
 
   goNext = () => {
     const { next } = this.props;
+    if (!next) return;
     const { id, title } = next;
     Actions.replace('comicContent', { chapter_id: id, title, pre: true });
   };
 
   render() {
     const { next, is_show_footer } = this.props;
-    const { title } = next;
+    const { title } = next || {};
     if (!is_show_footer) {
       return <LongListLoadingFooter color="#fff" background="#282828" />;
     }
