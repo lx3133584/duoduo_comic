@@ -5,12 +5,12 @@ const newMap = Immutable.Map();
 const newList = Immutable.List();
 const downloadListSelector = state => state.favorites.get('download_list', newList);
 const comicIdSelector = state => state.comic.getIn(['detail', 'id']);
-const chapterIdSelector = (state, ownProps) => ownProps.chapter_id;
+// const chapterIdSelector = (state, ownProps) => ownProps.chapter_id;
 const listMapSelector = createSelector(
   [downloadListSelector, comicIdSelector],
   (list, comic_id) => list.find(i => i.get('id') === comic_id, null, newMap).get('listMap', newMap),
 );
-export default createSelector(
+export default chapterIdSelector => createSelector(
   [listMapSelector, chapterIdSelector],
   (list, chapter_id) => {
     const chapter = list.get(chapter_id, newMap);

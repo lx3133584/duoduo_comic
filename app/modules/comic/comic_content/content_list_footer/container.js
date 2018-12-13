@@ -33,10 +33,15 @@ const nextItemSelector = createSelector(
     return chapters[index + 1];
   },
 );
+const nextChapterIdSelector = createSelector(
+  nextItemSelector,
+  next => next.id,
+);
+const cacheSelector = getCache(nextChapterIdSelector);
 
 const mapStateToProps = (state, ownProps) => ({
   next: nextItemSelector(state),
-  content_cache: getCache(state, ownProps),
+  content_cache: cacheSelector(state, ownProps),
   is_show_footer: state.comic.get('is_show_footer'),
 });
 
