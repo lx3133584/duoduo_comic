@@ -92,7 +92,12 @@ class LongListComponent extends Component {
     const { loading } = this.state;
     if (loading) return;
     this.setState({ loading: true });
-    onFetch(this.page, init).then((res) => {
+    const resPromise = onFetch(this.page, init);
+    if (!resPromise) {
+      this.setState({ loading: false });
+      return;
+    }
+    resPromise.then((res) => {
       this.setState({ loading: false });
       const data = res.value.result ? res.value.result.data : res.value.data;
       if (!res.error && data.length) {
