@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { TouchableOpacity } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 import { Actions } from 'react-native-router-flux';
-import { Header } from '@/router';
+import { Header } from 'router';
 
 const ContainStyled = styled.View`
   position: absolute;

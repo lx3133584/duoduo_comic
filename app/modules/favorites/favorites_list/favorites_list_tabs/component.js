@@ -4,7 +4,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import styled from 'styled-components';
 import { FavoritesList, HistoryList, DownloadList } from '@/favorites/favorites_list';
 import { Dimensions } from 'react-native';
-import { Header } from '@/router';
+import { Header } from 'router';
 import {
   TabView, PagerPan, TabBar,
 } from 'react-native-tab-view';

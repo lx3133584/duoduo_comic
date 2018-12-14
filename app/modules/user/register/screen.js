@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import { Dimensions } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { Header } from '@/router';
+import { Header } from 'router';
 import { RegisterLocal } from '@/user/register';
 import { Brand } from '@/user';
 

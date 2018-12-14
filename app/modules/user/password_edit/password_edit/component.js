@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Toast from 'react-native-root-toast';
 import { TouchableOpacity } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { Header } from '@/router';
+import { Header } from 'router';
 import { red } from 'theme';
 import { ListItem } from '@/user';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { LeftButton, Header } from '@/router';
+import { LeftButton, Header } from 'router';
 
 const ContainStyled = styled.View`
   position: absolute;
