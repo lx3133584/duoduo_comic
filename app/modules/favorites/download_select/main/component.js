@@ -6,7 +6,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import Toast from 'react-native-root-toast';
 import { TouchableOpacity, Dimensions } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import { Header } from 'router';
+import { Header } from '@/router';
 import { ComicList } from '@/comic/comic_detail';
 import { Footer } from '@/favorites/download_select';
 

@@ -7,7 +7,7 @@ import { Actions } from 'react-native-router-flux';
 import ImagePicker from 'react-native-image-picker';
 import ActionSheet from 'react-native-actionsheet';
 import { TouchableOpacity, Platform } from 'react-native';
-import { Header } from 'router';
+import { Header } from '@/router';
 import { brand_primary } from 'theme';
 import { Avatar, ListItem } from '@/user';
 

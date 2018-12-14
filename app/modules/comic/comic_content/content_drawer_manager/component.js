@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import * as Animatable from 'react-native-animatable';
-import { Header } from 'router';
+import { Header } from '@/router';
 import {
   ContentHeader,
   ContentDrawerMenu,
