@@ -24,8 +24,5 @@ const indexSelector = createSelector(
 );
 export default step => createSelector(
   [chaptersSelector, indexSelector],
-  (chapters, index) => {
-    if (index === 0) return 0;
-    return chapters[index + step];
-  },
+  (chapters, index) => chapters[index + step],
 );
