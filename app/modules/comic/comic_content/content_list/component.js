@@ -73,20 +73,22 @@ class ContentListComponent extends Component {
     this.setState({ page: 0 });
   };
 
-  onFetch = async (page, init = false) => {
+  onFetch = (page, init = false) => {
     const { getContent, content_cache } = this.props;
     if (content_cache) return null;
-    const res = await getContent({
+    return getContent({
       id: this.chapter_id, page, init, pre: false,
     });
-    return res;
   };
 
   goPage = async ({ page = 0, init }) => {
     init && (this.init_page = page);
     this.setState({ loadingPage: true });
-    await this.onFetch(page, init);
-    this.setState({ loadingPage: false });
+    try {
+      await this.onFetch(page, init);
+    } finally {
+      this.setState({ loadingPage: false });
+    }
   };
 
   // 调用滚动列表的滚动方法

@@ -29,14 +29,15 @@ class RankItemListComponent extends PureComponent {
   }
 
   componentDidMount() {
-    this.onFetch(0);
+    const { hideLoading } = this.props;
+    this.onFetch(0).finally(() => {
+      hideLoading();
+    });
   }
 
-  async onFetch(page) {
-    const { getList, hideLoading, id } = this.props;
-    const res = await getList({ page, id });
-    hideLoading();
-    return res;
+  onFetch(page) {
+    const { getList, id } = this.props;
+    return getList({ page, id });
   }
 
   renderItem = (props) => {

@@ -34,9 +34,9 @@ class FavoritesListComponent extends Component {
     return !is(nextProps.list, list) || isVisible !== nextState.isVisible;
   }
 
-  async onFetch() {
+  onFetch() {
     const { getList } = this.props;
-    await getList();
+    return getList();
   }
 
   removeFavorite(id) {

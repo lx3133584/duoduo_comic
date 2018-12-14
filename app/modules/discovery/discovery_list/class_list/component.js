@@ -24,9 +24,9 @@ class ClassListComponent extends PureComponent {
     this.onFetch();
   }
 
-  async onFetch() {
+  onFetch() {
     const { getList } = this.props;
-    await getList();
+    return getList();
   }
 
   render() {

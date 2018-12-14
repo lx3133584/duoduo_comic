@@ -3,11 +3,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { is } from 'immutable';
 import { HistoryListItem, Modal } from '@/favorites/favorites_list';
-import styled from 'styled-components';
 import { LongList } from '@';
-
-const ContainStyled = styled.View`
-`;
 
 class HistoryListComponent extends Component {
   static propTypes = {
@@ -38,9 +34,9 @@ class HistoryListComponent extends Component {
     return !is(nextProps.list, list) || isVisible !== nextState.isVisible;
   }
 
-  async onFetch(page) {
+  onFetch(page) {
     const { getList } = this.props;
-    await getList(page);
+    return getList(page);
   }
 
   cancel() {
@@ -62,25 +58,25 @@ class HistoryListComponent extends Component {
     const { list } = this.props;
     const listFormat = list.toArray();
     const { isVisible } = this.state;
-    return (
-      <ContainStyled>
-        <LongList
-          list={listFormat}
-          Item={HistoryListItem}
-          itemOnLongPress={this.removeFavorite}
-          onFetch={this.onFetch}
-          isLong
-          showFooter
-        />
-        <Modal
-          confirm={this.confirm}
-          cancel={this.cancel}
-          isVisible={isVisible}
-        >
-           是否确认删除此条浏览记录？
-        </Modal>
-      </ContainStyled>
-    );
+    return [
+      <LongList
+        key="list"
+        list={listFormat}
+        Item={HistoryListItem}
+        itemOnLongPress={this.removeFavorite}
+        onFetch={this.onFetch}
+        isLong
+        showFooter
+      />,
+      <Modal
+        key="modal"
+        confirm={this.confirm}
+        cancel={this.cancel}
+        isVisible={isVisible}
+      >
+          是否确认删除此条浏览记录？
+      </Modal>,
+    ];
   }
 }
 
