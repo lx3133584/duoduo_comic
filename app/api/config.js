@@ -37,7 +37,10 @@ function interceptorsResponseError(error) {
     // Actions.login();
     store.dispatch({ type: 'LOGOUT_ACTION_PENDING' });
   }
-  error.response && error.response.data && Toast.show(error.response.data.message, {
+  error.response
+  && error.response.data
+  && !error.response.config.not_error_tips
+  && Toast.show(error.response.data.message, {
     position: -70,
   });
   return Promise.reject(error.response);
