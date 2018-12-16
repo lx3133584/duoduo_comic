@@ -2,16 +2,15 @@ import React, { PureComponent } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { LongList, LoadingPage, SearchListItem } from '@';
-import { wrapWithLoading } from 'utils';
+import { wrapWithLoading, wrapWithLoadingType } from 'utils';
 
 @wrapWithLoading
 class ClassItemListComponent extends PureComponent {
   static propTypes = {
     getList: PropTypes.func.isRequired,
-    hideLoading: PropTypes.func.isRequired,
-    loading: PropTypes.bool.isRequired,
     list: ImmutablePropTypes.list.isRequired,
     id: PropTypes.number,
+    ...wrapWithLoadingType,
   };
 
   static defaultProps = {

@@ -11,7 +11,7 @@ import {
   ContentStatusBar,
   ContentDrawerManager,
 } from '@/comic/comic_content';
-import { wrapWithLoading } from 'utils';
+import { wrapWithLoading, wrapWithLoadingType } from 'utils';
 
 const ContainStyled = styled.View`
   background-color: #282828;
@@ -19,11 +19,10 @@ const ContainStyled = styled.View`
 @wrapWithLoading
 class ContentListScreen extends PureComponent {
   static propTypes = {
-    hideLoading: PropTypes.func.isRequired,
-    loading: PropTypes.bool.isRequired,
     orientation: PropTypes.string.isRequired,
     brightness: PropTypes.number.isRequired,
     width: PropTypes.number.isRequired,
+    ...wrapWithLoadingType,
   };
 
   state = {

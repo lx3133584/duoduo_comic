@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { RankItemListItem } from '@/discovery/rank_item_list';
 import styled from 'styled-components';
 import { LongList, LoadingPage } from '@';
-import { wrapWithLoading } from 'utils';
+import { wrapWithLoading, wrapWithLoadingType } from 'utils';
 
 const ContainStyled = styled.View`
   padding-bottom: 72px;
@@ -13,10 +13,9 @@ const ContainStyled = styled.View`
 class RankItemListComponent extends PureComponent {
   static propTypes = {
     getList: PropTypes.func.isRequired,
-    hideLoading: PropTypes.func.isRequired,
-    loading: PropTypes.bool.isRequired,
     id: PropTypes.number,
     list: ImmutablePropTypes.list.isRequired,
+    ...wrapWithLoadingType,
   };
 
   static defaultProps = {

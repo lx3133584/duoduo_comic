@@ -8,7 +8,7 @@ import Immutable, { is } from 'immutable';
 import { Actions } from 'react-native-router-flux';
 import { ComicListItem, ComicListCategory, Progress } from '@/comic/comic_detail';
 import styled from 'styled-components';
-import { wrapWithLoading } from 'utils';
+import { wrapWithLoading, wrapWithLoadingType } from 'utils';
 
 const { height } = Dimensions.get('window');
 const initNumber = Math.ceil(height / 50);
@@ -41,16 +41,15 @@ class ComicListComponent extends Component {
     chapter_id: PropTypes.number,
     comic_id: PropTypes.number,
     getList: PropTypes.func.isRequired,
-    hideLoading: PropTypes.func.isRequired,
     useCache: PropTypes.func.isRequired,
     updateCache: PropTypes.func.isRequired,
     isReplace: PropTypes.bool,
     dark: PropTypes.bool,
-    loading: PropTypes.bool.isRequired,
     checkboxData: ImmutablePropTypes.map,
     download_list: ImmutablePropTypes.list,
     showCheckbox: PropTypes.bool,
     changeCheckbox: PropTypes.func,
+    ...wrapWithLoadingType,
   };
 
   static defaultProps = {

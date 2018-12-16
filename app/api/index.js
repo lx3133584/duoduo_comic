@@ -3,7 +3,7 @@ import http from 'axios';
 export { uploadUserAvatar, downloadImage, deleteImage } from './fetch_blob';
 
 // 收藏
-export const fetchFavoritesList = () => http.get('favorites', { not_error_tips: true }); // 收藏列表
+export const fetchFavoritesList = () => http.get('favorites', { no_error_tips: true }); // 收藏列表
 export const postFavorite = id => http.post(`favorites/${id}`); // 添加收藏
 export const deleteFavorite = id => http.delete(`favorites/${id}`); // 删除收藏
 // 浏览记录
@@ -17,7 +17,7 @@ export const fetchClassList = () => http.get('class'); // 分类列表
 export const fetchClassItemList = ({ id, page }) => http.get(`class/${id}`, { params: { page } }); // 单分类漫画列表
 export const fetchRankItemList = ({ id, page }) => http.get(`rank/${id}`, { params: { page } }); // 单种排行榜
 // 用户
-export const fetchUserInfo = () => http.get('user', { not_error_tips: true }); // 用户信息
+export const fetchUserInfo = () => http.get('user', { no_error_tips: true }); // 用户信息
 export const editUserInfo = ({ tel = '', email = '', name }) => http.put('user', { tel, email, name }); // 修改用户信息
 export const changePassword = ({
   oldPassword,

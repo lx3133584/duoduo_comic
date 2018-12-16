@@ -6,4 +6,7 @@ export {
 
 export {
   wrapWithLoading,
+  wrapWithLoadingType,
+  wrapWithCheckBoxData,
+  wrapWithCheckBoxDataType,
 } from './higher_order_components';

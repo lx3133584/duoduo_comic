@@ -39,7 +39,7 @@ function interceptorsResponseError(error) {
   }
   error.response
   && error.response.data
-  && !error.response.config.not_error_tips
+  && !error.response.config.no_error_tips
   && Toast.show(error.response.data.message, {
     position: -70,
   });

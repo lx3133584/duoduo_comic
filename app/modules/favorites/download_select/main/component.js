@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import Immutable from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Toast from 'react-native-root-toast';
+import { is } from 'immutable';
 import { TouchableOpacity, Dimensions } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Header } from 'router';
 import { ComicList } from '@/comic/comic_detail';
 import { Footer } from '@/favorites/download_select';
+import { wrapWithCheckBoxData, wrapWithCheckBoxDataType } from 'utils';
 
 const { width: screenWidth } = Dimensions.get('window');
 
@@ -25,23 +26,26 @@ const TitleStyled = styled.Text`
   color: #333;
 `;
 
+@wrapWithCheckBoxData
 class DownloadSelectComponent extends Component {
   static propTypes = {
     list: ImmutablePropTypes.list.isRequired,
     flatList: ImmutablePropTypes.list.isRequired,
     detail: ImmutablePropTypes.map.isRequired,
     add: PropTypes.func.isRequired,
+    ...wrapWithCheckBoxDataType,
   };
 
-  state = {
-    checkboxData: Immutable.Map(),
-  };
-
-  shouldComponentUpdate(nextProps, nextState) {
+  shouldComponentUpdate(nextProps) {
     const {
       checkboxData,
-    } = this.state;
-    return nextState.checkboxData !== checkboxData;
+    } = this.props;
+    return !is(nextProps.checkboxData, checkboxData);
+  }
+
+  componentDidUpdate() {
+    const { initCheckBoxData, flatList } = this.props;
+    initCheckBoxData(flatList);
   }
 
   showToast = (message) => {
@@ -50,63 +54,40 @@ class DownloadSelectComponent extends Component {
     });
   };
 
-  selectAll = () => {
-    const { flatList } = this.props;
-    const { checkboxData } = this.state;
-    this.setState({
-      checkboxData: checkboxData.withMutations((map) => {
-        let isSelectAll = true; // 是否已经全部选中
-        flatList.forEach((item) => {
-          if (!checkboxData.get(item.id)) isSelectAll = false;
-          map.set(item.id, true);
-        });
-        if (isSelectAll) { // 如果已经全选则全部取消选择
-          flatList.forEach((item) => {
-            map.set(item.id, false);
-          });
-        }
-      }),
-    });
-  }
-
   download = () => {
     const {
-      detail, list, flatList, add,
+      detail, list, add, selectedIdList,
     } = this.props;
-    const { checkboxData } = this.state;
-    const selectList = flatList.filter(item => checkboxData.get(item.id));
-    if (!selectList.size) return;
-    add({ detail, list, selectList });
+    if (!selectedIdList.size) return;
+    add({ detail, list, selectList: selectedIdList });
     this.showToast('开始下载...');
     Actions.pop();
   }
 
-  changeCheckbox = index => this.setState(state => ({ checkboxData: state.checkboxData.update(index, bool => !bool) }))
-
-  renderSaveButton = isSelectAll => (
-    <TouchableOpacity onPress={this.selectAll}>
-      <SaveTextStyled>{isSelectAll ? '取消' : '全选'}</SaveTextStyled>
-    </TouchableOpacity>
-  );
+  renderSaveButton = () => {
+    const { selectAll, isSelectedAll } = this.props;
+    return (
+      <TouchableOpacity onPress={selectAll}>
+        <SaveTextStyled>{isSelectedAll ? '取消' : '全选'}</SaveTextStyled>
+      </TouchableOpacity>
+    );
+  }
 
   render() {
-    const { checkboxData } = this.state;
-    const { flatList } = this.props;
-    const total = checkboxData.reduce((t, v) => {
-      if (v) return t + 1;
-      return t;
-    }, 0);
+    const {
+      checkboxData, changeCheckbox, totalSelected,
+    } = this.props;
     return [
       <Header
         key="header"
         customTitle="选择下载章节"
-        rightComponent={this.renderSaveButton(total === flatList.size)}
+        rightComponent={this.renderSaveButton()}
         {...this.props}
       />,
       <ComicList
         key="main"
         checkboxData={checkboxData}
-        changeCheckbox={this.changeCheckbox}
+        changeCheckbox={changeCheckbox}
         showCheckbox
       />,
       <Footer
@@ -115,7 +96,7 @@ class DownloadSelectComponent extends Component {
         bottom={70}
         onPress={this.download}
       >
-        <TitleStyled>已选择:  {total} 章</TitleStyled>
+        <TitleStyled>已选择:  {totalSelected} 章</TitleStyled>
       </Footer>,
     ];
   }
