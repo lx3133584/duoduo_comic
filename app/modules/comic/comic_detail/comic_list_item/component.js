@@ -61,9 +61,9 @@ function ComicListItem({
     <Button
       style={[
         buttonStyle,
-        active && !showCheckbox && { backgroundColor: brand_primary },
+        active && { backgroundColor: brand_primary },
         dark && { width: width * 0.7 }]}
-      textStyle={[textStyle, dark && { color: '#eee' }, active && !showCheckbox && { color: '#fff' }]}
+      textStyle={[textStyle, dark && { color: '#eee' }, active && { color: '#fff' }]}
       onPress={itemOnPress}
       isDisabled={isDisabled}
     >
@@ -73,7 +73,8 @@ function ComicListItem({
           checked={checked}
           textStyle={textStyle}
           containerStyle={checkboxStyle}
-          checkedColor={brand_primary}
+          checkedColor={active ? '#fff' : brand_primary}
+          uncheckedColor={active ? '#fff' : '#bfbfbf'}
           onPress={itemOnPress}
         />
       )}
