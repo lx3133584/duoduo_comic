@@ -54,8 +54,8 @@ export default handleActions({
     .update('history_list', list => list.clear())
     .update('favorites_list', list => list.clear())),
   [downloadSelectActions.addDownload]: (state, action) => {
-    const { detail, list, selectList } = action.payload;
-    const listMap = formatMap(selectList, { status: 'ready' });
+    const { detail, list, selectedList } = action.payload;
+    const listMap = formatMap(selectedList, { status: 'ready' });
     return state.update('download_list', (l) => {
       const index = l.findIndex(i => i.get('id') === detail.get('id'));
       if (!~index) { // 下载列表是否已经存在

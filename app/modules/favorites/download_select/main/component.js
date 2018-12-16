@@ -59,7 +59,7 @@ class DownloadSelectComponent extends Component {
       detail, list, add, selectedIdList,
     } = this.props;
     if (!selectedIdList.size) return;
-    add({ detail, list, selectList: selectedIdList });
+    add({ detail, list, selectedList: selectedIdList });
     this.showToast('开始下载...');
     Actions.pop();
   }

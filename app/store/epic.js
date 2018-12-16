@@ -26,7 +26,7 @@ const timeObservable$ = interval(1000);
 const addDownloadEpic = action$ => action$.pipe(
   ofType(addDownload),
   mergeMap(({ payload }) => of(
-    ...payload.selectList.map(
+    ...payload.selectedList.map(
       ({ id }) => fetchDownloadContent({ comic_id: payload.detail.get('id'), id }),
     ),
   )),

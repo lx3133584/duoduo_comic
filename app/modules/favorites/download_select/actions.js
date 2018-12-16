@@ -2,7 +2,7 @@ import { createActions } from 'redux-actions';
 import { fetchContentList, downloadImage } from 'api';
 
 export const { addDownload, fetchDownloadContent, downloadComicImg } = createActions({
-  ADD_DOWNLOAD: ({ detail, list, selectList }) => ({ detail, list, selectList }),
+  ADD_DOWNLOAD: ({ detail, list, selectedList }) => ({ detail, list, selectedList }),
   FETCH_DOWNLOAD_CONTENT: ({ comic_id, id }) => {
     const promise = fetchContentList({ id, all: true, no_log: true }).then(result => ({ result, comic_id, id }));
     return { promise, data: { comic_id, id } };
