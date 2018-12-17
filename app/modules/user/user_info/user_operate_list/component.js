@@ -31,11 +31,11 @@ const list = [
 ];
 
 let toast = null;
-function showToast(message) {
+function showToast(message, isLast = false) {
   Toast.hide(toast);
   toast = Toast.show(message, {
     position: -70,
-    duration: 10000,
+    duration: isLast ? Toast.durations.SHORT : 10000,
   });
 }
 
@@ -68,7 +68,7 @@ class UserOperateListComponent extends PureComponent {
       // eslint-disable-next-line default-case
       switch (status) {
         case codePush.SyncStatus.UP_TO_DATE:
-          showToast('应用已是最新版本');
+          showToast('应用已是最新版本', true);
           break;
         case codePush.SyncStatus.CHECKING_FOR_UPDATE:
           showToast('正在检查更新');
@@ -80,7 +80,7 @@ class UserOperateListComponent extends PureComponent {
           showToast('正在安装更新');
           break;
         case codePush.SyncStatus.UPDATE_INSTALLED:
-          showToast('更新已完成');
+          showToast('更新已完成，重启后生效', true);
           break;
       }
     });
