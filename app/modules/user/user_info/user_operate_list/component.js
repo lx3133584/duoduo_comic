@@ -35,6 +35,7 @@ function showToast(message) {
   Toast.hide(toast);
   toast = Toast.show(message, {
     position: -70,
+    duration: 10000,
   });
 }
 
@@ -53,7 +54,7 @@ class UserOperateListComponent extends PureComponent {
     codePush.sync({
       updateDialog: {
         appendReleaseDescription: true,
-        descriptionPrefix: '\n\n更新内容：\n',
+        descriptionPrefix: '\n更新内容：\n',
         title: '多多漫画有新内容啦',
         mandatoryUpdateMessage: '本次为强制更新',
         optionalUpdateMessage: '',
