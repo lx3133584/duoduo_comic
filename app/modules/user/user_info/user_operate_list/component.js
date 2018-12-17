@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Actions } from 'react-native-router-flux';
 import Toast from 'react-native-root-toast';
+import codePush from 'react-native-code-push';
 import { ListItem } from '@/user/user_info';
 
 const ContainStyled = styled.View`
@@ -29,14 +30,58 @@ const list = [
   },
 ];
 
+let toast = null;
+function showToast(message) {
+  Toast.hide(toast);
+  toast = Toast.show(message, {
+    position: -70,
+  });
+}
+
 class UserOperateListComponent extends PureComponent {
   static propTypes = {
     isLogin: PropTypes.bool.isRequired,
   };
 
   check = () => {
-    Toast.show('应用已是最新版本', {
-      position: -70,
+    // codePush.checkForUpdate()
+    //   .then((update) => {
+    //     if (!update) {
+    //       showToast('应用已是最新版本');
+    //       return;
+    //     }
+    codePush.sync({
+      updateDialog: {
+        appendReleaseDescription: true,
+        descriptionPrefix: '\n\n更新内容：\n',
+        title: '多多漫画有新内容啦',
+        mandatoryUpdateMessage: '本次为强制更新',
+        optionalUpdateMessage: '',
+        mandatoryContinueButtonLabel: '更新',
+        optionalIgnoreButtonLabel: '取消',
+        optionalInstallButtonLabel: '更新',
+      },
+      installMode: codePush.InstallMode.IMMEDIATE,
+    },
+    (status) => {
+      // eslint-disable-next-line default-case
+      switch (status) {
+        case codePush.SyncStatus.UP_TO_DATE:
+          showToast('应用已是最新版本');
+          break;
+        case codePush.SyncStatus.CHECKING_FOR_UPDATE:
+          showToast('正在检查更新');
+          break;
+        case codePush.SyncStatus.DOWNLOADING_PACKAGE:
+          showToast('正在下载更新');
+          break;
+        case codePush.SyncStatus.INSTALLING_UPDATE:
+          showToast('正在安装更新');
+          break;
+        case codePush.SyncStatus.UPDATE_INSTALLED:
+          showToast('更新已完成');
+          break;
+      }
     });
   };
 

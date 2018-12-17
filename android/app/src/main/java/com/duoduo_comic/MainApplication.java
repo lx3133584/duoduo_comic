@@ -3,6 +3,7 @@ package com.duoduo_comic;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.microsoft.codepush.react.CodePush;
 import cn.reactnative.httpcache.HttpCachePackage;
 import com.RNFetchBlob.RNFetchBlobPackage;
 import com.react.rnspinkit.RNSpinkitPackage;
@@ -28,6 +29,12 @@ public class MainApplication extends Application implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
 
+        @Override
+        protected String getJSBundleFile() {
+        return CodePush.getJSBundleFile();
+        }
+    
+
     @Override
     public boolean getUseDeveloperSupport() {
       return BuildConfig.DEBUG;
@@ -37,6 +44,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
             new MainReactPackage(),
+            new CodePush(getResources().getString(R.string.reactNativeCodePush_androidDeploymentKey), getApplicationContext(), BuildConfig.DEBUG),
             new HttpCachePackage(),
             new RNFetchBlobPackage(),
             new RNSpinkitPackage(),
