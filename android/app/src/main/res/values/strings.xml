@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">多多漫画</string>
+    <string moduleConfig="true" name="reactNativeCodePush_androidServerURL">http://code-push-server.duoduo.net.cn/</string>
 </resources>
