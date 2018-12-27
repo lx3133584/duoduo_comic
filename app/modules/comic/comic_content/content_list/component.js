@@ -138,13 +138,13 @@ class ContentListComponent extends Component {
       useCache,
     } = this.props;
     this.chapter_id = chapter_id;
-    this.onRefresh(0, true);
     if (content_cache) useCache({ id: chapter_id, content: content_cache });
     else if (pre && pre_content.size) {
       preContent(this.chapter_id);
     } else {
       await this.goPage({ init: true });
     }
+    this.onRefresh(0, true);
     this.scrollTo(0);
   }
 
@@ -160,16 +160,18 @@ class ContentListComponent extends Component {
     this.chapter_id = chapter_id;
     let offset = 0;
     let page = 0;
-    if (detail_chapter_id === this.chapter_id) {
+    const isSame = detail_chapter_id === chapter_id;
+
+    if (isSame) {
       page = this.computePage(content_index);
       this.setState({ page });
       offset = content_index % page_size;
-    } else {
-      this.onRefresh(0, true);
     }
+
     if (content_cache) useCache({ id: chapter_id, content: content_cache });
     else await this.goPage({ page, init: true });
 
+    if (!isSame) this.onRefresh(0, true);
     this.scrollTo(content_cache ? content_index : offset);
     hideLoading();
   }

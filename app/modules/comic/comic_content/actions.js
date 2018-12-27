@@ -10,10 +10,10 @@ export const {
   useTheContentCache,
 } = createActions({
   GET_CONTENT_LIST: async ({
-    id, pre, page, init, no_log,
+    id, pre, page, init,
   }) => {
     const result = await fetchContentList({
-      id, page, pre, no_log,
+      id, page,
     });
     return {
       result, id, pre, page, init,
