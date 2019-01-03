@@ -1,4 +1,4 @@
 import { AppRegistry } from 'react-native';
-import App from './app/index';
+import App from './lib';
 
 AppRegistry.registerComponent('duoduo_comic', () => App);
