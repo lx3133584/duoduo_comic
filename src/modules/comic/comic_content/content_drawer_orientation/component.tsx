@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Orientation from 'react-native-orientation';
 import { ContentDrawerSettingCheckbox } from '..';
 
-const ContainStyled = styled.View`
+const ContainStyled = styled.view`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
@@ -39,7 +39,7 @@ class ContentDrawerOrientationComponent extends PureComponent {
       switchReadingMode('scroll');
     }
     switchOrientation(value);
-  };
+  }
 
   render() {
     const { orientation } = this.props;

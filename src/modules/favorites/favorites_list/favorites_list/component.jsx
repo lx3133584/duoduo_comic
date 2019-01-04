@@ -6,7 +6,7 @@ import { FavoritesListItem, Modal } from '@/favorites/favorites_list';
 import styled from 'styled-components';
 import { LongList } from '@';
 
-const ContainStyled = styled.View`
+const ContainStyled = styled.view`
 `;
 
 class FavoritesListComponent extends Component {

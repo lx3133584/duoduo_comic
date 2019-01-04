@@ -14,7 +14,7 @@ const { height } = Dimensions.get('window');
 const initNumber = Math.ceil(height / 50);
 
 const px1 = 1 / PixelRatio.get();
-const ItemSeparatorComponent = styled.View`
+const ItemSeparatorComponent = styled.view`
   border-bottom-color: #c0c0c0;
   border-bottom-width: ${px1};
 `;

@@ -9,7 +9,7 @@ import { Brand } from '@/user';
 
 const { height } = Dimensions.get('window');
 
-const ContainStyled = styled.View`
+const ContainStyled = styled.view`
   min-height: ${height};
   background-color: #fff;
 `;

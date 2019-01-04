@@ -13,7 +13,7 @@ import { brand_primary } from 'theme';
 
 const { width, height } = Dimensions.get('window');
 
-const ContainStyled = styled.View`
+const ContainStyled = styled.view`
   height: ${height * 0.7};
   justify-content: center;
 `;

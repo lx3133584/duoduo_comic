@@ -6,7 +6,7 @@ import { Actions } from 'react-native-router-flux';
 import Toast from 'react-native-root-toast';
 import { LoginInput, LoginButton } from '@/user/login';
 
-const InputContainStyled = styled.View`
+const InputContainStyled = styled.view`
   margin-bottom: 30px;
 `;
 

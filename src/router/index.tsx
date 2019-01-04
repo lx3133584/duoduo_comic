@@ -7,8 +7,7 @@ import {
   Drawer,
   Actions,
 } from 'react-native-router-flux';
-import StackViewStyleInterpolator from
-  'react-navigation-stack/dist/views/StackView/StackViewStyleInterpolator';
+import StackViewStyleInterpolator from 'react-navigation-stack/dist/views/StackView/StackViewStyleInterpolator';
 import { Dimensions, StatusBar } from 'react-native';
 import { brand_primary } from 'theme';
 import {
@@ -41,7 +40,6 @@ function onEnterFavorites() {
 }
 
 const { width } = Dimensions.get('window');
-
 
 const RootRoute = () => (
   <Router backAndroidHandler={onBackPress}>

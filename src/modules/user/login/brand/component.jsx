@@ -5,12 +5,12 @@ import { brand_primary } from 'theme';
 
 import logoImg from './logo.png';
 
-const ContainStyled = styled.View`
+const ContainStyled = styled.view`
   padding: 30px 0;
   justify-content: center;
   align-items: center;
 `;
-const ImageContainStyled = styled.View`
+const ImageContainStyled = styled.view`
   background-color: ${brand_primary};
   border-radius: 999px;
   justify-content: center;
@@ -18,7 +18,7 @@ const ImageContainStyled = styled.View`
   width: 72;
   height: 72;
 `;
-const TextStyled = styled.Text`
+const TextStyled = styled.text`
   margin: 10px 0;
   text-align: center;
   font-size: 20px;

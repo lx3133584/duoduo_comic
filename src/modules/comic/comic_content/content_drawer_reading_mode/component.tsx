@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { ContentDrawerSettingCheckbox } from '..';
 
-const ContainStyled = styled.View`
+const ContainStyled = styled.view`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
@@ -31,7 +31,7 @@ class ContentDrawerReadingModeComponent extends PureComponent {
     const { switchReadingMode, goIndex, index } = this.props;
     if (value === 'scroll') goIndex(index);
     switchReadingMode(value);
-  };
+  }
 
   render() {
     const { mode } = this.props;

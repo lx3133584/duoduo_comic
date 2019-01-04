@@ -13,13 +13,13 @@ import { wrapWithCheckBoxData, wrapWithCheckBoxDataType } from 'utils';
 
 const { width: screenWidth } = Dimensions.get('window');
 
-const SaveTextStyled = styled.Text`
+const SaveTextStyled = styled.text`
   color: #fff;
   font-size: 16px;
   padding: 0 10px;
 `;
 
-const TitleStyled = styled.Text`
+const TitleStyled = styled.text`
   text-align: center;
   font-size: 18px;
   margin-left: ${screenWidth * 0.15};

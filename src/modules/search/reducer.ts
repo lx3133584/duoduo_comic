@@ -9,11 +9,11 @@ const initialState = Immutable.Map({
 export default handleActions({
   [`${searchListActions.getSearchList}_FULFILLED`]: (state, action) => state.withMutations((map) => {
     if (!action.payload.page) {
-      map.update('list', list => list.clear());
+      map.update('list', (list) => list.clear());
     }
     if (action.payload.keyword) {
       map.set('keyword', action.payload.keyword);
     }
-    map.update('list', oldList => oldList.concat(action.payload.result.data));
+    map.update('list', (oldList) => oldList.concat(action.payload.result.data));
   }),
 }, initialState);

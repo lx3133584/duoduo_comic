@@ -5,16 +5,16 @@ import { LongListItem } from '@/search/search_list';
 import { Badge } from 'react-native-elements';
 import { green, red, purple } from 'theme';
 
-const ContainStyled = styled.View`
+const ContainStyled = styled.view`
   flex-direction: row;
   padding: 8px;
 `;
-const DescStyled = styled.Text`
+const DescStyled = styled.text`
   color: #999;
   font-size: 14px;
   margin: 10px 0;
 `;
-const AuthorStyled = styled.Text`
+const AuthorStyled = styled.text`
   color: #666;
   font-size: 12px;
   margin-right: 10px;

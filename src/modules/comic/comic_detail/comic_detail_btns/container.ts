@@ -2,12 +2,12 @@ import { connect } from 'react-redux';
 import Component from './component';
 import { addFavorite, removeFavorite, getComicList } from '../actions';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   detail: state.comic.get('detail'),
   list: state.comic.get('list'),
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   add(params) {
     return dispatch(addFavorite(params));
   },

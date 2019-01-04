@@ -4,7 +4,7 @@ import {
   Battery, NetStatus, Time, Title, ReadingProgress,
 } from '..';
 
-const ContainStyled = styled.View`
+const ContainStyled = styled.view`
   flex-direction: row;
   position: absolute;
   top: 0;
@@ -15,7 +15,7 @@ const ContainStyled = styled.View`
   border-bottom-right-radius: 4px;
   z-index: 1;
 `;
-const ItemStyled = styled.View`
+const ItemStyled = styled.view`
   justify-content: center;
   margin-right: 8px;
 `;

@@ -33,7 +33,7 @@ class HeaderComponent extends PureComponent {
     customTitle: '',
     customBackgroundColor: '',
     rightComponent: null,
-  }
+  };
 
   render() {
     const {

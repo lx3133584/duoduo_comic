@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 const { height } = Dimensions.get('window');
 
-const ContainStyled = styled.View`
+const ContainStyled = styled.view`
   background: #fff;
   min-height: ${height};
   padding-bottom: ${70 + Footer.height};

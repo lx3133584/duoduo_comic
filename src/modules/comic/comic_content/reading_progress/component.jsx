@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const TextStyled = styled.Text`
+const TextStyled = styled.text`
   color: #fff;
   font-size: 12px;
 `;

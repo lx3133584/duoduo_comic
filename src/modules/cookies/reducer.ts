@@ -10,6 +10,7 @@ const initialState = Immutable.Map({
 export default handleActions({
   [`${getAllCookies}_FULFILLED`]: (state, action) => state.withMutations((map) => {
     for (const key in action.payload) {
+      // if (!action.payload[key]) break;
       map.set(key, action.payload[key]);
     }
   }),

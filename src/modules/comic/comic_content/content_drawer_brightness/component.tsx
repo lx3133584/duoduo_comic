@@ -13,7 +13,7 @@ const ICON_COLOR = '#fff';
 const IncreaseBrightnessIcon = () => <Ionicons name="ios-sunny-outline" size={ICON_SIZE} color={ICON_COLOR} />;
 const DecreaseBrightnessIcon = () => <Ionicons name="ios-sunny" size={ICON_SIZE} color={ICON_COLOR} />;
 
-const ContainStyled = styled.View`
+const ContainStyled = styled.view`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
@@ -40,21 +40,21 @@ class ContentDrawerBrightnessComponent extends PureComponent {
   init = () => {
     const { brightness } = this.props;
     DeviceBrightness.setBrightnessLevel(brightness);
-  };
+  }
 
   switchBrightness = (value) => {
     const { switchBrightness } = this.props;
     DeviceBrightness.setBrightnessLevel(value);
     switchBrightness(value);
-  };
+  }
 
   increaseBrightness = (value) => {
     const { brightness } = this.props;
     let newValue = brightness + value;
-    newValue > 1 && (newValue = 1);
-    newValue < 0 && (newValue = 0);
+    if (newValue > 1) newValue = 1;
+    if (newValue < 0) newValue = 0;
     return () => this.switchBrightness(newValue);
-  };
+  }
 
   render() {
     const { brightness, width } = this.props;

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Actions } from 'react-native-router-flux';
 import { ContentDrawerIcon } from '..';
 
-const ContainStyled = styled.View`
+const ContainStyled = styled.view`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;

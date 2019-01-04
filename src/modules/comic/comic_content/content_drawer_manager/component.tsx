@@ -47,18 +47,18 @@ class ContentDrawerManagerComponent extends PureComponent {
     if (nextProps.show !== show) this.toggleDrawer();
   }
 
-  _getRef = type => ref => this[type] = ref;
+  _getRef = (type) => (ref) => this[type] = ref;
 
   toggleDrawer = () => {
     const { bottomType } = this.state;
     const { show, width } = this.props;
-    show || this.switchBottomType('main');
+    if (!show) this.switchBottomType('main');
     const { height } = bottom_map[show ? bottomType : 'main'];
     const ease = show ? 'ease-out' : 'ease-in';
     const duration = 200;
     this.topComponent.transitionTo({ top: show ? -headerHeight : 0, width }, duration, ease);
     this.bottomComponent.transitionTo({ bottom: show ? -height : 0, height, width }, duration, ease);
-  };
+  }
 
   switchBottomType = (type) => {
     const { height } = bottom_map[type];
@@ -66,7 +66,7 @@ class ContentDrawerManagerComponent extends PureComponent {
     this.topComponent.transitionTo({ top: -headerHeight }, duration, 'ease-out');
     this.setState({ bottomType: type });
     this.bottomComponent.transitionTo({ height }, duration, 'ease');
-  };
+  }
 
   render() {
     const { bottomType } = this.state;

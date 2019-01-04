@@ -5,14 +5,14 @@ import { TouchableOpacity } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 
-const ContainStyled = styled.View`
+const ContainStyled = styled.view`
   height: 60px;
   width: 70px;
   justify-content: space-around;
   align-items: center;
 `;
 
-const TextStyled = styled.Text`
+const TextStyled = styled.text`
   color: #fff;
   font-size: 16px;
   text-align: center;
@@ -52,6 +52,6 @@ ContentDrawerIconComponent.propTypes = {
 ContentDrawerIconComponent.defaultProps = {
   icon_type: 'setting',
   title: '设置',
-  onPress: f => f,
+  onPress: (f) => f,
 };
 export default ContentDrawerIconComponent;

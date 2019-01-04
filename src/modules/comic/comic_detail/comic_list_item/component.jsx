@@ -46,7 +46,7 @@ const checkboxStyle = {
   margin: 0,
 };
 
-const DownloadTipsStyled = styled.Text`
+const DownloadTipsStyled = styled.text`
   font-size: 10px;
   text-align: right;
   margin-left: 30px;

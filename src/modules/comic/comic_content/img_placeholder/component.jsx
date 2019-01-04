@@ -2,21 +2,21 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-const ContainStyled = styled.View`
+const ContainStyled = styled.view`
   background-color: #999;
   justify-content: center;
   align-items: center;
 `;
-const ContentStyled = styled.View`
+const ContentStyled = styled.view`
   justify-content: center;
   align-items: center;
   margin-top: 8px;
 `;
-const TitleStyled = styled.Text`
+const TitleStyled = styled.text`
   font-size: 32px;
   color: #eee;
 `;
-const SubTitleStyled = styled.Text`
+const SubTitleStyled = styled.text`
   font-size: 18px;
   color: #eee;
 `;

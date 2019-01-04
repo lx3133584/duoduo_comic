@@ -6,8 +6,8 @@ export const {
   switchOrientation,
   switchBrightness,
 } = createActions({
-  SWITCH_READING_MODE: value => value,
-  SWITCH_CUTTING_MODE: value => value,
-  SWITCH_ORIENTATION: value => value,
-  SWITCH_BRIGHTNESS: value => value,
+  SWITCH_READING_MODE: (value) => value,
+  SWITCH_CUTTING_MODE: (value) => value,
+  SWITCH_ORIENTATION: (value) => value,
+  SWITCH_BRIGHTNESS: (value) => value,
 });

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { LeftButton, Header } from 'router';
 
-const ContainStyled = styled.View`
+const ContainStyled = styled.view`
   position: absolute;
   top: ${Header.statusBarHeight + 14};
   left: 0;

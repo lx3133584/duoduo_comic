@@ -5,7 +5,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import styled from 'styled-components';
 
-const ContainStyled = styled.View`
+const ContainStyled = styled.view`
   flex-direction: row;
   align-items: center;
 `;
@@ -24,19 +24,19 @@ BatteryIcons.propTypes = {
 };
 
 class BatteryComponent extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.getBattery = this.getBattery.bind(this);
-  }
-
   state = {
     battery_level: 1,
     is_charging: false,
   };
 
+  constructor(props) {
+    super(props);
+    this.getBattery = this.getBattery.bind(this);
+  }
+
   componentDidMount() {
-    DeviceBattery.getBatteryLevel().then(battery_level => this.setState({ battery_level }));
-    DeviceBattery.isCharging().then(is_charging => this.setState({ is_charging }));
+    DeviceBattery.getBatteryLevel().then((battery_level) => this.setState({ battery_level }));
+    DeviceBattery.isCharging().then((is_charging) => this.setState({ is_charging }));
     DeviceBattery.addListener(this.getBattery);
   }
 

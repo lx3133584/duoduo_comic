@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 
-const TextStyled = styled.Text`
+const TextStyled = styled.text`
   color: #fff;
   font-size: 12px;
 `;

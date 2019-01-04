@@ -5,13 +5,13 @@ import Feather from 'react-native-vector-icons/Feather';
 import { Actions } from 'react-native-router-flux';
 import { Header } from 'router';
 
-const ContainStyled = styled.View`
+const ContainStyled = styled.view`
   position: absolute;
   top: ${Header.statusBarHeight + 14};
   right: 0;
 `;
 
-const InnerContainStyled = styled.View`
+const InnerContainStyled = styled.view`
   padding: 0 12px;
 `;
 const DownloadIcon = () => <Feather name="download" size={22} color="#fff" />;

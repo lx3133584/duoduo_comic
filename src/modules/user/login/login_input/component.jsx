@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import styled from 'styled-components';
 import { brand_primary, red } from 'theme';
 
-const ContainStyled = styled.View`
+const ContainStyled = styled.view`
   margin: 5px 40px;
 `;
 

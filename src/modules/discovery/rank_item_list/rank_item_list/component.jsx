@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import { LongList, LoadingPage } from '@';
 import { wrapWithLoading, wrapWithLoadingType } from 'utils';
 
-const ContainStyled = styled.View`
+const ContainStyled = styled.view`
   padding-bottom: 72px;
 `;
 @wrapWithLoading

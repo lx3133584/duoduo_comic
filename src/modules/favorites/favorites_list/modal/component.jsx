@@ -8,7 +8,7 @@ import { brand_primary } from 'theme';
 
 const { width } = Dimensions.get('window');
 
-const ContainStyled = styled.View`
+const ContainStyled = styled.view`
   height: 150px;
   width: ${width * 0.75};
   background-color: #fff;
@@ -16,12 +16,12 @@ const ContainStyled = styled.View`
   border-radius: 8px;
   justify-content: space-around;
 `;
-const ContentContainStyled = styled.Text`
+const ContentContainStyled = styled.text`
   padding: 0 15px;
   color: #333;
   font-size: 16px;
 `;
-const ButtonContainStyled = styled.View`
+const ButtonContainStyled = styled.view`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;

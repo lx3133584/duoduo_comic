@@ -13,7 +13,7 @@ const ICON_COLOR = '#fff';
 const NextIcon = () => <Feather name="chevron-right" size={ICON_SIZE} color={ICON_COLOR} />;
 const PrevIcon = () => <Feather name="chevron-left" size={ICON_SIZE} color={ICON_COLOR} />;
 
-const ContainStyled = styled.View`
+const ContainStyled = styled.view`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
@@ -47,28 +47,28 @@ class ContentDrawerProgressComponent extends PureComponent {
   static defaultProps = {
     prev: null,
     next: null,
-  }
+  };
 
   goIndex = (value) => {
     const { goIndex } = this.props;
     goIndex(value);
-  };
+  }
 
   goPrev = () => {
     const { prev } = this.props;
     this.goChapter(prev);
-  };
+  }
 
   goNext = () => {
     const { next } = this.props;
     this.goChapter(next);
-  };
+  }
 
   goChapter = (data) => {
     if (!data) return;
     const { id, title } = data;
     Actions.replace('comicContent', { chapter_id: id, title, pre: false });
-  };
+  }
 
   render() {
     const { index, total, width } = this.props;

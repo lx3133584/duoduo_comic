@@ -18,12 +18,12 @@ import {
 import { saveContentIndex, saveHistory } from '@/comic/comic_content/actions';
 
 const netObservable$ = Observable.create((observer) => {
-  NetInfo.isConnected.fetch().then(v => observer.next(v));
-  NetInfo.isConnected.addEventListener('connectionChange', v => observer.next(v));
+  NetInfo.isConnected.fetch().then((v) => observer.next(v));
+  NetInfo.isConnected.addEventListener('connectionChange', (v) => observer.next(v));
 });
 const timeObservable$ = interval(1000);
 
-const addDownloadEpic = action$ => action$.pipe(
+const addDownloadEpic = (action$) => action$.pipe(
   ofType(addDownload),
   mergeMap(({ payload }) => of(
     ...payload.selectedList.map(
@@ -31,9 +31,9 @@ const addDownloadEpic = action$ => action$.pipe(
     ),
   )),
   zip(timeObservable$),
-  map(payload => payload[0]),
+  map((payload) => payload[0]),
 );
-const fetchContentEpic = action$ => action$.pipe(
+const fetchContentEpic = (action$) => action$.pipe(
   ofType(`${fetchDownloadContent}_FULFILLED`),
   delayWhen(() => from(InteractionManager.runAfterInteractions())),
   mergeMap(({ payload }) => of(
@@ -44,19 +44,19 @@ const fetchContentEpic = action$ => action$.pipe(
     ),
   )),
   zip(timeObservable$),
-  map(payload => payload[0]),
+  map((payload) => payload[0]),
 );
 const removeComicEpic = (action$, store) => action$.pipe(
   ofType(removeDownloadComic),
   mergeMap(({ payload }) => {
     const state = store.value;
-    const comic = state.favorites.get('download_list').find(item => item.get('id') === payload);
+    const comic = state.favorites.get('download_list').find((item) => item.get('id') === payload);
     const listMap = comic.get('listMap');
     return of(
       removeDownloadComicFulfilled(payload),
       ...listMap.toList().flatMap(
-        item => item.get('contentMap').toList(),
-      ).map(item => removeDownloadImg(item.get('path'))),
+        (item) => item.get('contentMap').toList(),
+      ).map((item) => removeDownloadImg(item.get('path'))),
     ).pipe(
       delayWhen(() => from(InteractionManager.runAfterInteractions())),
     );
@@ -66,11 +66,11 @@ const removeContentEpic = (action$, store) => action$.pipe(
   ofType(removeDownloadContent),
   mergeMap(({ payload }) => {
     const state = store.value;
-    const comic = state.favorites.get('download_list').find(item => item.get('id') === payload.comic_id);
+    const comic = state.favorites.get('download_list').find((item) => item.get('id') === payload.comic_id);
     const contentMap = comic.getIn(['listMap', payload.id, 'contentMap']);
     return of(
       removeDownloadContentFulfilled(payload),
-      ...contentMap.toList().map(item => removeDownloadImg(item.get('path'))),
+      ...contentMap.toList().map((item) => removeDownloadImg(item.get('path'))),
     ).pipe(
       delayWhen(() => from(InteractionManager.runAfterInteractions())),
     );
@@ -89,24 +89,23 @@ const postHistoryEpic = (action$, store) => action$.pipe(
     };
   }),
   delayWhen(() => from(InteractionManager.runAfterInteractions())),
-  groupBy(data => data.comic_id),
-  mergeMap(group$ => group$.pipe(
+  groupBy((data) => data.comic_id),
+  mergeMap((group$) => group$.pipe(
     sampleTime(2000),
   )),
   combineLatest(netObservable$),
   scan(([queue], [data, isConnected]) => {
     let newQueue;
-    const index = queue.findIndex(item => item.comic_id === data.comic_id);
+    const index = queue.findIndex((item) => item.comic_id === data.comic_id);
     if (!~index) newQueue = queue.push(data);
     else newQueue = queue.set(index, data);
     if (!isConnected) return [newQueue];
     return [newQueue.clear(), newQueue];
   }, [Immutable.List(), null]), // 第一个为任务队列(pending)，第二个参数为准备处理的任务(doing)
-  map(payload => payload[1]),
-  filter(payload => !!payload),
-  mergeMap(tasks => tasks.map(task => saveHistory(task))),
+  map((payload) => payload[1]),
+  filter((payload) => !!payload),
+  mergeMap((tasks) => tasks.map((task) => saveHistory(task))),
 );
-
 
 export default combineEpics(
   addDownloadEpic,

@@ -9,19 +9,19 @@ import { yellow } from 'theme';
 
 const { width } = Dimensions.get('window');
 
-const ContainStyled = styled.View`
+const ContainStyled = styled.view`
   height: 200px;
   width: ${width};
   background-color: #fff;
   justify-content: center;
   align-items: center;
 `;
-const TextStyled = styled.Text`
+const TextStyled = styled.text`
   font-size: 24px;
   color: #333;
   margin-bottom: 20px;
 `;
-const NumberStyled = styled.Text`
+const NumberStyled = styled.text`
   font-size: 32px;
   color: ${yellow};
 `;

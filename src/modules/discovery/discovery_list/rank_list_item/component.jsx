@@ -7,7 +7,7 @@ import { TouchableOpacity, Dimensions } from 'react-native';
 const { width } = Dimensions.get('window');
 const containWidth = width / 2 - 25;
 
-const ContainStyled = styled.View`
+const ContainStyled = styled.view`
   margin: 10px 12px;
   width: ${containWidth};
   height: 50px;
@@ -16,7 +16,7 @@ const ContainStyled = styled.View`
   justify-content: center;
   align-items: center;
 `;
-const TitleStyled = styled.Text`
+const TitleStyled = styled.text`
   margin-left: 5px;
   color: #fff;
   font-size: 16px;

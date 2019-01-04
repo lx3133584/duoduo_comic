@@ -4,20 +4,20 @@ import PropTypes from 'prop-types';
 import { Button } from 'react-native-elements';
 import { brand_primary } from 'theme';
 
-const ContainStyled = styled.View`
+const ContainStyled = styled.view`
   flex: 1;
   flex-direction: row;
   margin: 0 15px;
   align-items: center;
 `;
-const ButtonsContainStyled = styled.View`
+const ButtonsContainStyled = styled.view`
   flex: 1;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
 `;
-const TextStyled = styled.Text`
+const TextStyled = styled.text`
   font-size: 16px;
   color: #fff;
 `;
@@ -68,7 +68,7 @@ function ContentDrawerSettingCheckboxComponent({
         {title}
       </TextStyled>
       <ButtonsContainStyled>
-        {options.map(item => (
+        {options.map((item) => (
           <ButtonComponent
             {...item}
             active={value === item.value}

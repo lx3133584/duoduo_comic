@@ -8,7 +8,7 @@ import { Header } from 'router';
 import { red } from 'theme';
 import { ListItem } from '@/user';
 
-const ContainStyled = styled.View`
+const ContainStyled = styled.view`
   background: #fff;
 `;
 const itemContainStyle = {
@@ -17,7 +17,7 @@ const itemContainStyle = {
 const inputStyle = {
   color: '#666',
 };
-const SaveTextStyled = styled.Text`
+const SaveTextStyled = styled.text`
   color: #fff;
   font-size: 16px;
   padding: 0 10px;

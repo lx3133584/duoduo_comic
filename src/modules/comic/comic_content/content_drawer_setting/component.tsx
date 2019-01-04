@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { ContentDrawerBrightness, ContentDrawerOrientation, ContentDrawerReadingMode } from '..';
 
-const ContainStyled = styled.View`
+const ContainStyled = styled.view`
   justify-content: space-around;
   align-items: center;
 `;

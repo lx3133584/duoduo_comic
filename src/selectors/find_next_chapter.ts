@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 
-const listSelector = state => state.comic.get('list');
-const chapterIdSelector = state => state.comic.getIn(['detail', 'chapter_id']);
+const listSelector = (state) => state.comic.get('list');
+const chapterIdSelector = (state) => state.comic.getIn(['detail', 'chapter_id']);
 const chaptersSelector = createSelector(
   listSelector,
   (list) => {
@@ -22,7 +22,7 @@ const indexSelector = createSelector(
     return cur_index;
   },
 );
-export default step => createSelector(
+export default (step) => createSelector(
   [chaptersSelector, indexSelector],
   (chapters, index) => chapters[index + step],
 );

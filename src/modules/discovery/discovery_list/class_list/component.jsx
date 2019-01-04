@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { ClassListItem } from '..';
 import { LongList } from '@';
 
-const ContainStyled = styled.View`
+const ContainStyled = styled.view`
   padding-bottom: 125px;
 `;
 

@@ -3,13 +3,13 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { brand_primary } from 'theme';
 
-const ContainStyled = styled.View`
+const ContainStyled = styled.view`
   padding-left: 10px;
   padding-top: 10px;
   background-color: #fff;
   height: 40px;
 `;
-const TitleStyled = styled.Text`
+const TitleStyled = styled.text`
   font-size: 12px;
   color: #333;
   padding-left: 10px;

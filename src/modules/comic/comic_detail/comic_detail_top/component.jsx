@@ -13,7 +13,7 @@ import { numberFormat } from 'utils';
 
 const { width } = Dimensions.get('window');
 
-const ContainStyled = styled.View`
+const ContainStyled = styled.view`
   height: 240px;
   background-color: #000;
 `;
@@ -35,7 +35,7 @@ const blurImageStyled = {
   height: 240,
   zIndex: 1,
 };
-const TextContainStyled = styled.View`
+const TextContainStyled = styled.view`
   position: absolute;
   top: 100px;
   left: 20px;
@@ -43,18 +43,18 @@ const TextContainStyled = styled.View`
   z-index: 4;
   width: ${width - 110};
 `;
-const TitleStyled = styled.Text`
+const TitleStyled = styled.text`
   color: #fff;
   font-size: 18px;
   font-weight: 700;
   margin-bottom: 8px;
 `;
-const BottomTextContainStyled = styled.View`
+const BottomTextContainStyled = styled.view`
   position: absolute;
   left: 0;
   bottom: 0;
 `;
-const BottomTextStyled = styled.Text`
+const BottomTextStyled = styled.text`
   color: #fff;
   font-size: 12px;
   opacity: 0.8;

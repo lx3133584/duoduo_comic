@@ -6,7 +6,7 @@ import { ContentListFooter, ContentListItem } from '..';
 import styled from 'styled-components';
 
 const { width: screenWidth, height } = Dimensions.get('window');
-const ContainStyled = styled.View`
+const ContainStyled = styled.view`
   width: ${screenWidth};
   height: ${height};
 `;

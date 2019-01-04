@@ -11,13 +11,13 @@ const { width } = Dimensions.get('window');
 const { preload } = Image;
 
 const height = 50;
-const ContainStyled = styled.View`
+const ContainStyled = styled.view`
   width: ${width};
   background-color: #ededed;
   flex-direction: row;
   justify-content: space-around;
 `;
-const TextStyled = styled.Text`
+const TextStyled = styled.text`
   background-color: #ededed;
   text-align: center;
   font-size: 14px;

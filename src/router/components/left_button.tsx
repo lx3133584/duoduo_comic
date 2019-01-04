@@ -4,7 +4,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import { Actions } from 'react-native-router-flux';
 import styled from 'styled-components';
 
-const ContainStyled = styled.View`
+const ContainStyled = styled.view`
   padding: 0 10px;
 `;
 

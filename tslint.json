@@ -4,6 +4,15 @@
         "tslint:recommended"
     ],
     "jsRules": {},
-    "rules": {},
+    "rules": {
+        "quotemark": false,
+        "ordered-imports": false,
+        "object-literal-sort-keys": false,
+        "member-access": false,
+        "curly": false,
+        "max-classes-per-file": false,
+        "variable-name": false,
+        "no-bitwise": false
+    },
     "rulesDirectory": []
 }

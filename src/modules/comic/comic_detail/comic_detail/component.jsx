@@ -4,35 +4,35 @@ import { is } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { Rating } from '..';
 
-const ContainStyled = styled.View`
+const ContainStyled = styled.view`
   margin-bottom: 5px;
   padding: 28px 10px 10px;
   background-color: #fff;
 `;
-const TopContainStyled = styled.View`
+const TopContainStyled = styled.view`
   flex-direction: row;
   justify-content: space-between;
   border-bottom-width: 0.5px;
   border-bottom-color: #999;
 `;
-const LeftContainStyled = styled.View`
+const LeftContainStyled = styled.view`
   flex-direction: column;
 `;
-const AuthorContainStyled = styled.Text`
+const AuthorContainStyled = styled.text`
   font-size: 12px;
   color: #999;
   margin: 18px 0;
 `;
-const AuthorStyled = styled.Text`
+const AuthorStyled = styled.text`
   color: #333;
   font-size: 14px;
 `;
-const StatusStyled = styled.Text`
+const StatusStyled = styled.text`
   font-size: 12px;
   color: #999;
   margin-bottom: 10px;
 `;
-const DescStyled = styled.Text`
+const DescStyled = styled.text`
   font-size: 12px;
   color: #333;
   margin: 8px 0;

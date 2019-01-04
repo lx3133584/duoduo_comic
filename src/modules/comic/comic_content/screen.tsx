@@ -13,9 +13,17 @@ import {
 } from '.';
 import { wrapWithLoading, wrapWithLoadingType } from 'utils';
 
-const ContainStyled = styled.View`
+const ContainStyled = styled.view`
   background-color: #282828;
 `;
+
+const mapStateToProps = (state) => ({
+  orientation: state.config.get('orientation'),
+  brightness: state.config.get('brightness'),
+  width: windowSizeSelector(state).width,
+});
+
+@connect(mapStateToProps)
 @wrapWithLoading
 class ContentListScreen extends PureComponent {
   static propTypes = {
@@ -40,22 +48,22 @@ class ContentListScreen extends PureComponent {
   initConfig = () => {
     this.initOrientation();
     this.initBrightness();
-  };
+  }
 
   initOrientation = () => {
     const { orientation } = this.props;
     if (orientation === 'vertical') return;
     Orientation.lockToLandscape();
-  };
+  }
 
   initBrightness = () => {
     const { brightness } = this.props;
     DeviceBrightness.setBrightnessLevel(brightness);
-  };
+  }
 
   toggleDrawer = () => {
     this.setState(({ show_drawer }) => ({ show_drawer: !show_drawer }));
-  };
+  }
 
   render() {
     const { loading, width } = this.props;
@@ -71,10 +79,4 @@ class ContentListScreen extends PureComponent {
   }
 }
 
-const mapStateToProps = state => ({
-  orientation: state.config.get('orientation'),
-  brightness: state.config.get('brightness'),
-  width: windowSizeSelector(state).width,
-});
-
-export default connect(mapStateToProps)(ContentListScreen);
+export default ContentListScreen;

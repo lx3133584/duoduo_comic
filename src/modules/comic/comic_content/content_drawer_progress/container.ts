@@ -7,7 +7,7 @@ import { goToIndex } from '../actions';
 const prevItemSelector = findNextChapterSelector(-1);
 const nextItemSelector = findNextChapterSelector(1);
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   index: state.comic.getIn(['detail', 'index']),
   total: state.comic.get('content_total'),
   prev: prevItemSelector(state),
@@ -15,7 +15,7 @@ const mapStateToProps = state => ({
   width: windowSizeSelector(state).width,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   goIndex(params) {
     return dispatch(goToIndex(params));
   },
