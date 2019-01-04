@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import DeviceBrightness from 'react-native-device-brightness';
 import { brand_primary } from 'theme';
+import { switchBrightness } from '@/config/actions';
 
 const ICON_SIZE = 20;
 const ICON_COLOR = '#fff';

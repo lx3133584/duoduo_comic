@@ -2,6 +2,9 @@ import { handleActions } from 'redux-actions';
 import Immutable from 'immutable';
 import { comicDetailActions, comicContentActions } from '@/comic';
 
+// export type ComicState = Immutable.Map<{
+//   detail: Immutable.List
+// }>
 const initialState = Immutable.Map({
   detail: Immutable.Map(),
   list: Immutable.List(),
@@ -13,7 +16,7 @@ const initialState = Immutable.Map({
   go_to_flag: false, // 标志go_to_index被触发
 });
 export default handleActions({
-  [`${comicDetailActions.getComicDetail}_PENDING`]: state => state.withMutations(map => map
+  [`${comicDetailActions.getComicDetail}_PENDING`]: (state) => state.withMutations(map => map
     .update('detail', detail => detail.clear())
     .update('list', list => list.clear())),
   [`${comicDetailActions.getComicDetail}_FULFILLED`]:

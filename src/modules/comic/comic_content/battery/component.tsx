@@ -18,7 +18,7 @@ const TextStyled = styled.text`
 const ICON_COLOR = '#fff';
 
 const IsChargingIcon = () => <Ionicons name="ios-battery-charging-outline" size={22} color={ICON_COLOR} />;
-const BatteryIcons = ({ name }) => <FontAwesome name={name} size={14} color={ICON_COLOR} />;
+const BatteryIcons = ({ name }: { name: string }) => <FontAwesome name={name} size={14} color={ICON_COLOR} />;
 BatteryIcons.propTypes = {
   name: PropTypes.string.isRequired,
 };
@@ -44,7 +44,7 @@ class BatteryComponent extends PureComponent {
     DeviceBattery.removeListener(this.getBattery);
   }
 
-  getBattery(state) {
+  getBattery(state: { level: number, charging: boolean }) {
     const { level, charging } = state;
     this.setState({ battery_level: level, is_charging: charging });
   }
