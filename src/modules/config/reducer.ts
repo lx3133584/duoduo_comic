@@ -15,8 +15,8 @@ const initialState = Immutable.Map({
 });
 
 export default handleActions({
-  [switchReadingMode]: (state, action) => state.set('mode', action.payload),
-  [switchCuttingMode]: (state, action) => state.set('whether_to_cut', action.payload),
-  [switchBrightness]: (state, action) => state.set('brightness', action.payload),
-  [switchOrientation]: (state, action) => state.set('orientation', action.payload),
+  [switchReadingMode as any]: (state, action: any) => state.set('mode', action.payload),
+  [switchCuttingMode as any]: (state, action: any) => state.set('whether_to_cut', action.payload),
+  [switchBrightness as any]: (state, action: any) => state.set('brightness', action.payload),
+  [switchOrientation as any]: (state, action: any) => state.set('orientation', action.payload),
 }, initialState);

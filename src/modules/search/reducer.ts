@@ -2,12 +2,12 @@ import { handleActions } from 'redux-actions';
 import Immutable from 'immutable';
 import { searchListActions } from '@/search';
 
-const initialState = Immutable.Map({
+const initialState = Immutable.Record({
   keyword: '',
   list: Immutable.List(),
-});
+})();
 export default handleActions({
-  [`${searchListActions.getSearchList}_FULFILLED`]: (state, action) => state.withMutations((map) => {
+  [`${searchListActions.getSearchList}_FULFILLED`]: (state, action: any) => state.withMutations((map) => {
     if (!action.payload.page) {
       map.update('list', (list) => list.clear());
     }
