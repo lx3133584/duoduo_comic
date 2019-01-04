@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import { ContentListScroll, ContentListPageTurning, Spin } from '@/comic/comic_content';
+import { ContentListScroll, ContentListPageTurning, Spin } from '..';
 
 const page_size = 5;
 class ContentListComponent extends Component {

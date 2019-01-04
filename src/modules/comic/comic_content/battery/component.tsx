@@ -9,7 +9,7 @@ const ContainStyled = styled.View`
   flex-direction: row;
   align-items: center;
 `;
-const TextStyled = styled.Text`
+const TextStyled = styled.text`
   color: #fff;
   font-size: 12px;
   margin-left: 5px;
@@ -24,8 +24,8 @@ BatteryIcons.propTypes = {
 };
 
 class BatteryComponent extends PureComponent {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.getBattery = this.getBattery.bind(this);
   }
 

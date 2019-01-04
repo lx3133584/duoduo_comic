@@ -10,7 +10,7 @@ import {
   ContentList,
   ContentStatusBar,
   ContentDrawerManager,
-} from '@/comic/comic_content';
+} from '.';
 import { wrapWithLoading, wrapWithLoadingType } from 'utils';
 
 const ContainStyled = styled.View`

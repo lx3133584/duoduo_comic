@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Orientation from 'react-native-orientation';
-import { ContentDrawerSettingCheckbox } from '@/comic/comic_content';
+import { ContentDrawerSettingCheckbox } from '..';
 
 const ContainStyled = styled.View`
   flex-direction: row;

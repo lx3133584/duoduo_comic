@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ImageViewer from 'react-native-image-zoom-viewer';
 import { Dimensions } from 'react-native';
-import { ContentListFooter, ContentListItem } from '@/comic/comic_content';
+import { ContentListFooter, ContentListItem } from '..';
 import styled from 'styled-components';
 
 const { width: screenWidth, height } = Dimensions.get('window');

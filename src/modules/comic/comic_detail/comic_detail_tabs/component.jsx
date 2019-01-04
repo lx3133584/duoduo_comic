@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { ComicList, ComicDetail } from '@/comic/comic_detail';
+import { ComicList, ComicDetail } from '..';
 import { Dimensions } from 'react-native';
 import {
   TabView, PagerPan, TabBar,

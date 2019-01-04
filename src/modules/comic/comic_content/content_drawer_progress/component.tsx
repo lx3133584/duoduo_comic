@@ -18,7 +18,7 @@ const ContainStyled = styled.View`
   justify-content: space-around;
   align-items: center;
 `;
-const silderStyle = {
+const sliderStyle = {
   height: 40,
 };
 const thumbTouchSize = {
@@ -78,7 +78,7 @@ class ContentDrawerProgressComponent extends PureComponent {
           <PrevIcon />
         </TouchableOpacity>
         <Slider
-          style={[silderStyle, { width: width - 90 }]}
+          style={[sliderStyle, { width: width - 90 }]}
           value={index}
           minimumValue={0}
           maximumValue={total - 1}

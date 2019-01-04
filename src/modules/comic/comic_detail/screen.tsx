@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { wrapWithLoading, wrapWithLoadingType } from 'utils';
-import { Parallax, LoadingPage } from '@/comic/comic_detail';
+import { Parallax, LoadingPage } from '.';
 
 @wrapWithLoading
 class ComicDetailScreen extends PureComponent {

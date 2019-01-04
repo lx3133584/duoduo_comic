@@ -3,7 +3,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { TouchableWithoutFeedback, View } from 'react-native';
 import { LongList } from '@';
-import { ContentListItem, ContentListFooter } from '@/comic/comic_content';
+import { ContentListItem, ContentListFooter } from '..';
 import { getImgHeight } from 'utils';
 
 class ContentListScrollComponent extends Component {

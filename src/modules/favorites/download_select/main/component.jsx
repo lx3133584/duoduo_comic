@@ -8,7 +8,7 @@ import { TouchableOpacity, Dimensions } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Header } from 'router';
 import { ComicList } from '@/comic/comic_detail';
-import { Footer } from '@/favorites/download_select';
+import { Footer } from '..';
 import { wrapWithCheckBoxData, wrapWithCheckBoxDataType } from 'utils';
 
 const { width: screenWidth } = Dimensions.get('window');

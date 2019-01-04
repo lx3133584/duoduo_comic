@@ -18,7 +18,7 @@ const ContainStyled = styled.View`
   justify-content: space-around;
   align-items: center;
 `;
-const silderStyle = {
+const sliderStyle = {
   height: 40,
 };
 const thumbTouchSize = {
@@ -64,7 +64,7 @@ class ContentDrawerBrightnessComponent extends PureComponent {
           <DecreaseBrightnessIcon />
         </TouchableOpacity>
         <Slider
-          style={[silderStyle, { width: width - 90 }]}
+          style={[sliderStyle, { width: width - 90 }]}
           value={brightness}
           minimumValue={0}
           maximumValue={1}

@@ -4,7 +4,7 @@ import { Platform } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import Button from 'apsl-react-native-button';
 import { createImageProgress } from 'react-native-image-progress';
-import { ImgPlaceholder } from '@/comic/comic_content';
+import { ImgPlaceholder } from '..';
 import { getImgHeight } from 'utils';
 
 const Image = createImageProgress(FastImage);

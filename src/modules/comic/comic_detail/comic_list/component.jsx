@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 import Immutable, { is } from 'immutable';
 import { Actions } from 'react-native-router-flux';
-import { ComicListItem, ComicListCategory, Progress } from '@/comic/comic_detail';
+import { ComicListItem, ComicListCategory, Progress } from '..';
 import styled from 'styled-components';
 import { wrapWithLoading, wrapWithLoadingType } from 'utils';
 

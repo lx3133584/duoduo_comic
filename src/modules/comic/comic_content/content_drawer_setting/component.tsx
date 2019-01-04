@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { ContentDrawerBrightness, ContentDrawerOrientation, ContentDrawerReadingMode } from '@/comic/comic_content';
+import { ContentDrawerBrightness, ContentDrawerOrientation, ContentDrawerReadingMode } from '..';
 
 const ContainStyled = styled.View`
   justify-content: space-around;

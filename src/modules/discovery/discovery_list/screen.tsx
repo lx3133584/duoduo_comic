@@ -1,7 +1,7 @@
 import React from 'react';
 import { Dimensions } from 'react-native';
 import styled from 'styled-components';
-import { ClassList, RankList } from '@/discovery/discovery_list';
+import { ClassList, RankList } from '.';
 
 const { height } = Dimensions.get('window');
 
