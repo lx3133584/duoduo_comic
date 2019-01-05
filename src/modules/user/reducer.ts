@@ -9,10 +9,10 @@ import {
 } from '@/user';
 
 const initialState = Immutable.Record({
-  info: Immutable.Map(),
+  info: Immutable.Map<keyof User, User[keyof User]>(),
 })();
-
-function saveUserInfo(state: typeof initialState, action) {
+export type StateType = typeof initialState;
+function saveUserInfo(state: typeof initialState, action: any) {
   return state.set('info', Immutable.Map(action.payload.data));
 }
 

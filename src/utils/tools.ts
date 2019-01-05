@@ -17,18 +17,18 @@ export function numberFormat(num: string): string {
   }
 }
 // 获取图片的高
-export function getImgHeight({ height, width }: ImageSize, myClientWidth = clientWidth) {
+export function getImgHeight({ height, width }: ImageSize, myClientWidth: number = clientWidth) {
   return Math.round(height / width * myClientWidth);
 }
 
 // 统计各个状态的数量
 export function statCount<T extends { get?:
-  (key: string) => string }>(list: T[], key = 'status'): { [key: string]: number } {
-  const result = {};
+  (key: string) => T[keyof T] & string; }>(list: T[], key: string = 'status') {
+  const result = {} as { [key: string]: number };
   list.forEach((item) => {
     const status = item.get ? item.get(key) : item[key];
-    const n = result[status] || 0;
-    result[status] = n + 1;
+    if (!result[status]) result[status] = 0;
+    result[status]++;
   });
   return result;
 }

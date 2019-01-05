@@ -30,3 +30,4 @@ epicMiddleware.run(rootEpic);
 
 export const persistor = persistStore(store);
 export default store;
+export { RootState } from './reducer';

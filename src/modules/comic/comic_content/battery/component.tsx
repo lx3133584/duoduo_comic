@@ -23,20 +23,20 @@ BatteryIcons.propTypes = {
   name: PropTypes.string.isRequired,
 };
 
-class BatteryComponent extends PureComponent {
+class BatteryComponent extends PureComponent<object> {
   state = {
     battery_level: 1,
     is_charging: false,
   };
 
-  constructor(props) {
+  constructor(props: object) {
     super(props);
     this.getBattery = this.getBattery.bind(this);
   }
 
   componentDidMount() {
-    DeviceBattery.getBatteryLevel().then((battery_level) => this.setState({ battery_level }));
-    DeviceBattery.isCharging().then((is_charging) => this.setState({ is_charging }));
+    DeviceBattery.getBatteryLevel().then((battery_level: number) => this.setState({ battery_level }));
+    DeviceBattery.isCharging().then((is_charging: boolean) => this.setState({ is_charging }));
     DeviceBattery.addListener(this.getBattery);
   }
 
@@ -44,7 +44,7 @@ class BatteryComponent extends PureComponent {
     DeviceBattery.removeListener(this.getBattery);
   }
 
-  getBattery(state: { level: number, charging: boolean }) {
+  getBattery(state: { level: number; charging: boolean }) {
     const { level, charging } = state;
     this.setState({ battery_level: level, is_charging: charging });
   }

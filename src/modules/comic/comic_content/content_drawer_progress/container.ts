@@ -1,3 +1,4 @@
+import { RootState } from 'store';
 import { connect } from 'react-redux';
 import windowSizeSelector from 'selectors/window_size';
 import findNextChapterSelector from 'selectors/find_next_chapter';
@@ -7,7 +8,7 @@ import { goToIndex } from '../actions';
 const prevItemSelector = findNextChapterSelector(-1);
 const nextItemSelector = findNextChapterSelector(1);
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: RootState) => ({
   index: state.comic.getIn(['detail', 'index']),
   total: state.comic.get('content_total'),
   prev: prevItemSelector(state),

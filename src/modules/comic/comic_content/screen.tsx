@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import { RootState } from 'store';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import windowSizeSelector from 'selectors/window_size';
@@ -17,15 +18,15 @@ const ContainStyled = styled.view`
   background-color: #282828;
 `;
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: RootState) => ({
   orientation: state.config.get('orientation'),
   brightness: state.config.get('brightness'),
   width: windowSizeSelector(state).width,
 });
 
-@connect(mapStateToProps)
 @wrapWithLoading
-class ContentListScreen extends PureComponent {
+@connect(mapStateToProps)
+class ContentListScreen extends PureComponent<ReturnType<typeof mapStateToProps>, any> {
   static propTypes = {
     orientation: PropTypes.string.isRequired,
     brightness: PropTypes.number.isRequired,

@@ -1,9 +1,10 @@
+import { RootState } from 'store';
 import { connect } from 'react-redux';
 import Component from './component';
 import { configActions } from '@';
 import { goToIndex } from '../actions';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: RootState) => ({
   mode: state.config.get('mode'),
   index: state.comic.getIn(['detail', 'index']),
 });

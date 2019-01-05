@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { PureComponent, ReactElement } from 'react';
 import { Header } from 'react-native-elements';
 import PropTypes from 'prop-types';
 import { StatusBar } from 'react-native';
@@ -17,8 +17,16 @@ const outerContainerStyles = {
   height,
   borderBottomWidth: 0,
 };
-
-class HeaderComponent extends PureComponent {
+interface IProps {
+  title?: string;
+  isNoBack?: boolean;
+  customTitle?: string;
+  customBackgroundColor?: string;
+  rightComponent?: ReactElement<{}>;
+}
+class HeaderComponent extends PureComponent<IProps> {
+  static statusBarHeight = statusBarHeight;
+  static height = height;
   static propTypes = {
     isNoBack: PropTypes.bool,
     title: PropTypes.string,
@@ -41,7 +49,7 @@ class HeaderComponent extends PureComponent {
     } = this.props;
     return (
       <Header
-        leftComponent={isNoBack ? null : <LeftButton />}
+        leftComponent={isNoBack ? undefined : <LeftButton />}
         centerComponent={{ text: customTitle || title, style: centerTextStyle }}
         outerContainerStyles={{
           backgroundColor: customBackgroundColor || brand_primary,
@@ -53,6 +61,4 @@ class HeaderComponent extends PureComponent {
   }
 }
 
-HeaderComponent.statusBarHeight = statusBarHeight;
-HeaderComponent.height = height;
 export default HeaderComponent;

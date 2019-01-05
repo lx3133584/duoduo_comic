@@ -23,21 +23,22 @@ export const changePassword = ({
   oldPassword,
   password,
   rePassword,
-}) => http.put('password', { old_password: oldPassword, password, 're-password': rePassword }); // 修改密码
+}) => http.put('password', { 'old_password': oldPassword, password, 're-password': rePassword }); // 修改密码
 export const loginLocal = ({ username, password }) => http.post('passport/local', { username, password }); // 登录local
 export const registerLocal = ({ username, password, rePassword }) => http.post('user', {
-  username, password, 're-password': rePassword, tel: '', name: '', email: '', avatar: '',
+  username, password, 're-password': rePassword, 'tel': '', 'name': '', 'email': '', 'avatar': '',
 }); // 注册local
 export const logout = () => http.delete('logout'); // 注销
 // 漫画
 export const fetchComicDetail = id => http.get(`comic/${id}/detail`); // 漫画详情
 export const fetchComicList = id => http.get(`comic/${id}/list`); // 漫画列表
+interface IFetchContentList { id: number; page?: string; all?: boolean | number; }
 export const fetchContentList = ({
   id,
   page,
   all,
-}) => { // 漫画内容
-  const params = {};
+}: IFetchContentList) => { // 漫画内容
+  const params = {} as IFetchContentList;
   if (page) params.page = page;
   if (all) params.all = 1;
   return http.get(`comic/content/${id}`, { params });

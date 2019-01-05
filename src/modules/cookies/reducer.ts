@@ -6,6 +6,7 @@ const initialState = Immutable.Record({
   csrfToken: '',
   SESS: '',
 })();
+export type StateType = typeof initialState;
 
 export default handleActions({
   [`${getAllCookies}_FULFILLED`]: (state, action: any) => state.withMutations((map) => {

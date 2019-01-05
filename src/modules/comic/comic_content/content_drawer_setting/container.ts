@@ -1,7 +1,8 @@
+import { RootState } from 'store';
 import { connect } from 'react-redux';
 import Component from './component';
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: RootState) => ({
   orientation: state.config.get('orientation'),
 });
 

@@ -5,12 +5,12 @@ import { comicDetailActions } from '@/comic';
 import { settingCenterActions } from '@/user';
 import { statCount } from 'utils';
 
-function findIndex(list, id) { // 通过id找到index
+function findIndex(list: Immutable.List<Immutable.Map<'id', number>>, id: number) { // 通过id找到index
   return list.findIndex((item) => item.get('id') === id);
 }
 
-function formatMap(list, extraItem) { // 格式化数组 -> 以id为key的Map
-  return Immutable.Map().withMutations((m) => {
+function formatMap<T extends IItem>(list: T[], extraItem: IData) { // 格式化数组 -> 以id为key的Map
+  return Immutable.Map<string, any>().withMutations((m) => {
     list.forEach((item) => {
       m.set(item.id || item.index, Immutable.Map({
         ...item,
@@ -33,10 +33,11 @@ function computeParentStatus(map) { // 统计子元素各状态数量计算父�
 }
 
 const initialState = Immutable.Record({
-  favorites_list: Immutable.List(),
-  history_list: Immutable.List(),
+  favorites_list: Immutable.List<Comic>(),
+  history_list: Immutable.List<Comic>(),
   download_list: Immutable.List(),
 })();
+export type StateType = typeof initialState;
 export default handleActions({
   [`${favoritesListActions.getFavoritesList}_FULFILLED`]:
     (state, action: any) => state.set('favorites_list', Immutable.List(action.payload.data)),

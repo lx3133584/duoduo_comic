@@ -4,8 +4,9 @@ import { searchListActions } from '@/search';
 
 const initialState = Immutable.Record({
   keyword: '',
-  list: Immutable.List(),
+  list: Immutable.List<Comic>(),
 })();
+export type StateType = typeof initialState;
 export default handleActions({
   [`${searchListActions.getSearchList}_FULFILLED`]: (state, action: any) => state.withMutations((map) => {
     if (!action.payload.page) {

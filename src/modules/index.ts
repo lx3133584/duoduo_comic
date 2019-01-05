@@ -7,11 +7,13 @@ export {
   SettingCenterScreen,
   settingCenterActions,
   userReducer,
+  UserStateType,
   LoginNowButton,
 } from './user';
 export {
   SearchListScreen,
   searchReducer,
+  SearchStateType,
   LongList,
   LongListItem,
   LongListLoadingFooter,
@@ -24,6 +26,7 @@ export {
   DownloadSelectScreen,
   favoritesListActions,
   favoritesReducer,
+  FavoritesStateType,
   Modal,
 } from './favorites';
 export {
@@ -31,19 +34,23 @@ export {
   ComicContentScreen,
   ComicContentListDrawerScreen,
   comicReducer,
+  ComicStateType,
   LoadingPage,
 } from './comic';
 export {
   cookiesReducer,
+  CookiesStateType,
   cookiesActions,
 } from './cookies';
 export {
   configReducer,
+  ConfigStateType,
   configActions,
 } from './config';
 export {
   DiscoveryListScreen,
   RankItemListScreen,
   ClassItemListScreen,
+  DiscoveryStateType,
   discoveryReducer,
 } from './discovery';

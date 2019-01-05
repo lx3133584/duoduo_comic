@@ -2,7 +2,7 @@ import axios from 'axios';
 import Toast from 'react-native-root-toast';
 // import { Actions } from 'react-native-router-flux';
 import baseURL from './base_url';
-import store from 'store';
+import store, { RootState } from 'store';
 import { cookiesActions } from '@';
 
 axios.defaults.timeout = 60000; // 响应时间
@@ -11,7 +11,7 @@ axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8'; 
 axios.defaults.baseURL = `${baseURL}/`; // 配置接口地址
 
 function getCsrf() {
-  const state = store.getState();
+  const state: RootState = store.getState();
   return state.cookies.get('csrfToken');
 }
 function getCookies() {

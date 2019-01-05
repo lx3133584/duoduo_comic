@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 
 import Entypo from 'react-native-vector-icons/Entypo';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import { Icon } from 'react-native-vector-icons/Icon';
 
 const ICON_SIZE = 20;
 
-function createIcon(IconComponent, name) {
-  const Icon = ({ focused, activeTintColor, inactiveTintColor }) => (
+function createIcon(IconComponent: typeof Icon, name: string) {
+  const IconC = ({ focused, activeTintColor, inactiveTintColor }:
+    { focused: boolean; activeTintColor: string; inactiveTintColor: string }) => (
     <IconComponent name={name} size={ICON_SIZE} color={focused ? activeTintColor : inactiveTintColor} />
   );
   Icon.propTypes = {
@@ -15,7 +17,7 @@ function createIcon(IconComponent, name) {
     activeTintColor: PropTypes.string.isRequired,
     inactiveTintColor: PropTypes.string.isRequired,
   };
-  return Icon;
+  return IconC;
 }
 
 export const BookIcon = createIcon(Entypo, 'book');

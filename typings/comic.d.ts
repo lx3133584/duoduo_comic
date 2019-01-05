@@ -14,6 +14,7 @@ interface Comic {
   score_number: number
   score: number
   class_id?: number
+  index?: number
 }
 interface ImageSize {
   width: number

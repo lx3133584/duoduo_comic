@@ -1,7 +1,8 @@
+import { RootState } from 'store';
 import { createSelector } from 'reselect';
 
-const listSelector = (state) => state.comic.get('list');
-const chapterIdSelector = (state) => state.comic.getIn(['detail', 'chapter_id']);
+const listSelector = (state: RootState) => state.comic.get('list');
+const chapterIdSelector = (state: RootState) => state.comic.getIn(['detail', 'chapter_id']);
 const chaptersSelector = createSelector(
   listSelector,
   (list) => {
@@ -10,7 +11,7 @@ const chaptersSelector = createSelector(
       chapters = chapters.concat(data);
     });
     return chapters;
-  },
+  }
 );
 const indexSelector = createSelector(
   [chaptersSelector, chapterIdSelector],
@@ -20,9 +21,9 @@ const indexSelector = createSelector(
       if (item.id === id) cur_index = index;
     });
     return cur_index;
-  },
+  }
 );
 export default (step) => createSelector(
   [chaptersSelector, indexSelector],
-  (chapters, index) => chapters[index + step],
+  (chapters, index) => chapters[index + step]
 );

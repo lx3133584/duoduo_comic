@@ -3,4 +3,4 @@ export {
 } from './comic_detail';
 export { Screen as ComicContentScreen, comicContentActions } from './comic_content';
 export { Screen as ComicContentListDrawerScreen } from './comic_content_list_drawer';
-export { default as comicReducer } from './reducer';
+export { default as comicReducer, StateType as ComicStateType } from './reducer';

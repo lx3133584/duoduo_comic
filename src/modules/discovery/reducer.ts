@@ -4,11 +4,12 @@ import { discoveryListActions, rankItemListActions, classItemListActions } from 
 
 const initialState = Immutable.Record({
   class_item_id: 1,
-  class_list: Immutable.List(),
-  class_item_list: Immutable.List(),
+  class_list: Immutable.List<Comic.ClassItem>(),
+  class_item_list: Immutable.List<Comic>(),
   rank_item_type: 0,
-  rank_item_list: Immutable.List(),
+  rank_item_list: Immutable.List<Comic>(),
 })();
+export type StateType = typeof initialState;
 
 export default handleActions({
   [`${discoveryListActions.getClassList}_FULFILLED`]:

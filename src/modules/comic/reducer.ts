@@ -6,15 +6,16 @@ import { comicDetailActions, comicContentActions } from '@/comic';
 //   detail: Immutable.List
 // }>
 const initialState = Immutable.Record({
-  detail: Immutable.Map(),
-  list: Immutable.List(),
-  content: Immutable.List(),
+  detail: Immutable.Map<keyof Comic, Comic[keyof Comic]>(),
+  list: Immutable.List<Comic.ChapterItem>(),
+  content: Immutable.List<Comic.ContentItem>(),
   content_total: 0,
   is_show_footer: false, // 标志是否显示footer(阅读完成，前往下一章)
-  pre_content: Immutable.List(),
+  pre_content: Immutable.List<Comic.ContentItem>(),
   pre_content_total: 0,
   go_to_flag: false, // 标志go_to_index被触发
 })();
+export type StateType = typeof initialState;
 export default handleActions({
   [`${comicDetailActions.getComicDetail}_PENDING`]: (state) => state.withMutations((map) => map
     .update('detail', (detail) => detail.clear())

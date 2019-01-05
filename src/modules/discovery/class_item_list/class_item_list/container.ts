@@ -1,8 +1,9 @@
+import { RootState } from 'store';
 import { connect } from 'react-redux';
 import { getClassItemList } from '../actions';
 import Component from './component';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: RootState) => ({
   list: state.discovery.get('class_item_list'),
 });
 

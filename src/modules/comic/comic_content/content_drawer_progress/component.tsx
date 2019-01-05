@@ -25,8 +25,19 @@ const thumbTouchSize = {
   width: 25,
   height: 25,
 };
-
-class ContentDrawerProgressComponent extends PureComponent {
+interface IItem {
+  id: number;
+  title: string;
+}
+interface IProps {
+  goIndex: (index: number) => void;
+  index: number;
+  width: number;
+  total: number;
+  prev: IItem;
+  next: IItem;
+}
+class ContentDrawerProgressComponent extends PureComponent<IProps> {
   static height = 50;
 
   static propTypes = {

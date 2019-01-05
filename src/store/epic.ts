@@ -96,9 +96,9 @@ const postHistoryEpic = (action$, store) => action$.pipe(
   combineLatest(netObservable$),
   scan(([queue], [data, isConnected]) => {
     let newQueue;
-    const index = queue.findIndex((item) => item.comic_id === data.comic_id);
-    if (!~index) newQueue = queue.push(data);
-    else newQueue = queue.set(index, data);
+    const index = queue!.findIndex((item) => item.comic_id === data.comic_id);
+    if (!~index) newQueue = queue!.push(data);
+    else newQueue = queue!.set(index, data);
     if (!isConnected) return [newQueue];
     return [newQueue.clear(), newQueue];
   }, [Immutable.List(), null]), // 第一个为任务队列(pending)，第二个参数为准备处理的任务(doing)

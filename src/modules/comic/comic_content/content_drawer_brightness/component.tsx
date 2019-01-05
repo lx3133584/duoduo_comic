@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import DeviceBrightness from 'react-native-device-brightness';
 import { brand_primary } from 'theme';
-import { switchBrightness } from '@/config/actions';
 
 const ICON_SIZE = 20;
 const ICON_COLOR = '#fff';
@@ -26,8 +25,12 @@ const thumbTouchSize = {
   width: 25,
   height: 25,
 };
-
-class ContentDrawerBrightnessComponent extends PureComponent {
+interface IProps {
+  switchBrightness: (value: number) => void;
+  brightness: number;
+  width: number;
+}
+class ContentDrawerBrightnessComponent extends PureComponent<IProps> {
   static propTypes = {
     switchBrightness: PropTypes.func.isRequired,
     brightness: PropTypes.number.isRequired,
@@ -43,13 +46,13 @@ class ContentDrawerBrightnessComponent extends PureComponent {
     DeviceBrightness.setBrightnessLevel(brightness);
   }
 
-  switchBrightness = (value) => {
+  switchBrightness = (value: number) => {
     const { switchBrightness } = this.props;
     DeviceBrightness.setBrightnessLevel(value);
     switchBrightness(value);
   }
 
-  increaseBrightness = (value) => {
+  increaseBrightness = (value: number) => {
     const { brightness } = this.props;
     let newValue = brightness + value;
     if (newValue > 1) newValue = 1;
