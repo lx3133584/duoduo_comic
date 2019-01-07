@@ -9,7 +9,7 @@ const comicIdSelector = (state: RootState) => state.comic.getIn(['detail', 'id']
 // const chapterIdSelector = (state, ownProps) => ownProps.chapter_id;
 const listMapSelector = createSelector(
   [downloadListSelector, comicIdSelector],
-  (list, comic_id) => list.find((i) => i.get('id') === comic_id, null, newMap).get('listMap', newMap)
+  (list, comic_id) => list.find((i) => i.get('id') === comic_id, null, newMap).get('listMap', newMap),
 );
 export default (chapterIdSelector) => createSelector(
   [listMapSelector, chapterIdSelector],
@@ -18,5 +18,5 @@ export default (chapterIdSelector) => createSelector(
     const map = chapter.get('contentMap', newMap);
     if (!map.size) return null;
     return map.toList().toJS();
-  }
+  },
 );

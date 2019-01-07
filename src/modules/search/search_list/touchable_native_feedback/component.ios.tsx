@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { SFC } from 'react';
 import PropTypes from 'prop-types';
 import { TouchableOpacity } from 'react-native';
 
-function TouchableOpacityComponent(props) {
+const TouchableOpacityComponent: SFC<object> = (props) => {
   const { children } = props;
   return (
     <TouchableOpacity
@@ -12,7 +12,7 @@ function TouchableOpacityComponent(props) {
       {children}
     </TouchableOpacity>
   );
-}
+};
 TouchableOpacityComponent.propTypes = {
   children: PropTypes.element.isRequired,
 };

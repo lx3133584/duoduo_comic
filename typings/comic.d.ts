@@ -27,11 +27,14 @@ declare namespace Comic {
     index: number
     size?: ImageSize
   }
+  interface CategoryItem {
+    id: number
+    name: string
+    data: ChapterItem[]
+  }
   interface ChapterItem {
     id: number
     title: string
-    category_id: number
-    name: string
   }
   interface ClassItem {
     id: number

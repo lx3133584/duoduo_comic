@@ -6,12 +6,8 @@ const chapterIdSelector = (state: RootState) => state.comic.getIn(['detail', 'ch
 const chaptersSelector = createSelector(
   listSelector,
   (list) => {
-    let chapters = [];
-    list.forEach(({ data }) => {
-      chapters = chapters.concat(data);
-    });
-    return chapters;
-  }
+    return list.flatMap(item => item.data);
+  },
 );
 const indexSelector = createSelector(
   [chaptersSelector, chapterIdSelector],
@@ -21,9 +17,9 @@ const indexSelector = createSelector(
       if (item.id === id) cur_index = index;
     });
     return cur_index;
-  }
+  },
 );
-export default (step) => createSelector(
+export default (step: number) => createSelector(
   [chaptersSelector, indexSelector],
-  (chapters, index) => chapters[index + step]
+  (chapters, index) => chapters.get(index + step),
 );

@@ -7,7 +7,7 @@ import { comicDetailActions, comicContentActions } from '@/comic';
 // }>
 const initialState = Immutable.Record({
   detail: Immutable.Map<keyof Comic, Comic[keyof Comic]>(),
-  list: Immutable.List<Comic.ChapterItem>(),
+  list: Immutable.List<Comic.CategoryItem>(),
   content: Immutable.List<Comic.ContentItem>(),
   content_total: 0,
   is_show_footer: false, // 标志是否显示footer(阅读完成，前往下一章)

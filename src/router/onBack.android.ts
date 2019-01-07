@@ -1,7 +1,6 @@
 import { Actions } from 'react-native-router-flux';
 import { BackHandler } from 'react-native';
 import Toast from 'react-native-root-toast';
-
 let canExit = false;
 export default () => {
   if (canExit) BackHandler.exitApp();

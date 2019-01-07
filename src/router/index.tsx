@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ComponentClass } from 'react';
 import {
   Scene,
   Router,
@@ -40,17 +40,18 @@ function onEnterFavorites() {
 }
 
 const { width } = Dimensions.get('window');
-
+const MyStack: Stack & ComponentClass<IData> = Stack;
+const MyTabs: Tabs & ComponentClass<IData> = Tabs;
 const RootRoute = () => (
   <Router backAndroidHandler={onBackPress}>
-    <Stack
+    <MyStack
       key="root"
       navBar={Header}
       transitionConfig={() => ({
         screenInterpolator: StackViewStyleInterpolator.forHorizontal,
       })}
     >
-      <Tabs
+      <MyTabs
         activeTintColor={brand_primary}
         inactiveTintColor="#7a7d81"
         activeBackgroundColor="#fff"
@@ -94,7 +95,7 @@ const RootRoute = () => (
           title="用户"
           hideNavBar
         />
-      </Tabs>
+      </MyTabs>
       <Scene
         key="login"
         component={LoginScreen}
@@ -159,15 +160,15 @@ const RootRoute = () => (
           title="漫画内容"
           hideNavBar
           onEnter={() => {
-            StatusBar.setHidden(true, true);
+            StatusBar.setHidden(true, 'fade');
           }}
           onExit={() => {
-            StatusBar.setHidden(false, true);
+            StatusBar.setHidden(false, 'fade');
             Actions.refresh();
           }}
         />
       </Drawer>
-    </Stack>
+    </MyStack>
   </Router>
 );
 
