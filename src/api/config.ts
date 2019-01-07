@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig, AxiosResponse, AxiosError } from 'axios';
 import Toast from 'react-native-root-toast';
 // import { Actions } from 'react-native-router-flux';
 import baseURL from './base_url';
@@ -11,7 +11,7 @@ axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8'; 
 axios.defaults.baseURL = `${baseURL}/`; // 配置接口地址
 
 function getCsrf() {
-  const state: RootState = store.getState();
+  const state: RootState = (store as any).getState();
   return state.cookies.get('csrfToken');
 }
 function getCookies() {
@@ -19,19 +19,19 @@ function getCookies() {
 }
 getCookies();
 
-function interceptorsRequestSuccess(config) {
+function interceptorsRequestSuccess(config: AxiosRequestConfig) {
   if (config.method !== 'get') {
     config.headers['x-csrf-token'] = getCsrf();
   }
   if (__DEV__) console.log(config.url, 'request:', config);
   return config;
 }
-function interceptorsResponseSuccess(response) {
+function interceptorsResponseSuccess(response: AxiosResponse) {
   if (response.headers['set-cookie']) getCookies();
   if (__DEV__) console.log(response.config.url, 'response:', response);
   return response.data;
 }
-function interceptorsResponseError(error) {
+function interceptorsResponseError(error: AxiosError) {
   if (__DEV__) console.log('error:', error.response);
   if (error.request && error.request.status === 401) {
     // Actions.login();

@@ -16,6 +16,6 @@ export const uploadUserAvatar =
 export const downloadImage = (url: string) => RNFetchBlob.config({
   fileCache: true,
   appendExt: 'jpg',
-}).fetch('GET', url).then(res => res.path());
+}).fetch('GET', url).then((res) => res.path());
 
 export const deleteImage = (path: string) => RNFetchBlob.fs.unlink(path);

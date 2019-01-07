@@ -1,6 +1,11 @@
 interface IData {
-  [key: string]: any
+  [key: string]: any;
 }
 interface IItem extends IData {
-  id: number,
+  id: number;
+}
+interface IResponse<T = any> {
+  status: boolean;
+  message: string;
+  data?: T
 }
