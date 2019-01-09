@@ -8,6 +8,7 @@ import {
   ContentDrawerProgress,
   ContentDrawerSetting,
 } from '..';
+import { ContainerType } from './container';
 
 const headerHeight = Header.height;
 const containStyle = {
@@ -16,6 +17,9 @@ const containStyle = {
   backgroundColor: 'rgba(0, 0, 0, 0.85)',
   zIndex: 2,
 };
+type IContainStyle = {
+  position?: 'absolute' | 'relative';
+} & typeof containStyle;
 
 const bottom_map = {
   main: {
@@ -31,12 +35,18 @@ const bottom_map = {
     height: ContentDrawerSetting.height,
   },
 };
-
-class ContentDrawerManagerComponent extends PureComponent {
+interface IProps extends ContainerType {
+  show: boolean;
+  title: string;
+}
+class ContentDrawerManagerComponent extends PureComponent<IProps> {
   static propTypes = {
     show: PropTypes.bool.isRequired,
     width: PropTypes.number.isRequired,
   };
+
+  topComponent?;
+  bottomComponent?;
 
   state = {
     bottomType: 'main',
@@ -47,7 +57,7 @@ class ContentDrawerManagerComponent extends PureComponent {
     if (nextProps.show !== show) this.toggleDrawer();
   }
 
-  _getRef = (type) => (ref) => this[type] = ref;
+  _getRef = (type: 'topComponent' | 'bottomComponent') => (ref) => this[type] = ref;
 
   toggleDrawer = () => {
     const { bottomType } = this.state;
@@ -60,7 +70,7 @@ class ContentDrawerManagerComponent extends PureComponent {
     this.bottomComponent.transitionTo({ bottom: show ? -height : 0, height, width }, duration, ease);
   }
 
-  switchBottomType = (type) => {
+  switchBottomType = (type: keyof typeof bottom_map) => {
     const { height } = bottom_map[type];
     const duration = 200;
     this.topComponent.transitionTo({ top: -headerHeight }, duration, 'ease-out');
@@ -75,14 +85,14 @@ class ContentDrawerManagerComponent extends PureComponent {
     return ([
       <Animatable.View
         ref={this._getRef('topComponent')}
-        style={[containStyle, { top: -headerHeight, height: headerHeight, width }]}
+        style={[containStyle as IContainStyle, { top: -headerHeight, height: headerHeight, width }]}
         key="top"
       >
         <ContentHeader {...this.props} />
       </Animatable.View>,
       <Animatable.View
         ref={this._getRef('bottomComponent')}
-        style={[containStyle, { bottom: -height, height, width }]}
+        style={[containStyle as IContainStyle, { bottom: -height, height, width }]}
         key="bottom"
       >
         <Component switchBottomType={this.switchBottomType} toggleDrawer={this.toggleDrawer} />

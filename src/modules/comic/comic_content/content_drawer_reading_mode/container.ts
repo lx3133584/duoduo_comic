@@ -1,4 +1,5 @@
 import { RootState } from 'store';
+import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import Component from './component';
 import { configActions } from '@';
@@ -9,7 +10,7 @@ const mapStateToProps = (state: RootState) => ({
   index: state.comic.getIn(['detail', 'index']),
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch: Dispatch) => ({
   switchReadingMode(params) {
     return dispatch(configActions.switchReadingMode(params));
   },
@@ -17,6 +18,8 @@ const mapDispatchToProps = (dispatch) => ({
     return dispatch(goToIndex(params));
   },
 });
+
+export type ContainerType = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>;
 
 export default connect(
   mapStateToProps,

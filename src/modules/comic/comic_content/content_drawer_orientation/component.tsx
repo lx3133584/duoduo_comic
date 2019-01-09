@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Orientation from 'react-native-orientation';
 import { ContentDrawerSettingCheckbox } from '..';
+import { ContainerType } from './container';
 
 const ContainStyled = styled.view`
   flex-direction: row;
@@ -19,8 +20,10 @@ const options = [
     value: 'horizon',
   },
 ];
-
-class ContentDrawerOrientationComponent extends PureComponent {
+interface IProps extends ContainerType {
+  toggleDrawer(): void;
+}
+class ContentDrawerOrientationComponent extends PureComponent<IProps> {
   static propTypes = {
     switchOrientation: PropTypes.func.isRequired,
     switchReadingMode: PropTypes.func.isRequired,
@@ -28,7 +31,7 @@ class ContentDrawerOrientationComponent extends PureComponent {
     orientation: PropTypes.string.isRequired,
   };
 
-  switchOrientation = (value) => {
+  switchOrientation = (value: 'vertical' | 'horizon') => {
     const {
       switchOrientation, toggleDrawer, switchReadingMode,
     } = this.props;

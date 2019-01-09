@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import DeviceBrightness from 'react-native-device-brightness';
 import { brand_primary } from 'theme';
+import { ContainerType } from './container';
 
 const ICON_SIZE = 20;
 const ICON_COLOR = '#fff';
@@ -25,12 +26,7 @@ const thumbTouchSize = {
   width: 25,
   height: 25,
 };
-interface IProps {
-  switchBrightness: (value: number) => void;
-  brightness: number;
-  width: number;
-}
-class ContentDrawerBrightnessComponent extends PureComponent<IProps> {
+class ContentDrawerBrightnessComponent extends PureComponent<ContainerType> {
   static propTypes = {
     switchBrightness: PropTypes.func.isRequired,
     brightness: PropTypes.number.isRequired,

@@ -26,7 +26,7 @@ const mapStateToProps = (state: RootState) => ({
 
 @wrapWithLoading
 @connect(mapStateToProps)
-class ContentListScreen extends PureComponent<ReturnType<typeof mapStateToProps>, any> {
+class ContentListScreen extends PureComponent<ReturnType<typeof mapStateToProps>, { show_drawer: boolean }> {
   static propTypes = {
     orientation: PropTypes.string.isRequired,
     brightness: PropTypes.number.isRequired,

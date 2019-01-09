@@ -13,7 +13,7 @@ export { default as Time } from './time/component';
 export { default as Title } from './title/component';
 export { default as ReadingProgress } from './reading_progress/container';
 export { default as NetStatus } from './net_status/component';
-export { default as ContentDrawerIcon } from './content_drawer_icon/component';
+export { default as ContentDrawerIcon, IContentDrawerIconProps } from './content_drawer_icon/component';
 export { default as ContentDrawerMenu } from './content_drawer_menu/component';
 export { default as ContentDrawerProgress } from './content_drawer_progress/container';
 export { default as ContentDrawerBrightness } from './content_drawer_brightness/container';

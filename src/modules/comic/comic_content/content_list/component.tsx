@@ -2,9 +2,15 @@ import React, { Component } from 'react';
 // import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { ContentListScroll, ContentListPageTurning, Spin } from '..';
+import { ContainerType } from './container';
 
 const page_size = 5;
-class ContentListComponent extends Component {
+interface IState {
+  page: number;
+  loadingPage: boolean;
+}
+type Ref = typeof ContentListScroll | typeof ContentListPageTurning;
+class ContentListComponent extends Component<ContainerType, IState> {
   static propTypes = {
     // pre_content: ImmutablePropTypes.list.isRequired,
     content_index: PropTypes.number,
@@ -26,15 +32,13 @@ class ContentListComponent extends Component {
     detail_chapter_id: 0,
     chapter_id: 0,
     content_cache: null,
-  }
+  };
 
-  constructor() {
-    super();
-    this.chapter_id = 0; // 本章节ID
-    this.init_page = 0; // 初始化时的页码
-  }
+  chapter_id = 0; // 本章节ID
+  init_page = 0; // 初始化时的页码
+  content_list_ref?: Ref = undefined;
 
-  state = {
+  state: IState = {
     page: 0, // 续读页码
     loadingPage: false, // 正在加载页面, 显示Spin
   };
@@ -43,7 +47,7 @@ class ContentListComponent extends Component {
     this.init();
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
+  shouldComponentUpdate(nextProps: ContainerType, nextState: IState) {
     const { mode, go_to_flag, chapter_id } = this.props;
     const { page, loadingPage } = this.state;
     return nextProps.mode !== mode
@@ -53,7 +57,7 @@ class ContentListComponent extends Component {
       || nextState.loadingPage !== loadingPage;
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps: ContainerType) {
     const {
       go_to_flag, chapter_id, mode, content_index,
     } = this.props;
@@ -65,23 +69,23 @@ class ContentListComponent extends Component {
     }
   }
 
-  onRefresh = (page, init) => {
+  onRefresh = (page: number, init: boolean) => {
     const { saveIndex } = this.props;
     if (!init) return;
     saveIndex(0);
     this.init_page = 0;
     this.setState({ page: 0 });
-  };
+  }
 
-  onFetch = (page, init = false) => {
+  onFetch = (page: number, init = false) => {
     const { getContent, content_cache } = this.props;
     if (content_cache) return null;
     return getContent({
       id: this.chapter_id, page, init, pre: false,
     });
-  };
+  }
 
-  goPage = async ({ page = 0, init }) => {
+  goPage = async ({ page = 0, init }: { page?: number; init?: boolean }) => {
     init && (this.init_page = page);
     this.setState({ loadingPage: true });
     try {
@@ -89,32 +93,32 @@ class ContentListComponent extends Component {
     } finally {
       this.setState({ loadingPage: false });
     }
-  };
+  }
 
   // 调用滚动列表的滚动方法
-  scrollTo = (index) => {
+  scrollTo = (index: number) => {
     const { mode } = this.props;
     if (mode !== 'scroll') return;
     if (!this.content_list_ref || !this.content_list_ref.scrollTo) return;
     setTimeout(() => {
       this.content_list_ref.scrollTo(index);
     }, 0);
-  };
+  }
 
   // 根据index计算page
-  computePage = index => ~~((index + 1) / (page_size + 0.000001));
+  computePage = (index: number) => ~~((index + 1) / (page_size + 0.000001));
 
   // 增加页码
-  increasePage = (newPage) => {
+  increasePage = (newPage?: number) => {
     if (newPage !== undefined) { // 传入参数则为设定页码
       this.setState({ page: newPage });
     } else {
       this.setState(({ page }) => ({ page: page + 1 }));
     }
-  };
+  }
 
   // 跳页
-  goToIndex = async (index) => {
+  goToIndex = async (index: number) => {
     const { content_cache } = this.props;
     const page = this.computePage(index);
     const offset = index % page_size;
@@ -124,9 +128,9 @@ class ContentListComponent extends Component {
       await this.goPage({ page, init: true });
     }
     this.scrollTo(content_cache ? index : offset);
-  };
+  }
 
-  _getRef = ref => this.content_list_ref = ref;
+  _getRef = (ref: Ref) => this.content_list_ref = ref;
 
   async update() {
     const {

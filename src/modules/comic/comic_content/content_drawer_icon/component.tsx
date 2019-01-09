@@ -30,8 +30,12 @@ const icon_map = {
   list: ListIcon,
   progress: SliderIcon,
 };
-
-function ContentDrawerIconComponent({ icon_type, title, onPress }) {
+export interface IContentDrawerIconProps {
+  icon_type: keyof typeof icon_map;
+  title: string;
+  onPress(): any;
+}
+function ContentDrawerIconComponent({ icon_type, title, onPress }: IContentDrawerIconProps) {
   const Icon = icon_map[icon_type];
   return (
     <TouchableOpacity onPress={onPress}>
@@ -52,6 +56,6 @@ ContentDrawerIconComponent.propTypes = {
 ContentDrawerIconComponent.defaultProps = {
   icon_type: 'setting',
   title: '设置',
-  onPress: (f) => f,
+  onPress: (f: any) => f,
 };
 export default ContentDrawerIconComponent;

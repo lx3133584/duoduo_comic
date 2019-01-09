@@ -1,5 +1,5 @@
 import Immutable from 'immutable';
-import { createSelector } from 'reselect';
+import { createSelector, Selector, ParametricSelector } from 'reselect';
 import { RootState } from 'store';
 
 const newMap = Immutable.Map();
@@ -11,7 +11,8 @@ const listMapSelector = createSelector(
   [downloadListSelector, comicIdSelector],
   (list, comic_id) => list.find((i) => i.get('id') === comic_id, null, newMap).get('listMap', newMap),
 );
-export default (chapterIdSelector) => createSelector(
+export default (
+  chapterIdSelector: (state: RootState, ownProps: any) => number | undefined) => createSelector(
   [listMapSelector, chapterIdSelector],
   (list, chapter_id) => {
     const chapter = list.get(chapter_id, newMap);

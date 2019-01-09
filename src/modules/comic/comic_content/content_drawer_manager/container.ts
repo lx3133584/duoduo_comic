@@ -7,6 +7,8 @@ const mapStateToProps = (state: RootState) => ({
   width: windowSizeSelector(state).width,
 });
 
+export type ContainerType = ReturnType<typeof mapStateToProps>;
+
 export default connect(
   mapStateToProps,
   null,

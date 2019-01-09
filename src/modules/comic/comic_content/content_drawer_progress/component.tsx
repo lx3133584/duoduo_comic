@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 import { Actions } from 'react-native-router-flux';
 import Feather from 'react-native-vector-icons/Feather';
 import { brand_primary } from 'theme';
+import { ContainerType } from './container';
 
 const ICON_SIZE = 20;
 const ICON_COLOR = '#fff';
@@ -25,19 +26,7 @@ const thumbTouchSize = {
   width: 25,
   height: 25,
 };
-interface IItem {
-  id: number;
-  title: string;
-}
-interface IProps {
-  goIndex: (index: number) => void;
-  index: number;
-  width: number;
-  total: number;
-  prev: IItem;
-  next: IItem;
-}
-class ContentDrawerProgressComponent extends PureComponent<IProps> {
+class ContentDrawerProgressComponent extends PureComponent<ContainerType> {
   static height = 50;
 
   static propTypes = {
@@ -56,11 +45,11 @@ class ContentDrawerProgressComponent extends PureComponent<IProps> {
   };
 
   static defaultProps = {
-    prev: null,
-    next: null,
+    prev: undefined,
+    next: undefined,
   };
 
-  goIndex = (value) => {
+  goIndex = (value: number) => {
     const { goIndex } = this.props;
     goIndex(value);
   }
@@ -75,7 +64,7 @@ class ContentDrawerProgressComponent extends PureComponent<IProps> {
     this.goChapter(next);
   }
 
-  goChapter = (data) => {
+  goChapter = (data?: Comic.ChapterItem) => {
     if (!data) return;
     const { id, title } = data;
     Actions.replace('comicContent', { chapter_id: id, title, pre: false });

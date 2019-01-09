@@ -1,4 +1,5 @@
 import { RootState } from 'store';
+import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import windowSizeSelector from 'selectors/window_size';
 import findNextChapterSelector from 'selectors/find_next_chapter';
@@ -16,11 +17,12 @@ const mapStateToProps = (state: RootState) => ({
   width: windowSizeSelector(state).width,
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  goIndex(params) {
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  goIndex(params: number) {
     return dispatch(goToIndex(params));
   },
 });
+export type ContainerType = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>;
 
 export default connect(
   mapStateToProps,

@@ -2,13 +2,16 @@ import React, { PureComponent } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { ContentDrawerBrightness, ContentDrawerOrientation, ContentDrawerReadingMode } from '..';
+import { ContainerType } from './container';
 
 const ContainStyled = styled.view`
   justify-content: space-around;
   align-items: center;
 `;
-
-class ContentDrawerSettingComponent extends PureComponent {
+interface IProps extends ContainerType {
+  toggleDrawer(): void;
+}
+class ContentDrawerSettingComponent extends PureComponent<IProps> {
   static height = 200;
 
   static propTypes = {

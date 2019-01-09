@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { PureComponent, Component, ComponentType } from 'react';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 import Immutable from 'immutable';
@@ -8,13 +7,20 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 interface ILoadingState {
   loading: boolean;
 }
+interface ILoadingProps extends ILoadingState {
+  hideLoading(bool: boolean): void;
+}
 // 提供loading状态的高阶组件
-export function wrapWithLoading<P>(WrappedComponent: ComponentType<P>) {
-  class NewComponent extends PureComponent<P, ILoadingState> {
+export function wrapWithLoading<WrappedProps extends ILoadingProps>(WrappedComponent: ComponentType<WrappedProps>) {
+  type HocProps = Subtract<WrappedProps, ILoadingProps>;
+  class NewComponent extends PureComponent<HocProps, ILoadingState> {
+    static displayName = `wrapWithLoading(${WrappedComponent.name})`;
+    static readonly WrappedComponent = WrappedComponent;
+
     state: ILoadingState = {
       loading: true,
     };
-    constructor(props) {
+    constructor(props: HocProps) {
       super(props);
       this.hideLoading = this.hideLoading.bind(this);
     }
@@ -25,7 +31,13 @@ export function wrapWithLoading<P>(WrappedComponent: ComponentType<P>) {
 
     render() {
       const { loading } = this.state;
-      return <WrappedComponent {...this.props} loading={loading} hideLoading={this.hideLoading} />;
+      return (
+        <WrappedComponent
+          {...this.props}
+          loading={loading}
+          hideLoading={this.hideLoading}
+        />
+      );
     }
   }
   return hoistNonReactStatics(NewComponent, WrappedComponent);
@@ -42,6 +54,8 @@ type ImmutableListItem = Immutable.List<IItem>;
 // 提供复选框选择的高阶组件
 export function wrapWithCheckBoxData<P>(WrappedComponent: ComponentType<P>) {
   class NewComponent extends Component<P, ICheckboxState> {
+    static displayName = `wrapWithCheckBoxData(${WrappedComponent.name})`;
+    static readonly WrappedComponent = WrappedComponent;
     state: ICheckboxState = {
       checkboxData: Immutable.Map(),
     };

@@ -1,3 +1,5 @@
+import { RootState } from 'store';
+import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import getCache from 'selectors/get_cache';
 import Component from './component';
@@ -7,10 +9,14 @@ import {
   saveContentIndex,
   useTheContentCache,
 } from '../actions';
-
-const chapterIdSelector = (state, ownProps) => ownProps.chapter_id;
+interface IOwnProps {
+  chapter_id: number;
+  pre?: boolean;
+  title: string;
+}
+const chapterIdSelector = (state: RootState, ownProps: IOwnProps) => ownProps.chapter_id;
 const cacheSelector = getCache(chapterIdSelector);
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = (state: RootState, ownProps: IOwnProps) => ({
   detail_chapter_id: state.comic.getIn(['detail', 'chapter_id']),
   content_index: state.comic.getIn(['detail', 'index']),
   pre_content: state.comic.get('pre_content'),
@@ -19,21 +25,21 @@ const mapStateToProps = (state, ownProps) => ({
   content_cache: cacheSelector(state, ownProps),
 });
 
-const mapDispatchToProps = dispatch => ({
-  getContent(params) {
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  getContent(params: any) {
     return dispatch(getContentList(params));
   },
-  preContent(params) {
+  preContent(params: any) {
     return dispatch(preContentList(params));
   },
-  saveIndex(params) {
+  saveIndex(params: any) {
     return dispatch(saveContentIndex(params));
   },
-  useCache(params) {
+  useCache(params: any) {
     return dispatch(useTheContentCache(params));
   },
 });
-
+export type ContainerType = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps> & IOwnProps;
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
