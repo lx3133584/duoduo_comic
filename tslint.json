@@ -34,9 +34,6 @@
         "newline-before-return": false,
         "no-any": false,
         "no-empty-interface": false,
-        "no-import-side-effect": [
-            true
-        ],
         "no-inferrable-types": [
             true,
             "ignore-params",
