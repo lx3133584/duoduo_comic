@@ -11,7 +11,7 @@ const centerTextStyle = {
   color: '#fff',
   fontSize: 16,
 };
-const outerContainerStyles = {
+const containerStyle = {
   paddingTop: statusBarHeight,
   paddingBottom: 0,
   height,
@@ -51,9 +51,9 @@ class HeaderComponent extends PureComponent<IProps> {
       <Header
         leftComponent={isNoBack ? undefined : <LeftButton />}
         centerComponent={{ text: customTitle || title, style: centerTextStyle }}
-        outerContainerStyles={{
+        containerStyle={{
           backgroundColor: customBackgroundColor || brand_primary,
-          ...outerContainerStyles,
+          ...containerStyle,
         }}
         rightComponent={rightComponent}
       />
