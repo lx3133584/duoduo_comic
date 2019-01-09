@@ -103,7 +103,7 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
-        versionName "2.0.0"
+        versionName "2.0.1"
         renderscriptTargetApi 23
         renderscriptSupportModeEnabled true
         ndk {
