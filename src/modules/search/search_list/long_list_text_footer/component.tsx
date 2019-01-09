@@ -2,10 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-const ContainStyled = styled.view`
+const ContainStyled = styled.View`
   margin: 10px 0;
 `;
-const TextStyled = styled.text`
+const TextStyled = styled.Text`
   text-align: center;
 `;
 

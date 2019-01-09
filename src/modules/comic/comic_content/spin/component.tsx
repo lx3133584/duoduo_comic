@@ -6,7 +6,7 @@ import { Dimensions } from 'react-native';
 
 const { height, width } = Dimensions.get('window');
 
-const ContainerStyled = styled.view`
+const ContainerStyled = styled.View`
   height: ${height};
   width: ${width};
   justify-content: center;

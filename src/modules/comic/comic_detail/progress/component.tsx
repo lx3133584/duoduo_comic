@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Spinner from 'react-native-spinkit';
 import { brand_primary } from 'theme';
 
-const ContainStyled = styled.view`
+const ContainStyled = styled.View`
   padding: 50px 0;
   justify-content: center;
   align-items: center;

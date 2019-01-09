@@ -5,16 +5,16 @@ import { Badge } from 'react-native-elements';
 import { LongListItem } from '@';
 import { green, red } from 'theme';
 
-const ContainStyled = styled.view`
+const ContainStyled = styled.View`
   flex-direction: row;
   padding: 8px;
 `;
-const DescStyled = styled.text`
+const DescStyled = styled.Text`
   color: #999;
   font-size: 14px;
   margin: 5px 0;
 `;
-const AuthorStyled = styled.text`
+const AuthorStyled = styled.Text`
   color: #666;
   font-size: 12px;
   margin-right: 5px;

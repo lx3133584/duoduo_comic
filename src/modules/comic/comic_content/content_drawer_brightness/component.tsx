@@ -14,7 +14,7 @@ const ICON_COLOR = '#fff';
 const IncreaseBrightnessIcon = () => <Ionicons name="ios-sunny-outline" size={ICON_SIZE} color={ICON_COLOR} />;
 const DecreaseBrightnessIcon = () => <Ionicons name="ios-sunny" size={ICON_SIZE} color={ICON_COLOR} />;
 
-const ContainStyled = styled.view`
+const ContainStyled = styled.View`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;

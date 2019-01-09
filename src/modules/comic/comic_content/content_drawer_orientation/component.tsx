@@ -5,7 +5,7 @@ import Orientation from 'react-native-orientation';
 import { ContentDrawerSettingCheckbox } from '..';
 import { ContainerType } from './container';
 
-const ContainStyled = styled.view`
+const ContainStyled = styled.View`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;

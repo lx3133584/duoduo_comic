@@ -8,7 +8,7 @@ import { brand_primary } from 'theme';
 const { width } = Dimensions.get('window');
 
 const height = 50;
-const LoadingContainStyled = styled.view`
+const LoadingContainStyled = styled.View`
   width: ${width};
   height: ${height};
   justify-content: center;

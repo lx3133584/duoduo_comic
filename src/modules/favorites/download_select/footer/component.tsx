@@ -8,7 +8,7 @@ import { brand_primary } from 'theme';
 const { width: screenWidth } = Dimensions.get('window');
 
 const height = 50;
-const ContainerStyled = styled.view`
+const ContainerStyled = styled.View`
   height: ${height};
   width: ${screenWidth};
   background-color: #fff;

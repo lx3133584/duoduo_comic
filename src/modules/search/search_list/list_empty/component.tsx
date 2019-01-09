@@ -5,13 +5,13 @@ import { Image } from 'react-native';
 
 import noresImg from './nores.png';
 
-const ContainStyled = styled.view`
+const ContainStyled = styled.View`
   flex: 1;
   justify-content: space-around;
   align-items: center;
   height: 280px;
 `;
-const DescStyled = styled.text`
+const DescStyled = styled.Text`
   color: #999;
   font-size: 14px;
 `;

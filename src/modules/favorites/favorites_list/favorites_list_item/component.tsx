@@ -8,18 +8,18 @@ import { Image } from '@';
 const { width } = Dimensions.get('window');
 
 const contentWidth = width / 3 - 25;
-const ContainStyled = styled.view`
+const ContainStyled = styled.View`
   margin: 5px 12px;
   width: ${contentWidth};
 `;
-const BottomStyled = styled.view`
+const BottomStyled = styled.View`
   margin-top: 8px;
 `;
-const TitleStyled = styled.text`
+const TitleStyled = styled.Text`
   color: #000;
   font-size: 12px;
 `;
-const DescStyled = styled.text`
+const DescStyled = styled.Text`
   color: #999;
   font-size: 10px;
 `;

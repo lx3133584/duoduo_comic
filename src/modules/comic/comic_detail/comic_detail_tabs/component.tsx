@@ -11,7 +11,7 @@ const initialLayout = {
   height: 0,
   width: Dimensions.get('window').width,
 };
-const ListStyled = styled.view`
+const ListStyled = styled.View`
   background-color: #fff;
   margin-top: 10px;
 `;

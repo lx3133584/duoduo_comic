@@ -14,7 +14,7 @@ import {
 } from '.';
 import { wrapWithLoading, wrapWithLoadingType } from 'utils';
 
-const ContainStyled = styled.view`
+const ContainStyled = styled.View`
   background-color: #282828;
 `;
 

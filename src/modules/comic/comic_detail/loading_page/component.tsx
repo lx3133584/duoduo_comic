@@ -7,7 +7,7 @@ import { brand_primary } from 'theme';
 
 const { width: clientWidth, height } = Dimensions.get('window');
 
-const ContainStyled = styled.view`
+const ContainStyled = styled.View`
   position: absolute;
   top: 0;
   left: 0;
@@ -17,12 +17,12 @@ const ContainStyled = styled.view`
   justify-content: center;
   align-items: center;
 `;
-const OffetStyled = styled.view`
+const OffetStyled = styled.View`
   padding-bottom: 50px;
   justify-content: center;
   align-items: center;
 `;
-const TextStyled = styled.text`
+const TextStyled = styled.Text`
   font-size: 14px;
   color: ${brand_primary};
   margin-top: 24px;

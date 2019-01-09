@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { ContentDrawerSettingCheckbox } from '..';
 import { ContainerType } from './container';
 
-const ContainStyled = styled.view`
+const ContainStyled = styled.View`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;

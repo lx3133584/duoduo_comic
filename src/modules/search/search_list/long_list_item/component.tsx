@@ -4,21 +4,21 @@ import styled from 'styled-components';
 import { Actions } from 'react-native-router-flux';
 import { Image, TouchableNativeFeedback } from '@/search/search_list';
 
-const ContainStyled = styled.view`
+const ContainStyled = styled.View`
   flex-direction: row;
   padding: 8px;
   background: #fff;
   height: 140px;
 `;
-const LeftStyled = styled.view`
+const LeftStyled = styled.View`
   width: 80px;
   padding: 5px;
 `;
-const RightStyled = styled.view`
+const RightStyled = styled.View`
   padding: 5px 0;
   padding-right: 100px;
 `;
-const TitleStyled = styled.text`
+const TitleStyled = styled.Text`
   color: #000;
   font-weight: bold;
   font-size: 16px;
@@ -27,7 +27,7 @@ const imageStyle = {
   width: 60,
   height: 100,
 };
-const WhiteContainStyled = styled.view`
+const WhiteContainStyled = styled.View`
   background: #fff;
 `;
 function LongListItem({

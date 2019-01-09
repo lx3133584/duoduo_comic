@@ -11,7 +11,7 @@ import { Header } from 'router';
 import { brand_primary } from 'theme';
 import { Avatar, ListItem } from '@/user';
 
-const ContainStyled = styled.view`
+const ContainStyled = styled.View`
   background: #fff;
 `;
 const itemContainStyle = {
@@ -20,15 +20,15 @@ const itemContainStyle = {
 const inputStyle = {
   color: '#666',
 };
-const TextStyled = styled.text`
+const TextStyled = styled.Text`
   color: ${brand_primary};
   font-size: 18px;
 `;
-const CancelTextStyled = styled.text`
+const CancelTextStyled = styled.Text`
   color: #666;
   font-size: 18px;
 `;
-const SaveTextStyled = styled.text`
+const SaveTextStyled = styled.Text`
   padding: 0 10px;
   color: #fff;
   font-size: 16px;

@@ -5,14 +5,14 @@ import { TouchableOpacity } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 
-const ContainStyled = styled.view`
+const ContainStyled = styled.View`
   height: 60px;
   width: 70px;
   justify-content: space-around;
   align-items: center;
 `;
 
-const TextStyled = styled.text`
+const TextStyled = styled.Text`
   color: #fff;
   font-size: 16px;
   text-align: center;

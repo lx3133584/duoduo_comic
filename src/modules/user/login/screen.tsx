@@ -6,7 +6,7 @@ import { Brand, LoginLocal } from '@/user/login';
 
 const { height } = Dimensions.get('window');
 
-const ContainStyled = styled.view`
+const ContainStyled = styled.View`
   min-height: ${height};
   background-color: #fff;
 `;

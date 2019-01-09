@@ -7,7 +7,7 @@ import * as CacheManager from 'react-native-http-cache2';
 import { Modal } from '@';
 import { ListItem } from '@/user/user_info';
 
-const ContainStyled = styled.view`
+const ContainStyled = styled.View`
   background: #fff;
 `;
 

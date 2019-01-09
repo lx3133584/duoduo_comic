@@ -12,16 +12,16 @@ import {
 } from 'theme';
 
 const { width: screenWidth } = Dimensions.get('window');
-const ContainStyled = styled.view`
+const ContainStyled = styled.View`
   flex-direction: row;
   padding: 8px;
 `;
-const BarContainStyled = styled.view`
+const BarContainStyled = styled.View`
   height: 24px;
   align-items: center;
   justify-content: center;
 `;
-const DescStyled = styled.text`
+const DescStyled = styled.Text`
   color: #999;
   font-size: 14px;
   margin: 5px 0;

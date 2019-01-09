@@ -5,11 +5,11 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import styled from 'styled-components';
 
-const ContainStyled = styled.view`
+const ContainStyled = styled.View`
   flex-direction: row;
   align-items: center;
 `;
-const TextStyled = styled.text`
+const TextStyled = styled.Text`
   color: #fff;
   font-size: 12px;
   margin-left: 5px;

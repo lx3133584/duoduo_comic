@@ -13,27 +13,27 @@ import { numberFormat } from 'utils';
 
 const { width } = Dimensions.get('window');
 
-const ContainStyled = styled.view`
+const ContainStyled = styled.View`
   height: 60px;
   background-color: #fff;
   justify-content: space-around;
   flex-direction: row;
   width: ${width};
 `;
-const CollectionContainStyled = styled.view`
+const CollectionContainStyled = styled.View`
   justify-content: center;
   width: ${width / 2 - 20};
 `;
-const CollectionStyled = styled.view`
+const CollectionStyled = styled.View`
   flex-direction: row;
   justify-content: center;
 `;
-const CollectionTextStyled = styled.text`
+const CollectionTextStyled = styled.Text`
   color: #666;
   font-size: 14px;
   margin-left: 8px;
 `;
-const CollectionNumberStyled = styled.text`
+const CollectionNumberStyled = styled.Text`
   font-size: 12px;
 `;
 const startTextStyle = {

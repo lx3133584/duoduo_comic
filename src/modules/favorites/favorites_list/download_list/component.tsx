@@ -6,7 +6,7 @@ import { DownloadListItem, Modal } from '@/favorites/favorites_list';
 import styled from 'styled-components';
 import { LongList } from '@';
 
-const ContainStyled = styled.view`
+const ContainStyled = styled.View`
 `;
 
 class DownloadListComponent extends Component {

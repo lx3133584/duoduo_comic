@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { ListItem } from 'react-native-elements';
 
-const ItemDividingLine = styled.view`
+const ItemDividingLine = styled.View`
   border-bottom-width: 1px;
   border-bottom-color: #ddd;
   height: 0;

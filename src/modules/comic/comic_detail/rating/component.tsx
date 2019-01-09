@@ -7,7 +7,7 @@ import { TouchableNativeFeedback } from '@';
 import { numberFormat } from 'utils';
 import { yellow } from 'theme';
 
-const ContainStyled = styled.view`
+const ContainStyled = styled.View`
   height: 75px;
   width: 60px;
   background-color: #fff;
@@ -16,15 +16,15 @@ const ContainStyled = styled.view`
   elevation: 2;
   padding: 5px;
 `;
-const TitleStyled = styled.text`
+const TitleStyled = styled.Text`
   color: #666;
   font-size: 12px;
 `;
-const ScoreStyled = styled.text`
+const ScoreStyled = styled.Text`
   color: #000;
   font-size: 18px;
 `;
-const ScoreNumberStyled = styled.text`
+const ScoreNumberStyled = styled.Text`
   color: #666;
   font-size: 10px;
   margin: 1px 0;

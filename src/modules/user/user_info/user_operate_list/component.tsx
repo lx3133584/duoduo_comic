@@ -6,11 +6,11 @@ import Toast from 'react-native-root-toast';
 import codePush from 'react-native-code-push';
 import { ListItem } from '@/user/user_info';
 
-const ContainStyled = styled.view`
+const ContainStyled = styled.View`
   padding-bottom: 20px;
 `;
 
-const ItemContainStyled = styled.view`
+const ItemContainStyled = styled.View`
   margin-top: 10px;
   background: #fff;
 `;

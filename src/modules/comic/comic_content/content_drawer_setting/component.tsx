@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { ContentDrawerBrightness, ContentDrawerOrientation, ContentDrawerReadingMode } from '..';
 import { ContainerType } from './container';
 
-const ContainStyled = styled.view`
+const ContainStyled = styled.View`
   justify-content: space-around;
   align-items: center;
 `;

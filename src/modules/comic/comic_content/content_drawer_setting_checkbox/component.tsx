@@ -4,20 +4,20 @@ import PropTypes from 'prop-types';
 import { Button } from 'react-native-elements';
 import { brand_primary } from 'theme';
 
-const ContainStyled = styled.view`
+const ContainStyled = styled.View`
   flex: 1;
   flex-direction: row;
   margin: 0 15px;
   align-items: center;
 `;
-const ButtonsContainStyled = styled.view`
+const ButtonsContainStyled = styled.View`
   flex: 1;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
 `;
-const TextStyled = styled.text`
+const TextStyled = styled.Text`
   font-size: 16px;
   color: #fff;
 `;

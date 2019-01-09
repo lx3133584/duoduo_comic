@@ -6,38 +6,38 @@ import styled from 'styled-components';
 import { brand_primary } from 'theme';
 import { Avatar, LoginNowButton } from '@/user/user_info';
 
-const ContainStyled = styled.view`
+const ContainStyled = styled.View`
   height: 260px;
   background-color: #fff;
 `;
-const PrimaryBackground = styled.view`
+const PrimaryBackground = styled.View`
   height: 100px;
   background-color: ${brand_primary};
 `;
-const TransparentContainStyled = styled.view`
+const TransparentContainStyled = styled.View`
   height: 200px;
   background-color: transparent;
 `;
-const AvatarContainStyled = styled.view`
+const AvatarContainStyled = styled.View`
   flex: 1;
   justify-content: center;
   flex-direction: row;
 `;
-const AvatarStyled = styled.view`
+const AvatarStyled = styled.View`
   border: 5px solid #fff;
   border-radius: 100px;
   background-color: #fff;
   transform: translateY(-35px);
 `;
-const ContentContainStyled = styled.view`
+const ContentContainStyled = styled.View`
   flex: 1;
   justify-content: center;
   align-items: center;
 `;
-const NameContainStyled = styled.view`
+const NameContainStyled = styled.View`
   transform: translateY(-35px);
 `;
-const NameStyled = styled.text`
+const NameStyled = styled.Text`
   color: #000;
   font-size: 16px;
 `;

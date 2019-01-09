@@ -14,7 +14,7 @@ const ICON_COLOR = '#fff';
 const NextIcon = () => <Feather name="chevron-right" size={ICON_SIZE} color={ICON_COLOR} />;
 const PrevIcon = () => <Feather name="chevron-left" size={ICON_SIZE} color={ICON_COLOR} />;
 
-const ContainStyled = styled.view`
+const ContainStyled = styled.View`
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
