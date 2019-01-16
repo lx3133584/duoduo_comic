@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { is } from 'immutable';
-import { DownloadListItem, Modal } from '@/favorites/favorites_list';
+import { DownloadListItem, Modal } from '..';
 import styled from 'styled-components';
 import { LongList } from '@';
 

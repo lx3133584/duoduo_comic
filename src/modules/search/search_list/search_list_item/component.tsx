@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import { LongListItem } from '@/search/search_list';
+import { LongListItem } from '..';
 import { Badge } from 'react-native-elements';
 import { green, red, purple } from 'theme';
 
@@ -35,7 +35,7 @@ const redBackground = {
 const purpleBackground = {
   backgroundColor: purple,
 };
-function SearchListItem(props) {
+function SearchListItem(props: Comic) {
   const {
     desc, author, status, class_name,
   } = props;

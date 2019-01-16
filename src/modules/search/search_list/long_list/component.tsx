@@ -1,11 +1,29 @@
 import React, { Component } from 'react';
 import { Dimensions, FlatList } from 'react-native';
 import PropTypes from 'prop-types';
-import { ListEmpty, LongListTextFooter, LongListLoadingFooter } from '@/search/search_list';
+import { ListEmpty, LongListTextFooter, LongListLoadingFooter } from '..';
 
 const { height } = Dimensions.get('window');
 
-class LongListComponent extends Component {
+interface IProps {
+  initPage?: number;
+  page?: number;
+  customKey?: string;
+  Item: any;
+  list: any[];
+  onFetch: (page: number, init?: boolean) => Promise<any>;
+  increasePage: (page?: number) => void;
+  callback: (page: number, init?: boolean) => any;
+  itemOnPress: any;
+  itemOnLongPress: any;
+  getRef: (ref: any) => any;
+  itemHeight: number;
+  isLong: boolean;
+  horizontal: boolean;
+  showFooter: boolean;
+  emptyText: string;
+}
+class LongListComponent extends Component<IProps, { loading: boolean; refreshing: boolean }> {
   static propTypes = {
     initPage: PropTypes.number,
     page: PropTypes.number,
@@ -43,13 +61,18 @@ class LongListComponent extends Component {
     horizontal: false,
     showFooter: false,
     emptyText: '这里什么都没有呢~',
-  }
+  };
+
+  page: number;
+  customKey: string;
+  noMoreData: boolean = false;
 
   constructor(props) {
     super(props);
     const { page, customKey } = props;
     this.state = {
       loading: false,
+      refreshing: false,
     };
     this.page = page || 0;
     this.customKey = customKey || 'id';
@@ -66,19 +89,20 @@ class LongListComponent extends Component {
 
   shouldComponentUpdate(nextProps, nextState) {
     const { list, showFooter, emptyText } = this.props;
-    const { loading } = this.state;
+    const { loading, refreshing } = this.state;
     return nextProps.list !== list
       || nextProps.showFooter !== showFooter
       || nextProps.emptyText !== emptyText
+      || nextState.refreshing !== refreshing
       || nextState.loading !== loading;
   }
 
-  _getItemLayout = (data, index) => {
+  _getItemLayout = (data, index: number) => {
     const { itemHeight } = this.props;
     return { length: itemHeight, offset: itemHeight * index, index };
-  };
+  }
 
-  _keyExtractor = item => `${item[this.customKey]}`
+  _keyExtractor = item => `${item[this.customKey]}`;
 
   _renderFooterComponent = () => {
     const { loading } = this.state;
@@ -86,26 +110,23 @@ class LongListComponent extends Component {
     return <LongListTextFooter />;
   }
 
-  _onFetch({ init }) {
+  _onFetch({ init }: { init?: boolean }) {
     const { onFetch, callback, increasePage } = this.props;
     if (!onFetch) return;
     const { loading } = this.state;
-    if (loading) return;
+    if (loading || this.noMoreData) return;
     this.setState({ loading: true });
     const resPromise = onFetch(this.page, init);
-    if (!resPromise) {
-      this.setState({ loading: false });
-      return;
-    }
-    resPromise.then((res) => {
-      this.setState({ loading: false });
+    if (!resPromise) return this.setState({ loading: false });
+    return resPromise.then((res) => {
       const data = res.value.result ? res.value.result.data : res.value.data;
       if (!res.error && data.length) {
         callback(this.page, init);
         this.page++;
-        increasePage();
+        return increasePage();
       }
-    }).catch(() => {
+      if (!res.error) this.noMoreData = true;
+    }).finally(() => {
       this.setState({ loading: false });
     });
   }
@@ -121,18 +142,24 @@ class LongListComponent extends Component {
     return <Item {..._item} itemOnPress={itemOnPress} itemOnLongPress={this._itemOnLongPress} />;
   }
 
-  _onRefresh() {
+  async _onRefresh() {
     const { increasePage } = this.props;
     this.page = 0;
+    this.noMoreData = false;
     increasePage(0);
-    this._onFetch({ init: true });
+    this.setState({ refreshing: true });
+    try {
+      await this._onFetch({ init: true });
+    } finally {
+      this.setState({ refreshing: false });
+    }
   }
 
   render() {
     const {
       list, getRef, isLong, showFooter, emptyText, itemHeight = 140,
     } = this.props;
-    const { loading } = this.state;
+    const { refreshing } = this.state;
     return (
       <FlatList
         ref={getRef}
@@ -142,7 +169,7 @@ class LongListComponent extends Component {
         onEndReached={isLong && this._onFetch}
         onEndReachedThreshold={1.6}
         onRefresh={this._onRefresh}
-        refreshing={loading}
+        refreshing={refreshing}
         getItemLayout={this._getItemLayout}
         initialNumToRender={Math.ceil(height / itemHeight)}
         ListEmptyComponent={() => <ListEmpty text={emptyText} />}

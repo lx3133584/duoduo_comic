@@ -1,8 +1,8 @@
 import React, { SFC } from 'react';
 import PropTypes from 'prop-types';
-import { TouchableOpacity } from 'react-native';
+import { TouchableOpacity, TouchableOpacityProps } from 'react-native';
 
-const TouchableOpacityComponent: SFC<object> = (props) => {
+const TouchableOpacityComponent: SFC<TouchableOpacityProps & IData> = (props) => {
   const { children } = props;
   return (
     <TouchableOpacity

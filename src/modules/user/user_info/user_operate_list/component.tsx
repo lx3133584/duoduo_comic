@@ -28,6 +28,10 @@ const list = [
     name: '我的下载',
     onPress: () => Actions._favorites({ index: 2 }),
   },
+  {
+    name: '搜索漫画',
+    onPress: () => Actions.search(),
+  },
 ];
 
 let toast = null;

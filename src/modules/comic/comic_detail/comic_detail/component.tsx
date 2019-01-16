@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import { is } from 'immutable';
+import { TouchableOpacity } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { Rating } from '..';
+import { ContainerType } from './container';
 
 const ContainStyled = styled.View`
   margin-bottom: 5px;
@@ -38,7 +41,7 @@ const DescStyled = styled.Text`
   margin: 8px 0;
   line-height: 20px;
 `;
-class ComicDetailComponent extends Component {
+class ComicDetailComponent extends Component<ContainerType> {
   static propTypes = {
     detail: ImmutablePropTypes.map.isRequired,
   };
@@ -51,7 +54,7 @@ class ComicDetailComponent extends Component {
   render() {
     const { detail } = this.props;
     const status = detail.get('status');
-    const author = detail.get('author');
+    const author = detail.get('author') || '佚名';
     const update_time = detail.get('update_time');
     const update_date = update_time && update_time.slice(0, 10);
     const desc = detail.get('desc');
@@ -59,13 +62,15 @@ class ComicDetailComponent extends Component {
       <ContainStyled>
         <TopContainStyled>
           <LeftContainStyled>
-            <AuthorContainStyled>
+            <TouchableOpacity onPress={() => Actions.search({ oKeyword: author })} activeOpacity={0.8}>
+              <AuthorContainStyled>
 
-              作者：
+                作者：
               <AuthorStyled>
-                {author || '佚名'}
-              </AuthorStyled>
-            </AuthorContainStyled>
+                  {author} {'>'}
+                </AuthorStyled>
+              </AuthorContainStyled>
+            </TouchableOpacity>
             <StatusStyled>
               {status}
               {' '}

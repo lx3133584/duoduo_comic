@@ -18,7 +18,7 @@ const ContainerStyled = styled.View`
   background-color: rgba(0, 0, 0, 0.4);
 `;
 
-function SpinComponent({ show }) {
+function SpinComponent({ show }: { show: boolean }) {
   if (!show) return null;
   return (
     <ContainerStyled>

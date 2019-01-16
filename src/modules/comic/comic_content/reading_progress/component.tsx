@@ -6,7 +6,7 @@ const TextStyled = styled.Text`
   color: #fff;
   font-size: 12px;
 `;
-function ReadingProgressComponent({ index, total }) {
+function ReadingProgressComponent({ index, total }: { index?: number; total?: number }) {
   return (
     <TextStyled>
       {index}

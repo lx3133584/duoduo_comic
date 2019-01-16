@@ -19,6 +19,7 @@ export {
   LongListLoadingFooter,
   SearchListItem,
   Image,
+  SearchIcon,
   TouchableNativeFeedback,
 } from './search';
 export {

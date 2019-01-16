@@ -1,21 +1,21 @@
 import React from 'react';
 import { Dimensions } from 'react-native';
 import styled from 'styled-components';
-import { SearchBar, SearchList } from '@/search/search_list';
+import { SearchBar, SearchList } from '.';
 
 const { height } = Dimensions.get('window');
 
 const ContainStyled = styled.View`
   background: #fff;
-  min-height: ${height - 48};
+  min-height: ${height};
   padding-bottom: 48px;
 `;
 
-function SearchListScreen() {
+function SearchListScreen(props) {
   return (
     <ContainStyled>
-      <SearchBar />
-      <SearchList />
+      <SearchBar {...props} />
+      <SearchList {...props} />
     </ContainStyled>);
 }
 

@@ -27,6 +27,7 @@ import {
   ClassItemListScreen,
   ComicContentListDrawerScreen,
   favoritesListActions,
+  SearchIcon,
 } from '@';
 
 import onBackPress from './onBack';
@@ -74,18 +75,12 @@ const RootRoute = () => (
           initial
         />
         <Scene
-          key="search"
-          icon={TabIcon.SearchIcon}
-          component={SearchListScreen}
-          title="搜索"
-          hideNavBar
-        />
-        <Scene
           key="discover"
           icon={TabIcon.DiscoveryIcon}
           component={DiscoveryListScreen}
           title="发现"
           isNoBack
+          rightComponent={<SearchIcon />}
           customTitle="漫画分类"
         />
         <Scene
@@ -96,6 +91,12 @@ const RootRoute = () => (
           hideNavBar
         />
       </MyTabs>
+      <Scene
+        key="search"
+        component={SearchListScreen}
+        title="搜索"
+        hideNavBar
+      />
       <Scene
         key="login"
         component={LoginScreen}

@@ -24,6 +24,5 @@ function createIcon(IconComponent: typeof Icon, name: string) {
 }
 
 export const BookIcon = createIcon(Entypo, 'book');
-export const SearchIcon = createIcon(FontAwesome, 'search');
 export const DiscoveryIcon = createIcon(Entypo, 'compass');
 export const UserIcon = createIcon(FontAwesome, 'user');

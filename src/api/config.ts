@@ -23,7 +23,7 @@ function interceptorsRequestSuccess(config: AxiosRequestConfig) {
   if (config.method !== 'get') {
     config.headers['x-csrf-token'] = getCsrf();
   }
-  if (__DEV__) console.log(config.url, 'request:', config);
+  if (__DEV__) console.log(`${config.baseURL}${config.url}`, 'request:', config);
   return config;
 }
 function interceptorsResponseSuccess(response: AxiosResponse) {

@@ -1,6 +1,6 @@
 import { handleActions } from 'redux-actions';
 import Immutable from 'immutable';
-import { favoritesListActions, downloadSelectActions } from '@/favorites';
+import { favoritesListActions, downloadSelectActions } from '.';
 import { comicDetailActions } from '@/comic';
 import { settingCenterActions } from '@/user';
 import { statCount } from 'utils';

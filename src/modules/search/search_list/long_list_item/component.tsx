@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Actions } from 'react-native-router-flux';
-import { Image, TouchableNativeFeedback } from '@/search/search_list';
+import { Image, TouchableNativeFeedback } from '..';
 
 const ContainStyled = styled.View`
   flex-direction: row;
@@ -32,7 +32,7 @@ const WhiteContainStyled = styled.View`
 `;
 function LongListItem({
   id, title, cover, children, itemOnLongPress,
-}) {
+}: Comic & IData) {
   return (
     <WhiteContainStyled>
       <TouchableNativeFeedback

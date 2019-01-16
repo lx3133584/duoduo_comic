@@ -1,8 +1,8 @@
 import React, { SFC } from 'react';
 import PropTypes from 'prop-types';
-import { TouchableNativeFeedback } from 'react-native';
+import { TouchableNativeFeedback, TouchableNativeFeedbackProps } from 'react-native';
 
-const TouchableNativeFeedbackComponent: SFC<object> = (props) => {
+const TouchableNativeFeedbackComponent: SFC<TouchableNativeFeedbackProps & IData> = (props) => {
   const { children } = props;
   return (
     <TouchableNativeFeedback

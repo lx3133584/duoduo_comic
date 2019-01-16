@@ -5,7 +5,7 @@ import { Dimensions } from 'react-native';
 import { Badge } from 'react-native-elements';
 import { Bar } from 'react-native-progress';
 import { LongListItem } from '@';
-import { downloadStatus } from '@/favorites';
+import { downloadStatus } from '../..';
 import { statCount } from 'utils';
 import {
   green, yellow, brand_primary, red,

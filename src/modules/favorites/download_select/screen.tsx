@@ -1,6 +1,6 @@
 import React from 'react';
 import { Dimensions } from 'react-native';
-import { Main, Footer } from '@/favorites/download_select';
+import { Main, Footer } from '.';
 import styled from 'styled-components';
 
 const { height } = Dimensions.get('window');

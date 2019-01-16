@@ -1,18 +1,21 @@
+import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { getSearchList } from '../actions';
 import Component from './component';
 
-const mapStateToProps = (state) => ({
-  keyword: state.search.get('keyword'),
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  search(params) {
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  search(params: any) {
     return dispatch(getSearchList(params));
   },
 });
 
+interface IOwnProps {
+  oKeyword?: string;
+}
+
+export type ContainerType = ReturnType<typeof mapDispatchToProps> & IOwnProps;
+
 export default connect(
-  mapStateToProps,
+  null,
   mapDispatchToProps,
 )(Component);

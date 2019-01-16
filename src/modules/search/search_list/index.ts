@@ -10,5 +10,6 @@ export { default as LongListLoadingFooter } from './long_list_loading_footer/com
 export { default as LongListTextFooter } from './long_list_text_footer/component';
 export { default as ListEmpty } from './list_empty/component';
 export { default as Image } from './image/component';
+export { default as SearchIcon } from './search_icon';
 export { default as TouchableNativeFeedback } from './touchable_native_feedback/component';
 export { searchListActions };

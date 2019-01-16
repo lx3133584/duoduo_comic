@@ -1,11 +1,13 @@
 import React, { PureComponent } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import { LongList, SearchListItem } from '@/search/search_list';
+import { LongList, SearchListItem } from '..';
+import { ContainerType } from './container';
 
-class SearchListComponent extends PureComponent {
+class SearchListComponent extends PureComponent<ContainerType> {
   static propTypes = {
     search: PropTypes.func.isRequired,
+    clear: PropTypes.func.isRequired,
     list: ImmutablePropTypes.list.isRequired,
     keyword: PropTypes.string.isRequired,
   };
@@ -15,10 +17,15 @@ class SearchListComponent extends PureComponent {
     this.onFetch = this.onFetch.bind(this);
   }
 
-  async onFetch(page) {
+  componentWillUnmount() {
+    const { clear } = this.props;
+    clear();
+  }
+
+  onFetch(page: number) {
     const { keyword, search } = this.props;
     if (!keyword) return;
-    await search({ page, keyword });
+    return search({ page, keyword });
   }
 
   render() {

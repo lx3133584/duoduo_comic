@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import styled from 'styled-components';
-import { FavoritesList, HistoryList, DownloadList } from '@/favorites/favorites_list';
+import { FavoritesList, HistoryList, DownloadList } from '..';
 import { Dimensions } from 'react-native';
 import { Header } from 'router';
 import {
@@ -63,7 +63,7 @@ class FavoritesTabsComponent extends Component {
 
   static defaultProps = {
     index: 0,
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -87,7 +87,7 @@ class FavoritesTabsComponent extends Component {
       || nextState.index !== index;
   }
 
-  _handleIndexChange = index => this.setState({ index });
+  _handleIndexChange = (index: number) => this.setState({ index });
 
   _renderTabBar = props => (
     <TabBar
@@ -97,14 +97,14 @@ class FavoritesTabsComponent extends Component {
       indicatorStyle={tabBarUnderlineStyle}
       {...props}
     />
-  );
+  )
 
   _renderPager = props => (
     <PagerPan
       swipeEnabled
       {...props}
     />
-  );
+  )
 
   _renderScene = ({ route }) => {
     const { info } = this.props;
@@ -133,6 +133,5 @@ class FavoritesTabsComponent extends Component {
     );
   }
 }
-
 
 export default FavoritesTabsComponent;

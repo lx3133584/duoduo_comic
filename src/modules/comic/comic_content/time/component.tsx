@@ -6,20 +6,20 @@ const TextStyled = styled.Text`
   font-size: 12px;
 `;
 
-function fillZero(num) {
+function fillZero(num: number) {
   if (num < 10) return `0${num}`;
-  return num;
+  return String(num);
 }
 
-class TimeComponent extends PureComponent {
-  constructor() {
-    super();
-    this.getTime = this.getTime.bind(this);
-  }
-
-  state = {
+class TimeComponent extends PureComponent<{}, {time: string}> {
+  timer: NodeJS.Timer = null as any;
+  readonly state = {
     time: '00:00',
   };
+  constructor(props: {}) {
+    super(props);
+    this.getTime = this.getTime.bind(this);
+  }
 
   componentDidMount() {
     this.getTime();

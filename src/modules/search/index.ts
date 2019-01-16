@@ -5,6 +5,7 @@ export {
   LongListLoadingFooter,
   SearchListItem,
   Image,
+  SearchIcon,
   TouchableNativeFeedback,
   searchListActions,
 } from './search_list';

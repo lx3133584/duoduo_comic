@@ -10,10 +10,10 @@ const ContainStyled = styled.View`
 
 const BackIcon = () => <Entypo name="chevron-left" size={24} color="#fff" />;
 
-function LeftButton() {
+function LeftButton({ containStyle }) {
   return (
     <TouchableOpacity onPress={Actions.pop}>
-      <ContainStyled>
+      <ContainStyled style={containStyle}>
         <BackIcon />
       </ContainStyled>
     </TouchableOpacity>

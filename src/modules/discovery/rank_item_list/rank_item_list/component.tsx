@@ -20,7 +20,7 @@ class RankItemListComponent extends PureComponent {
 
   static defaultProps = {
     id: 0,
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -42,7 +42,7 @@ class RankItemListComponent extends PureComponent {
   renderItem = (props) => {
     const { id } = this.props;
     return <RankItemListItem {...props} outid={id} />;
-  };
+  }
 
   render() {
     const { list, loading } = this.props;

@@ -20,7 +20,7 @@ const imageStyle = {
   height: 120,
 };
 
-function ListEmptyComponent({ text }) {
+function ListEmptyComponent({ text }: { text: string }) {
   return (
     <ContainStyled>
       <Image

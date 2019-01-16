@@ -1,17 +1,24 @@
+import { RootState } from 'store';
+import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { getSearchList } from '../actions';
+import { getSearchList, clearSearchList } from '../actions';
 import Component from './component';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: RootState) => ({
   list: state.search.get('list'),
   keyword: state.search.get('keyword'),
 });
 
-const mapDispatchToProps = dispatch => ({
-  search(params) {
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  search(params: any) {
     return dispatch(getSearchList(params));
   },
+  clear() {
+    return dispatch(clearSearchList());
+  },
 });
+
+export type ContainerType = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>;
 
 export default connect(
   mapStateToProps,

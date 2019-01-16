@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { is } from 'immutable';
-import { HistoryListItem, Modal } from '@/favorites/favorites_list';
+import { HistoryListItem, Modal } from '..';
 import { LongList } from '@';
 
 class HistoryListComponent extends Component {

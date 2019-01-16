@@ -12,7 +12,7 @@ const ContainStyled = styled.ScrollView`
 
 function DiscoveryListScreen() {
   return (
-    <ContainStyled key="main">
+    <ContainStyled>
       <RankList />
       <ClassList />
     </ContainStyled>
