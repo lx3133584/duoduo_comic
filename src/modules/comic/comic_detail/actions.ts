@@ -9,8 +9,8 @@ export const {
   useTheDetailCache, useTheListCache,
   updateTheDetailCache, updateTheListCache,
 } = createActions({
-  GET_COMIC_DETAIL: id => fetchComicDetail(id),
-  GET_COMIC_LIST: id => fetchComicList(id),
+  GET_COMIC_DETAIL: fetchComicDetail,
+  GET_COMIC_LIST: fetchComicList,
   ADD_FAVORITE: (id) => {
     const promise = postFavorite(id);
     return { promise, data: id };

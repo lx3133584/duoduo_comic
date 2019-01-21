@@ -4,13 +4,14 @@ import PropTypes from 'prop-types';
 import { RankItemListItem } from '@/discovery/rank_item_list';
 import styled from 'styled-components';
 import { LongList, LoadingPage } from '@';
-import { wrapWithLoading, wrapWithLoadingType } from 'utils';
+import { wrapWithLoading, wrapWithLoadingType, ILoadingProps } from 'utils';
+import { ContainerType } from './container';
 
 const ContainStyled = styled.View`
   padding-bottom: 72px;
 `;
 @wrapWithLoading
-class RankItemListComponent extends PureComponent {
+class RankItemListComponent extends PureComponent<ContainerType & ILoadingProps> {
   static propTypes = {
     getList: PropTypes.func.isRequired,
     id: PropTypes.number,

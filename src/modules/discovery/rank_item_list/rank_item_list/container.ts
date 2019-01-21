@@ -1,18 +1,22 @@
+import { RootState } from 'store';
+import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { getRankItemList } from '../actions';
 import Component from './component';
-
-const mapStateToProps = state => ({
+interface IOwnProps {
+  id: number;
+}
+const mapStateToProps = (state: RootState) => ({
   list: state.discovery.get('rank_item_list'),
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch: Dispatch) => ({
   getList(params) {
     return dispatch(getRankItemList(params));
   },
 });
-
+export type ContainerType = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps> & IOwnProps;
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Component);
+)(Component as any);

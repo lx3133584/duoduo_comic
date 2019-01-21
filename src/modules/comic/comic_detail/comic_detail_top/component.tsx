@@ -7,13 +7,14 @@ import { Actions } from 'react-native-router-flux';
 import { BlurView } from 'react-native-blur';
 import FastImage from 'react-native-fast-image';
 import {
-  Dimensions, findNodeHandle, NetInfo,
+  Dimensions, findNodeHandle, NetInfo, View, Text,
 } from 'react-native';
 import { numberFormat } from 'utils';
+import { ContainerType } from './container';
 
 const { width } = Dimensions.get('window');
 
-const ContainStyled = styled.View`
+const ContainStyled = styled(View)`
   height: 240px;
   background-color: #000;
 `;
@@ -35,7 +36,7 @@ const blurImageStyled = {
   height: 240,
   zIndex: 1,
 };
-const TextContainStyled = styled.View`
+const TextContainStyled = styled(View)`
   position: absolute;
   top: 100px;
   left: 20px;
@@ -43,24 +44,24 @@ const TextContainStyled = styled.View`
   z-index: 4;
   width: ${width - 110};
 `;
-const TitleStyled = styled.Text`
+const TitleStyled = styled(Text)`
   color: #fff;
   font-size: 18px;
   font-weight: 700;
   margin-bottom: 8px;
 `;
-const BottomTextContainStyled = styled.View`
+const BottomTextContainStyled = styled(View)`
   position: absolute;
   left: 0;
   bottom: 0;
 `;
-const BottomTextStyled = styled.Text`
+const BottomTextStyled = styled(Text)`
   color: #fff;
   font-size: 12px;
   opacity: 0.8;
 `;
 
-class ComicDetailTopComponent extends Component {
+class ComicDetailTopComponent extends Component<ContainerType> {
   static propTypes = {
     getDetail: PropTypes.func.isRequired,
     hideLoading: PropTypes.func.isRequired,
@@ -68,23 +69,26 @@ class ComicDetailTopComponent extends Component {
     detail: ImmutablePropTypes.map.isRequired,
     updateCache: PropTypes.func.isRequired,
     useCache: PropTypes.func.isRequired,
-    download_list: ImmutablePropTypes.list,
+    comic_cache: ImmutablePropTypes.map,
   };
 
   static defaultProps = {
-    download_list: Immutable.List(),
-  }
+    comic_cache: null,
+  };
 
-  constructor() {
-    super();
-    this.onFetch = this.onFetch.bind(this);
-    this.imageLoaded = this.imageLoaded.bind(this);
-    this.bgImgRef = React.createRef();
-  }
+  bgImgRef = React.createRef<FastImage>();
+
+  fetchCompleted = false;
 
   state = {
     viewRef: null,
   };
+
+  constructor(props) {
+    super(props);
+    this.onFetch = this.onFetch.bind(this);
+    this.imageLoaded = this.imageLoaded.bind(this);
+  }
 
   componentDidMount() {
     this.init();
@@ -97,8 +101,7 @@ class ComicDetailTopComponent extends Component {
       || nextState.viewRef !== viewRef;
   }
 
-
-  onFetch(id) {
+  onFetch(id: number) {
     const { getDetail } = this.props;
     return getDetail(id).then(({ value: { data } = {} }) => data).catch(() => {
       Actions.pop(); // 失败则返回上一个页面
@@ -106,10 +109,9 @@ class ComicDetailTopComponent extends Component {
   }
 
   async init() {
-    const { useCache, updateCache, id } = this.props;
-    const cache = this.checkLocalCache(id);
-    if (cache) {
-      useCache(cache);
+    const { useCache, updateCache, id, comic_cache } = this.props;
+    if (comic_cache) {
+      useCache(comic_cache);
       NetInfo.isConnected.fetch().then((isConnected) => { // 如果联网则更新缓存
         if (!isConnected) return;
         this.onFetch(id).then((data) => {
@@ -123,19 +125,14 @@ class ComicDetailTopComponent extends Component {
     this.hideLoading();
   }
 
-  checkLocalCache(id) {
-    const { download_list } = this.props;
-    return download_list.find(i => i.get('id') === id);
-  }
-
   imageLoaded() {
-    this.setState({ viewRef: findNodeHandle(this.bgImgRef.current._root) }, this.hideLoading);
+    this.setState({ viewRef: findNodeHandle(this.bgImgRef.current!._root) }, this.hideLoading);
   }
 
   hideLoading() {
     const { hideLoading } = this.props;
     const { viewRef } = this.state;
-    if (!viewRef || !this.fetchCompleted) return; // blur组件未加载或者请求为完成时都不能隐藏loading
+    if (!viewRef || !this.fetchCompleted) return; // blur 组件未加载或者请求为完成时都不能隐藏loading
     hideLoading();
   }
 
@@ -146,7 +143,7 @@ class ComicDetailTopComponent extends Component {
     const title = detail.get('title');
     const author = detail.get('author');
     const class_name = detail.get('class_name');
-    const popularity_number = detail.get('popularity_number');
+    const popularity_number = detail.get('popularity_number', '');
     return (
       <ContainStyled>
         {cover && (
@@ -181,7 +178,7 @@ class ComicDetailTopComponent extends Component {
           <BottomTextContainStyled>
             <BottomTextStyled>
               {class_name && (`${class_name} | `)}
-人气
+              人气
               {' '}
               {numberFormat(popularity_number)}
             </BottomTextStyled>

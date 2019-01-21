@@ -7,6 +7,8 @@ export {
 export {
   wrapWithLoading,
   wrapWithLoadingType,
+  ILoadingProps,
   wrapWithCheckBoxData,
   wrapWithCheckBoxDataType,
+  ICheckBoxProps,
 } from './higher_order_components';

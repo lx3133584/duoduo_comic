@@ -2,7 +2,7 @@ import { RootState } from 'store';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
-import getCache from 'selectors/get_cache';
+import getContentCache from 'selectors/get_cache';
 import findNextChapterSelector from 'selectors/find_next_chapter';
 import Component from './component';
 import { getContentList } from '../actions';
@@ -12,7 +12,7 @@ const nextChapterIdSelector = createSelector(
   nextItemSelector,
   next => next && next.id,
 );
-const cacheSelector = getCache(nextChapterIdSelector);
+const cacheSelector = getContentCache(nextChapterIdSelector);
 
 const mapStateToProps = (state: RootState) => ({
   next: nextItemSelector(state),

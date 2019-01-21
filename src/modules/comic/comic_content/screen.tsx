@@ -12,7 +12,7 @@ import {
   ContentStatusBar,
   ContentDrawerManager,
 } from '.';
-import { wrapWithLoading, wrapWithLoadingType } from 'utils';
+import { wrapWithLoading, wrapWithLoadingType, ILoadingProps } from 'utils';
 
 const ContainStyled = styled.View`
   background-color: #282828;
@@ -23,10 +23,10 @@ const mapStateToProps = (state: RootState) => ({
   brightness: state.config.get('brightness'),
   width: windowSizeSelector(state).width,
 });
-
+type IProps = ReturnType<typeof mapStateToProps> & ILoadingProps;
 @wrapWithLoading
 @connect(mapStateToProps)
-class ContentListScreen extends PureComponent<ReturnType<typeof mapStateToProps>, { show_drawer: boolean }> {
+class ContentListScreen extends PureComponent<IProps, { show_drawer: boolean }> {
   static propTypes = {
     orientation: PropTypes.string.isRequired,
     brightness: PropTypes.number.isRequired,

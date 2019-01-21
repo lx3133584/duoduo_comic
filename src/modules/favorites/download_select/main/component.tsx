@@ -4,22 +4,23 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import Toast from 'react-native-root-toast';
 import { is } from 'immutable';
-import { TouchableOpacity, Dimensions } from 'react-native';
+import { TouchableOpacity, Dimensions, Text } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Header } from 'router';
 import { ComicList } from '@/comic/comic_detail';
 import { Footer } from '..';
-import { wrapWithCheckBoxData, wrapWithCheckBoxDataType } from 'utils';
+import { wrapWithCheckBoxData, wrapWithCheckBoxDataType, ICheckBoxProps } from 'utils';
+import { ContainerType } from './container';
 
 const { width: screenWidth } = Dimensions.get('window');
 
-const SaveTextStyled = styled.Text`
+const SaveTextStyled = styled(Text)`
   color: #fff;
   font-size: 16px;
   padding: 0 10px;
 `;
 
-const TitleStyled = styled.Text`
+const TitleStyled = styled(Text)`
   text-align: center;
   font-size: 18px;
   margin-left: ${screenWidth * 0.15};
@@ -27,13 +28,18 @@ const TitleStyled = styled.Text`
 `;
 
 @wrapWithCheckBoxData
-class DownloadSelectComponent extends Component {
+class DownloadSelectComponent extends Component<ContainerType & ICheckBoxProps> {
   static propTypes = {
     list: ImmutablePropTypes.list.isRequired,
     flatList: ImmutablePropTypes.list.isRequired,
     detail: ImmutablePropTypes.map.isRequired,
+    comic_cache: ImmutablePropTypes.map,
     add: PropTypes.func.isRequired,
     ...wrapWithCheckBoxDataType,
+  };
+
+  static defaultProps = {
+    comic_cache: null,
   };
 
   shouldComponentUpdate(nextProps) {
@@ -43,16 +49,24 @@ class DownloadSelectComponent extends Component {
     return !is(nextProps.checkboxData, checkboxData);
   }
 
+  componentDidMount() {
+    this.init();
+  }
+
   componentDidUpdate() {
+    this.init();
+  }
+
+  init() {
     const { initCheckBoxData, flatList } = this.props;
     initCheckBoxData(flatList);
   }
 
-  showToast = (message) => {
+  showToast = (message: string) => {
     Toast.show(message, {
       position: -70,
     });
-  };
+  }
 
   download = () => {
     const {

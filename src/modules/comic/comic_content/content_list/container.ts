@@ -1,7 +1,7 @@
 import { RootState } from 'store';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import getCache from 'selectors/get_cache';
+import getContentCache from 'selectors/get_cache';
 import Component from './component';
 import {
   getContentList,
@@ -15,7 +15,7 @@ interface IOwnProps {
   title: string;
 }
 const chapterIdSelector = (state: RootState, ownProps: IOwnProps) => ownProps.chapter_id;
-const cacheSelector = getCache(chapterIdSelector);
+const cacheSelector = getContentCache(chapterIdSelector);
 const mapStateToProps = (state: RootState, ownProps: IOwnProps) => ({
   detail_chapter_id: state.comic.getIn(['detail', 'chapter_id']),
   content_index: state.comic.getIn(['detail', 'index']),

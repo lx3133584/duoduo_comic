@@ -68,11 +68,11 @@ class LongListComponent extends Component<IProps, { loading: boolean; refreshing
 
   constructor(props) {
     super(props);
-    const { page, customKey } = props;
+    const { page, customKey, isLong } = props;
     this.state = {
       loading: false,
       refreshing: false,
-      noMoreData: false,
+      noMoreData: !isLong,
     };
     this.page = page || 0;
     this.customKey = customKey || 'id';
@@ -82,9 +82,12 @@ class LongListComponent extends Component<IProps, { loading: boolean; refreshing
     this._itemOnLongPress = this._itemOnLongPress.bind(this);
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps(nextProps: IProps) {
     const { page } = this.props;
-    if (nextProps.page !== page) this.page = nextProps.page;
+    if (nextProps.page !== undefined && nextProps.page !== page) {
+      if (nextProps.page < this.page) this.setState({ noMoreData: !nextProps.isLong });
+      this.page = nextProps.page;
+    }
   }
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -98,12 +101,12 @@ class LongListComponent extends Component<IProps, { loading: boolean; refreshing
       || nextState.loading !== loading;
   }
 
-  _getItemLayout = (data, index: number) => {
+  _getItemLayout = (data: any, index: number) => {
     const { itemHeight } = this.props;
     return { length: itemHeight, offset: itemHeight * index, index };
   }
 
-  _keyExtractor = item => `${item[this.customKey]}`;
+  _keyExtractor = (item: IData) => `${item[this.customKey]}`;
 
   _renderFooterComponent = () => {
     const { noMoreData } = this.state;

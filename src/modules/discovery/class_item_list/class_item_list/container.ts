@@ -4,6 +4,10 @@ import { connect } from 'react-redux';
 import { getClassItemList } from '../actions';
 import Component from './component';
 
+interface IOwnProps {
+  id: number;
+}
+
 const mapStateToProps = (state: RootState) => ({
   list: state.discovery.get('class_item_list'),
 });
@@ -13,6 +17,8 @@ const mapDispatchToProps = (dispatch: Dispatch<ReturnType<typeof getClassItemLis
     return dispatch(getClassItemList(params));
   },
 });
+
+export type ContainerType = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps> & IOwnProps;
 
 export default connect(
   mapStateToProps,

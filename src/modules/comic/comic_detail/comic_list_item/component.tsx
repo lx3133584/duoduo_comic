@@ -83,8 +83,8 @@ function ComicListItem({
         <DownloadTipsStyled
           style={[
             dark && { color: '#eee' },
-            active && !showCheckbox && { color: '#fff' },
             showCheckbox && { color: '#666' },
+            active && { color: '#fff' },
           ]}
         >
           {downloadTips}

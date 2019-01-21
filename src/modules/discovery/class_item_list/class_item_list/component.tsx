@@ -2,10 +2,11 @@ import React, { PureComponent } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { LongList, LoadingPage, SearchListItem } from '@';
-import { wrapWithLoading, wrapWithLoadingType } from 'utils';
+import { wrapWithLoading, wrapWithLoadingType, ILoadingProps } from 'utils';
+import { ContainerType } from './container';
 
 @wrapWithLoading
-class ClassItemListComponent extends PureComponent {
+class ClassItemListComponent extends PureComponent<ContainerType & ILoadingProps> {
   static propTypes = {
     getList: PropTypes.func.isRequired,
     list: ImmutablePropTypes.list.isRequired,
@@ -15,7 +16,7 @@ class ClassItemListComponent extends PureComponent {
 
   static defaultProps = {
     id: 0,
-  }
+  };
 
   constructor(props) {
     super(props);

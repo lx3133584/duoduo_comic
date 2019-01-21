@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
-import { wrapWithLoading, wrapWithLoadingType } from 'utils';
+import { wrapWithLoading, wrapWithLoadingType, ILoadingProps } from 'utils';
 import { Parallax, LoadingPage } from '.';
 
 @wrapWithLoading
-class ComicDetailScreen extends PureComponent {
+class ComicDetailScreen extends PureComponent<ILoadingProps> {
   static propTypes = {
     ...wrapWithLoadingType,
   };

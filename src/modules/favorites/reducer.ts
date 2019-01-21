@@ -5,11 +5,11 @@ import { comicDetailActions } from '@/comic';
 import { settingCenterActions } from '@/user';
 import { statCount } from 'utils';
 
-function findIndex(list: Immutable.List<Immutable.Map<'id', number>>, id: number) { // 通过id找到index
+function findIndex(list: Immutable.List<Immutable.Map<'id', number>>, id: number) { // 通过id找到 index
   return list.findIndex((item) => item.get('id') === id);
 }
 
-function formatMap<T extends IItem>(list: T[], extraItem: IData) { // 格式化数组 -> 以id为key的Map
+function formatMap<T extends IItem>(list: T[], extraItem: IData) { // 格式化数组 -> 以 id 为 key 的Map
   return Immutable.Map<string, any>().withMutations((m) => {
     list.forEach((item) => {
       m.set(item.id || item.index, Immutable.Map({
@@ -20,9 +20,23 @@ function formatMap<T extends IItem>(list: T[], extraItem: IData) { // 格式化�
   });
 }
 
-function computeParentStatus(map) { // 统计子元素各状态数量计算父元素状态
+type IListMap = Immutable.Map<
+  number,
+  Immutable.Map<
+    keyof Comic.ChapterItem,
+    Comic.ChapterItem[keyof Comic.ChapterItem]
+  >
+>;
+type OriginItem = Comic & {
+  list: Immutable.List<Comic.CategoryItem>;
+  listMap: IListMap;
+  download_status: ReturnType<typeof computeParentStatus>;
+};
+type IDownloadListItem = Immutable.Map<keyof OriginItem, OriginItem[keyof OriginItem]>;
+
+function computeParentStatus(map: IListMap) { // 统计子元素各状态数量计算父元素状态
   const total = map.size;
-  const stat = statCount(map.toList());
+  const stat = statCount(map.toList() as any);
   if (stat.ready === total) return 'ready';
   if (stat.downloading) return 'downloading';
   if (stat.fetching) return 'fetching';
@@ -35,7 +49,7 @@ function computeParentStatus(map) { // 统计子元素各状态数量计算父�
 const initialState = Immutable.Record({
   favorites_list: Immutable.List<Comic>(),
   history_list: Immutable.List<Comic>(),
-  download_list: Immutable.List(),
+  download_list: Immutable.List<IDownloadListItem>(),
 })();
 export type StateType = typeof initialState;
 export default handleActions({
