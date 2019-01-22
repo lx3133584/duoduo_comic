@@ -10,7 +10,6 @@ const initialState = Immutable.Record({
   list: Immutable.List<Comic.CategoryItem>(),
   content: Immutable.List<Comic.ContentItem>(),
   content_total: 0,
-  is_show_footer: false, // 标志是否显示footer(阅读完成，前往下一章)
   pre_content: Immutable.List<Comic.ContentItem>(),
   pre_content_total: 0,
   go_to_flag: false, // 标志go_to_index被触发
@@ -64,21 +63,16 @@ export default handleActions({
     }
     if (init) { // 初始化(非懒加载的情况)
       map.update('content', (list) => list.clear())
-        .setIn(['detail', 'chapter_id'], id)
-        .set('is_show_footer', false)
-        .set('content_total', result.total);
+        .update('pre_content', (list) => list.clear())
+        .setIn(['detail', 'chapter_id'], id);
     }
-    if (!data.length) { // 加载完成，最后一页
-      map.set('is_show_footer', true);
-      return;
-    }
-    map.update('content', (oldList) => oldList.concat(data));
+    map.set('content_total', result.total)
+      .update('content', (oldList) => oldList.concat(data));
   }),
   [comicContentActions.useTheContentCache as any]: (state, action: any) => state.withMutations((map) => map
     .set('content', Immutable.List(action.payload.content))
     .set('content_total', action.payload.content.length)
-    .setIn(['detail', 'chapter_id'], action.payload.id)
-    .set('is_show_footer', true)),
+    .setIn(['detail', 'chapter_id'], action.payload.id)),
   [comicContentActions.saveContentIndex as any]: (state, action: any) =>
   state.setIn(['detail', 'index'], action.payload),
   [comicContentActions.goToIndex as any]: (state, action: any) => state.withMutations((map) => map

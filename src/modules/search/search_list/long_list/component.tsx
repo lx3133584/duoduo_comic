@@ -5,7 +5,7 @@ import { ListEmpty, LongListTextFooter, LongListLoadingFooter } from '..';
 
 const { height } = Dimensions.get('window');
 
-interface IProps {
+interface IProps extends FlatList<any> {
   initPage?: number;
   page?: number;
   customKey?: string;
@@ -13,17 +13,25 @@ interface IProps {
   list: any[];
   onFetch: (page: number, init?: boolean) => Promise<any>;
   increasePage: (page?: number) => void;
-  callback: (page: number, init?: boolean) => any;
-  itemOnPress: any;
-  itemOnLongPress: any;
-  getRef: (ref: any) => any;
+  onRefresh: () => void;
+  itemOnPress?: any;
+  itemOnLongPress?: any;
+  getRef?: (ref: any) => any;
+  onScroll?: (e: any) => void;
   itemHeight: number;
-  isLong: boolean;
-  horizontal: boolean;
-  showFooter: boolean;
-  emptyText: string;
+  isLong?: boolean;
+  horizontal?: boolean;
+  showFooter?: boolean;
+  noMoreData?: boolean;
+  emptyText?: string;
+  ListFooterComponent?: any;
 }
-class LongListComponent extends Component<IProps, { loading: boolean; refreshing: boolean; noMoreData: boolean }> {
+interface IState {
+  loading: boolean;
+  refreshing: boolean;
+  noMoreData: boolean;
+}
+class LongListComponent extends Component<IProps, IState> {
   static propTypes = {
     initPage: PropTypes.number,
     page: PropTypes.number,
@@ -35,7 +43,8 @@ class LongListComponent extends Component<IProps, { loading: boolean; refreshing
     list: PropTypes.array.isRequired,
     onFetch: PropTypes.func,
     increasePage: PropTypes.func,
-    callback: PropTypes.func,
+    onRefresh: PropTypes.func,
+    noMoreData: PropTypes.bool,
     itemOnPress: PropTypes.func,
     itemOnLongPress: PropTypes.func,
     getRef: PropTypes.func,
@@ -49,9 +58,8 @@ class LongListComponent extends Component<IProps, { loading: boolean; refreshing
   static defaultProps = {
     initPage: 0,
     customKey: 'id',
-    page: 0,
     onFetch: null,
-    callback: f => f,
+    onRefresh: f => f,
     increasePage: f => f,
     itemOnPress: f => f,
     itemOnLongPress: f => f,
@@ -66,7 +74,7 @@ class LongListComponent extends Component<IProps, { loading: boolean; refreshing
   page: number;
   customKey: string;
 
-  constructor(props) {
+  constructor(props: IProps) {
     super(props);
     const { page, customKey, isLong } = props;
     this.state = {
@@ -83,14 +91,16 @@ class LongListComponent extends Component<IProps, { loading: boolean; refreshing
   }
 
   componentWillReceiveProps(nextProps: IProps) {
-    const { page } = this.props;
-    if (nextProps.page !== undefined && nextProps.page !== page) {
-      if (nextProps.page < this.page) this.setState({ noMoreData: !nextProps.isLong });
+    const { noMoreData } = this.props;
+    if (nextProps.page !== undefined) {
       this.page = nextProps.page;
+    }
+    if (nextProps.noMoreData !== undefined && nextProps.noMoreData !== noMoreData) {
+      this.setState({ noMoreData: nextProps.noMoreData });
     }
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
+  shouldComponentUpdate(nextProps: IProps, nextState: IState) {
     const { list, showFooter, emptyText } = this.props;
     const { loading, refreshing, noMoreData } = this.state;
     return nextProps.list !== list
@@ -114,8 +124,8 @@ class LongListComponent extends Component<IProps, { loading: boolean; refreshing
     return <LongListTextFooter />;
   }
 
-  _onFetch({ init }: { init?: boolean }) {
-    const { onFetch, callback, increasePage } = this.props;
+  _onFetch({ init }: { init?: boolean; distanceFromEnd?: number }) {
+    const { onFetch, increasePage } = this.props;
     if (!onFetch) return;
     const { loading, noMoreData } = this.state;
     if (loading || noMoreData) return;
@@ -125,11 +135,11 @@ class LongListComponent extends Component<IProps, { loading: boolean; refreshing
     return resPromise.then((res) => {
       const data = res.value.result ? res.value.result.data : res.value.data;
       if (res.error || !data) return;
-      if (data.length) {
-        callback(this.page, init);
-        this.page++;
-        increasePage();
-      } else this.setState({ noMoreData: true });
+      this.page++;
+      increasePage();
+      if (!data.length) {
+        this.setState({ noMoreData: true });
+      }
     }).finally(() => {
       this.setState({ loading: false });
     });
@@ -142,14 +152,15 @@ class LongListComponent extends Component<IProps, { loading: boolean; refreshing
 
   _renderItem({ item }) {
     const { Item, itemOnPress = f => f } = this.props;
-    const _item = item.toObject ? item.toObject() : item; // 支持immutable格式的item数据
+    const _item = item.toObject ? item.toObject() : item; // 支持 immutable 格式的item数据
     return <Item {..._item} itemOnPress={itemOnPress} itemOnLongPress={this._itemOnLongPress} />;
   }
 
   async _onRefresh() {
-    const { increasePage } = this.props;
+    const { increasePage, onRefresh } = this.props;
     this.page = 0;
     increasePage(0);
+    onRefresh();
     this.setState({ refreshing: true, noMoreData: false });
     try {
       await this._onFetch({ init: true });
@@ -169,8 +180,8 @@ class LongListComponent extends Component<IProps, { loading: boolean; refreshing
         data={list}
         keyExtractor={this._keyExtractor}
         renderItem={this._renderItem}
-        onEndReached={isLong && this._onFetch}
-        onEndReachedThreshold={0.8}
+        onEndReached={isLong ? this._onFetch : null}
+        onEndReachedThreshold={1.6}
         onRefresh={this._onRefresh}
         refreshing={refreshing}
         getItemLayout={this._getItemLayout}

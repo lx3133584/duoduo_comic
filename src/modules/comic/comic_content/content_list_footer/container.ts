@@ -17,7 +17,6 @@ const cacheSelector = getContentCache(nextChapterIdSelector);
 const mapStateToProps = (state: RootState) => ({
   next: nextItemSelector(state),
   content_cache: cacheSelector(state),
-  is_show_footer: state.comic.get('is_show_footer'),
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({

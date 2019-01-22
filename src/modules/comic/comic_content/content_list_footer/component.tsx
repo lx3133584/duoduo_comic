@@ -5,7 +5,6 @@ import { Button } from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
 import Image from 'react-native-fast-image';
 import { Dimensions } from 'react-native';
-import { LongListLoadingFooter } from '@';
 
 const { width } = Dimensions.get('window');
 const { preload } = Image;
@@ -45,14 +44,12 @@ class ContentListFooterComponent extends PureComponent {
     }),
     getList: PropTypes.func.isRequired,
     content_cache: PropTypes.array,
-    is_show_footer: PropTypes.bool,
   };
 
   static defaultProps = {
     next: null,
     content_cache: null,
-    is_show_footer: true,
-  }
+  };
 
   componentDidMount() {
     const { next } = this.props;
@@ -85,11 +82,8 @@ class ContentListFooterComponent extends PureComponent {
   };
 
   render() {
-    const { next, is_show_footer } = this.props;
+    const { next } = this.props;
     const { title } = next || {};
-    if (!is_show_footer) {
-      return <LongListLoadingFooter color="#fff" background="#282828" />;
-    }
     return (
       <ContainStyled>
         <Button

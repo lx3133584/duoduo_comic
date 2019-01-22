@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { TouchableWithoutFeedback, View } from 'react-native';
-import { LongList } from '@';
+import { LongList, LongListLoadingFooter } from '@';
 import { ContentListItem, ContentListFooter } from '..';
 import { getImgHeight } from 'utils';
+import { ContainerType } from './container';
 
-class ContentListScrollComponent extends Component {
+class ContentListScrollComponent extends Component<ContainerType> {
   static propTypes = {
     content: PropTypes.arrayOf(PropTypes.shape({
       url: PropTypes.string,
@@ -16,11 +17,12 @@ class ContentListScrollComponent extends Component {
         width: PropTypes.number,
       }),
     })).isRequired,
-    img_positon_arr: ImmutablePropTypes.list.isRequired,
+    img_position_arr: ImmutablePropTypes.list.isRequired,
     content_index: PropTypes.number,
     offset: PropTypes.number,
     width: PropTypes.number.isRequired,
     page: PropTypes.number.isRequired,
+    noMoreData: PropTypes.bool.isRequired,
     saveIndex: PropTypes.func.isRequired,
     onRefresh: PropTypes.func.isRequired,
     increasePage: PropTypes.func.isRequired,
@@ -32,7 +34,7 @@ class ContentListScrollComponent extends Component {
   static defaultProps = {
     content_index: 0,
     offset: 0,
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -41,24 +43,26 @@ class ContentListScrollComponent extends Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    const { content } = this.props;
-    return nextProps.content !== content;
+    const { content, noMoreData, page } = this.props;
+    return nextProps.content !== content ||
+      nextProps.noMoreData !== noMoreData ||
+      nextProps.page !== page;
   }
 
   onScroll = (e) => {
     const {
-      saveIndex, content_index, img_positon_arr, offset,
+      saveIndex, content_index, img_position_arr, offset,
     } = this.props;
     const scrollY = e.nativeEvent.contentOffset.y;
     let index = 0;
-    for (let len = img_positon_arr.size, i = len - 1; i >= 0; i--) {
-      if (scrollY > img_positon_arr.get(i)) {
+    for (let len = img_position_arr.size, i = len - 1; i >= 0; i--) {
+      if (scrollY > img_position_arr.get(i)) {
         index = i;
         break;
       }
     }
     if (index !== content_index - offset) saveIndex(index + offset);
-  };
+  }
 
   scrollTo = (index = 0) => {
     const { content } = this.props;
@@ -71,15 +75,15 @@ class ContentListScrollComponent extends Component {
       animated: false,
       viewOffset: false,
     });
-  };
+  }
 
   _getItemLayout = (data, index) => {
-    const { img_positon_arr, width } = this.props;
+    const { img_position_arr, width } = this.props;
     const item = data[index];
     const length = getImgHeight(item.size, width);
-    const offset = img_positon_arr.get(index);
+    const offset = img_position_arr.get(index);
     return { length, offset, index };
-  };
+  }
 
   _getRef = ref => this.content_ref = ref;
 
@@ -92,26 +96,27 @@ class ContentListScrollComponent extends Component {
         </View>
       </TouchableWithoutFeedback>
     );
-  };
+  }
+
+  _renderFooterComponent = () => {
+    const { noMoreData } = this.props;
+    if (!noMoreData) return <LongListLoadingFooter color="#fff" background="#282828" />;
+    return <ContentListFooter />;
+  }
 
   render() {
-    const {
-      content, page, onRefresh, onFetch, increasePage,
-    } = this.props;
+    const { content } = this.props;
     return (
       <LongList
+        {...this.props}
         getRef={this._getRef}
         list={content}
         Item={this.renderItem}
         customKey="url"
-        onFetch={onFetch}
         onScroll={this.onScroll}
-        ListFooterComponent={ContentListFooter}
+        ListFooterComponent={this._renderFooterComponent}
         getItemLayout={this._getItemLayout}
         initialNumToRender={3}
-        page={page}
-        increasePage={increasePage}
-        callback={onRefresh}
         isLong
       />
     );

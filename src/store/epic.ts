@@ -91,7 +91,7 @@ const postHistoryEpic = (action$, store) => action$.pipe(
   delayWhen(() => from(InteractionManager.runAfterInteractions())),
   groupBy((data) => data.comic_id),
   mergeMap((group$) => group$.pipe(
-    sampleTime(2000),
+    sampleTime(5000),
   )),
   combineLatest(netObservable$),
   scan(([queue], [data, isConnected]) => {

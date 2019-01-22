@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ImageViewer from 'react-native-image-zoom-viewer';
-import { Dimensions } from 'react-native';
+import { Dimensions, View } from 'react-native';
 import { ContentListFooter, ContentListItem } from '..';
 import styled from 'styled-components';
+import { ContainerType } from './container';
 
 const { width: screenWidth, height } = Dimensions.get('window');
-const ContainStyled = styled.View`
+const ContainStyled = styled(View)`
   width: ${screenWidth};
   height: ${height};
 `;
 
-class ContentListPageTurningComponent extends Component {
+class ContentListPageTurningComponent extends Component<ContainerType> {
   static propTypes = {
     content: PropTypes.arrayOf(PropTypes.shape({
       url: PropTypes.string,
@@ -32,19 +33,16 @@ class ContentListPageTurningComponent extends Component {
   static defaultProps = {
     content_index: 0,
     offset: 0,
-  }
+  };
 
-  constructor(props) {
-    super(props);
-    this.loading = false;
-  }
+  loading = false;
 
-  shouldComponentUpdate(nextProps) {
+  shouldComponentUpdate(nextProps: ContainerType) {
     const { content, content_index } = this.props;
     return (nextProps.content !== content) || (nextProps.content_index !== content_index);
   }
 
-  onChange = (index) => {
+  onChange = (index: number) => {
     const {
       saveIndex, content, content_index, offset,
     } = this.props;
@@ -53,7 +51,7 @@ class ContentListPageTurningComponent extends Component {
       if (!this.loading) this._onFetch();
     }
     if (index !== content_index - offset) saveIndex(index + offset);
-  };
+  }
 
   _onFetch() {
     const { onFetch, increasePage, page } = this.props;
@@ -69,11 +67,11 @@ class ContentListPageTurningComponent extends Component {
     });
   }
 
-  renderFooter = (index) => {
+  renderFooter = (index: number) => {
     const { total, offset } = this.props;
     if (total - 1 !== index + offset) return null;
     return <ContentListFooter />;
-  };
+  }
 
   render() {
     const {

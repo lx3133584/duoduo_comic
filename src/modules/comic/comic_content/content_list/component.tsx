@@ -8,6 +8,7 @@ const page_size = 5;
 interface IState {
   page: number;
   loadingPage: boolean;
+  noMoreData: boolean;
 }
 type Ref = typeof ContentListScroll | typeof ContentListPageTurning;
 class ContentListComponent extends Component<ContainerType, IState> {
@@ -41,6 +42,7 @@ class ContentListComponent extends Component<ContainerType, IState> {
   state: IState = {
     page: 0, // 续读页码
     loadingPage: false, // 正在加载页面, 显示Spin
+    noMoreData: false, // 是否没有更多数据
   };
 
   componentDidMount() {
@@ -49,10 +51,11 @@ class ContentListComponent extends Component<ContainerType, IState> {
 
   shouldComponentUpdate(nextProps: ContainerType, nextState: IState) {
     const { mode, go_to_flag, chapter_id } = this.props;
-    const { page, loadingPage } = this.state;
+    const { page, loadingPage, noMoreData } = this.state;
     return nextProps.mode !== mode
       || nextProps.go_to_flag !== go_to_flag
       || nextState.page !== page
+      || nextState.noMoreData !== noMoreData
       || nextProps.chapter_id !== chapter_id
       || nextState.loadingPage !== loadingPage;
   }
@@ -69,12 +72,11 @@ class ContentListComponent extends Component<ContainerType, IState> {
     }
   }
 
-  onRefresh = (page: number, init: boolean) => {
+  onRefresh = () => {
     const { saveIndex } = this.props;
-    if (!init) return;
     saveIndex(0);
     this.init_page = 0;
-    this.setState({ page: 0 });
+    this.setState({ page: 0, noMoreData: false });
   }
 
   onFetch = (page: number, init = false) => {
@@ -82,6 +84,11 @@ class ContentListComponent extends Component<ContainerType, IState> {
     if (content_cache) return null;
     return getContent({
       id: this.chapter_id, page, init, pre: false,
+    }).then(res => {
+      const data = res.value.result ? res.value.result.data : res.value.data;
+      if (res.error || !data) return;
+      if (!data.length) this.setState({ noMoreData: true });
+      return res;
     });
   }
 
@@ -105,7 +112,7 @@ class ContentListComponent extends Component<ContainerType, IState> {
     }, 0);
   }
 
-  // 根据index计算page
+  // 根据 index 计算page
   computePage = (index: number) => ~~((index + 1) / (page_size + 0.000001));
 
   // 增加页码
@@ -148,7 +155,7 @@ class ContentListComponent extends Component<ContainerType, IState> {
     } else {
       await this.goPage({ init: true });
     }
-    this.onRefresh(0, true);
+    this.onRefresh();
     this.scrollTo(0);
   }
 
@@ -175,14 +182,14 @@ class ContentListComponent extends Component<ContainerType, IState> {
     if (content_cache) useCache({ id: chapter_id, content: content_cache });
     else await this.goPage({ page, init: true });
 
-    if (!isSame) this.onRefresh(0, true);
+    if (!isSame) this.onRefresh();
     this.scrollTo(content_cache ? content_index : offset);
     hideLoading();
   }
 
   render() {
     const { toggleDrawer, mode } = this.props;
-    const { page, loadingPage } = this.state;
+    const { page, loadingPage, noMoreData } = this.state;
     let ContentList;
     switch (mode) {
       case 'page_turning':
@@ -200,6 +207,7 @@ class ContentListComponent extends Component<ContainerType, IState> {
         page={page + 1}
         increasePage={this.increasePage}
         onFetch={this.onFetch}
+        noMoreData={noMoreData}
         onRefresh={this.onRefresh}
         toggleDrawer={toggleDrawer}
       />,
