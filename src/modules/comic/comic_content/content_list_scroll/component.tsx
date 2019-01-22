@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
 import { TouchableWithoutFeedback, View } from 'react-native';
-import { LongList, LongListLoadingFooter } from '@';
-import { ContentListItem, ContentListFooter } from '..';
+import { LongList } from '@';
+import { ContentListItem } from '..';
 import { getImgHeight } from 'utils';
 import { ContainerType } from './container';
 
@@ -22,12 +22,13 @@ class ContentListScrollComponent extends Component<ContainerType> {
     offset: PropTypes.number,
     width: PropTypes.number.isRequired,
     page: PropTypes.number.isRequired,
-    noMoreData: PropTypes.bool.isRequired,
+    renderFooterComponent: PropTypes.func.isRequired,
     saveIndex: PropTypes.func.isRequired,
     onRefresh: PropTypes.func.isRequired,
     increasePage: PropTypes.func.isRequired,
     toggleDrawer: PropTypes.func.isRequired,
     onFetch: PropTypes.func.isRequired,
+    noMoreData: PropTypes.bool.isRequired,
     getRef: PropTypes.func.isRequired,
   };
 
@@ -43,7 +44,7 @@ class ContentListScrollComponent extends Component<ContainerType> {
   }
 
   shouldComponentUpdate(nextProps) {
-    const { content, noMoreData, page } = this.props;
+    const { content, page, noMoreData } = this.props;
     return nextProps.content !== content ||
       nextProps.noMoreData !== noMoreData ||
       nextProps.page !== page;
@@ -98,14 +99,8 @@ class ContentListScrollComponent extends Component<ContainerType> {
     );
   }
 
-  _renderFooterComponent = () => {
-    const { noMoreData } = this.props;
-    if (!noMoreData) return <LongListLoadingFooter color="#fff" background="#282828" />;
-    return <ContentListFooter />;
-  }
-
   render() {
-    const { content } = this.props;
+    const { content, renderFooterComponent } = this.props;
     return (
       <LongList
         {...this.props}
@@ -114,7 +109,7 @@ class ContentListScrollComponent extends Component<ContainerType> {
         Item={this.renderItem}
         customKey="url"
         onScroll={this.onScroll}
-        ListFooterComponent={this._renderFooterComponent}
+        ListFooterComponent={renderFooterComponent}
         getItemLayout={this._getItemLayout}
         initialNumToRender={3}
         isLong

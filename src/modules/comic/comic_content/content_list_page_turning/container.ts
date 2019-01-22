@@ -7,6 +7,16 @@ import windowSizeSelector from 'selectors/window_size';
 import Component from './component';
 import { saveContentIndex } from '../actions';
 
+interface IOwnProps {
+  page: number;
+  offset: number;
+  noMoreData: boolean;
+  renderFooterComponent(): any;
+  onRefresh(): void;
+  onFetch(page: number, init?: boolean): Promise<any>;
+  increasePage(page?: number): void;
+}
+
 const contentSelector = (state: RootState) => state.comic.get('content');
 const widthSelector = (state: RootState) => windowSizeSelector(state).width;
 
@@ -37,7 +47,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     return dispatch(saveContentIndex(params));
   },
 });
-export type ContainerType = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>;
+export type ContainerType = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps> & IOwnProps;
 
 export default connect(
   mapStateToProps,

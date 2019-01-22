@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 // import ImmutablePropTypes from 'react-immutable-proptypes';
 import PropTypes from 'prop-types';
-import { ContentListScroll, ContentListPageTurning, Spin } from '..';
+import { ContentListScroll, ContentListPageTurning, Spin, ContentListFooter } from '..';
+import { LongListLoadingFooter } from '@';
 import { ContainerType } from './container';
 
 const page_size = 5;
@@ -192,6 +193,12 @@ class ContentListComponent extends Component<ContainerType, IState> {
     hideLoading();
   }
 
+  renderFooterComponent = () => {
+    const { noMoreData } = this.state;
+    if (!noMoreData) return <LongListLoadingFooter color="#fff" background="#282828" />;
+    return <ContentListFooter />;
+  }
+
   render() {
     const { toggleDrawer, mode } = this.props;
     const { page, loadingPage, noMoreData } = this.state;
@@ -213,6 +220,7 @@ class ContentListComponent extends Component<ContainerType, IState> {
         increasePage={this.increasePage}
         onFetch={this.onFetch}
         noMoreData={noMoreData}
+        renderFooterComponent={this.renderFooterComponent}
         onRefresh={this.onRefresh}
         toggleDrawer={toggleDrawer}
       />,

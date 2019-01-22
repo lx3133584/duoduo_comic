@@ -11,6 +11,7 @@ interface IOwnProps {
   page: number;
   offset: number;
   noMoreData: boolean;
+  renderFooterComponent(): any;
   onRefresh(): void;
   onFetch(page: number, init?: boolean): Promise<any>;
   increasePage(page?: number): void;

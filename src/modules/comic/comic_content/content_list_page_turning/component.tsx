@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ImageViewer from 'react-native-image-zoom-viewer';
 import { Dimensions, View } from 'react-native';
-import { ContentListFooter, ContentListItem } from '..';
+import { ContentListItem } from '..';
 import styled from 'styled-components';
 import { ContainerType } from './container';
 
@@ -22,10 +22,12 @@ class ContentListPageTurningComponent extends Component<ContainerType> {
     content_index: PropTypes.number,
     width: PropTypes.number.isRequired,
     toggleDrawer: PropTypes.func.isRequired,
+    renderFooterComponent: PropTypes.func.isRequired,
     offset: PropTypes.number,
     total: PropTypes.number.isRequired,
     saveIndex: PropTypes.func.isRequired,
     page: PropTypes.number.isRequired,
+    noMoreData: PropTypes.bool.isRequired,
     onFetch: PropTypes.func.isRequired,
     increasePage: PropTypes.func.isRequired,
   };
@@ -38,8 +40,11 @@ class ContentListPageTurningComponent extends Component<ContainerType> {
   loading = false;
 
   shouldComponentUpdate(nextProps: ContainerType) {
-    const { content, content_index } = this.props;
-    return (nextProps.content !== content) || (nextProps.content_index !== content_index);
+    const { content, content_index, page, noMoreData } = this.props;
+    return nextProps.content !== content ||
+      nextProps.page !== page ||
+      nextProps.noMoreData !== noMoreData ||
+      nextProps.content_index !== content_index;
   }
 
   onChange = (index: number) => {
@@ -57,7 +62,9 @@ class ContentListPageTurningComponent extends Component<ContainerType> {
     const { onFetch, increasePage, page } = this.props;
     if (!onFetch) return;
     this.loading = true;
-    onFetch(page).then((res) => {
+    const promise = onFetch(page);
+    if (!promise) return;
+    promise.then((res) => {
       this.loading = false;
       if (!res.error && res.value.result.data.length) {
         increasePage();
@@ -68,9 +75,10 @@ class ContentListPageTurningComponent extends Component<ContainerType> {
   }
 
   renderFooter = (index: number) => {
-    const { total, offset } = this.props;
-    if (total - 1 !== index + offset) return null;
-    return <ContentListFooter />;
+    const { content, renderFooterComponent } = this.props;
+    const len = content.length;
+    if (len - 1 !== index) return null;
+    return renderFooterComponent();
   }
 
   render() {
