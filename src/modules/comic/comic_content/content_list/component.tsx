@@ -137,6 +137,13 @@ class ContentListComponent extends Component<ContainerType, IState> {
     this.scrollTo(content_cache ? index : offset);
   }
 
+  useCache() {
+    const { chapter_id, content_cache, useCache } = this.props;
+    if (!content_cache) return;
+    useCache({ id: chapter_id, content: content_cache });
+    setTimeout(() => this.setState({ noMoreData: true }), 0);
+  }
+
   _getRef = (ref: Ref) => this.content_list_ref = ref;
 
   async update() {
@@ -146,10 +153,9 @@ class ContentListComponent extends Component<ContainerType, IState> {
       pre_content,
       chapter_id,
       content_cache,
-      useCache,
     } = this.props;
     this.chapter_id = chapter_id;
-    if (content_cache) useCache({ id: chapter_id, content: content_cache });
+    if (content_cache) this.useCache();
     else if (pre && pre_content.size) {
       preContent(this.chapter_id);
     } else {
@@ -166,7 +172,6 @@ class ContentListComponent extends Component<ContainerType, IState> {
       content_index,
       detail_chapter_id,
       content_cache,
-      useCache,
     } = this.props;
     this.chapter_id = chapter_id;
     let offset = 0;
@@ -179,7 +184,7 @@ class ContentListComponent extends Component<ContainerType, IState> {
       offset = content_index % page_size;
     }
 
-    if (content_cache) useCache({ id: chapter_id, content: content_cache });
+    if (content_cache) this.useCache();
     else await this.goPage({ page, init: true });
 
     if (!isSame) this.onRefresh();
