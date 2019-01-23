@@ -6,6 +6,7 @@ import Toast from 'react-native-root-toast';
 import * as CacheManager from 'react-native-http-cache2';
 import { Modal } from '@';
 import { ListItem } from '@/user/user_info';
+import { ContainerType } from './container';
 
 const ContainStyled = styled.View`
   background: #fff;
@@ -31,23 +32,45 @@ const modeData = [
     value: 'page_turning',
   },
 ];
+const sourceData = [
+  {
+    text: '源服务器一',
+    value: 0,
+  },
+  {
+    text: '源服务器二',
+    value: 1,
+  },
+  {
+    text: '源服务器三',
+    value: 2,
+  },
+  {
+    text: '源服务器四',
+    value: 3,
+  },
+];
 
 const orientationTextMap = orientationData.reduce((map, item) => ({ ...map, [item.value]: item.text }), {});
 const modeTextMap = modeData.reduce((map, item) => ({ ...map, [item.value]: item.text }), {});
+const sourceTextMap = sourceData.reduce((map, item) => ({ ...map, [item.value]: item.text }), {});
 
 const orientationOptions = orientationData.map(item => item.text);
 orientationOptions.push('取消');
 const modeOptions = modeData.map(item => item.text);
 modeOptions.push('取消');
-
-class MainComponent extends PureComponent {
+const sourceOptions = sourceData.map(item => item.text);
+sourceOptions.push('取消');
+class MainComponent extends PureComponent<ContainerType> {
   static propTypes = {
     isLogin: PropTypes.bool.isRequired,
     mode: PropTypes.string.isRequired,
     orientation: PropTypes.string.isRequired,
+    source: PropTypes.number.isRequired,
     logout: PropTypes.func.isRequired,
     switchOrientation: PropTypes.func.isRequired,
     switchReadingMode: PropTypes.func.isRequired,
+    switchSource: PropTypes.func.isRequired,
   };
 
   state = {
@@ -77,7 +100,7 @@ class MainComponent extends PureComponent {
 
   logout = () => {
     this.setState({ isVisible: true });
-  };
+  }
 
   confirm = () => {
     const { logout } = this.props;
@@ -87,13 +110,13 @@ class MainComponent extends PureComponent {
       position: -70,
     });
     // navigation.navigate('Login');
-  };
+  }
 
   cancel = () => {
     this.setState({ isVisible: false });
-  };
+  }
 
-  switchOrientation = (index) => {
+  switchOrientation = (index: number) => {
     if (index >= 2) return;
     const { switchOrientation, switchReadingMode } = this.props;
     const { value } = orientationData[index] || {};
@@ -104,17 +127,23 @@ class MainComponent extends PureComponent {
     switchOrientation(value);
   }
 
-  switchMode = (index) => {
+  switchMode = (index: number) => {
     if (index >= 2) return;
     const { switchReadingMode } = this.props;
     const { value } = modeData[index] || {};
     if (!value) return;
     switchReadingMode(value);
   }
+  switchSource = (index: number) => {
+    if (index >= 4) return;
+    const { switchSource } = this.props;
+    const { value = 3 } = sourceData[index] || {};
+    switchSource(value);
+  }
 
   render() {
     const { isVisible, cacheSize } = this.state;
-    const { isLogin, orientation, mode } = this.props;
+    const { isLogin, orientation, mode, source } = this.props;
     return (
       <ContainStyled>
         <ListItem
@@ -131,6 +160,11 @@ class MainComponent extends PureComponent {
             />
           )
         }
+        <ListItem
+          title="切换图片源"
+          rightTitle={sourceTextMap[source]}
+          onPress={this.sourceActionSheet && (() => this.sourceActionSheet.show())}
+        />
         <ListItem
           title="清除缓存"
           rightTitle={`${(cacheSize / 1048576).toFixed(2)}MB`}
@@ -164,6 +198,13 @@ class MainComponent extends PureComponent {
           options={modeOptions}
           cancelButtonIndex={2}
           onPress={this.switchMode}
+        />
+        <ActionSheet
+          ref={o => this.sourceActionSheet = o}
+          title="图片源"
+          options={sourceOptions}
+          cancelButtonIndex={4}
+          onPress={this.switchSource}
         />
       </ContainStyled>
     );
