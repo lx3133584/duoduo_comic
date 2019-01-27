@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Dimensions, FlatList } from 'react-native';
+import { Dimensions, FlatList, RefreshControl } from 'react-native';
 import PropTypes from 'prop-types';
 import { ListEmpty, LongListTextFooter, LongListLoadingFooter } from '..';
+import { brand_primary } from 'theme';
 
 const { height } = Dimensions.get('window');
 
@@ -128,7 +129,7 @@ class LongListComponent extends Component<IProps, IState> {
     const { onFetch, increasePage } = this.props;
     if (!onFetch) return;
     const { loading, noMoreData } = this.state;
-    if (loading || noMoreData) return;
+    if (!init && (loading || noMoreData)) return;
     this.setState({ loading: true });
     const resPromise = onFetch(this.page, init);
     if (!resPromise) return this.setState({ loading: false });
@@ -182,8 +183,14 @@ class LongListComponent extends Component<IProps, IState> {
         renderItem={this._renderItem}
         onEndReached={isLong ? this._onFetch : null}
         onEndReachedThreshold={1.6}
-        onRefresh={this._onRefresh}
-        refreshing={refreshing}
+        refreshing={false}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={this._onRefresh}
+            colors={[brand_primary]}
+          />
+        }
         getItemLayout={this._getItemLayout}
         initialNumToRender={Math.ceil(height / itemHeight)}
         ListEmptyComponent={() => <ListEmpty text={emptyText} />}

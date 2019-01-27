@@ -6,7 +6,7 @@ const newMap = Immutable.Map();
 const newList = Immutable.List();
 const downloadListSelector = (state: RootState) => state.favorites.get('download_list', newList);
 const comicIdSelector = (state: RootState) => state.comic.getIn(['detail', 'id']);
-type IIdSelector = (state: RootState, ownProps: any) => number | undefined;
+type IIdSelector = (state: RootState, ownProps?: any) => number | undefined;
 export const getComicCache = (
   myComicIdSelector: IIdSelector = comicIdSelector,
 ) => createSelector(

@@ -8,7 +8,7 @@ import { Dimensions, View, Text } from 'react-native';
 import { ContainerType } from './container';
 
 const { width } = Dimensions.get('window');
-const { preload } = Image;
+const { preload, priority } = Image;
 
 const height = 50;
 const ContainStyled = styled(View)`
@@ -71,6 +71,7 @@ class ContentListFooterComponent extends PureComponent<ContainerType> {
       const data = value.result.data.slice(0, 3);
       preload(data.map(item => ({
         uri: item.url,
+        priority: priority.low,
       })));
     });
   }
