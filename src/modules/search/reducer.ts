@@ -12,7 +12,7 @@ export default handleActions({
     const { page, keyword, result } = action.payload;
     if (!page) map.update('list', (list) => list.clear());
     if (keyword) map.set('keyword', keyword);
-    map.update('list', (oldList) => oldList.concat(result.data));
+    map.update('list', (oldList) => oldList.concat(...result.data));
   }),
   [searchListActions.clearSearchList]: (state) => state.withMutations(map => {
     map.update('list', (list) => list.clear());

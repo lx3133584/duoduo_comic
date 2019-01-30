@@ -59,7 +59,7 @@ export default handleActions({
     if (!action.payload.page) {
       map.update('history_list', (list) => list.clear());
     }
-    map.update('history_list', (list) => list.concat(action.payload.result.data));
+    map.update('history_list', (list) => list.concat(...action.payload.result.data));
   }),
   [`${favoritesListActions.removeHistory}_PENDING`]:
     (state, action: any) => state.update('history_list', (list) => list.filter(((item) => item.id !== action.payload))),

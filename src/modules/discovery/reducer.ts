@@ -24,7 +24,7 @@ export default handleActions({
     if (!action.meta.page) {
       map.update('rank_item_list', (list) => list.clear());
     }
-    map.update('rank_item_list', (list) => list.concat(action.payload.data));
+    map.update('rank_item_list', (list) => list.concat(...action.payload.data));
   }),
   [`${classItemListActions.getClassItemList}_PENDING`]: (state, action: any) => state.withMutations((map) => {
     const { id } = action.payload;
@@ -36,6 +36,6 @@ export default handleActions({
     if (!action.meta.page) {
       map.update('class_item_list', (list) => list.clear());
     }
-    map.update('class_item_list', (list) => list.concat(action.payload.data));
+    map.update('class_item_list', (list) => list.concat(...action.payload.data));
   }),
 }, initialState);

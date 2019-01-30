@@ -67,7 +67,7 @@ export default handleActions({
         .setIn(['detail', 'chapter_id'], id);
     }
     map.set('content_total', result.total)
-      .update('content', (oldList) => oldList.concat(data));
+      .update('content', (oldList) => oldList.concat(...data));
   }),
   [comicContentActions.useTheContentCache as any]: (state, action: any) => state.withMutations((map) => map
     .set('content', Immutable.List(action.payload.content))
