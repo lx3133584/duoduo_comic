@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Button } from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
-import { Dimensions, TouchableOpacity } from 'react-native';
+import { Dimensions, TouchableOpacity, View, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { brand_primary } from 'theme';
 import { Modal } from '@';
@@ -13,27 +13,27 @@ import { numberFormat } from 'utils';
 
 const { width } = Dimensions.get('window');
 
-const ContainStyled = styled.View`
+const ContainStyled = styled(View)`
   height: 60px;
   background-color: #fff;
   justify-content: space-around;
   flex-direction: row;
   width: ${width};
 `;
-const CollectionContainStyled = styled.View`
+const CollectionContainStyled = styled(View)`
   justify-content: center;
   width: ${width / 2 - 20};
 `;
-const CollectionStyled = styled.View`
+const CollectionStyled = styled(View)`
   flex-direction: row;
   justify-content: center;
 `;
-const CollectionTextStyled = styled.Text`
+const CollectionTextStyled = styled(Text)`
   color: #666;
   font-size: 14px;
   margin-left: 8px;
 `;
-const CollectionNumberStyled = styled.Text`
+const CollectionNumberStyled = styled(Text)`
   font-size: 12px;
 `;
 const startTextStyle = {
@@ -44,6 +44,7 @@ const startButtonStyle = {
   borderWidth: 0,
   borderRadius: 100,
   width: width / 2 - 20,
+  elevation: 0,
 };
 const containerStyle = {
   justifyContent: 'center',
@@ -63,8 +64,8 @@ class ComicDetailBtnsComponent extends PureComponent {
     detail: Immutable.Map(),
   }
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.startRead = this.startRead.bind(this);
     this.addFavorite = this.addFavorite.bind(this);
     this.removeFavorite = this.removeFavorite.bind(this);
