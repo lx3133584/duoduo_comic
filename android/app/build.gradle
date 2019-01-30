@@ -127,6 +127,9 @@ android {
         }
     }
     buildTypes {
+        debug {
+            buildConfigField "String", "CODEPUSH_KEY", '"x06nPp0zdgT9HHNiw0RBtpPkr1HW4ksvOXqog"'
+        }
         release {
             signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
