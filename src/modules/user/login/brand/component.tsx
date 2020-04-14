@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 import { Image } from 'react-native';
 import { brand_primary } from 'theme';
 

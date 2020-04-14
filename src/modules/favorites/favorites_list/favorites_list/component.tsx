@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import PropTypes from 'prop-types';
+
 import { is } from 'immutable';
-import { FavoritesListItem, Modal } from '..';
-import styled from 'styled-components';
+import FavoritesListItem from '../favorites_list_item';
+import Modal from '../modal';
+import styled from 'styled-components/native';
 import { LongList } from '@';
+import { IContainer } from './container';
 
 const ContainStyled = styled.View`
 `;
 
-class FavoritesListComponent extends Component {
-  static propTypes = {
-    getList: PropTypes.func.isRequired,
-    remove: PropTypes.func.isRequired,
-    list: ImmutablePropTypes.list.isRequired,
+class FavoritesListComponent extends Component<IContainer> {
+  id: number = null;
+
+  state = {
+    isVisible: false,
   };
 
   constructor(props) {
@@ -24,10 +25,6 @@ class FavoritesListComponent extends Component {
     this.cancel = this.cancel.bind(this);
   }
 
-  state = {
-    isVisible: false,
-  };
-
   shouldComponentUpdate(nextProps, nextState) {
     const { list } = this.props;
     const { isVisible } = this.state;
@@ -36,7 +33,7 @@ class FavoritesListComponent extends Component {
 
   onFetch() {
     const { getList } = this.props;
-    return getList();
+    return getList() as any;
   }
 
   removeFavorite(id) {

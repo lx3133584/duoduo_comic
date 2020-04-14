@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+
 import { Button } from 'react-native-elements';
 import { brand_primary } from 'theme';
 
@@ -15,11 +15,11 @@ const buttonStyle = {
 const textStyle = {
   fontSize: 14,
   color: '#fff',
-  textAlign: 'justify',
+  textAlign: 'justify' as 'justify',
 };
 const containerStyle = {
-  justifyContent: 'center',
-  alignItems: 'center',
+  justifyContent: 'center' as 'center',
+  alignItems: 'center' as 'center',
 };
 
 function LoginButtonComponent({
@@ -37,13 +37,7 @@ function LoginButtonComponent({
     />
   );
 }
-LoginButtonComponent.propTypes = {
-  text: PropTypes.string,
-  loading: PropTypes.bool,
-  outline: PropTypes.bool,
-  disabled: PropTypes.bool,
-  onPress: PropTypes.func.isRequired,
-};
+
 LoginButtonComponent.defaultProps = {
   text: '登  录',
   loading: false,

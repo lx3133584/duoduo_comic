@@ -1,6 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
+import styled from 'styled-components/native';
+
 import { TouchableOpacity } from 'react-native';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
@@ -48,11 +48,6 @@ function ContentDrawerIconComponent({ icon_type, title, onPress }: IContentDrawe
     </TouchableOpacity>
   );
 }
-ContentDrawerIconComponent.propTypes = {
-  icon_type: PropTypes.string,
-  title: PropTypes.string,
-  onPress: PropTypes.func,
-};
 ContentDrawerIconComponent.defaultProps = {
   icon_type: 'setting',
   title: '设置',

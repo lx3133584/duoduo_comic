@@ -8,13 +8,15 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getList(params) {
+  getList(params?: any) {
     return dispatch(getFavoritesList(params));
   },
   remove(params) {
     return dispatch(comicDetailActions.removeFavorite(params));
   },
 });
+
+export type IContainer = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>;
 
 export default connect(
   mapStateToProps,

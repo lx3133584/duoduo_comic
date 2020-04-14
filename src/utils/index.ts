@@ -4,11 +4,5 @@ export {
   statCount,
 } from './tools';
 
-export {
-  wrapWithLoading,
-  wrapWithLoadingType,
-  ILoadingProps,
-  wrapWithCheckBoxData,
-  wrapWithCheckBoxDataType,
-  ICheckBoxProps,
-} from './higher_order_components';
+export { wrapWithLoading, wrapWithCheckBoxData } from './higher_order_components';
+export type { ILoadingProps, ICheckBoxProps } from './higher_order_components';

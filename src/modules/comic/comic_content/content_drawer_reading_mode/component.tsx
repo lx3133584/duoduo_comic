@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
-import { ContentDrawerSettingCheckbox } from '..';
-import { ContainerType } from './container';
+import styled from 'styled-components/native';
+
+import ContentDrawerSettingCheckbox from '../content_drawer_setting_checkbox';
+import { IContainer } from './container';
 
 const ContainStyled = styled.View`
   flex-direction: row;
@@ -20,13 +20,7 @@ const options = [
   },
 ];
 
-class ContentDrawerReadingModeComponent extends PureComponent<ContainerType> {
-  static propTypes = {
-    goIndex: PropTypes.func.isRequired,
-    switchReadingMode: PropTypes.func.isRequired,
-    mode: PropTypes.string.isRequired,
-    index: PropTypes.number.isRequired,
-  };
+class ContentDrawerReadingModeComponent extends PureComponent<IContainer> {
 
   switchReadingMode = (value: 'scroll' | 'page_turning') => {
     const { switchReadingMode, goIndex, index } = this.props;

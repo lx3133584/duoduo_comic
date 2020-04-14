@@ -1,23 +1,16 @@
 import React, { PureComponent } from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import PropTypes from 'prop-types';
+
 import { RankItemListItem } from '@/discovery/rank_item_list';
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 import { LongList, LoadingPage } from '@';
-import { wrapWithLoading, wrapWithLoadingType, ILoadingProps } from 'utils';
-import { ContainerType } from './container';
+import { wrapWithLoading, ILoadingProps } from 'utils';
+import { IContainer } from './container';
 
 const ContainStyled = styled.View`
   padding-bottom: 72px;
 `;
 @wrapWithLoading
-class RankItemListComponent extends PureComponent<ContainerType & ILoadingProps> {
-  static propTypes = {
-    getList: PropTypes.func.isRequired,
-    id: PropTypes.number,
-    list: ImmutablePropTypes.list.isRequired,
-    ...wrapWithLoadingType,
-  };
+class RankItemListComponent extends PureComponent<IContainer & ILoadingProps> {
 
   static defaultProps = {
     id: 0,
@@ -30,14 +23,14 @@ class RankItemListComponent extends PureComponent<ContainerType & ILoadingProps>
 
   componentDidMount() {
     const { hideLoading } = this.props;
-    this.onFetch(0).finally(() => {
+    (this.onFetch(0) as any).finally(() => {
       hideLoading();
     });
   }
 
   onFetch(page) {
     const { getList, id } = this.props;
-    return getList({ page, id });
+    return getList({ page, id }) as any;
   }
 
   renderItem = (props) => {

@@ -1,8 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
+
+import styled from 'styled-components/native';
 import { Actions } from 'react-native-router-flux';
-import { Image, TouchableNativeFeedback } from '..';
+import Image from '../image';
+import TouchableNativeFeedback from '../touchable_native_feedback';
 
 const ContainStyled = styled.View`
   flex-direction: row;
@@ -57,14 +58,5 @@ function LongListItem({
     </WhiteContainStyled>
   );
 }
-LongListItem.propTypes = {
-  id: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
-  cover: PropTypes.string.isRequired,
-  children: PropTypes.oneOfType([
-    PropTypes.array,
-    PropTypes.element,
-  ]).isRequired,
-  itemOnLongPress: PropTypes.func.isRequired,
-};
+
 export default LongListItem;

@@ -1,21 +1,23 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
+
 import {
-  SectionList, Dimensions, NetInfo, PixelRatio, View,
+  SectionList, Dimensions, PixelRatio,
 } from 'react-native';
+import NetInfo from '@react-native-community/netinfo';
 import Immutable, { is } from 'immutable';
 import { Actions } from 'react-native-router-flux';
-import { ComicListItem, ComicListCategory, Progress } from '..';
-import styled from 'styled-components';
-import { wrapWithLoading, wrapWithLoadingType, ILoadingProps } from 'utils';
-import { ContainerType } from './container';
+import ComicListItem from '../comic_list_item';
+import ComicListCategory from '../comic_list_category';
+import Progress from '../progress';
+import styled from 'styled-components/native';
+import { wrapWithLoading } from 'utils';
+import { IContainer } from './container';
 
 const { height } = Dimensions.get('window');
 const initNumber = Math.ceil(height / 50);
 
 const px1 = 1 / PixelRatio.get();
-const ItemSeparatorComponent = styled(View)`
+const ItemSeparatorComponent = styled.View`
   border-bottom-color: #c0c0c0;
   border-bottom-width: ${px1};
 `;
@@ -41,23 +43,7 @@ function _keyExtractor(item: IItem) {
   return `${item.id}`;
 }
 @wrapWithLoading
-class ComicListComponent extends Component<ContainerType & ILoadingProps> {
-  static propTypes = {
-    list: ImmutablePropTypes.list.isRequired,
-    chapter_id: PropTypes.number,
-    comic_id: PropTypes.number,
-    getList: PropTypes.func.isRequired,
-    useCache: PropTypes.func.isRequired,
-    updateCache: PropTypes.func.isRequired,
-    isReplace: PropTypes.bool,
-    dark: PropTypes.bool,
-    checkboxData: ImmutablePropTypes.map,
-    comic_list_map_cache: ImmutablePropTypes.map,
-    comic_list_cache: ImmutablePropTypes.list,
-    showCheckbox: PropTypes.bool,
-    changeCheckbox: PropTypes.func,
-    ...wrapWithLoadingType,
-  };
+class ComicListComponent extends Component<IContainer> {
 
   static defaultProps = {
     chapter_id: 0,
@@ -90,7 +76,7 @@ class ComicListComponent extends Component<ContainerType & ILoadingProps> {
 
   onFetch(id: number) {
     const { getList } = this.props;
-    return getList(id).then(({ value: { data } = {} }) => data);
+    return (getList(id) as any).then(({ value: { data } = { data: null } } = {}) => data);
   }
 
   async init() {
@@ -100,7 +86,7 @@ class ComicListComponent extends Component<ContainerType & ILoadingProps> {
     if (showCheckbox || isReplace) return hideLoading();
     if (comic_list_cache) {
       useCache(comic_list_cache);
-      NetInfo.isConnected.fetch().then((isConnected) => { // 如果联网则更新缓存
+      NetInfo.fetch().then(({ isConnected }) => { // 如果联网则更新缓存
         if (!isConnected) return;
         this.onFetch(comic_id).then((data) => {
           updateCache({ id: comic_id, data });
@@ -142,7 +128,7 @@ class ComicListComponent extends Component<ContainerType & ILoadingProps> {
     return { sectionIndex, itemIndex };
   }
 
-  renderItem = ({ item }: { item: Comic.ChapterItem }) => {
+  renderItem = ({ item }: any) => {
     const {
       chapter_id, isReplace, dark,
       showCheckbox, changeCheckbox, checkboxData,

@@ -27,9 +27,9 @@ const formatContentSelector = createSelector(
 
 const imageUrlsSelector = createSelector(
   [formatContentSelector, widthSelector],
-  (list, width) => list.map((item) => {
+  (list, width) => list.map((item: any) => {
     item.props = { ...item };
-    item.height = getImgHeight(item.size, width);
+    item.height = getImgHeight(item.size!, width);
     item.width = width;
     return item;
   }),
@@ -43,11 +43,11 @@ const mapStateToProps = (state: RootState) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  saveIndex(params) {
+  saveIndex(params: any) {
     return dispatch(saveContentIndex(params));
   },
 });
-export type ContainerType = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps> & IOwnProps;
+export type IContainer = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps> & IOwnProps;
 
 export default connect(
   mapStateToProps,

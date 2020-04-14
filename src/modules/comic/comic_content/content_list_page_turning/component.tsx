@@ -1,36 +1,20 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+
 import ImageViewer from 'react-native-image-zoom-viewer';
-import { Dimensions, View } from 'react-native';
-import { ContentListItem } from '..';
-import styled from 'styled-components';
-import { ContainerType } from './container';
+import { Dimensions } from 'react-native';
+import ContentListItem from '../content_list_item';
+import styled from 'styled-components/native';
+import { IContainer } from './container';
 
 const { width: screenWidth, height } = Dimensions.get('window');
-const ContainStyled = styled(View)`
+const ContainStyled = styled.View`
   width: ${screenWidth};
   height: ${height};
 `;
-
-class ContentListPageTurningComponent extends Component<ContainerType> {
-  static propTypes = {
-    content: PropTypes.arrayOf(PropTypes.shape({
-      url: PropTypes.string,
-      height: PropTypes.number,
-      width: PropTypes.number,
-    })).isRequired,
-    content_index: PropTypes.number,
-    width: PropTypes.number.isRequired,
-    toggleDrawer: PropTypes.func.isRequired,
-    renderFooterComponent: PropTypes.func.isRequired,
-    offset: PropTypes.number,
-    total: PropTypes.number.isRequired,
-    saveIndex: PropTypes.func.isRequired,
-    page: PropTypes.number.isRequired,
-    noMoreData: PropTypes.bool.isRequired,
-    onFetch: PropTypes.func.isRequired,
-    increasePage: PropTypes.func.isRequired,
-  };
+interface IProps extends IContainer {
+  toggleDrawer(): void;
+}
+class ContentListPageTurningComponent extends Component<IProps> {
 
   static defaultProps = {
     content_index: 0,
@@ -39,7 +23,7 @@ class ContentListPageTurningComponent extends Component<ContainerType> {
 
   loading = false;
 
-  shouldComponentUpdate(nextProps: ContainerType) {
+  shouldComponentUpdate(nextProps: IContainer) {
     const { content, content_index, page, noMoreData } = this.props;
     return nextProps.content !== content ||
       nextProps.page !== page ||

@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 import { is } from 'immutable';
 import { TouchableOpacity } from 'react-native';
 import { Actions } from 'react-native-router-flux';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import { Rating } from '..';
-import { ContainerType } from './container';
+
+import Rating from '../rating';
+import { IContainer } from './container';
 
 const ContainStyled = styled.View`
   margin-bottom: 5px;
@@ -41,10 +41,7 @@ const DescStyled = styled.Text`
   margin: 8px 0;
   line-height: 20px;
 `;
-class ComicDetailComponent extends Component<ContainerType> {
-  static propTypes = {
-    detail: ImmutablePropTypes.map.isRequired,
-  };
+class ComicDetailComponent extends Component<IContainer> {
 
   shouldComponentUpdate(nextProps) {
     const { detail } = this.props;
@@ -55,7 +52,7 @@ class ComicDetailComponent extends Component<ContainerType> {
     const { detail } = this.props;
     const status = detail.get('status');
     const author = detail.get('author') || '佚名';
-    const update_time = detail.get('update_time');
+    const update_time: any = detail.get('update_time');
     const update_date = update_time && update_time.slice(0, 10);
     const desc = detail.get('desc');
     return (

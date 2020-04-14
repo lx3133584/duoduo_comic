@@ -1,18 +1,11 @@
 import React, { PureComponent } from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import PropTypes from 'prop-types';
+
 import { LongList, LoadingPage, SearchListItem } from '@';
-import { wrapWithLoading, wrapWithLoadingType, ILoadingProps } from 'utils';
-import { ContainerType } from './container';
+import { wrapWithLoading, ILoadingProps } from 'utils';
+import { IContainer } from './container';
 
 @wrapWithLoading
-class ClassItemListComponent extends PureComponent<ContainerType & ILoadingProps> {
-  static propTypes = {
-    getList: PropTypes.func.isRequired,
-    list: ImmutablePropTypes.list.isRequired,
-    id: PropTypes.number,
-    ...wrapWithLoadingType,
-  };
+class ClassItemListComponent extends PureComponent<IContainer & ILoadingProps> {
 
   static defaultProps = {
     id: 0,
@@ -25,14 +18,14 @@ class ClassItemListComponent extends PureComponent<ContainerType & ILoadingProps
 
   componentDidMount() {
     const { hideLoading } = this.props;
-    this.onFetch(0).finally(() => {
+    (this.onFetch(0) as any).finally(() => {
       hideLoading();
     });
   }
 
   onFetch(page) {
     const { getList, id } = this.props;
-    return getList({ page, id });
+    return getList({ page, id }) as any;
   }
 
   render() {

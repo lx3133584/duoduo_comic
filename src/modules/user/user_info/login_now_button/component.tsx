@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+
 import { Button } from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
 import { brand_primary } from 'theme';
@@ -20,8 +20,8 @@ const largeStyle = {
   height: 40,
 };
 const containerStyle = {
-  justifyContent: 'center',
-  alignItems: 'center',
+  justifyContent: 'center' as 'center',
+  alignItems: 'center' as 'center',
 };
 
 function LoginNowButtonComponent({ large }) {
@@ -35,9 +35,7 @@ function LoginNowButtonComponent({ large }) {
     />
   );
 }
-LoginNowButtonComponent.propTypes = {
-  large: PropTypes.bool,
-};
+
 LoginNowButtonComponent.defaultProps = {
   large: false,
 };

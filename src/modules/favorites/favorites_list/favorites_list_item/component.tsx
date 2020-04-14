@@ -1,6 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
+import styled from 'styled-components/native';
+
 import { Actions } from 'react-native-router-flux';
 import { TouchableOpacity, Dimensions } from 'react-native';
 import { Image } from '@';
@@ -53,13 +53,7 @@ function FavoritesListItem({
     </ContainStyled>
   );
 }
-FavoritesListItem.propTypes = {
-  title: PropTypes.string,
-  cover: PropTypes.string,
-  itemOnLongPress: PropTypes.func.isRequired,
-  id: PropTypes.number.isRequired,
-  cur_chapter: PropTypes.string,
-};
+
 FavoritesListItem.defaultProps = {
   title: '',
   cover: '',

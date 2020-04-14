@@ -7,7 +7,6 @@ import {
   Drawer,
   Actions,
 } from 'react-native-router-flux';
-import StackViewStyleInterpolator from 'react-navigation-stack/dist/views/StackView/StackViewStyleInterpolator';
 import { Dimensions, StatusBar } from 'react-native';
 import { brand_primary } from 'theme';
 import {
@@ -48,9 +47,6 @@ const RootRoute = () => (
     <MyStack
       key="root"
       navBar={Header}
-      transitionConfig={() => ({
-        screenInterpolator: StackViewStyleInterpolator.forHorizontal,
-      })}
     >
       <MyTabs
         activeTintColor={brand_primary}

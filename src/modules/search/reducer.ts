@@ -1,6 +1,6 @@
 import { handleActions } from 'redux-actions';
 import Immutable from 'immutable';
-import { searchListActions } from '.';
+import { searchListActions } from './search_list';
 
 const initialState = Immutable.Record({
   keyword: '',
@@ -14,7 +14,7 @@ export default handleActions({
     if (keyword) map.set('keyword', keyword);
     map.update('list', (oldList) => oldList.concat(...result.data));
   }),
-  [searchListActions.clearSearchList]: (state) => state.withMutations(map => {
+  [`${searchListActions.clearSearchList}`]: (state) => state.withMutations(map => {
     map.update('list', (list) => list.clear());
     map.set('keyword', '');
   }),

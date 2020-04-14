@@ -1,6 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
+
+import styled from 'styled-components/native';
 import Button from 'apsl-react-native-button';
 import Entypo from 'react-native-vector-icons/Entypo';
 import { CheckBox } from 'react-native-elements';
@@ -22,7 +22,7 @@ const LocaltionIcon = () => (
 const { width } = Dimensions.get('window');
 
 const buttonStyle = {
-  backgroundColor: 'transparent',
+  backgroundColor: 'transparent' as 'transparent',
   borderWidth: 0,
   borderRadius: 0,
   height: 50,
@@ -31,16 +31,16 @@ const buttonStyle = {
   paddingLeft: 30,
   paddingRight: 0,
   elevation: 0,
-  justifyContent: 'flex-start',
+  justifyContent: 'flex-start' as 'flex-start',
 };
 const textStyle = {
-  fontWeight: 'normal',
+  fontWeight: 'normal' as 'normal',
   color: '#666',
   fontSize: 14,
-  textAlign: 'left',
+  textAlign: 'left' as 'left',
 };
 const checkboxStyle = {
-  backgroundColor: 'transparent',
+  backgroundColor: 'transparent' as 'transparent',
   borderWidth: 0,
   padding: 0,
   margin: 0,
@@ -93,16 +93,7 @@ function ComicListItem({
     </Button>
   );
 }
-ComicListItem.propTypes = {
-  title: PropTypes.string.isRequired,
-  itemOnPress: PropTypes.func.isRequired,
-  active: PropTypes.bool,
-  dark: PropTypes.bool,
-  showCheckbox: PropTypes.bool,
-  checked: PropTypes.bool,
-  isDisabled: PropTypes.bool,
-  status: PropTypes.string,
-};
+
 ComicListItem.defaultProps = {
   active: false,
   dark: false,

@@ -1,24 +1,19 @@
 import React, { PureComponent } from 'react';
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
-import { ContentDrawerBrightness, ContentDrawerOrientation, ContentDrawerReadingMode } from '..';
-import { ContainerType } from './container';
+import styled from 'styled-components/native';
+import ContentDrawerBrightness from '../content_drawer_brightness';
+import ContentDrawerOrientation from '../content_drawer_orientation';
+import ContentDrawerReadingMode from '../content_drawer_reading_mode';
+import { IContainer } from './container';
 
 const ContainStyled = styled.View`
   justify-content: space-around;
   align-items: center;
 `;
-interface IProps extends ContainerType {
+interface IProps extends IContainer {
   toggleDrawer(): void;
 }
 class ContentDrawerSettingComponent extends PureComponent<IProps> {
   static height = 200;
-
-  static propTypes = {
-    toggleDrawer: PropTypes.func.isRequired,
-    orientation: PropTypes.string.isRequired,
-  };
-
   render() {
     const { toggleDrawer, orientation } = this.props;
     return (

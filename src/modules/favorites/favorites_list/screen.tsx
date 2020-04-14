@@ -1,7 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 import { Dimensions } from 'react-native';
-import { FavoritesListTabs } from '.';
+import FavoritesListTabs from './favorites_list_tabs';
 import { SearchIcon } from '@';
 import { statusBarHeight } from 'theme';
 

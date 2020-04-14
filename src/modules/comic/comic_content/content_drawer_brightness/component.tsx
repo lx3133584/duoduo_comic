@@ -1,12 +1,12 @@
 import React, { PureComponent } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 import { Slider } from 'react-native-elements';
 import { TouchableOpacity } from 'react-native';
-import PropTypes from 'prop-types';
+
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import DeviceBrightness from 'react-native-device-brightness';
+import DeviceBrightness from 'react-native-screen-brightness';
 import { brand_primary } from 'theme';
-import { ContainerType } from './container';
+import { IContainer } from './container';
 
 const ICON_SIZE = 20;
 const ICON_COLOR = '#fff';
@@ -26,25 +26,19 @@ const thumbTouchSize = {
   width: 25,
   height: 25,
 };
-class ContentDrawerBrightnessComponent extends PureComponent<ContainerType> {
-  static propTypes = {
-    switchBrightness: PropTypes.func.isRequired,
-    brightness: PropTypes.number.isRequired,
-    width: PropTypes.number.isRequired,
-  };
-
+class ContentDrawerBrightnessComponent extends PureComponent<IContainer> {
   componentDidMount() {
     this.init();
   }
 
   init = () => {
     const { brightness } = this.props;
-    DeviceBrightness.setBrightnessLevel(brightness);
+    DeviceBrightness.setBrightness(brightness);
   }
 
   switchBrightness = (value: number) => {
     const { switchBrightness } = this.props;
-    DeviceBrightness.setBrightnessLevel(value);
+    DeviceBrightness.setBrightness(value);
     switchBrightness(value);
   }
 

@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react';
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
+import styled from 'styled-components/native';
+
 import Toast from 'react-native-root-toast';
 import { Actions } from 'react-native-router-flux';
 import ImagePicker from 'react-native-image-picker';
@@ -10,6 +9,7 @@ import { TouchableOpacity, Platform } from 'react-native';
 import { Header } from 'router';
 import { brand_primary } from 'theme';
 import { Avatar, ListItem } from '@/user';
+import { IContainer } from './container';
 
 const ContainStyled = styled.View`
   background: #fff;
@@ -66,13 +66,13 @@ const ActionSheetOptionsIOS = [
 const ActionSheetOptions = Platform.OS === 'ios' ? ActionSheetOptionsIOS : ActionSheetOptionsAndroid;
 const fn = ['launchCamera', 'launchImageLibrary']; // ActionSheet-index对应的ImagePicker方法
 
-class UserInfoEditListComponent extends PureComponent {
-  static propTypes = {
-    info: ImmutablePropTypes.map.isRequired,
-    uploadUserAvatar: PropTypes.func.isRequired,
-    editUserInfo: PropTypes.func.isRequired,
-    csrf: PropTypes.string.isRequired,
-  };
+interface IState {
+  name: string;
+}
+
+class UserInfoEditListComponent extends PureComponent<IContainer, IState> {
+  ActionSheet: any;
+  onChangeName: (value: any) => void;
 
   constructor(props) {
     super(props);
@@ -86,13 +86,13 @@ class UserInfoEditListComponent extends PureComponent {
 
   showActionSheet = () => {
     this.ActionSheet && this.ActionSheet.show();
-  };
+  }
 
   showToast = (message) => {
     Toast.show(message, {
       position: -70,
     });
-  };
+  }
 
   beforeUpload = (index) => {
     if (!/[0-1]/.test(index)) return;
@@ -108,7 +108,7 @@ class UserInfoEditListComponent extends PureComponent {
       }
       this.uploadAvatar(res.path || res.uri, res.fileName);
     });
-  };
+  }
 
   uploadAvatar = async (path, filename) => {
     if (!path) return;
@@ -120,22 +120,22 @@ class UserInfoEditListComponent extends PureComponent {
       return;
     }
     this.showToast('上传成功');
-  };
+  }
 
   saveUserInfo = async () => {
     const { editUserInfo } = this.props;
     await editUserInfo(this.state);
     this.showToast('修改成功');
     Actions.pop();
-  };
+  }
 
-  changFunc = key => value => this.setState({ [key]: value });
+  changFunc = (key: 'name') => value => this.setState({ [key]: value });
 
   renderAvatar = () => {
     const { info } = this.props;
     const avatar = info.get('avatar');
     return <Avatar src={avatar} size="medium" />;
-  };
+  }
 
   renderSaveButton = () => (
     <TouchableOpacity onPress={this.saveUserInfo}>
@@ -143,7 +143,7 @@ class UserInfoEditListComponent extends PureComponent {
 保存
       </SaveTextStyled>
     </TouchableOpacity>
-  );
+  )
 
   render() {
     const { info } = this.props;

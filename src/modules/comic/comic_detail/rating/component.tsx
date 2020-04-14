@@ -1,11 +1,12 @@
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
+
+import styled from 'styled-components/native';
 import Rating from 'react-native-star-rating';
-import { RatingModal } from '..';
+import RatingModal from '../rating_modal';
 import { TouchableNativeFeedback } from '@';
 import { numberFormat } from 'utils';
 import { yellow } from 'theme';
+import { IContainer } from './container';
 
 const ContainStyled = styled.View`
   height: 75px;
@@ -30,25 +31,21 @@ const ScoreNumberStyled = styled.Text`
   margin: 1px 0;
 `;
 
-class RatingComponent extends PureComponent {
-  static propTypes = {
-    score: PropTypes.number,
-    score_number: PropTypes.number,
-  };
+class RatingComponent extends PureComponent<IContainer> {
 
   static defaultProps = {
     score: 0,
     score_number: 0,
-  }
-
-  constructor() {
-    super();
-    this.cancel = this.cancel.bind(this);
-  }
+  };
 
   state = {
     isVisible: false,
   };
+
+  constructor(props) {
+    super(props);
+    this.cancel = this.cancel.bind(this);
+  }
 
   cancel() {
     this.setState({ isVisible: false });

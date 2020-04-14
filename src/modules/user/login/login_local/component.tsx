@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
+import styled from 'styled-components/native';
+
 import { View } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import Toast from 'react-native-root-toast';
@@ -11,11 +11,6 @@ const InputContainStyled = styled.View`
 `;
 
 class LoginLocalComponent extends PureComponent {
-  static propTypes = {
-    loginLocal: PropTypes.func.isRequired,
-    getFavorites: PropTypes.func.isRequired,
-    getHistory: PropTypes.func.isRequired,
-  };
 
   constructor() {
     super();

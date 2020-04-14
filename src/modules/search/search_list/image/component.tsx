@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+
 import { createImageProgress } from 'react-native-image-progress';
 import FastImage from 'react-native-fast-image';
 import Progress from 'react-native-progress/CircleSnail';
@@ -24,15 +24,7 @@ function ImageComponent({ source, imageStyle }) {
     />
   );
 }
-ImageComponent.propTypes = {
-  source: PropTypes.oneOfType([
-    PropTypes.number,
-    PropTypes.shape({
-      uri: PropTypes.string,
-    }),
-  ]).isRequired,
-  imageStyle: PropTypes.object,
-};
+
 ImageComponent.defaultProps = {
   imageStyle: {},
 };

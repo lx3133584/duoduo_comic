@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import PropTypes from 'prop-types';
-import { is } from 'immutable';
-import { HistoryListItem, Modal } from '..';
-import { LongList } from '@';
 
-class HistoryListComponent extends Component {
-  static propTypes = {
-    getList: PropTypes.func.isRequired,
-    remove: PropTypes.func.isRequired,
-    list: ImmutablePropTypes.list.isRequired,
+import { is } from 'immutable';
+import HistoryListItem from '../history_list_item';
+import Modal from '../modal';
+import { LongList } from '@';
+import { IContainer } from './container';
+
+class HistoryListComponent extends Component<IContainer> {
+  id: number = null;
+
+  state = {
+    isVisible: false,
   };
 
   constructor(props) {
@@ -19,10 +20,6 @@ class HistoryListComponent extends Component {
     this.confirm = this.confirm.bind(this);
     this.cancel = this.cancel.bind(this);
   }
-
-  state = {
-    isVisible: false,
-  };
 
   componentDidMount() {
     this.onFetch(0);

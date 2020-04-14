@@ -18,7 +18,7 @@ const mapDispatchToProps = (dispatch: Dispatch<ReturnType<typeof getClassItemLis
   },
 });
 
-export type ContainerType = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps> & IOwnProps;
+export type IContainer = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps> & IOwnProps;
 
 export default connect(
   mapStateToProps,

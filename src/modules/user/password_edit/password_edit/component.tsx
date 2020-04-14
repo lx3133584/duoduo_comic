@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
+import styled from 'styled-components/native';
+
 import Toast from 'react-native-root-toast';
 import { TouchableOpacity } from 'react-native';
 import { Actions } from 'react-native-router-flux';
@@ -25,9 +25,6 @@ const SaveTextStyled = styled.Text`
 const errorStyle = { color: red, textAlign: 'right' };
 
 class PasswordEditComponent extends PureComponent {
-  static propTypes = {
-    changePassword: PropTypes.func.isRequired,
-  };
 
   constructor(props) {
     super(props);

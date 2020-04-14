@@ -1,6 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
+import styled from 'styled-components/native';
+
 import { brand_primary } from 'theme';
 
 const ContainStyled = styled.View`
@@ -25,10 +25,7 @@ function ComicListCategory({ children, dark }) {
     </ContainStyled>
   );
 }
-ComicListCategory.propTypes = {
-  children: PropTypes.string,
-  dark: PropTypes.bool,
-};
+
 ComicListCategory.defaultProps = {
   children: '',
   dark: false,

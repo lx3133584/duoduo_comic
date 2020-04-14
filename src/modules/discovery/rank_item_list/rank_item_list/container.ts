@@ -15,7 +15,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     return dispatch(getRankItemList(params));
   },
 });
-export type ContainerType = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps> & IOwnProps;
+export type IContainer = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps> & IOwnProps;
 export default connect(
   mapStateToProps,
   mapDispatchToProps,

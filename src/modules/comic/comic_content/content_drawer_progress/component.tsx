@@ -1,12 +1,11 @@
 import React, { PureComponent } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 import { Slider } from 'react-native-elements';
 import { TouchableOpacity } from 'react-native';
-import PropTypes from 'prop-types';
 import { Actions } from 'react-native-router-flux';
 import Feather from 'react-native-vector-icons/Feather';
 import { brand_primary } from 'theme';
-import { ContainerType } from './container';
+import { IContainer } from './container';
 
 const ICON_SIZE = 20;
 const ICON_COLOR = '#fff';
@@ -26,23 +25,8 @@ const thumbTouchSize = {
   width: 25,
   height: 25,
 };
-class ContentDrawerProgressComponent extends PureComponent<ContainerType> {
+class ContentDrawerProgressComponent extends PureComponent<IContainer> {
   static height = 50;
-
-  static propTypes = {
-    goIndex: PropTypes.func.isRequired,
-    index: PropTypes.number.isRequired,
-    width: PropTypes.number.isRequired,
-    total: PropTypes.number.isRequired,
-    prev: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      title: PropTypes.string.isRequired,
-    }),
-    next: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      title: PropTypes.string.isRequired,
-    }),
-  };
 
   static defaultProps = {
     prev: undefined,

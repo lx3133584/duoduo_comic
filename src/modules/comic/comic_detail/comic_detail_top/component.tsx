@@ -1,25 +1,25 @@
 import React, { Component } from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import Immutable, { is } from 'immutable';
+
+import styled from 'styled-components/native';
+import { is } from 'immutable';
 import { Actions } from 'react-native-router-flux';
-import { BlurView } from 'react-native-blur';
+import { BlurView } from '@react-native-community/blur';
 import FastImage from 'react-native-fast-image';
 import {
-  Dimensions, findNodeHandle, NetInfo, View, Text,
+  Dimensions, findNodeHandle,
 } from 'react-native';
+import NetInfo from '@react-native-community/netinfo';
 import { numberFormat } from 'utils';
-import { ContainerType } from './container';
+import { IContainer } from './container';
 
 const { width } = Dimensions.get('window');
 
-const ContainStyled = styled(View)`
+const ContainStyled = styled.View`
   height: 240px;
   background-color: #000;
 `;
 const coverImageStyled = {
-  position: 'absolute',
+  position: 'absolute' as 'absolute',
   bottom: 10,
   right: 10,
   height: 120,
@@ -29,14 +29,14 @@ const coverImageStyled = {
   borderColor: '#fff',
 };
 const blurImageStyled = {
-  position: 'absolute',
+  position: 'absolute' as 'absolute',
   top: 0,
   left: 0,
   width,
   height: 240,
   zIndex: 1,
 };
-const TextContainStyled = styled(View)`
+const TextContainStyled = styled.View`
   position: absolute;
   top: 100px;
   left: 20px;
@@ -44,39 +44,30 @@ const TextContainStyled = styled(View)`
   z-index: 4;
   width: ${width - 110};
 `;
-const TitleStyled = styled(Text)`
+const TitleStyled = styled.Text`
   color: #fff;
   font-size: 18px;
   font-weight: 700;
   margin-bottom: 8px;
 `;
-const BottomTextContainStyled = styled(View)`
+const BottomTextContainStyled = styled.View`
   position: absolute;
   left: 0;
   bottom: 0;
 `;
-const BottomTextStyled = styled(Text)`
+const BottomTextStyled = styled.Text`
   color: #fff;
   font-size: 12px;
   opacity: 0.8;
 `;
 
-class ComicDetailTopComponent extends Component<ContainerType> {
-  static propTypes = {
-    getDetail: PropTypes.func.isRequired,
-    hideLoading: PropTypes.func.isRequired,
-    id: PropTypes.number.isRequired,
-    detail: ImmutablePropTypes.map.isRequired,
-    updateCache: PropTypes.func.isRequired,
-    useCache: PropTypes.func.isRequired,
-    comic_cache: ImmutablePropTypes.map,
-  };
+class ComicDetailTopComponent extends Component<IContainer> {
 
   static defaultProps = {
     comic_cache: null,
   };
 
-  bgImgRef = React.createRef<FastImage>();
+  bgImgRef: any = React.createRef<FastImage>();
 
   fetchCompleted = false;
 
@@ -103,7 +94,7 @@ class ComicDetailTopComponent extends Component<ContainerType> {
 
   onFetch(id: number) {
     const { getDetail } = this.props;
-    return getDetail(id).then(({ value: { data } = {} }) => data).catch(() => {
+    return (getDetail(id) as any).then(({ value: { data } = { data: null } }) => data).catch(() => {
       Actions.pop(); // 失败则返回上一个页面
     });
   }
@@ -112,7 +103,7 @@ class ComicDetailTopComponent extends Component<ContainerType> {
     const { useCache, updateCache, id, comic_cache } = this.props;
     if (comic_cache) {
       useCache(comic_cache);
-      NetInfo.isConnected.fetch().then((isConnected) => { // 如果联网则更新缓存
+      NetInfo.fetch().then(({ isConnected }) => { // 如果联网则更新缓存
         if (!isConnected) return;
         this.onFetch(id).then((data) => {
           updateCache({ id, data });
@@ -122,11 +113,12 @@ class ComicDetailTopComponent extends Component<ContainerType> {
       await this.onFetch(id);
     }
     this.fetchCompleted = true; // 标识请求已完成
+    console.log('featch');
     this.hideLoading();
   }
 
   imageLoaded() {
-    this.setState({ viewRef: findNodeHandle(this.bgImgRef.current!._root) }, this.hideLoading);
+    this.setState({ viewRef: findNodeHandle(this.bgImgRef.current) }, this.hideLoading);
   }
 
   hideLoading() {
@@ -139,11 +131,11 @@ class ComicDetailTopComponent extends Component<ContainerType> {
   render() {
     const { detail } = this.props;
     const { viewRef } = this.state;
-    const cover = detail.get('cover');
+    const cover: any = detail.get('cover');
     const title = detail.get('title');
     const author = detail.get('author');
     const class_name = detail.get('class_name');
-    const popularity_number = detail.get('popularity_number', '');
+    const popularity_number: any = detail.get('popularity_number', '');
     return (
       <ContainStyled>
         {cover && (

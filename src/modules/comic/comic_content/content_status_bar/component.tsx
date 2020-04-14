@@ -1,8 +1,10 @@
 import React from 'react';
-import styled from 'styled-components';
-import {
-  Battery, NetStatus, Time, Title, ReadingProgress,
-} from '..';
+import styled from 'styled-components/native';
+import Battery from '../battery';
+import NetStatus from '../net_status';
+import Time from '../time';
+import Title from '../title';
+import ReadingProgress from '../reading_progress';
 
 const ContainStyled = styled.View`
   flex-direction: row;

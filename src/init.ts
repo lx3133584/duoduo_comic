@@ -1,9 +1,12 @@
-import { StatusBar } from 'react-native';
+import { StatusBar, Platform } from 'react-native';
 import Orientation from 'react-native-orientation';
+import 'react-native-gesture-handler';
 import './api/config';
 
 // 设置状态栏
-StatusBar.setTranslucent(true);
+if (Platform.OS === 'android') {
+  StatusBar.setTranslucent(true);
+}
 StatusBar.setBarStyle('light-content', true);
 
 // 锁定竖屏

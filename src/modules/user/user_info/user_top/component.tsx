@@ -1,10 +1,10 @@
 import React, { PureComponent } from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import PropTypes from 'prop-types';
+
 import { Actions } from 'react-native-router-flux';
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 import { brand_primary } from 'theme';
 import { Avatar, LoginNowButton } from '@/user/user_info';
+import { IContainer } from './container';
 
 const ContainStyled = styled.View`
   height: 260px;
@@ -42,11 +42,7 @@ const NameStyled = styled.Text`
   font-size: 16px;
 `;
 
-class UserTopComponent extends PureComponent {
-  static propTypes = {
-    info: ImmutablePropTypes.map.isRequired,
-    getUser: PropTypes.func.isRequired,
-  };
+class UserTopComponent extends PureComponent<IContainer> {
 
   componentDidMount() {
     const { getUser } = this.props;

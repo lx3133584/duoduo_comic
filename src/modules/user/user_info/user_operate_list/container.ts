@@ -5,6 +5,8 @@ const mapStateToProps = state => ({
   isLogin: !!state.user.get('info').size,
 });
 
+export type IContainer = ReturnType<typeof mapStateToProps>;
+
 export default connect(
   mapStateToProps,
 )(Component);

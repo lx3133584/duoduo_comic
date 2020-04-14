@@ -19,7 +19,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   },
 });
 
-export type ContainerType = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>;
+export type IContainer = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>;
 
 export default connect(
   mapStateToProps,

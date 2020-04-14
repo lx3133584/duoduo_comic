@@ -1,11 +1,12 @@
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
+
+import styled from 'styled-components/native';
 import { Button } from 'react-native-elements';
 import Rating from 'react-native-star-rating';
 import { Dimensions } from 'react-native';
 import Modal from 'react-native-modal';
 import { yellow } from 'theme';
+import { IContainer } from './container';
 
 const { width } = Dimensions.get('window');
 
@@ -26,8 +27,8 @@ const NumberStyled = styled.Text`
   color: ${yellow};
 `;
 const containStyle = {
-  flexDirection: 'column-reverse',
-  justifyContent: 'flex-start',
+  flexDirection: 'column-reverse' as 'column-reverse',
+  justifyContent: 'flex-start' as 'flex-start',
   margin: 0,
 };
 const buttonStyle = {
@@ -40,32 +41,25 @@ const buttonStyle = {
 const textStyle = {
   fontSize: 14,
   color: '#fff',
-  textAlign: 'justify',
+  textAlign: 'justify' as 'justify',
 };
 
-class RatingModalComponent extends PureComponent {
-  static propTypes = {
-    isVisible: PropTypes.bool.isRequired,
-    cancel: PropTypes.func.isRequired,
-    add: PropTypes.func.isRequired,
-    id: PropTypes.number,
-    my_score: PropTypes.number,
-  };
+class RatingModalComponent extends PureComponent<IContainer> {
 
   static defaultProps = {
     id: 0,
     my_score: 0,
-  }
+  };
+
+  state = {
+    score: 5,
+  };
 
   constructor(props) {
     super(props);
     this.onFinishRating = this.onFinishRating.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
-
-  state = {
-    score: 5,
-  };
 
   onFinishRating(value) {
     this.setState({ score: value * 2 });

@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
+
+import styled from 'styled-components/native';
 import { Button } from 'react-native-elements';
 import { Dimensions } from 'react-native';
 import Modal from 'react-native-modal';
@@ -27,8 +27,8 @@ const ButtonContainStyled = styled.View`
   align-items: center;
 `;
 const containStyle = {
-  justifyContent: 'center',
-  alignItems: 'center',
+  justifyContent: 'center' as 'center',
+  alignItems: 'center' as 'center',
 };
 const confirmButtonStyle = {
   backgroundColor: brand_primary,
@@ -40,7 +40,7 @@ const confirmButtonStyle = {
 const confirmTextStyle = {
   fontSize: 14,
   color: '#fff',
-  textAlign: 'justify',
+  textAlign: 'justify' as 'justify',
 };
 const cancelButtonStyle = {
   backgroundColor: '#fff',
@@ -54,19 +54,15 @@ const cancelButtonStyle = {
 const cancelTextStyle = {
   fontSize: 14,
   color: '#666',
-  textAlign: 'justify',
+  textAlign: 'justify' as 'justify',
 };
+interface IProps {
+  isVisible?: boolean;
+  confirm?(): void;
+  cancel?(): void;
+}
 
-class ModalComponent extends PureComponent {
-  static propTypes = {
-    confirm: PropTypes.func.isRequired,
-    cancel: PropTypes.func.isRequired,
-    children: PropTypes.oneOfType([
-      PropTypes.element,
-      PropTypes.string,
-    ]).isRequired,
-    isVisible: PropTypes.bool,
-  };
+class ModalComponent extends PureComponent<IProps> {
 
   static defaultProps = {
     isVisible: false,

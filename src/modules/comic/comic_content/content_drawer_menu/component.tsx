@@ -1,8 +1,9 @@
 import React, { PureComponent } from 'react';
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
+import styled from 'styled-components/native';
+
 import { Actions } from 'react-native-router-flux';
-import { ContentDrawerIcon, IContentDrawerIconProps } from '..';
+import ContentDrawerIcon from '../content_drawer_icon';
+import { IContentDrawerIconProps } from '../content_drawer_icon';
 
 const ContainStyled = styled.View`
   flex-direction: row;
@@ -12,10 +13,6 @@ const ContainStyled = styled.View`
 
 class ContentDrawerMenuComponent extends PureComponent {
   static height = 80;
-
-  static propTypes = {
-    switchBottomType: PropTypes.func.isRequired,
-  };
 
   menu_list: IContentDrawerIconProps[] = [];
 

@@ -1,18 +1,16 @@
 import React, { PureComponent } from 'react';
 import { RootState } from 'store';
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
+import styled from 'styled-components/native';
+
 import windowSizeSelector from 'selectors/window_size';
 import { LoadingPage } from '@/comic/comic_detail';
 import { connect } from 'react-redux';
 import Orientation from 'react-native-orientation';
-import DeviceBrightness from 'react-native-device-brightness';
-import {
-  ContentList,
-  ContentStatusBar,
-  ContentDrawerManager,
-} from '.';
-import { wrapWithLoading, wrapWithLoadingType, ILoadingProps } from 'utils';
+import DeviceBrightness from 'react-native-screen-brightness';
+import ContentList from './content_list';
+import ContentStatusBar from './content_status_bar';
+import ContentDrawerManager from './content_drawer_manager';
+import { wrapWithLoading, ILoadingProps } from 'utils';
 
 const ContainStyled = styled.View`
   background-color: #282828;
@@ -24,15 +22,9 @@ const mapStateToProps = (state: RootState) => ({
   width: windowSizeSelector(state).width,
 });
 type IProps = ReturnType<typeof mapStateToProps> & ILoadingProps;
-@wrapWithLoading
-@connect(mapStateToProps)
-class ContentListScreen extends PureComponent<IProps, { show_drawer: boolean }> {
-  static propTypes = {
-    orientation: PropTypes.string.isRequired,
-    brightness: PropTypes.number.isRequired,
-    width: PropTypes.number.isRequired,
-    ...wrapWithLoadingType,
-  };
+interface IState { show_drawer: boolean; }
+
+class ContentListScreen extends PureComponent<IProps, IState> {
 
   state = {
     show_drawer: false,
@@ -59,7 +51,7 @@ class ContentListScreen extends PureComponent<IProps, { show_drawer: boolean }> 
 
   initBrightness = () => {
     const { brightness } = this.props;
-    DeviceBrightness.setBrightnessLevel(brightness);
+    DeviceBrightness.setBrightness(brightness);
   }
 
   toggleDrawer = () => {
@@ -80,4 +72,4 @@ class ContentListScreen extends PureComponent<IProps, { show_drawer: boolean }> 
   }
 }
 
-export default ContentListScreen;
+export default wrapWithLoading(connect(mapStateToProps)(ContentListScreen));

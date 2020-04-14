@@ -1,6 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
+import styled from 'styled-components/native';
+
 import { Actions } from 'react-native-router-flux';
 import { TouchableOpacity, Dimensions } from 'react-native';
 
@@ -38,10 +38,5 @@ function RankListItem({
     </TouchableOpacity>
   );
 }
-RankListItem.propTypes = {
-  name: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
-  Icon: PropTypes.func.isRequired,
-  color: PropTypes.string.isRequired,
-};
+
 export default RankListItem;

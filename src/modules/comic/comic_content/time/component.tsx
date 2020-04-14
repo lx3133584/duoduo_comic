@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 
 const TextStyled = styled.Text`
   color: #fff;
@@ -12,7 +12,7 @@ function fillZero(num: number) {
 }
 
 class TimeComponent extends PureComponent<{}, {time: string}> {
-  timer: NodeJS.Timer = null as any;
+  timer: any = null;
   readonly state = {
     time: '00:00',
   };

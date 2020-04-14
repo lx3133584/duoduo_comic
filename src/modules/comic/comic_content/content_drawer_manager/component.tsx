@@ -1,18 +1,16 @@
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
+
 import * as Animatable from 'react-native-animatable';
 import { Header } from 'router';
-import {
-  ContentHeader,
-  ContentDrawerMenu,
-  ContentDrawerProgress,
-  ContentDrawerSetting,
-} from '..';
-import { ContainerType } from './container';
+import ContentDrawerMenu from '../content_drawer_menu';
+import ContentDrawerProgress from '../content_drawer_progress';
+import ContentDrawerSetting from '../content_drawer_setting';
+import ContentHeader from '../content_header';
+import { IContainer } from './container';
 
 const headerHeight = Header.height;
 const containStyle = {
-  position: 'absolute',
+  position: 'absolute' as 'absolute',
   left: 0,
   backgroundColor: 'rgba(0, 0, 0, 0.85)',
   zIndex: 2,
@@ -35,18 +33,10 @@ const bottom_map = {
     height: ContentDrawerSetting.height,
   },
 };
-interface IProps extends ContainerType {
-  show: boolean;
-  title: string;
-}
-class ContentDrawerManagerComponent extends PureComponent<IProps> {
-  static propTypes = {
-    show: PropTypes.bool.isRequired,
-    width: PropTypes.number.isRequired,
-  };
+class ContentDrawerManagerComponent extends PureComponent<IContainer> {
 
-  topComponent?;
-  bottomComponent?;
+  topComponent?: Animatable.View;
+  bottomComponent?: Animatable.View;
 
   state = {
     bottomType: 'main',

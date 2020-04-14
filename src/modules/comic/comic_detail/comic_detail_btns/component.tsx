@@ -1,39 +1,40 @@
 import React, { PureComponent } from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
+
 import Immutable from 'immutable';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
+
+import styled from 'styled-components/native';
 import { Button } from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
-import { Dimensions, TouchableOpacity, View, Text } from 'react-native';
+import { Dimensions, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { brand_primary } from 'theme';
 import { Modal } from '@';
 import { numberFormat } from 'utils';
+import { IContainer } from './container';
 
 const { width } = Dimensions.get('window');
 
-const ContainStyled = styled(View)`
+const ContainStyled = styled.View`
   height: 60px;
   background-color: #fff;
   justify-content: space-around;
   flex-direction: row;
   width: ${width};
 `;
-const CollectionContainStyled = styled(View)`
+const CollectionContainStyled = styled.View`
   justify-content: center;
   width: ${width / 2 - 20};
 `;
-const CollectionStyled = styled(View)`
+const CollectionStyled = styled.View`
   flex-direction: row;
   justify-content: center;
 `;
-const CollectionTextStyled = styled(Text)`
+const CollectionTextStyled = styled.Text`
   color: #666;
   font-size: 14px;
   margin-left: 8px;
 `;
-const CollectionNumberStyled = styled(Text)`
+const CollectionNumberStyled = styled.Text`
   font-size: 12px;
 `;
 const startTextStyle = {
@@ -47,22 +48,25 @@ const startButtonStyle = {
   elevation: 0,
 };
 const containerStyle = {
-  justifyContent: 'center',
-  alignItems: 'center',
+  justifyContent: 'center' as 'center',
+  alignItems: 'center' as 'center',
 };
 
-class ComicDetailBtnsComponent extends PureComponent {
-  static propTypes = {
-    detail: ImmutablePropTypes.map,
-    list: ImmutablePropTypes.list.isRequired,
-    add: PropTypes.func.isRequired,
-    remove: PropTypes.func.isRequired,
-    getList: PropTypes.func.isRequired,
-  };
+interface IState {
+  isVisible: boolean;
+  loading: boolean;
+}
+
+class ComicDetailBtnsComponent extends PureComponent<IContainer, IState> {
 
   static defaultProps = {
     detail: Immutable.Map(),
-  }
+  };
+
+  state = {
+    isVisible: false,
+    loading: false,
+  };
 
   constructor(props) {
     super(props);
@@ -72,11 +76,6 @@ class ComicDetailBtnsComponent extends PureComponent {
     this.confirm = this.confirm.bind(this);
     this.cancel = this.cancel.bind(this);
   }
-
-  state = {
-    isVisible: false,
-    loading: false,
-  };
 
   // 从目录中取第一个章节
   async getChapterFromList() {

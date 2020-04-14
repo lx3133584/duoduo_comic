@@ -1,8 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+
 import { Input } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 import { brand_primary, red } from 'theme';
 
 const ContainStyled = styled.View`
@@ -45,15 +45,7 @@ function LoginInputComponent({
     </ContainStyled>
   );
 }
-LoginInputComponent.propTypes = {
-  password: PropTypes.bool,
-  errorMessage: PropTypes.string,
-  iconName: PropTypes.string,
-  placeholder: PropTypes.string,
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired,
-};
+
 LoginInputComponent.defaultProps = {
   password: false,
   errorMessage: null,

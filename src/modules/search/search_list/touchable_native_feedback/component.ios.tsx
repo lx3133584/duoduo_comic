@@ -1,5 +1,5 @@
 import React, { SFC } from 'react';
-import PropTypes from 'prop-types';
+
 import { TouchableOpacity, TouchableOpacityProps } from 'react-native';
 
 const TouchableOpacityComponent: SFC<TouchableOpacityProps & IData> = (props) => {
@@ -13,7 +13,5 @@ const TouchableOpacityComponent: SFC<TouchableOpacityProps & IData> = (props) =>
     </TouchableOpacity>
   );
 };
-TouchableOpacityComponent.propTypes = {
-  children: PropTypes.element.isRequired,
-};
+
 export default TouchableOpacityComponent;

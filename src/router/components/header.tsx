@@ -1,6 +1,6 @@
 import React, { PureComponent, ReactElement } from 'react';
 import { Header } from 'react-native-elements';
-import PropTypes from 'prop-types';
+
 import { StatusBar } from 'react-native';
 import { brand_primary } from 'theme';
 import LeftButton from './left_button';
@@ -27,13 +27,6 @@ interface IProps {
 class HeaderComponent extends PureComponent<IProps> {
   static statusBarHeight = statusBarHeight;
   static height = height;
-  static propTypes = {
-    isNoBack: PropTypes.bool,
-    title: PropTypes.string,
-    customTitle: PropTypes.string,
-    customBackgroundColor: PropTypes.string,
-    rightComponent: PropTypes.element,
-  };
 
   static defaultProps = {
     isNoBack: false,

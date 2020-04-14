@@ -15,6 +15,7 @@ interface IOwnProps {
   onRefresh(): void;
   onFetch(page: number, init?: boolean): Promise<any>;
   increasePage(page?: number): void;
+  toggleDrawer(): void;
 }
 
 const contentSelector = (state: RootState) => state.comic.get('content');
@@ -28,7 +29,7 @@ const formatContentSelector = createSelector(
 const imgPositionArrSelector = createSelector(
   [contentSelector, widthSelector],
   (list, width) => {
-    const imgHeightArr = list.map(item => getImgHeight(item.size, width));
+    const imgHeightArr = list.map(item => getImgHeight(item.size!, width));
     return imgHeightArr.map((item, index) => imgHeightArr.slice(0, index).reduce((total, cur) => total + cur, 0));
   },
 );
@@ -46,9 +47,9 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
   },
 });
 
-export type ContainerType = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps> & IOwnProps;
+export type IContainer = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps> & IOwnProps;
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Component);
+)(Component as any);

@@ -1,7 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
-import { LongListItem } from '..';
+import styled from 'styled-components/native';
+
+import LongListItem from '../long_list_item';
 import { Badge } from 'react-native-elements';
 import { green, red, purple } from 'theme';
 
@@ -67,12 +67,7 @@ function SearchListItem(props: Comic) {
     </LongListItem>
   );
 }
-SearchListItem.propTypes = {
-  desc: PropTypes.string,
-  class_name: PropTypes.string,
-  author: PropTypes.string,
-  status: PropTypes.string.isRequired,
-};
+
 SearchListItem.defaultProps = {
   desc: '',
   class_name: '',

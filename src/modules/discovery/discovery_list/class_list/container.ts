@@ -8,10 +8,12 @@ const mapStateToProps = (state: RootState) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  getList(params) {
+  getList(params?: any) {
     return dispatch(getClassList(params));
   },
 });
+
+export type IContainer = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps>;
 
 export default connect(
   mapStateToProps,

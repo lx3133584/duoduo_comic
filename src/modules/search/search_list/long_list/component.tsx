@@ -1,20 +1,22 @@
 import React, { Component } from 'react';
-import { Dimensions, FlatList, RefreshControl } from 'react-native';
-import PropTypes from 'prop-types';
-import { ListEmpty, LongListTextFooter, LongListLoadingFooter } from '..';
+import { Dimensions, FlatList, RefreshControl, FlatListProps } from 'react-native';
+
+import ListEmpty from '../list_empty';
+import LongListTextFooter from '../long_list_text_footer';
+import LongListLoadingFooter from '../long_list_loading_footer';
 import { brand_primary } from 'theme';
 
 const { height } = Dimensions.get('window');
 
-interface IProps extends FlatList<any> {
+interface IProps extends Partial<FlatListProps<any>> {
   initPage?: number;
   page?: number;
   customKey?: string;
   Item: any;
   list: any[];
   onFetch: (page: number, init?: boolean) => Promise<any>;
-  increasePage: (page?: number) => void;
-  onRefresh: () => void;
+  increasePage?: (page?: number) => void;
+  onRefresh?: () => void;
   itemOnPress?: any;
   itemOnLongPress?: any;
   getRef?: (ref: any) => any;
@@ -33,28 +35,6 @@ interface IState {
   noMoreData: boolean;
 }
 class LongListComponent extends Component<IProps, IState> {
-  static propTypes = {
-    initPage: PropTypes.number,
-    page: PropTypes.number,
-    customKey: PropTypes.string,
-    Item: PropTypes.oneOfType([
-      PropTypes.element,
-      PropTypes.func,
-    ]).isRequired,
-    list: PropTypes.array.isRequired,
-    onFetch: PropTypes.func,
-    increasePage: PropTypes.func,
-    onRefresh: PropTypes.func,
-    noMoreData: PropTypes.bool,
-    itemOnPress: PropTypes.func,
-    itemOnLongPress: PropTypes.func,
-    getRef: PropTypes.func,
-    itemHeight: PropTypes.number,
-    isLong: PropTypes.bool,
-    horizontal: PropTypes.bool,
-    showFooter: PropTypes.bool,
-    emptyText: PropTypes.string,
-  };
 
   static defaultProps = {
     initPage: 0,
@@ -131,7 +111,7 @@ class LongListComponent extends Component<IProps, IState> {
     const { loading, noMoreData } = this.state;
     if (!init && (loading || noMoreData)) return;
     this.setState({ loading: true });
-    const resPromise = onFetch(this.page, init);
+    const resPromise: any = onFetch(this.page, init);
     if (!resPromise) return this.setState({ loading: false });
     return resPromise.then((res) => {
       const data = res.value.result ? res.value.result.data : res.value.data;

@@ -1,10 +1,11 @@
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
+
+import styled from 'styled-components/native';
 import { Actions } from 'react-native-router-flux';
 import Toast from 'react-native-root-toast';
 import codePush from 'react-native-code-push';
 import { ListItem } from '@/user/user_info';
+import { IContainer } from './container';
 
 const ContainStyled = styled.View`
   padding-bottom: 20px;
@@ -43,10 +44,7 @@ function showToast(message, isLast = false) {
   });
 }
 
-class UserOperateListComponent extends PureComponent {
-  static propTypes = {
-    isLogin: PropTypes.bool.isRequired,
-  };
+class UserOperateListComponent extends PureComponent<IContainer> {
 
   check = () => {
     // codePush.checkForUpdate()
@@ -69,7 +67,6 @@ class UserOperateListComponent extends PureComponent {
       installMode: codePush.InstallMode.IMMEDIATE,
     },
     (status) => {
-      // eslint-disable-next-line default-case
       switch (status) {
         case codePush.SyncStatus.UP_TO_DATE:
           showToast('应用已是最新版本', true);

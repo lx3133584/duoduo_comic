@@ -1,10 +1,11 @@
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
+
 import { Platform } from 'react-native';
 import FastImage from 'react-native-fast-image';
 import Button from 'apsl-react-native-button';
 import { createImageProgress } from 'react-native-image-progress';
-import { ImgPlaceholder } from '..';
+import ImgPlaceholder from '../img_placeholder';
+import { IContainer } from './container';
 import { getImgHeight } from 'utils';
 
 const Image = createImageProgress(FastImage);
@@ -19,27 +20,20 @@ const textStyle = {
   color: '#eee',
   fontSize: 16,
 };
-class ContentListItem extends PureComponent {
-  static propTypes = {
-    url: PropTypes.string.isRequired,
-    path: PropTypes.string,
-    width: PropTypes.number.isRequired,
-    index: PropTypes.number.isRequired,
-    size: PropTypes.shape({
-      height: PropTypes.number.isRequired,
-      width: PropTypes.number.isRequired,
-    }).isRequired,
-  };
+interface IState {
+  reload_key: number;
+}
+class ContentListItem extends PureComponent<IContainer, IState> {
 
   static defaultProps = {
     path: '',
-  }
+  };
 
   state = {
     reload_key: 0,
-  }
+  };
 
-  reloadImage = () => this.setState(prev => ({ reload_key: prev.reload_key + 1 }))
+  reloadImage = () => this.setState(prev => ({ reload_key: prev.reload_key + 1 }));
 
   render() {
     const {

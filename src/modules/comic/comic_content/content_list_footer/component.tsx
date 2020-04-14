@@ -1,23 +1,23 @@
 import React, { PureComponent } from 'react';
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
+import styled from 'styled-components/native';
+
 import { Button } from 'react-native-elements';
 import { Actions } from 'react-native-router-flux';
 import Image from 'react-native-fast-image';
-import { Dimensions, View, Text } from 'react-native';
-import { ContainerType } from './container';
+import { Dimensions } from 'react-native';
+import { IContainer } from './container';
 
 const { width } = Dimensions.get('window');
 const { preload, priority } = Image;
 
 const height = 50;
-const ContainStyled = styled(View)`
+const ContainStyled = styled.View`
   width: ${width};
   background-color: #ededed;
   flex-direction: row;
   justify-content: space-around;
 `;
-const TextStyled = styled(Text)`
+const TextStyled = styled.Text`
   background-color: #ededed;
   text-align: center;
   font-size: 14px;
@@ -34,19 +34,11 @@ const buttonStyle = {
   elevation: 0,
 };
 const textStyle = {
-  fontWeight: 'normal',
+  fontWeight: 'normal' as 'normal',
   color: '#666',
   fontSize: 14,
 };
-class ContentListFooterComponent extends PureComponent<ContainerType> {
-  static propTypes = {
-    next: PropTypes.shape({
-      id: PropTypes.number.isRequired,
-    }),
-    getList: PropTypes.func.isRequired,
-    content_cache: PropTypes.array,
-  };
-
+class ContentListFooterComponent extends PureComponent<IContainer> {
   static defaultProps = {
     next: null,
     content_cache: null,
@@ -67,7 +59,7 @@ class ContentListFooterComponent extends PureComponent<ContainerType> {
   init = (next?: IItem) => {
     const { getList, content_cache } = this.props;
     if (!next || content_cache) return;
-    getList({ id: next.id, pre: true, page: 0 }).then(({ value }) => { // 预加载
+    (getList({ id: next.id, pre: true, page: 0 }) as any).then(({ value }) => { // 预加载
       const data = value.result.data.slice(0, 3);
       preload(data.map(item => ({
         uri: item.url,
@@ -92,7 +84,7 @@ class ContentListFooterComponent extends PureComponent<ContainerType> {
           buttonStyle={buttonStyle}
           title="返回目录"
           titleStyle={textStyle}
-          onPress={Actions.pop}
+          onPress={() => Actions.pop()}
         />
         {!title ? (
           <TextStyled>

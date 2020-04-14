@@ -13,7 +13,7 @@ interface IOwnProps {
   oKeyword?: string;
 }
 
-export type ContainerType = ReturnType<typeof mapDispatchToProps> & IOwnProps;
+export type IContainer = ReturnType<typeof mapDispatchToProps> & IOwnProps;
 
 export default connect(
   null,

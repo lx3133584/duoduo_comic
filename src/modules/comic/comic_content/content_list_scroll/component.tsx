@@ -1,41 +1,18 @@
 import React, { Component } from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import PropTypes from 'prop-types';
+
 import { TouchableWithoutFeedback, View } from 'react-native';
 import { LongList } from '@';
-import { ContentListItem } from '..';
+import ContentListItem from '../content_list_item';
 import { getImgHeight } from 'utils';
-import { ContainerType } from './container';
+import { IContainer } from './container';
 
-class ContentListScrollComponent extends Component<ContainerType> {
-  static propTypes = {
-    content: PropTypes.arrayOf(PropTypes.shape({
-      url: PropTypes.string,
-      index: PropTypes.number,
-      size: PropTypes.shape({
-        height: PropTypes.number,
-        width: PropTypes.number,
-      }),
-    })).isRequired,
-    img_position_arr: ImmutablePropTypes.list.isRequired,
-    content_index: PropTypes.number,
-    offset: PropTypes.number,
-    width: PropTypes.number.isRequired,
-    page: PropTypes.number.isRequired,
-    renderFooterComponent: PropTypes.func.isRequired,
-    saveIndex: PropTypes.func.isRequired,
-    onRefresh: PropTypes.func.isRequired,
-    increasePage: PropTypes.func.isRequired,
-    toggleDrawer: PropTypes.func.isRequired,
-    onFetch: PropTypes.func.isRequired,
-    noMoreData: PropTypes.bool.isRequired,
-    getRef: PropTypes.func.isRequired,
-  };
+class ContentListScrollComponent extends Component<IContainer> {
 
   static defaultProps = {
     content_index: 0,
     offset: 0,
   };
+  content_ref: any;
 
   constructor(props) {
     super(props);

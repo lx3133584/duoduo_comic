@@ -1,6 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
+import styled from 'styled-components/native';
+
 import Spinner from 'react-native-spinkit';
 import { Dimensions } from 'react-native';
 
@@ -30,9 +30,7 @@ function SpinComponent({ show }: { show: boolean }) {
     </ContainerStyled>
   );
 }
-SpinComponent.propTypes = {
-  show: PropTypes.bool,
-};
+
 SpinComponent.defaultProps = {
   show: false,
 };

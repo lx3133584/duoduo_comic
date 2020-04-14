@@ -1,6 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
+import styled from 'styled-components/native';
+
 import { Badge } from 'react-native-elements';
 import { LongListItem } from '@';
 import { green, red } from 'theme';
@@ -59,12 +59,7 @@ function HistoryListItem(props) {
     </LongListItem>
   );
 }
-HistoryListItem.propTypes = {
-  cur_chapter: PropTypes.string,
-  last_read_time: PropTypes.string,
-  author: PropTypes.string,
-  status: PropTypes.string.isRequired,
-};
+
 HistoryListItem.defaultProps = {
   cur_chapter: '',
   last_read_time: '',

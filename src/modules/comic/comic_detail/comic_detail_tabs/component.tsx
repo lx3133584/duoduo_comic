@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { ComicList, ComicDetail } from '..';
+import styled from 'styled-components/native';
+import ComicList from '../comic_list';
+import ComicDetail from '../comic_detail';
 import { Dimensions } from 'react-native';
 import {
   TabView, PagerPan, TabBar,
@@ -32,18 +32,22 @@ const routes = [
   { title: '目录', key: 'list' },
 ];
 
-class ComicDetailTabsComponent extends PureComponent {
-  static propTypes = {
-    index: PropTypes.number,
-  };
+interface IProps {
+  index?: number;
+}
+interface IState {
+  index: number;
+}
+
+class ComicDetailTabsComponent extends PureComponent<IProps, IState> {
 
   static defaultProps = {
     index: 0,
-  }
+  };
 
   constructor(props) {
     super(props);
-    const { index } = props;
+    const { index = 0 } = props;
     this.state = {
       index,
     };
@@ -58,33 +62,32 @@ class ComicDetailTabsComponent extends PureComponent {
       labelStyle={labelStyle}
       indicatorStyle={tabBarUnderlineStyle}
     />
-  );
+  )
 
   _renderPager = props => (
     <PagerPan
       {...props}
     />
-  );
+  )
 
-  _renderScene = ({ route }) => this.switchPage(route.key)
+  _renderScene = ({ route }) => this.switchPage(route.key);
   // }
   // return null;
 
-  switchPage = (key) => {
+  switchPage = (key: string) => {
     switch (key) {
       case 'detail':
         return <ComicDetail {...this.props} />;
       case 'list':
         return (
           <ListStyled>
-            <ComicList {...this.props} />
+            <ComicList {...this.props as any} />
           </ListStyled>
         );
       default:
         return null;
     }
   }
-
 
   render() {
     const { index } = this.state;
@@ -102,6 +105,5 @@ class ComicDetailTabsComponent extends PureComponent {
     );
   }
 }
-
 
 export default ComicDetailTabsComponent;

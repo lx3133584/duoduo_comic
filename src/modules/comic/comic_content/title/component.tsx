@@ -1,6 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
+
+import styled from 'styled-components/native';
 
 const TextStyled = styled.Text`
   color: #fff;
@@ -13,9 +13,7 @@ function TitleComponent({ title }: { title: string }) {
     </TextStyled>
   );
 }
-TitleComponent.propTypes = {
-  title: PropTypes.string,
-};
+
 TitleComponent.defaultProps = {
   title: '',
 };

@@ -1,14 +1,14 @@
 import React, { SFC } from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { Dimensions, View } from 'react-native';
+
+import styled from 'styled-components/native';
+import { Dimensions } from 'react-native';
 import Button from 'apsl-react-native-button';
 import { brand_primary } from 'theme';
 
 const { width: screenWidth } = Dimensions.get('window');
 
 const height = 50;
-const ContainerStyled = styled(View)`
+const ContainerStyled = styled.View`
   height: ${height};
   width: ${screenWidth};
   background-color: #fff;
@@ -19,7 +19,7 @@ const ContainerStyled = styled(View)`
 `;
 
 const buttonStyle = {
-  position: 'absolute',
+  position: 'absolute' as 'absolute',
   right: 0,
   top: 0,
   width: screenWidth * 0.4,
@@ -53,11 +53,6 @@ const FooterComponent: SFC<IProps> & {
   );
 };
 
-FooterComponent.propTypes = {
-  onPress: PropTypes.func,
-  buttonText: PropTypes.string,
-  bottom: PropTypes.number,
-};
 FooterComponent.defaultProps = {
   onPress: () => null,
   buttonText: '提交',

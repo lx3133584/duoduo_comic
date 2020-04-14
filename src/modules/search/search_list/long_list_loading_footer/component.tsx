@@ -1,6 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
+import styled from 'styled-components/native';
+
 import Spinner from 'react-native-spinkit';
 import { Dimensions } from 'react-native';
 import { brand_primary } from 'theme';
@@ -27,10 +27,6 @@ function LongListLoadingFooterComponent({ color, background }) {
   );
 }
 
-LongListLoadingFooterComponent.propTypes = {
-  color: PropTypes.string,
-  background: PropTypes.string,
-};
 LongListLoadingFooterComponent.defaultProps = {
   color: brand_primary,
   background: '#fff',

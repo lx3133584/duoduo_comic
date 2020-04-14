@@ -1,5 +1,4 @@
 import React, { SFC } from 'react';
-import PropTypes from 'prop-types';
 
 import Entypo from 'react-native-vector-icons/Entypo';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -15,11 +14,6 @@ function createIcon(IconComponent: typeof Icon, name: string) {
   }> = ({ focused, activeTintColor, inactiveTintColor }) => (
     <IconComponent name={name} size={ICON_SIZE} color={focused ? activeTintColor : inactiveTintColor} />
   );
-  IconC.propTypes = {
-    focused: PropTypes.bool.isRequired,
-    activeTintColor: PropTypes.string.isRequired,
-    inactiveTintColor: PropTypes.string.isRequired,
-  };
   return IconC;
 }
 

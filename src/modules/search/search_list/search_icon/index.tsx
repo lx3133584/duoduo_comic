@@ -1,7 +1,7 @@
 import React from 'react';
 import { Actions } from 'react-native-router-flux';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import { TouchableNativeFeedback } from '..';
+import TouchableNativeFeedback from '../touchable_native_feedback/component';
 
 const style = {
   marginRight: 4,

@@ -1,10 +1,10 @@
 import React, { PureComponent } from 'react';
 import { SearchBar } from 'react-native-elements';
-import PropTypes from 'prop-types';
+
 import { Header } from 'router';
 import { brand_primary } from 'theme';
 import { LeftButton } from 'router';
-import { ContainerType } from './container';
+import { IContainer } from './container';
 
 const containerStyle = {
   borderTopWidth: 0,
@@ -30,14 +30,11 @@ interface IState {
   value: string;
   loading: boolean;
 }
-class SearchBarComponent extends PureComponent<ContainerType, IState> {
-  static propTypes = {
-    search: PropTypes.func.isRequired,
-  };
+class SearchBarComponent extends PureComponent<IContainer, IState> {
 
   searchBarRef = React.createRef<SearchBar>();
 
-  constructor(props: ContainerType) {
+  constructor(props: IContainer) {
     super(props);
     const { oKeyword } = props;
     this.state = {

@@ -1,12 +1,11 @@
 import React, { PureComponent } from 'react';
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
+import styled from 'styled-components/native';
+
 import ActionSheet from 'react-native-actionsheet';
 import Toast from 'react-native-root-toast';
-import * as CacheManager from 'react-native-http-cache2';
 import { Modal } from '@';
 import { ListItem } from '@/user/user_info';
-import { ContainerType } from './container';
+import { IContainer } from './container';
 
 const ContainStyled = styled.View`
   background: #fff;
@@ -61,17 +60,10 @@ const modeOptions = modeData.map(item => item.text);
 modeOptions.push('取消');
 const sourceOptions = sourceData.map(item => item.text);
 sourceOptions.push('取消');
-class MainComponent extends PureComponent<ContainerType> {
-  static propTypes = {
-    isLogin: PropTypes.bool.isRequired,
-    mode: PropTypes.string.isRequired,
-    orientation: PropTypes.string.isRequired,
-    source: PropTypes.number.isRequired,
-    logout: PropTypes.func.isRequired,
-    switchOrientation: PropTypes.func.isRequired,
-    switchReadingMode: PropTypes.func.isRequired,
-    switchSource: PropTypes.func.isRequired,
-  };
+class MainComponent extends PureComponent<IContainer> {
+  orientationActionSheet = React.createRef<ActionSheet>();
+  modeActionSheet = React.createRef<ActionSheet>();
+  sourceActionSheet = React.createRef<ActionSheet>();
 
   state = {
     isVisible: false,
@@ -83,18 +75,19 @@ class MainComponent extends PureComponent<ContainerType> {
   }
 
   getCacheSize = () => {
-    CacheManager.getCacheSize().then((cacheSize) => {
-      this.setState({ cacheSize });
-    });
+    // CacheManager.getCacheSize().then((cacheSize) => {
+    //   this.setState({ cacheSize });
+    // });
+    this.setState({ cacheSize: 0 });
   }
 
   clearCache = () => {
-    CacheManager.clearCache().then(() => {
-      // this.getCacheSize();
-      this.setState({ cacheSize: 0 });
-      Toast.show('清除缓存成功', {
-        position: -70,
-      });
+    // CacheManager.clearCache().then(() => {
+    //   this.getCacheSize();
+    //   this.setState({ cacheSize: 0 });
+    // });
+    Toast.show('清除缓存成功', {
+      position: -70,
     });
   }
 
@@ -149,21 +142,21 @@ class MainComponent extends PureComponent<ContainerType> {
         <ListItem
           title="屏幕方向"
           rightTitle={orientationTextMap[orientation]}
-          onPress={this.orientationActionSheet && (() => this.orientationActionSheet.show())}
+          onPress={this.orientationActionSheet.current && (() => this.orientationActionSheet.current.show())}
         />
         {
           orientation === 'vertical' && (
             <ListItem
               title="阅读模式"
               rightTitle={modeTextMap[mode]}
-              onPress={this.modeActionSheet && (() => this.modeActionSheet.show())}
+              onPress={this.modeActionSheet.current && (() => this.modeActionSheet.current.show())}
             />
           )
         }
         <ListItem
           title="切换图片源"
           rightTitle={sourceTextMap[source]}
-          onPress={this.sourceActionSheet && (() => this.sourceActionSheet.show())}
+          onPress={this.sourceActionSheet.current && (() => this.sourceActionSheet.current.show())}
         />
         <ListItem
           title="清除缓存"
@@ -186,21 +179,21 @@ class MainComponent extends PureComponent<ContainerType> {
           是否确认退出登录？
         </Modal>
         <ActionSheet
-          ref={o => this.orientationActionSheet = o}
+          ref={this.orientationActionSheet}
           title="屏幕方向"
           options={orientationOptions}
           cancelButtonIndex={2}
           onPress={this.switchOrientation}
         />
         <ActionSheet
-          ref={o => this.modeActionSheet = o}
+          ref={this.modeActionSheet}
           title="阅读模式"
           options={modeOptions}
           cancelButtonIndex={2}
           onPress={this.switchMode}
         />
         <ActionSheet
-          ref={o => this.sourceActionSheet = o}
+          ref={this.sourceActionSheet}
           title="图片源"
           options={sourceOptions}
           cancelButtonIndex={4}

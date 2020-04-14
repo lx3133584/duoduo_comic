@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-// import ImmutablePropTypes from 'react-immutable-proptypes';
-import PropTypes from 'prop-types';
-import { ContentListScroll, ContentListPageTurning, Spin, ContentListFooter } from '..';
+import ContentListScroll from '../content_list_scroll';
+import Spin from '../spin';
+import ContentListFooter from '../content_list_footer';
 import { LongListLoadingFooter } from '@';
-import { ContainerType } from './container';
+import { IContainer } from './container';
+import ContentListPageTurning from '../content_list_page_turning';
 
 const page_size = 5;
 interface IState {
@@ -12,22 +13,7 @@ interface IState {
   noMoreData: boolean;
 }
 type Ref = typeof ContentListScroll | typeof ContentListPageTurning;
-class ContentListComponent extends Component<ContainerType, IState> {
-  static propTypes = {
-    // pre_content: ImmutablePropTypes.list.isRequired,
-    content_index: PropTypes.number,
-    chapter_id: PropTypes.number,
-    mode: PropTypes.string.isRequired,
-    getContent: PropTypes.func.isRequired,
-    content_cache: PropTypes.array,
-    useCache: PropTypes.func.isRequired,
-    hideLoading: PropTypes.func.isRequired,
-    saveIndex: PropTypes.func.isRequired,
-    toggleDrawer: PropTypes.func.isRequired,
-    go_to_flag: PropTypes.bool,
-    detail_chapter_id: PropTypes.number,
-  };
-
+class ContentListComponent extends Component<IContainer, IState> {
   static defaultProps = {
     go_to_flag: false,
     content_index: 0,
@@ -38,7 +24,7 @@ class ContentListComponent extends Component<ContainerType, IState> {
 
   chapter_id = 0; // 本章节ID
   init_page = 0; // 初始化时的页码
-  content_list_ref?: Ref = undefined;
+  content_list_ref?: any = undefined;
 
   state: IState = {
     page: 0, // 续读页码
@@ -50,7 +36,7 @@ class ContentListComponent extends Component<ContainerType, IState> {
     this.init();
   }
 
-  shouldComponentUpdate(nextProps: ContainerType, nextState: IState) {
+  shouldComponentUpdate(nextProps: IContainer, nextState: IState) {
     const { mode, go_to_flag, chapter_id } = this.props;
     const { page, loadingPage, noMoreData } = this.state;
     return nextProps.mode !== mode
@@ -61,7 +47,7 @@ class ContentListComponent extends Component<ContainerType, IState> {
       || nextState.loadingPage !== loadingPage;
   }
 
-  componentDidUpdate(prevProps: ContainerType) {
+  componentDidUpdate(prevProps: IContainer) {
     const {
       go_to_flag, chapter_id, mode, content_index,
     } = this.props;
@@ -83,9 +69,9 @@ class ContentListComponent extends Component<ContainerType, IState> {
   onFetch = (page: number, init = false) => {
     const { getContent, content_cache } = this.props;
     if (content_cache) return null;
-    return getContent({
+    return (getContent({
       id: this.chapter_id, page, init, pre: false,
-    }).then(res => {
+    }) as any).then(res => {
       const data = res.value.result ? res.value.result.data : res.value.data;
       if (res.error || !data) return;
       if (!data.length) this.setState({ noMoreData: true });

@@ -1,6 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
+import styled from 'styled-components/native';
+
 import { Badge } from 'react-native-elements';
 import { LongListItem } from '@';
 import { rankTypes } from '@/discovery';
@@ -50,11 +50,7 @@ function RankItemListItem(props) {
     </LongListItem>
   );
 }
-RankItemListItem.propTypes = {
-  desc: PropTypes.string,
-  author: PropTypes.string,
-  outid: PropTypes.oneOf([0, 1, 2, 3]).isRequired,
-};
+
 RankItemListItem.defaultProps = {
   desc: '',
   author: '佚名',

@@ -28,7 +28,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     return dispatch(updateTheDetailCache(params));
   },
 });
-export type ContainerType = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps> & IOwnProps;
+export type IContainer = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps> & IOwnProps;
 
 export default connect(
   mapStateToProps,

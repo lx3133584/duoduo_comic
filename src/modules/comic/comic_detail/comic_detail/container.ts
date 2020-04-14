@@ -6,7 +6,7 @@ const mapStateToProps = (state: RootState) => ({
   detail: state.comic.get('detail'),
 });
 
-export type ContainerType = ReturnType<typeof mapStateToProps>;
+export type IContainer = ReturnType<typeof mapStateToProps>;
 
 export default connect(
   mapStateToProps,

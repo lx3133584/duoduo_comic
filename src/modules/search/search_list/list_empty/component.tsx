@@ -1,6 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
+import styled from 'styled-components/native';
+
 import { Image } from 'react-native';
 
 import noresImg from './nores.png';
@@ -34,9 +34,7 @@ function ListEmptyComponent({ text }: { text: string }) {
     </ContainStyled>
   );
 }
-ListEmptyComponent.propTypes = {
-  text: PropTypes.string,
-};
+
 ListEmptyComponent.defaultProps = {
   text: '这里什么都没有呢~',
 };

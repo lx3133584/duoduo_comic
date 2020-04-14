@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
+import styled from 'styled-components/native';
+
 import { View } from 'react-native';
 import Toast from 'react-native-root-toast';
 import { Actions } from 'react-native-router-flux';
@@ -11,12 +11,6 @@ const InputContainStyled = styled.View`
 `;
 
 class RegisterLocalComponent extends PureComponent {
-  static propTypes = {
-    registerLocal: PropTypes.func.isRequired,
-    getFavorites: PropTypes.func.isRequired,
-    getHistory: PropTypes.func.isRequired,
-  };
-
   constructor() {
     super();
     this.onChangeUsername = this.changFunc('username');
@@ -99,7 +93,7 @@ class RegisterLocalComponent extends PureComponent {
         <LoginButton
           outline
           text="返回登录"
-          onPress={Actions.pop}
+          onPress={() => Actions.pop()}
         />
       </View>
     );

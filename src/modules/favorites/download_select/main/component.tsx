@@ -1,26 +1,25 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
+import styled from 'styled-components/native';
+
 import Toast from 'react-native-root-toast';
 import { is } from 'immutable';
-import { TouchableOpacity, Dimensions, Text } from 'react-native';
+import { TouchableOpacity, Dimensions } from 'react-native';
 import { Actions } from 'react-native-router-flux';
 import { Header } from 'router';
 import { ComicList } from '@/comic/comic_detail';
-import { Footer } from '..';
-import { wrapWithCheckBoxData, wrapWithCheckBoxDataType, ICheckBoxProps } from 'utils';
-import { ContainerType } from './container';
+import Footer from '../footer';
+import { wrapWithCheckBoxData, ICheckBoxProps } from 'utils';
+import { IContainer } from './container';
 
 const { width: screenWidth } = Dimensions.get('window');
 
-const SaveTextStyled = styled(Text)`
+const SaveTextStyled = styled.Text`
   color: #fff;
   font-size: 16px;
   padding: 0 10px;
 `;
 
-const TitleStyled = styled(Text)`
+const TitleStyled = styled.Text`
   text-align: center;
   font-size: 18px;
   margin-left: ${screenWidth * 0.15};
@@ -28,15 +27,7 @@ const TitleStyled = styled(Text)`
 `;
 
 @wrapWithCheckBoxData
-class DownloadSelectComponent extends Component<ContainerType & ICheckBoxProps> {
-  static propTypes = {
-    list: ImmutablePropTypes.list.isRequired,
-    flatList: ImmutablePropTypes.list.isRequired,
-    detail: ImmutablePropTypes.map.isRequired,
-    comic_cache: ImmutablePropTypes.map,
-    add: PropTypes.func.isRequired,
-    ...wrapWithCheckBoxDataType,
-  };
+class DownloadSelectComponent extends Component<IContainer & ICheckBoxProps> {
 
   static defaultProps = {
     comic_cache: null,

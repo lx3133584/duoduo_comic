@@ -1,6 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
+import styled from 'styled-components/native';
+import { ViewProps } from 'react-native';
 
 const ContainStyled = styled.View`
   background-color: #999;
@@ -20,9 +20,14 @@ const SubTitleStyled = styled.Text`
   font-size: 18px;
   color: #eee;
 `;
+interface IProps extends ViewProps {
+  title?: string;
+  subTitle?: string;
+  children?: any;
+}
 function ImagePlaceholder({
   title, subTitle, children, ...rest
-}) {
+}: IProps) {
   return (
     <ContainStyled {...rest}>
       <TitleStyled>
@@ -37,11 +42,6 @@ function ImagePlaceholder({
     </ContainStyled>
   );
 }
-ImagePlaceholder.propTypes = {
-  title: PropTypes.string,
-  subTitle: PropTypes.string,
-  children: PropTypes.element,
-};
 ImagePlaceholder.defaultProps = {
   title: '',
   subTitle: '',

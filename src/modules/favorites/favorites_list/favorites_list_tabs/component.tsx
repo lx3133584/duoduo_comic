@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import styled from 'styled-components';
-import { FavoritesList, HistoryList, DownloadList } from '..';
+
+import styled from 'styled-components/native';
+import FavoritesList from '../favorites_list';
+import HistoryList from '../history_list';
+import DownloadList from '../download_list';
 import { Dimensions } from 'react-native';
 import { Header } from 'router';
 import {
@@ -10,6 +11,7 @@ import {
 } from 'react-native-tab-view';
 import { LoginNowButton } from '@';
 import { brand_primary } from 'theme';
+import { IContainer } from './container';
 
 const { width, height } = Dimensions.get('window');
 
@@ -55,11 +57,11 @@ const routes = [
   { title: '下载', key: 'download' },
 ];
 
-class FavoritesTabsComponent extends Component {
-  static propTypes = {
-    info: ImmutablePropTypes.map.isRequired,
-    index: PropTypes.number,
-  };
+interface IState {
+  index: number;
+}
+
+class FavoritesTabsComponent extends Component<IContainer, IState> {
 
   static defaultProps = {
     index: 0,
@@ -67,7 +69,7 @@ class FavoritesTabsComponent extends Component {
 
   constructor(props) {
     super(props);
-    const { index } = props;
+    const { index = 0 } = props;
     this.state = {
       index,
     };

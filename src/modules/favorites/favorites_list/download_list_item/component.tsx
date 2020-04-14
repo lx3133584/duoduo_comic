@@ -1,11 +1,11 @@
 import React from 'react';
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
+import styled from 'styled-components/native';
+
 import { Dimensions } from 'react-native';
 import { Badge } from 'react-native-elements';
-import { Bar } from 'react-native-progress';
+import Progress from 'react-native-progress/Bar';
 import { LongListItem } from '@';
-import { downloadStatus } from '../..';
+import { downloadStatus } from '@/favorites';
 import { statCount } from 'utils';
 import {
   green, yellow, brand_primary, red,
@@ -52,7 +52,9 @@ function DownloadListItem(props) {
   return (
     <LongListItem {...props}>
       <BarContainStyled>
-        {total ? <Bar progress={done / total} color={brand_primary} width={screenWidth - 200} /> : null}
+        {total ? (
+          <Progress progress={done / total} color={brand_primary} width={screenWidth - 200} useNativeDriver />
+        ) : null}
       </BarContainStyled>
       <DescStyled>
 下载进度：
@@ -73,10 +75,7 @@ function DownloadListItem(props) {
     </LongListItem>
   );
 }
-DownloadListItem.propTypes = {
-  download_status: PropTypes.string,
-  listMap: PropTypes.shape().isRequired,
-};
+
 DownloadListItem.defaultProps = {
   download_status: 'error',
 };

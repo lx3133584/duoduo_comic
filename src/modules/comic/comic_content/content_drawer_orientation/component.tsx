@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
+import styled from 'styled-components/native';
+
 import Orientation from 'react-native-orientation';
-import { ContentDrawerSettingCheckbox } from '..';
-import { ContainerType } from './container';
+import ContentDrawerSettingCheckbox from '../content_drawer_setting_checkbox';
+import { IContainer } from './container';
 
 const ContainStyled = styled.View`
   flex-direction: row;
@@ -20,16 +20,10 @@ const options = [
     value: 'horizon',
   },
 ];
-interface IProps extends ContainerType {
+interface IProps extends IContainer {
   toggleDrawer(): void;
 }
 class ContentDrawerOrientationComponent extends PureComponent<IProps> {
-  static propTypes = {
-    switchOrientation: PropTypes.func.isRequired,
-    switchReadingMode: PropTypes.func.isRequired,
-    toggleDrawer: PropTypes.func.isRequired,
-    orientation: PropTypes.string.isRequired,
-  };
 
   switchOrientation = (value: 'vertical' | 'horizon') => {
     const {

@@ -1,6 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
+import styled from 'styled-components/native';
 import Spinner from 'react-native-spinkit';
 import { Dimensions } from 'react-native';
 import { brand_primary } from 'theme';
@@ -45,10 +44,7 @@ function ProgressComponent({ show, width }) {
     </ContainStyled>
   );
 }
-ProgressComponent.propTypes = {
-  show: PropTypes.bool,
-  width: PropTypes.number,
-};
+
 ProgressComponent.defaultProps = {
   show: false,
   width: clientWidth,

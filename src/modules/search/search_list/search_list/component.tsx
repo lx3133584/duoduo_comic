@@ -1,16 +1,10 @@
 import React, { PureComponent } from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import PropTypes from 'prop-types';
-import { LongList, SearchListItem } from '..';
-import { ContainerType } from './container';
 
-class SearchListComponent extends PureComponent<ContainerType> {
-  static propTypes = {
-    search: PropTypes.func.isRequired,
-    clear: PropTypes.func.isRequired,
-    list: ImmutablePropTypes.list.isRequired,
-    keyword: PropTypes.string.isRequired,
-  };
+import LongList from '../long_list';
+import SearchListItem from '../search_list_item';
+import { IContainer } from './container';
+
+class SearchListComponent extends PureComponent<IContainer> {
 
   constructor(props) {
     super(props);
@@ -35,7 +29,7 @@ class SearchListComponent extends PureComponent<ContainerType> {
       <LongList
         list={listFormat}
         Item={SearchListItem}
-        onFetch={this.onFetch}
+        onFetch={this.onFetch as any}
         emptyText="试着搜索看看吧~"
         isLong
         showFooter

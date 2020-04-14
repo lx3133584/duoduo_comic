@@ -6,6 +6,7 @@ import { createSelector } from 'reselect';
 import { getComicCache } from 'selectors/get_cache';
 import Component from './component';
 import { getComicList, useTheListCache, updateTheListCache } from '../actions';
+import { ILoadingProps } from 'utils';
 
 interface IOwnProps {
   id?: number;
@@ -17,11 +18,11 @@ interface IOwnProps {
 }
 const comicIdSelector = (state: RootState, ownProps: IOwnProps) => ownProps.id || state.comic.getIn(['detail', 'id']);
 const comicCacheSelector = getComicCache(comicIdSelector);
-const listMapSelector = createSelector(
+const listMapSelector: any = createSelector(
   [comicCacheSelector],
   (comicCache) => comicCache && comicCache.get('listMap'),
 );
-const listSelector = createSelector(
+const listSelector: any = createSelector(
   [comicCacheSelector],
   (comicCache) => comicCache && comicCache.get('list'),
 );
@@ -44,7 +45,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     return dispatch(updateTheListCache(params));
   },
 });
-export type ContainerType = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps> & IOwnProps;
+export type IContainer = ReturnType<typeof mapStateToProps>
+& ReturnType<typeof mapDispatchToProps> & IOwnProps & ILoadingProps;
 export default connect(
   mapStateToProps,
   mapDispatchToProps,

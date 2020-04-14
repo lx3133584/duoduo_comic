@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { Dimensions } from 'react-native';
-import styled from 'styled-components';
+import styled from 'styled-components/native';
 import { RankItemList } from '@/discovery/rank_item_list';
 
 const { height } = Dimensions.get('window');

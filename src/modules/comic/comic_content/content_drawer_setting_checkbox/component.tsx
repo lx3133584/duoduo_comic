@@ -1,6 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
+import styled from 'styled-components/native';
+
 import { Button } from 'react-native-elements';
 import { brand_primary } from 'theme';
 
@@ -22,7 +22,7 @@ const TextStyled = styled.Text`
   color: #fff;
 `;
 const buttonStyle = {
-  backgroundColor: 'transparent',
+  backgroundColor: 'transparent' as 'transparent',
   borderWidth: 1,
   borderColor: '#fff',
   borderRadius: 5,
@@ -31,7 +31,7 @@ const buttonStyle = {
   elevation: 0,
 };
 const textStyle = {
-  fontWeight: 'normal',
+  fontWeight: 'normal' as 'normal',
   color: '#fff',
   fontSize: 18,
 };
@@ -48,13 +48,6 @@ function ButtonComponent({
     />
   );
 }
-ButtonComponent.propTypes = {
-  icon: PropTypes.string,
-  text: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
-  changeValue: PropTypes.func.isRequired,
-  active: PropTypes.bool,
-};
 ButtonComponent.defaultProps = {
   icon: null,
   active: false,
@@ -80,17 +73,6 @@ function ContentDrawerSettingCheckboxComponent({
     </ContainStyled>
   );
 }
-ContentDrawerSettingCheckboxComponent.propTypes = {
-  title: PropTypes.string,
-  value: PropTypes.string.isRequired,
-  changeValue: PropTypes.func.isRequired,
-  options: PropTypes.arrayOf(PropTypes.shape({
-    icon: PropTypes.string,
-    text: PropTypes.string.isRequired,
-    value: PropTypes.string.isRequired,
-    active: PropTypes.bool,
-  })),
-};
 ContentDrawerSettingCheckboxComponent.defaultProps = {
   title: '',
   options: [],

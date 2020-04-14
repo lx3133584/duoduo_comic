@@ -1,6 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
+import styled from 'styled-components/native';
+
 import { Actions } from 'react-native-router-flux';
 import { TouchableOpacity } from 'react-native';
 import { Image } from '@';
@@ -47,9 +47,5 @@ function ClassListItem({
     </ContainStyled>
   );
 }
-ClassListItem.propTypes = {
-  name: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
-  cover: PropTypes.string.isRequired,
-};
+
 export default ClassListItem;

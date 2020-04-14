@@ -1,24 +1,20 @@
 import React, { PureComponent } from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
-import { ClassListItem } from '..';
+
+import styled from 'styled-components/native';
+import ClassListItem from '../class_list_item';
 import { LongList } from '@';
+import { IContainer } from './container';
 
 const ContainStyled = styled.View`
   padding-bottom: 125px;
 `;
 
 const columnWrapperStyle = {
-  flexDirection: 'row',
-  justifyContent: 'space-around',
+  flexDirection: 'row' as 'row',
+  justifyContent: 'space-around' as 'space-around',
 };
 
-class ClassListComponent extends PureComponent {
-  static propTypes = {
-    getList: PropTypes.func.isRequired,
-    list: ImmutablePropTypes.list.isRequired,
-  };
+class ClassListComponent extends PureComponent<IContainer> {
 
   componentDidMount() {
     this.onFetch();

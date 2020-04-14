@@ -1,3 +1,4 @@
+import { ILoadingProps } from 'utils';
 import { RootState } from 'store';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
@@ -12,10 +13,11 @@ import {
 interface IOwnProps {
   chapter_id: number;
   pre?: boolean;
-  title: string;
+  title?: string;
+  toggleDrawer: () => void;
 }
 const chapterIdSelector = (state: RootState, ownProps: IOwnProps) => ownProps.chapter_id;
-const cacheSelector = getContentCache(chapterIdSelector);
+const cacheSelector: any = getContentCache(chapterIdSelector);
 const mapStateToProps = (state: RootState, ownProps: IOwnProps) => ({
   detail_chapter_id: state.comic.getIn(['detail', 'chapter_id']),
   content_index: state.comic.getIn(['detail', 'index']),
@@ -39,7 +41,8 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
     return dispatch(useTheContentCache(params));
   },
 });
-export type ContainerType = ReturnType<typeof mapStateToProps> & ReturnType<typeof mapDispatchToProps> & IOwnProps;
+export type IContainer = ReturnType<typeof mapStateToProps>
+& ReturnType<typeof mapDispatchToProps> & IOwnProps & ILoadingProps;
 export default connect(
   mapStateToProps,
   mapDispatchToProps,

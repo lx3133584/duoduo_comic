@@ -15,7 +15,8 @@ const mapDispatchToProps = dispatch => ({
     return dispatch(removeFavorite(params));
   },
 });
-
+export type IContainer = ReturnType<typeof mapStateToProps>
+  & ReturnType<typeof mapDispatchToProps>;
 export default connect(
   mapStateToProps,
   mapDispatchToProps,

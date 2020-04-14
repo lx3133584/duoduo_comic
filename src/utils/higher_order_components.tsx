@@ -1,8 +1,6 @@
-import React, { PureComponent, Component, ComponentType } from 'react';
+import React, { PureComponent, Component } from 'react';
 import hoistNonReactStatics from 'hoist-non-react-statics';
 import Immutable from 'immutable';
-import PropTypes from 'prop-types';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 
 interface ILoadingState {
   loading: boolean;
@@ -11,7 +9,7 @@ export interface ILoadingProps extends ILoadingState {
   hideLoading(bool?: boolean): void;
 }
 // 提供loading状态的高阶组件
-export function wrapWithLoading<WrappedProps extends ILoadingProps>(WrappedComponent: ComponentType<WrappedProps>) {
+export function wrapWithLoading<WrappedProps extends ILoadingProps>(WrappedComponent: any) {
   type HocProps = Subtract<WrappedProps, ILoadingProps>;
   class NewComponent extends PureComponent<HocProps, ILoadingState> {
     static displayName = `wrapWithLoading(${WrappedComponent.name})`;
@@ -40,12 +38,8 @@ export function wrapWithLoading<WrappedProps extends ILoadingProps>(WrappedCompo
       );
     }
   }
-  return hoistNonReactStatics(NewComponent, WrappedComponent);
+  return hoistNonReactStatics(NewComponent, WrappedComponent) as any;
 }
-export const wrapWithLoadingType = {
-  loading: PropTypes.bool.isRequired,
-  hideLoading: PropTypes.func.isRequired,
-};
 
 interface ICheckboxState {
   checkboxData: Immutable.Map<number, boolean>;
@@ -60,7 +54,7 @@ export interface ICheckBoxProps extends ICheckboxState {
   changeCheckbox(id: number): void;
 }
 // 提供复选框选择的高阶组件
-export function wrapWithCheckBoxData<P>(WrappedComponent: ComponentType<P>) {
+export function wrapWithCheckBoxData<P>(WrappedComponent: any) {
   class NewComponent extends Component<P, ICheckboxState> {
     static displayName = `wrapWithCheckBoxData(${WrappedComponent.name})`;
     static readonly WrappedComponent = WrappedComponent;
@@ -142,14 +136,5 @@ export function wrapWithCheckBoxData<P>(WrappedComponent: ComponentType<P>) {
       );
     }
   }
-  return hoistNonReactStatics(NewComponent, WrappedComponent);
+  return hoistNonReactStatics(NewComponent, WrappedComponent) as any;
 }
-export const wrapWithCheckBoxDataType = {
-  checkboxData: ImmutablePropTypes.map.isRequired,
-  initCheckBoxData: PropTypes.func.isRequired,
-  selectAll: PropTypes.func.isRequired,
-  changeCheckbox: PropTypes.func.isRequired,
-  totalSelected: PropTypes.number.isRequired,
-  isSelectedAll: PropTypes.bool.isRequired,
-  selectedIdList: ImmutablePropTypes.list.isRequired,
-};

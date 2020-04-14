@@ -1,6 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import styled from 'styled-components';
+
+import styled from 'styled-components/native';
 
 const TextStyled = styled.Text`
   color: #fff;
@@ -15,10 +15,7 @@ function ReadingProgressComponent({ index, total }: { index?: number; total?: nu
     </TextStyled>
   );
 }
-ReadingProgressComponent.propTypes = {
-  index: PropTypes.number,
-  total: PropTypes.number,
-};
+
 ReadingProgressComponent.defaultProps = {
   index: 1,
   total: 1,
