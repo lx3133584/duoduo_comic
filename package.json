@@ -31,7 +31,7 @@
     "react-native-cookies": "^3.2.0",
     "react-native-device-info": "^5.5.4",
     "react-native-elements": "1.0.0-beta7",
-    "react-native-fast-image": "^5.1.2",
+    "react-native-fast-image": "^8.3.0",
     "react-native-gesture-handler": "^1.6.1",
     "react-native-image-picker": "^0.26.7",
     "react-native-image-progress": "^1.1.0",
